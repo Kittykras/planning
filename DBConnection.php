@@ -21,9 +21,9 @@ class DBConnection{
 
     function __construct(){
         $this->servername = "localhost";
-        $this->dbname = "sunddb";
-        $this->username = "sund";
-        $this->password = "password";
+        $this->dbname = "vonbulowplanning";
+        $this->username = "root";
+        $this->password = "root";
         $this->pdo = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
     }
     
