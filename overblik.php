@@ -67,7 +67,7 @@ include 'include/menubar.inc.php';
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td><span class="text-danger">●</span> MailChimp / nyhed</td>
+                        <td><span class="text-red">●</span> MailChimp / nyhed</td>
                         <td>MI</td>
                         <td>Ane</td>
                     </tr>
