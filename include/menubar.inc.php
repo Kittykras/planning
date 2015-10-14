@@ -1,4 +1,5 @@
-<div id='cssmenu' style="max-width: 940px; margin: auto">
+<div class="dcenter">
+<div id='cssmenu'  align="center">
             <ul>
 <!--                <li><a href='#'><span style="color: orangered">+</span>vonbülow.co</a></li>-->
                 <div class="navbar-header">
@@ -6,17 +7,17 @@
                 </div>
                 <li class='has-sub'><a href='#'>Medarbejdere</a>
                     <ul>
-                        <li class='has-sub'><a href='#'>Rikke</a>
+                        <li><a href='#'>Rikke</a>
                         </li>
-                        <li class='has-sub'><a href='#'>Ane</a>
+                        <li><a href='#'>Ane</a>
                         </li>
                     </ul>
                 </li>
-                <li><a href='#'>Kunder</a>
+                <li class="has-sub"><a href='#'>Kunder</a>
                     <ul>
-                        <li class='has-sub'><a href='#'>SFB</a>
+                        <li><a href='#'>SFB</a>
                         </li>
-                        <li class='has-sub'><a href='#'>Ekko</a>
+                        <li><a href='#'>Ekko</a>
                         </li>
                     </ul>
                 </li>
@@ -25,3 +26,4 @@
                 <li><a href='#'><span class="glyphicon glyphicon-user"></span> Rikke</a></li>
             </ul>
         </div>
+</div>

@@ -7,10 +7,10 @@ include 'include/menubar.inc.php';
                     <div class="col span_1_of_2"><h2>Overblik</h2></div>
                     <div class="col span_2_of_2"><br><button type="button" class="btn btn-black"align="right">Default</button></div>
                 </div>-->
-        <div class="container img-responsive" style="width: 940px; background-image: url('images/about-sm.jpg')">
+        <div class="container dcenter hpic img-responsive">
             <div class="section group">
                 <div class="col span_1_of_2">
-                    <h2 style="color: white">Overblik</h2>
+                    <h2>Overblik</h2>
                 </div>
                 <div class="col span_1_of_2" align="right">
                     <br>
@@ -36,9 +36,9 @@ include 'include/menubar.inc.php';
             </div>
         </div>
         <br>
-        <div class="panel panel-default" style="max-width: 940px; margin: auto">
-            <table class="table table-condensed table-responsive" style="background-color: white">
-                <thead style="background-color: #D26232; color: black">
+        <div class="panel panel-default dcenter">
+            <table class="table table-condensed table-responsive">
+                <thead class="thead-style">
                     <tr>
                         <th>Uge</th>
                         <th>Opgave</th>
@@ -61,13 +61,13 @@ include 'include/menubar.inc.php';
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td><span style="color: #FFCC00">●</span> Web-koks</td>
+                        <td><span class="text-yellow">●</span> Web-koks</td>
                         <td>Advodan</td>
                         <td>Ane</td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td><span style="color: red">●</span> MailChimp / nyhed</td>
+                        <td><span class="text-danger">●</span> MailChimp / nyhed</td>
                         <td>MI</td>
                         <td>Ane</td>
                     </tr>

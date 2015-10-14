@@ -1,6 +1,10 @@
 body{
     font-family: 'Play', sans-serif;
 }
+
+h2{
+    color: white;
+}
 @import url(https://fonts.googleapis.com/css?family=Play:400,700);
 #cssmenu,
 #cssmenu ul,
@@ -369,4 +373,17 @@ body{
 .dropdown-black>li>a:focus,.dropdown-menu>li>a:hover{
     background: black;
     color: orangered;
+}
+.dcenter{
+    max-width: 940px;
+    margin: 0 auto;
+}
+.hpic{
+    background-image: url('images/about-sm.jpg');
+}
+.thead-style{
+    background-color: #D26232;
+}
+.text-yellow{
+    color: #FFCC00;
 }
