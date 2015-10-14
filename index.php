@@ -11,7 +11,9 @@ include 'include/top.inc.php';
       <input name="pwd" type="password" class="form-control" id="pwd" placeholder="Kodeord">
     </div>
     <div class="checkbox">
-      <label><input type="checkbox"> Husk mig</label>
+      <label class="checkbox">
+        <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Husk mig
+      </label>
     </div>
     <button type="submit" class="btn btn-black">Log Ind</button>
   </form>
