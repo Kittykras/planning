@@ -9,7 +9,7 @@ include 'include/top.inc.php';
             <input name="user" type="text" class="form-control" id="user" placeholder="Brugernavn">
         </div>
         <div class="form-group">
-            <input name="pwd" type="password" class="form-control" id="pwd" placeholder="Kodeord" autocomplete="on">
+            <input name="pwd" type="password" class="form-control" id="pwd" placeholder="Kodeord">
         </div>
         <label class="checkbox">
             <input type="checkbox" value="remember-me" id="remember_me"> Husk mig
