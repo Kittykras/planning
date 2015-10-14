@@ -5,15 +5,10 @@ include 'include/top.inc.php';
 <div class="vertically-align" align="center">
     <form role="form" action="checkLogin.php" method="post">
     <div class="form-group">
-      <input name="user" type="user" class="form-control" id="user" placeholder="Brugernavn">
+        <input name="user" type="user" class="form-control" id="user" placeholder="Brugernavn" autocomplete="on">
     </div>
     <div class="form-group">
-      <input name="pwd" type="password" class="form-control" id="pwd" placeholder="Kodeord">
-    </div>
-    <div class="checkbox">
-      <label class="checkbox">
-        <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Husk mig
-      </label>
+        <input name="pwd" type="password" class="form-control" id="pwd" placeholder="Kodeord" autocomplete="on">
     </div>
     <button type="submit" class="btn btn-black">Log Ind</button>
   </form>
