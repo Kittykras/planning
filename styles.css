@@ -401,4 +401,10 @@ h4.chead{
 .brightred{
     color: red;
 }
+.link-style{
+    color:black;
+}
+.link-style:active, .link-style:hover{
+    color: #D26232;
+}
 

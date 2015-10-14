@@ -45,7 +45,7 @@ include 'include/menubar.inc.php';
                 <?php
                 foreach ($users as $user) {
                     ?>
-                <tr><td><?php echo $user->a_name; ?></td></tr>
+            <tr><td><button class="btn btn-link link-style" onclick="redirect()"><?php echo $user->a_name; ?></button></td></tr>
                 <?php
             }
             ?>
@@ -53,6 +53,10 @@ include 'include/menubar.inc.php';
         </tbody>
     </table>
 </div>
-
+<script>
+    function redirect(){
+        window.location = 'enkeltMedarbejder.php';
+    }
+</script>
 </body>
 <html>

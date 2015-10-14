@@ -13,7 +13,7 @@ session_start();
                 <ul>
                     <?php
                     foreach ($users as $user) {?>
-                    <li><a href = '#'><?php echo $user->a_name?></a>
+                    <li><a href = 'enkeltMedarbejder.php'><?php echo $user->a_name?></a>
                     </li>
                     <?php
                     }
