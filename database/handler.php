@@ -1,6 +1,6 @@
 <?php
-include 'DBConnection.php';
-include 'classes/User.php';
+require_once 'DBConnection.php';
+require_once 'classes/User.php';
 
 $db = new DBConnection();
 $q = 'call getallassociate()';

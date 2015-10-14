@@ -3,21 +3,18 @@ include 'include/top.inc.php';
 include 'include/menubar.inc.php';
 ?>
 
-        <!--        <div class="section group">
-                    <div class="col span_1_of_2"><h2>Overblik</h2></div>
-                    <div class="col span_2_of_2"><br><button type="button" class="btn btn-black"align="right">Default</button></div>
-                </div>-->
-        <div class="container dcenter hpic img-responsive">
+<div class="container dcenter hpic img-responsive">
             <div class="section group">
                 <div class="col span_1_of_2">
-                    <h2>Overblik</h2>
+                    <h4 class="chead">Medarbejdere</h4>
+                    <h2 class="chead">Medarbejdere</h2>
                 </div>
-                <div class="col span_1_of_2" align="right">
                     <br>
-                    <button type="button" class="btn btn-black">Ny Kunde</button>
+                <div class="col span_1_of_2" align="right">
+                    <button type="button" class="btn btn-black">Ny Medarbejder</button>
                 </div>
             </div>
-            <div class="row" align="center">
+<!--            <div class="row" align="center">
                 <div class="btn-group">
                     <div class="btn-group dropdown">
                         <button type="button" class="btn btn-black dropdown-toggle" data-toggle="dropdown">
@@ -33,43 +30,25 @@ include 'include/menubar.inc.php';
                     <button type="button" class="btn btn-black">Kunde</button>
                     <button type="button" class="btn btn-black">Medarbejder</button>
                 </div>
-            </div>
+            </div>-->
         </div>
         <br>
         <div class="panel panel-default dcenter">
             <table class="table table-condensed table-responsive">
                 <thead class="thead-style">
                     <tr>
-                        <th>Uge</th>
-                        <th>Opgave</th>
-                        <th>Kunde</th>
                         <th>Medarbejder</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td><span>●</span> Presse</td>
-                        <td>Høier</td>
-                        <td>Rikke</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td><span>●</span> LinkedIn</td>
-                        <td>Høier</td>
-                        <td>Rikke</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><span class="text-yellow">●</span> Web-koks</td>
-                        <td>Advodan</td>
-                        <td>Ane</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><span class="brightred">●</span> MailChimp / nyhed</td>
-                        <td>MI</td>
-                        <td>Ane</td>
+                        <?php 
+                        foreach ($users as $user) {
+                            ?>
+                    <tr><td><?php echo $user->a_name;?></td></tr>
+                        <?php
+                        }
+                       ?>
                     </tr>
                 </tbody>
             </table>

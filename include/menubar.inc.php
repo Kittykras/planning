@@ -9,11 +9,11 @@ session_start();
             <div class="navbar-header">
                 <a class="navbar-brand" style="color: white" href="#"><span style="color: #D26232">+</span>vonbülow.co</a>
             </div>
-            <li class='has-sub'><a href='#'>Medarbejdere</a>
+            <li class='has-sub'><a href='medarbejder.php'>Medarbejdere</a>
                 <ul>
                     <?php
                     foreach ($users as $user) {?>
-                    <li><a href = '#'><?php print_r($user->getName())?></a>
+                    <li><a href = '#'><?php echo $user->a_name?></a>
                     </li>
                     <?php
                     }
@@ -28,7 +28,7 @@ session_start();
                     </li>
                 </ul>
             </li>
-            <li><a href = '#'>Overblik</a></li>
+            <li><a href = 'overblik.php'>Overblik</a></li>
             <li><a href = '#'>Time Oversigt</a></li>
             <li><a href = '#'><span class = "glyphicon glyphicon-user"></span> <?php print_r($_SESSION["user"])
                     ?></a></li>

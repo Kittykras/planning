@@ -1,5 +1,5 @@
 <?php
-include 'DBConnection.php';
+require_once 'DBConnection.php';
 try {
     $username = $_POST["user"];
     $pass = $_POST["pwd"];

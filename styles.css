@@ -2,7 +2,7 @@ body{
     font-family: 'Play', sans-serif;
 }
 
-h2{
+h2, h4{
     color: white;
 }
 @import url(https://fonts.googleapis.com/css?family=Play:400,700);
@@ -231,6 +231,9 @@ h2{
 @media only screen and (max-width: 480px) {
     .span_2_of_2, .span_1_of_2 { width: 50%; }
 }
+h4.chead{
+    display: none;
+}
 
 @media all and (max-width: 768px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (-o-min-device-pixel-ratio: 2/1) and (max-width: 1024px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min-resolution: 192dpi) and (max-width: 1024px), only screen and (min-resolution: 2dppx) and (max-width: 1024px) {
     #cssmenu {
@@ -357,6 +360,12 @@ h2{
     #cssmenu .submenu-button.submenu-opened:after {
         display: none;
     }
+    h2.chead{
+        display: none;
+    }
+    h4.chead{
+        display: block;
+    }
 }
 .btn-black{
     background: black;
@@ -390,3 +399,4 @@ h2{
 .brightred{
     color: red;
 }
+
