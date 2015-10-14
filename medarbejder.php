@@ -5,7 +5,7 @@ include 'include/menubar.inc.php';
 
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
-        <div class="col span_1_of_2 ext-box">
+        <div class="col span_1_of_2">
             <h4 class="chead">Medarbejdere</h4>
             <h2 class="chead">Medarbejdere</h2>
         </div>
