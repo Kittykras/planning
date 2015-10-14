@@ -86,7 +86,7 @@ h2{
 }
 #cssmenu > ul > li:hover > a,
 #cssmenu > ul > li.active > a {
-    color: orangered;
+    color: #D26232;
 }
 #cssmenu > ul > li.has-sub > a {
     padding-right: 25px;
@@ -112,7 +112,7 @@ h2{
     transition: border-color 0.2s ease;
 }
 #cssmenu > ul > li.has-sub:hover > a::after {
-    border-color: orangered;
+    border-color: #D26232;
 }
 #cssmenu ul ul {
     position: absolute;
@@ -158,7 +158,7 @@ h2{
 }
 #cssmenu ul ul li:hover > a,
 #cssmenu ul ul li a:hover {
-    color: orangered;
+    color: #D26232;
 }
 #cssmenu ul ul li.has-sub > a::after {
     position: absolute;
@@ -189,7 +189,7 @@ h2{
     border-left: 1px solid #dddddd;
 }
 #cssmenu ul ul li.has-sub:hover > a::after {
-    border-color: orangered;
+    border-color: #D26232;
 }
 
 /*  SECTIONS  */
@@ -272,7 +272,7 @@ h2{
     }
     #cssmenu ul ul li:hover > a,
     #cssmenu ul ul li a:hover {
-        color: orangered;
+        color: #D26232;
     }
     #cssmenu ul ul ul li a {
         padding-left: 40px;
@@ -364,7 +364,7 @@ h2{
     border: none;
 }
 .btn-black:active,.btn-black:hover, .btn-black:focus{
-    color: orangered;
+    color: #D26232;
 }
 .dropdown-black, .dropdown-menu>li>a{
     background: black;
@@ -372,7 +372,7 @@ h2{
 }
 .dropdown-black>li>a:focus,.dropdown-menu>li>a:hover{
     background: black;
-    color: orangered;
+    color: #D26232;
 }
 .dcenter{
     max-width: 940px;

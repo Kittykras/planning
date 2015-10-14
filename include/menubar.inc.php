@@ -6,7 +6,7 @@ session_start();
             <ul>
 <!--                <li><a href='#'><span style="color: orangered">+</span>vonbülow.co</a></li>-->
                 <div class="navbar-header">
-                    <a class="navbar-brand" style="color: white" href="#"><span style="color: orangered">+</span>vonbülow.co</a>
+                    <a class="navbar-brand" style="color: white" href="#"><span style="color: #D26232">+</span>vonbülow.co</a>
                 </div>
                 <li class='has-sub'><a href='#'>Medarbejdere</a>
                     <ul>
