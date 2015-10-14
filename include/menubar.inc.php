@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <div class="dcenter">
 <div id='cssmenu'  align="center">
             <ul>
@@ -23,7 +26,7 @@
                 </li>
                 <li><a href='#'>Overblik</a></li>
                 <li><a href='#'>Time Oversigt</a></li>
-                <li><a href='#'><span class="glyphicon glyphicon-user"></span> Rikke</a></li>
+                <li><a href='#'><span class="glyphicon glyphicon-user"></span> <?php print_r($_SESSION["user"])?></a></li>
             </ul>
         </div>
 </div>

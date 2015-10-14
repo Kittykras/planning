@@ -12,12 +12,12 @@ try {
     $q = "call logon(:username,:pass)";
     $stmt = $db->prepare($q);
     $stmt->execute(array(':username' => $username, ':pass' => $pass));
-    
+    $result = $stmt->fetch(PDO::FETCH_OBJ);
 //    $result=  mysql_query($q);
     $count = $stmt->rowCount();
     if($count == 1){
-        $_SESSION["user"] = $username;
-        $_SESSION["pass"] = $pass;
+        session_start();
+        $_SESSION["user"] = $result->a_name;
         header("location:overblik.php");
     }else {
         header("location:index.php?error");
