@@ -1,6 +1,7 @@
 <?php
 include 'include/top.inc.php';
 include 'include/menubar.inc.php';
+include 'database/handler.php';
 ?>
 
         <!--        <div class="section group">

@@ -19,6 +19,7 @@ try {
         session_start();
         $_SESSION["user"] = $result->a_name;
         header("location:overblik.php");
+        $db->close();
     }else {
         header("location:index.php?error");
     }
