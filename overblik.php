@@ -12,10 +12,10 @@ include 'include/menubar.inc.php';
                 <div class="col span_1_of_2">
                     <h2>Overblik</h2>
                 </div>
-                <div class="col span_1_of_2" align="right">
+<!--                <div class="col span_1_of_2" align="right">
                     <br>
                     <button type="button" class="btn btn-black">Ny Kunde</button>
-                </div>
+                </div>-->
             </div>
             <div class="row" align="center">
                 <div class="btn-group">
