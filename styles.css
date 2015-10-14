@@ -365,6 +365,7 @@ h4.chead{
     }
     h4.chead{
         display: block;
+        margin-top: 25px;
     }
 }
 .btn-black{
@@ -389,6 +390,7 @@ h4.chead{
 }
 .hpic{
     background-image: url('images/about-sm.jpg');
+    min-height: 75px;
 }
 .thead-style{
     background-color: #D26232;
