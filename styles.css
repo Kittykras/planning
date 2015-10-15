@@ -404,7 +404,7 @@ h4.chead{
 .link-style{
     color:black;
 }
-.link-style:active, .link-style:hover{
+.link-style:active, .link-style:hover, .link-style:focus, .link-style[disabled]{
     color: #D26232;
 }
 

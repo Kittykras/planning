@@ -5,11 +5,12 @@
         <group>
             <file>file:/C:/xampp/htdocs/vonbulowPlanning/checkLogin.php</file>
             <file>file:/C:/xampp/htdocs/vonbulowPlanning/styles.css</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/login.css</file>
+            <file>file:/C:/xampp/htdocs/vonbulowPlanning/script.js</file>
             <file>file:/C:/xampp/htdocs/vonbulowPlanning/index.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/DBConnection.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/include/top.inc.php</file>
+            <file>file:/C:/xampp/htdocs/vonbulowPlanning/include/menubar.inc.php</file>
+            <file>file:/C:/xampp/htdocs/vonbulowPlanning/enkeltMedarbejder.php</file>
             <file>file:/C:/xampp/htdocs/vonbulowPlanning/overblik.php</file>
+            <file>file:/C:/xampp/htdocs/vonbulowPlanning/medarbejder.php</file>
         </group>
     </open-files>
 </project-private>
