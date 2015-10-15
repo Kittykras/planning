@@ -2,7 +2,6 @@
 include 'include/top.inc.php';
 include 'include/menubar.inc.php';
 ?>
-
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
@@ -41,22 +40,28 @@ include 'include/menubar.inc.php';
             </tr>
         </thead>
         <tbody>
-            <tr>
                 <?php
                 foreach ($users as $user) {
                     ?>
-            <tr><td><button class="btn btn-link link-style" onclick="redirect('<?php echo $user->a_name ?>')"><?php echo $user->a_name; ?></button></td></tr>
+            <tr><td><button class="btn btn-link link-style" onclick="redirect('<?php echo $user->a_username ?>')"><?php echo $user->a_name; ?></button></td></tr>
                 <?php
             }
             ?>
-            </tr>
         </tbody>
     </table>
 </div>
 <script type="text/javascript">
     function redirect(user){
-        window.location = 'enkeltMedarbejder.php?user='+user;
+        document.cookie="UserName="+user;
+        //<?php
+//        $_SESSION["UserName"] = $_COOKIE["UserName"];
+//        ?>
+//        Session.set("UserName", user);
+//        '<%Session["UserName"] = "' + user + '"; %>';
+//        $.session.set('username', user);
+//        $.post("/setSession.php", {"username": user});
+        window.location = 'enkeltMedarbejder.php';
     }
 </script>
 </body>
-<html>
+</html>

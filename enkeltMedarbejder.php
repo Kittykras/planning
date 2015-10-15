@@ -5,7 +5,8 @@ include 'include/menubar.inc.php';
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
-            <h2><?php echo $_GET['user'] ?></h2>
+            <!--<h2><script>document.write(Session.get("UserName"));</script></h2>-->
+            <h2><?php echo $_COOKIE["UserName"];?></h2>
         </div>
         <!--                <div class="col span_1_of_2" align="right">
                             <br>
