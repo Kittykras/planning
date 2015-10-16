@@ -9,7 +9,7 @@ session_start();
             <div class="navbar-header">
                 <a class="navbar-brand" style="color: white" href="#"><span style="color: #D26232">+</span>vonbülow.co</a>
             </div>
-            <li class='has-sub'><a href='medarbejder.php'>Medarbejdere</a>
+            <li class='has-sub'><a href='medarbejdere.php'>Medarbejdere</a>
                 <ul>
                     <?php foreach ($users as $user) { ?>
                         <li><a href = 'enkeltMedarbejder.php' onClick="SetCookie('UserName', '<?php echo $user->a_username ?>', '1')"> <?php echo $user->a_name ?></a>
