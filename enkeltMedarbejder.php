@@ -6,7 +6,7 @@ include 'include/menubar.inc.php';
     <div class="section group">
         <div class="col span_1_of_2">
             <!--<h2><script>document.write(Session.get("UserName"));</script></h2>-->
-            <h2><?php echo $_COOKIE["UserName"];?></h2>
+            <h2><?php echo $_COOKIE["UserName"]; ?></h2>
         </div>
         <!--                <div class="col span_1_of_2" align="right">
                             <br>
@@ -32,6 +32,6 @@ include 'include/menubar.inc.php';
 </div>
 <br>
 
-    </body>
-    </html>
+</body>
+</html>
 

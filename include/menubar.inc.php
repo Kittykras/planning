@@ -12,7 +12,7 @@ session_start();
             <li class='has-sub'><a href='medarbejder.php'>Medarbejdere</a>
                 <ul>
                     <?php foreach ($users as $user) { ?>
-                        <li><a href = 'enkeltMedarbejder.php' onClick="SetCookie('UserName','<?php echo $user->a_username ?>','1')"> <?php echo $user->a_name ?></a>
+                        <li><a href = 'enkeltMedarbejder.php' onClick="SetCookie('UserName', '<?php echo $user->a_username ?>', '1')"> <?php echo $user->a_name ?></a>
                         </li>
                         <?php
                     }

@@ -1,5 +1,5 @@
 <?php
-require_once 'DBConnection.php';
+require_once 'database/DBConnection.php';
 require_once 'classes/User.php';
 
 $db = new DBConnection();
