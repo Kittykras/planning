@@ -13,10 +13,10 @@ $users = $stmt->fetchAll();
 //print_r($users);
 function getUserFromCookie() {
     $db = new DBConnection();
-    $q = "call getassociate(" + $_COOKIE["UserName"] + ")";
+    $q = "call getassociate(:username)";
     $stmt = $db->prepare($q);
     $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
-    $stmt->execute();
-    $user = $stmt->fetchObj();
+    $stmt->execute(array(':username' => $_COOKIE["UserName"]));
+    $user = $stmt->fetch(PDO::FETCH_OBJ);
     return $user;
 }

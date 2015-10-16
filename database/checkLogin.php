@@ -18,10 +18,10 @@ try {
     if($count == 1){
         session_start();
         $_SESSION["user"] = $result->a_name;
-        header("location:src/overblik.php");
+        header("location:../overblik.php");
         $db->close();
     }else {
-        header("location:src/index.php?error");
+        header("location:../index.php?error");
     }
 } catch (PDOException $e) {
     echo $e->getMessage();
