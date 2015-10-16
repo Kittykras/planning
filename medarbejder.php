@@ -40,26 +40,19 @@ include 'include/menubar.inc.php';
             </tr>
         </thead>
         <tbody>
-                <?php
-                foreach ($users as $user) {
+            <?php
+            foreach ($users as $user) {
+                ?>
+                <tr><td><button class="btn btn-link link-style" onclick="redirect('<?php echo $user->a_username ?>')"><?php echo $user->a_name; ?></button></td></tr>
+                        <?php
+                    }
                     ?>
-            <tr><td><button class="btn btn-link link-style" onclick="redirect('<?php echo $user->a_username ?>')"><?php echo $user->a_name; ?></button></td></tr>
-                <?php
-            }
-            ?>
         </tbody>
     </table>
 </div>
 <script type="text/javascript">
-    function redirect(user){
-        document.cookie="UserName="+user;
-        //<?php
-//        $_SESSION["UserName"] = $_COOKIE["UserName"];
-//        ?>
-//        Session.set("UserName", user);
-//        '<%Session["UserName"] = "' + user + '"; %>';
-//        $.session.set('username', user);
-//        $.post("/setSession.php", {"username": user});
+    function redirect(user) {
+        document.cookie = "UserName=" + user;
         window.location = 'enkeltMedarbejder.php';
     }
 </script>

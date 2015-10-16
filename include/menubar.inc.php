@@ -11,11 +11,10 @@ session_start();
             </div>
             <li class='has-sub'><a href='medarbejder.php'>Medarbejdere</a>
                 <ul>
-                    <?php
-                    foreach ($users as $user) {?>
-                    <li><a href = 'enkeltMedarbejder.php'><?php echo $user->a_name?></a>
-                    </li>
-                    <?php
+                    <?php foreach ($users as $user) { ?>
+                        <li><a href = 'enkeltMedarbejder.php' onClick="SetCookie('UserName','<?php echo $user->a_username ?>','1')"> <?php echo $user->a_name ?></a>
+                        </li>
+                        <?php
                     }
                     ?>
                 </ul>
@@ -35,3 +34,12 @@ session_start();
         </ul>
     </div>
 </div>
+
+<script type="text/javascript">
+    function SetCookie(c_name, value, expiredays) {
+        var exdate = new Date()
+        exdate.setDate(exdate.getDate() + expiredays)
+        document.cookie = c_name + "=" + escape(value) +
+                ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
+    }
+</script>
