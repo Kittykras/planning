@@ -4,7 +4,7 @@ include 'include/top.inc.php';
 <link rel="stylesheet" href="login.css">
 <script src="login.js"></script>
 <div class="vertically-align" align="center">
-    <form role="form" action="database/checkLogin.php" method="post">
+    <form role="form" action="database/actions/checkLogin.php" method="post">
         <div class="form-group">
             <input name="user" type="text" class="form-control" id="user" placeholder="Brugernavn">
         </div>

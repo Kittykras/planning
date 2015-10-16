@@ -1,5 +1,5 @@
 <?php
-require_once 'DBConnection.php';
+require_once '../DBConnection.php';
 try {
     $username = $_POST["user"];
     $pass = $_POST["pwd"];
@@ -18,10 +18,10 @@ try {
     if($count == 1){
         session_start();
         $_SESSION["user"] = $result->a_name;
-        header("location:../overblik.php");
+        header("location:../../overblik.php");
         $db->close();
     }else {
-        header("location:../index.php?error");
+        header("location:../../index.php?error");
     }
 } catch (PDOException $e) {
     echo $e->getMessage();
