@@ -8,8 +8,14 @@
 .input-style{
     color: black;
 }
-.input-style:focus, .input-style:active, .input-style:hover{
-    color: #D26232;
+.input-style:focus, .input-style:active {
+    color: black;
+    border-color: #D26232;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(210, 98, 50, 0.6);
+}
+
+.input-style:hover{
+        color: #D26232;
     border-color: #D26232;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(210, 98, 50, 0.6);
 }
