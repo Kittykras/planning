@@ -15,7 +15,7 @@ include 'include/menubar.inc.php';
                     Rediger <span class="caret"></span></button>
                 <ul class="dropdown-menu dropdown-black" role="menu">
                     <li><a href="#">Rediger</a></li>
-                    <li><a href="#">Slet</a></li>
+                    <li><a data-toggle="modal" data-target="#deleteModal">Slet</a></li>
                 </ul>
             </div>
         </div>
@@ -38,6 +38,34 @@ include 'include/menubar.inc.php';
     </div>
 </div>
 <br>
+<div id="deleteModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Du er ved at slette en medarbejder. Er du sikker på du vil det?</p>
+            </div>
+            <form class="modal-footer" role="form" action="database/actions/deleteAssociate.php" method="post">
+                <button type="submit" class="btn btn-black">Ja</button>
+                <button type="button" class="btn btn-black" data-dismiss="modal">Nej</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+<?php
+if (isset($_GET["error"])) {
+    ?>
+    <div class="vertically-align" align="center">
+        <span class="text-danger">Medarbejder blev ikke slettet. Forbindelsen til databasen fejlede. Genindlæs og prøv igen.</span>
+    </div>
+    <?php
+}
+?>
 <script>
     $(document).ready(function () {
         if (<?php print_r($_SESSION["user"]->a_privileges) ?> === 1) {

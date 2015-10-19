@@ -12,7 +12,7 @@ try{
     $stmt->execute(array(':newName' => $newName, ':newUser' => $newUser, ':newPwd' => $newPwd, ':newPriv' => $newPriv));
     $count = $stmt->rowCount();
     if($count == 1){
-        header("location:../medarbejdere.php");
+        header("location:../../medarbejdere.php");
     } else {
         header("location:../../opretMedarbejder.php?error");
     }
