@@ -17,7 +17,7 @@ try {
     $count = $stmt->rowCount();
     if($count == 1){
         session_start();
-        $_SESSION["user"] = $result->a_name;
+        $_SESSION["user"] = $result;
         header("location:../../overblik.php");
         $db->close();
     }else {

@@ -29,7 +29,7 @@ session_start();
             </li>
             <li><a href = 'overblik.php'>Overblik</a></li>
             <li><a href = '#'>Time Oversigt</a></li>
-            <li><a href = '#'><span class = "glyphicon glyphicon-user"></span> <?php print_r($_SESSION["user"])
+            <li><a href = '#'><span class = "glyphicon glyphicon-user"></span> <?php print_r($_SESSION["user"]->a_name)
                     ?></a></li>
         </ul>
     </div>
