@@ -7,8 +7,8 @@ include './include/menubar.inc.php';
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col">
-            <h4 class="chead">Opret Medarbejder</h4>
-            <h2 class="chead">Opret Medarbejder</h2>
+            <h4 class="chead" id="editH4">Opret Medarbejder</h4>
+            <h2 class="chead" id="editH2">Opret Medarbejder</h2>
         </div>
     </div>
 </div>
@@ -25,27 +25,26 @@ include './include/menubar.inc.php';
         </div>
         <div class='form-group'>
             <select class="form-control input-style" name='newPriv'>
-            <option value="3">Alm. Medarbejder</option>
-            <option value="2">Projektleder</option>
-            <option value="1">Admin</option>
-        </select>
+                <option value="3">Alm. Medarbejder</option>
+                <option value="2">Projektleder</option>
+                <option value="1">Admin</option>
+            </select>
         </div>
-<!--        <div class="dropdown" style='width: 142px' id='newPriv'>
-            <button type="button" class="btn btn-black dropdown-toggle" data-toggle="dropdown" style='width: 142px'>
-                Rettigheder <span class="caret"></span></button>
-            <ul class="dropdown-menu dropdown-black" role="menu">
-                <li id='1'><a href="#">Admin</a></li>
-                <li id='2'><a href="#">Projektleder</a></li>
-                <li id='3'><a href="#">Alm. Medarbejder</a></li>
-            </ul>
-        </div>-->
+        <!--        <div class="dropdown" style='width: 142px' id='newPriv'>
+                    <button type="button" class="btn btn-black dropdown-toggle" data-toggle="dropdown" style='width: 142px'>
+                        Rettigheder <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-black" role="menu">
+                        <li id='1'><a href="#">Admin</a></li>
+                        <li id='2'><a href="#">Projektleder</a></li>
+                        <li id='3'><a href="#">Alm. Medarbejder</a></li>
+                    </ul>
+                </div>-->
         <br>
         <button type="submit" class="btn btn-black">Opret Medarbejder</button>
+        <button type="submit" class="btn btn-black hidden" formaction="database/actions/alterAssociate.php">Rediger Medarbejder</button>
     </form>
 </div>
 
-</body>
-</html>
 <?php
 if (isset($_GET["error"])) {
     ?>
@@ -55,3 +54,13 @@ if (isset($_GET["error"])) {
     <?php
 }
 ?>
+<script>
+    $(document).ready(function () {
+        window.alert('outside if');
+        if (<?php print_r($_GET["editing"]) ?> === "edit") {
+            window.alert('inside if');
+        }
+    });
+</script>
+</body>
+</html>
