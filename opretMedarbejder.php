@@ -42,7 +42,10 @@ include './include/menubar.inc.php';
         <button type="submit" class="btn btn-black hidden" formaction="database/actions/alterAssociate.php" id="btnAlter">Rediger Medarbejder</button>
     </form>
 </div>
-
+<input type="hidden" id="aName" name="aName" value="<?php echo $_SESSION["UserName"]->a_name ?>"/>
+<input type="hidden" id="aUser" name="aUser" value="<?php echo $_SESSION["UserName"]->a_username ?>"/>
+<input type="hidden" id="aPwd" name="aPwd" value="<?php echo $_SESSION["UserName"]->a_password ?>"/>
+<input type="hidden" id="aPriv" name="aPriv" value="<?php echo $_SESSION["UserName"]->a_privileges ?>"/>
 <?php
 //echo $_GET["editing"];
 if (isset($_GET["error"])) {
@@ -60,8 +63,6 @@ if (isset($_GET["error"])) {
         <?php
     }
 }
-$name = $_SESSION["UserName"]->a_name;
-echo $name;
 ?>
 <script language="javascript" type="text/javascript">
     var $_GET = {};
@@ -75,12 +76,18 @@ echo $name;
     });
     $(document).ready(function () {
         if ($_GET["editing"] === "edit") {
-            var name = <?php echo json_encode($name);?>;
+            var name = $('#aName').val();
+            var user = $('#aUser').val();
+            var pwd = $('#aPwd').val();
+            var priv = $('#aPriv').val();
             document.getElementById("editH4").innerHTML = "Rediger Medarbejder";
             document.getElementById("editH2").innerHTML = "Rediger Medarbejder";
             $("button#btnAlter").removeClass("hidden");
             $("button#btnCreate").addClass("hidden");
-            document.getElementById("newName").innerHTML = name;
+            document.getElementById("newName").value = name;
+            document.getElementById("newUser").value = user;
+            document.getElementById("newPwd").value = pwd;
+            document.getElementById("newPriv").value = priv;
         }
     });
 </script>
