@@ -1,5 +1,6 @@
 <?php
-include 'database/handler.php';
+include 'database/userHandler.php';
+include 'database/customerHandler.php';
 session_start();
 ?>
 <div class="dcenter">
@@ -19,12 +20,14 @@ session_start();
                     ?>
                 </ul>
             </li>
-            <li class = "has-sub"><a href = '#'>Kunder</a>
+            <li class = "has-sub"><a href = 'kunder.php'>Kunder</a>
                 <ul>
-                    <li><a href = '#'>SFB</a>
-                    </li>
-                    <li><a href = '#'>Ekko</a>
-                    </li>
+                    <?php foreach ($customers as $customer) { ?>
+                        <li><a href = 'enkeltKunder.php' onClick="SetCookie('Kunde', '<?php echo $customer->c_acronym ?>', '1')"> <?php echo $customer->c_name ?></a>
+                        </li>
+                        <?php
+                    }
+                    ?>
                 </ul>
             </li>
             <li><a href = 'overblik.php'>Overblik</a></li>

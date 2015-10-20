@@ -36,7 +36,7 @@ include 'include/menubar.inc.php';
     <table class="table table-condensed table-responsive">
         <thead class="thead-style">
             <tr>
-                <th>Medarbejder</th>
+                <th>Navn</th>
             </tr>
         </thead>
         <tbody>

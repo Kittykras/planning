@@ -91,6 +91,9 @@ h2, h4{
 #cssmenu > ul > li.active > a {
     color: #D26232;
 }
+.has-sub{
+    z-index: 9999;
+}
 #cssmenu > ul > li.has-sub > a {
     padding-right: 25px;
 }
