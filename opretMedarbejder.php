@@ -3,7 +3,6 @@ include './include/top.inc.php';
 include './include/menubar.inc.php';
 ?>
 <link rel="stylesheet" href="input-styles.css">
-<script src="error.js"></script>
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col">
@@ -18,13 +17,13 @@ include './include/menubar.inc.php';
             <input name="newName" type="text" class="form-control input-style" id="newName" placeholder="Navn">
         </div>
         <div class="form-group">
-            <input name="newUser" type="text" class="form-control input-style" id="newUser" placeholder="Brugernavn">
+            <input name="newUser" type="text" class="form-control input-style" id="newUser" placeholder="Brugernavn(max 4 bogstaver)">
         </div>
         <div class="form-group">
             <input name="newPwd" type="text" class="form-control input-style" id="newPwd" placeholder="Kodeord">
         </div>
         <div class='form-group'>
-            <select class="form-control input-style" name='newPriv'>
+            <select class="form-control input-style" name='newPriv' id="newPriv">
                 <option value="3">Alm. Medarbejder</option>
                 <option value="2">Projektleder</option>
                 <option value="1">Admin</option>
@@ -39,26 +38,49 @@ include './include/menubar.inc.php';
                         <li id='3'><a href="#">Alm. Medarbejder</a></li>
                     </ul>
                 </div>-->
-        <br>
-        <button type="submit" class="btn btn-black">Opret Medarbejder</button>
-        <button type="submit" class="btn btn-black hidden" formaction="database/actions/alterAssociate.php">Rediger Medarbejder</button>
+        <button type="submit" class="btn btn-black" id="btnCreate">Opret Medarbejder</button>
+        <button type="submit" class="btn btn-black hidden" formaction="database/actions/alterAssociate.php" id="btnAlter">Rediger Medarbejder</button>
     </form>
 </div>
 
 <?php
+//echo $_GET["editing"];
 if (isset($_GET["error"])) {
-    ?>
-    <div class="vertically-align" align="center">
-        <span class="text-danger">Der er sket en fejl i oprettelsen af medarbejder. Tjek evt. om brugernavn allerede existerer.</span>
-    </div>
-    <?php
+    if ($_GET["editing"] === "edit") {
+        ?>
+        <div class="vertically-align" align="center">
+            <span class="text-danger">Der er sket en fejl i redigeringen af medarbejder. Tjek at alle felter er udfyldt, eller, hvis du er ved at ændre brugernavn, om det nye brugernavn evt. allerede existerer.</span>
+        </div>
+        <?php
+    } else {
+        ?>
+        <div class="vertically-align" align="center">
+            <span class="text-danger">Der er sket en fejl i oprettelsen af medarbejder. Tjek at alle felter er udfyldt, eller om brugernavn evt. allerede existerer.</span>
+        </div>
+        <?php
+    }
 }
+$name = $_SESSION["UserName"]->a_name;
+echo $name;
 ?>
-<script>
+<script language="javascript" type="text/javascript">
+    var $_GET = {};
+
+    document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
+        function decode(s) {
+            return decodeURIComponent(s.split("+").join(" "));
+        }
+
+        $_GET[decode(arguments[1])] = decode(arguments[2]);
+    });
     $(document).ready(function () {
-        window.alert('outside if');
-        if (<?php print_r($_GET["editing"]) ?> === "edit") {
-            window.alert('inside if');
+        if ($_GET["editing"] === "edit") {
+            var name = <?php echo json_encode($name);?>;
+            document.getElementById("editH4").innerHTML = "Rediger Medarbejder";
+            document.getElementById("editH2").innerHTML = "Rediger Medarbejder";
+            $("button#btnAlter").removeClass("hidden");
+            $("button#btnCreate").addClass("hidden");
+            document.getElementById("newName").innerHTML = name;
         }
     });
 </script>

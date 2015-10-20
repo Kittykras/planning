@@ -6,7 +6,7 @@ include 'include/menubar.inc.php';
     <div class="section group">
         <div class="col span_1_of_2">
             <!--<h2><script>document.write(Session.get("UserName"));</script></h2>-->
-            <h2><?php print_r(getUserFromCookie()->a_name); ?></h2>
+            <h2><?php getUserFromCookie(); print_r($_SESSION["UserName"]->a_name); ?></h2>
         </div>
         <br>
         <div class="col span_1_of_2 hidden" align="right" id="edit">

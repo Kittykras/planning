@@ -15,8 +15,8 @@ function getUserFromCookie() {
     $db = new DBConnection();
     $q = "call getassociate(:username)";
     $stmt = $db->prepare($q);
-    $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
+//    $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
     $stmt->execute(array(':username' => $_COOKIE["UserName"]));
     $user = $stmt->fetch(PDO::FETCH_OBJ);
-    return $user;
+    $_SESSION["UserName"] = $user;
 }
