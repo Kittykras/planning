@@ -5,8 +5,8 @@ include 'include/menubar.inc.php';
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
-            <h4 class="chead">Kunder</h4>
-            <h2 class="chead">Kunder</h2>
+            <h4 class="chead"><span class="header-img">Kunder</span></h4>
+            <h2 class="chead"><span class="header-img">Kunder</span></h2>
         </div>
         <br>
         <div class="col span_1_of_2" align="right">
@@ -34,7 +34,7 @@ include 'include/menubar.inc.php';
             <?php
             foreach ($customers as $customer) {
                 ?>
-            <tr><td><button class="btn btn-link link-style" onclick="redirect('<?php echo $customer->c_acronym ?>')"><?php echo $customer->c_name; ?></button></td><td><?php echo $customer->c_branch; ?></td></tr>
+            <tr><td><button class="btn btn-link btn-xs link-style" onclick="redirect('<?php echo $customer->c_acronym ?>')"><?php echo $customer->c_name; ?></button></td><td><?php echo $customer->c_branch; ?></td></tr>
                         <?php
                     }
                     ?>
@@ -43,7 +43,7 @@ include 'include/menubar.inc.php';
 </div>
 <script type="text/javascript">
     function redirect(user) {
-        document.cookie = "kunde=" + user;
+        document.cookie = "Kunde=" + user;
         window.location = 'enkeltKunde.php';
     }
 </script>

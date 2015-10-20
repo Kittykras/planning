@@ -6,7 +6,8 @@ include 'include/menubar.inc.php';
     <div class="section group">
         <div class="col span_1_of_2">
             <!--<h2><script>document.write(Session.get("UserName"));</script></h2>-->
-            <h2><span class="header-img"><?php getUserFromCookie(); print_r($_SESSION["UserName"]->a_name); ?></span></h2>
+            <h2><span class="header-img"><?php getCustomerFromCookie();
+print_r($_SESSION["Kunde"]->c_name); ?></span></h2>
         </div>
         <br>
         <div class="col span_1_of_2 hidden" align="right" id="edit">
@@ -14,7 +15,7 @@ include 'include/menubar.inc.php';
                 <button type="button" class="btn btn-black dropdown-toggle" data-toggle="dropdown">
                     Rediger <span class="caret"></span></button>
                 <ul class="dropdown-menu dropdown-black" role="menu">
-                    <li><a href="opretMedarbejder.php?editing=edit">Rediger</a></li>
+                    <li><a href="opretKunde.php?editing=edit">Rediger</a></li>
                     <li><a data-toggle="modal" data-target="#deleteModal">Slet</a></li>
                 </ul>
             </div>
@@ -33,11 +34,18 @@ include 'include/menubar.inc.php';
                 </ul>
             </div>
             <button type="button" class="btn btn-black">Uge</button>
-            <button type="button" class="btn btn-black">Kunde</button>
+            <button type="button" class="btn btn-black">Medarbejder</button>
         </div>
     </div>
 </div>
 <br>
+<div class="dcenter">
+    <div id="cssmenu" align="center" style="color: white; text-transform: uppercase">
+        <br>
+        <li>Kontaktperson: <?php echo $_SESSION["Kunde"]->c_conperson ?> // Telefon: <?php echo $_SESSION["Kunde"]->c_connumber ?> // Tildelt: <?php getAssignedAssociateName(); echo $_SESSION["Assigned"]->a_name ?></li>
+        <br>
+    </div>
+</div>
 <div id="deleteModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -47,9 +55,9 @@ include 'include/menubar.inc.php';
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <p>Du er ved at slette en medarbejder. Er du sikker på du vil det?</p>
+                <p>Du er ved at slette en kunde. Er du sikker på du vil det?</p>
             </div>
-            <form class="modal-footer" role="form" action="database/actions/deleteAssociate.php" method="post">
+            <form class="modal-footer" role="form" action="database/actions/deleteCustomer.php" method="post">
                 <button type="submit" class="btn btn-black">Ja</button>
                 <button type="button" class="btn btn-black" data-dismiss="modal">Nej</button>
             </form>
@@ -61,7 +69,7 @@ include 'include/menubar.inc.php';
 if (isset($_GET["error"])) {
     ?>
     <div class="vertically-align" align="center">
-        <span class="text-danger">Medarbejder blev ikke slettet. Forbindelsen til databasen fejlede. Genindlæs og prøv igen.</span>
+        <span class="text-danger">Kunde blev ikke slettet. Forbindelsen til databasen fejlede. Genindlæs og prøv igen.</span>
     </div>
     <?php
 }

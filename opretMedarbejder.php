@@ -6,8 +6,8 @@ include './include/menubar.inc.php';
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col">
-            <h4 class="chead" id="editH4">Opret Medarbejder</h4>
-            <h2 class="chead" id="editH2">Opret Medarbejder</h2>
+            <h4 class="chead" id="editH4"><span class="header-img">Opret Medarbejder</span></h4>
+            <h2 class="chead" id="editH2"><span class="header-img">Opret Medarbejder</span></h2>
         </div>
     </div>
 </div>

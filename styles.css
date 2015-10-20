@@ -5,6 +5,10 @@ body{
 h2, h4{
     color: white;
 }
+.header-img{
+    background-image: url('images/header-img.jpg');
+    color: black;
+}
 .hidden{
     display: none;
 }

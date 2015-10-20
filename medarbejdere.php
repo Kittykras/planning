@@ -5,8 +5,8 @@ include 'include/menubar.inc.php';
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
-            <h4 class="chead">Medarbejdere</h4>
-            <h2 class="chead">Medarbejdere</h2>
+            <h4 class="chead"><span class="header-img">Medarbejdere</span></h4>
+            <h2 class="chead"><span class="header-img">Medarbejdere</span></h2>
         </div>
         <br>
         <div class="col span_1_of_2" align="right">
@@ -43,7 +43,7 @@ include 'include/menubar.inc.php';
             <?php
             foreach ($users as $user) {
                 ?>
-                <tr><td><button class="btn btn-link link-style" onclick="redirect('<?php echo $user->a_username ?>')"><?php echo $user->a_name; ?></button></td></tr>
+                <tr><td><button class="btn btn-link btn-xs link-style" onclick="redirect('<?php echo $user->a_username ?>')"><?php echo $user->a_name; ?></button></td></tr>
                         <?php
                     }
                     ?>

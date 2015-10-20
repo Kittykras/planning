@@ -9,8 +9,8 @@ include 'include/menubar.inc.php';
                 </div>-->
         <div class="container dcenter hpic img-responsive">
             <div class="section group">
-                <div class="col span_1_of_2">
-                    <h2>Overblik</h2>
+                <div class="col span_1_of_2 ">
+                    <h2><span class="header-img">Overblik</span></h2>
                 </div>
 <!--                <div class="col span_1_of_2" align="right">
                     <br>
