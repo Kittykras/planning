@@ -1,6 +1,7 @@
 <?php
 include 'include/top.inc.php';
 include 'include/menubar.inc.php';
+include './database/taskHandler.php';
 ?>
 
         <!--        <div class="section group">
@@ -47,33 +48,30 @@ include 'include/menubar.inc.php';
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                    foreach ($tasks as $task) {
+//                        echo $task->t_state;
+                    ?>
                     <tr>
-                        <td>1</td>
-                        <td><span>●</span> Presse</td>
-                        <td>Høier</td>
-                        <td>Rikke</td>
+                        <td><?php echo $task->t_fromweek ?>/<?php echo $task->t_toweek ?></td>
+                        <td><span style="color: <?php echo $task->t_state ?>">●</span><?php echo $task->t_title ?></td>
+                        <td><button class="btn btn-link btn-xs link-style" onclick="cusRedirect('<?php echo $task->t_customer ?>')"><?php echo $task->t_customer ?></button></td>
+                        <td><button class="btn btn-link btn-xs link-style" onclick="redirect('<?php echo $task->t_assigned ?>')"><?php echo $task->t_assigned ?></button></td>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td><span>●</span> LinkedIn</td>
-                        <td>Høier</td>
-                        <td>Rikke</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><span class="text-yellow">●</span> Web-koks</td>
-                        <td>Advodan</td>
-                        <td>Ane</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><span class="brightred">●</span> MailChimp / nyhed</td>
-                        <td>MI</td>
-                        <td>Ane</td>
-                    </tr>
+                    <?php
+                    }
+                    ?>
                 </tbody>
             </table>
     </div>
-
+<script type="text/javascript">
+    function redirect(user) {
+        document.cookie = "UserName=" + user;
+        window.location = 'enkeltMedarbejder.php';
+    }function cusRedirect(cust) {
+        document.cookie = "Kunde=" + cust;
+        window.location = 'enkeltKunde.php';
+    }
+</script>
     </body>
     <html>

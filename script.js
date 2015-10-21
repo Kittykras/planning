@@ -1,3 +1,16 @@
+//$(document).ready(function() {
+//
+//$('#cssmenu ul li a').each(function() {
+//    var path = window.location.href;
+//    var current = path.substring(path.lastIndexOf('/'));
+//    var url = $(this).attr('href');
+//
+//    if (url === current) {
+//        $(this).addClass('active');
+//    };
+//});     
+
+//});
 (function($) {
 
   $.fn.menumaker = function(options) {
@@ -105,6 +118,6 @@ function() {
 
 });
 
-
+     
 });
 })(jQuery);

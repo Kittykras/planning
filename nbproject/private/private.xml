@@ -3,14 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/actions/createAssociate.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/handler.php</file>
+            <file>file:/C:/xampp/htdocs/vonbulowPlanning/styles.css</file>
+            <file>file:/C:/xampp/htdocs/vonbulowPlanning/script.js</file>
             <file>file:/C:/xampp/htdocs/vonbulowPlanning/medarbejdere.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/actions/alterAssociate.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/opretMedarbejder.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/actions/checkLogin.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/actions/deleteAssociate.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/enkeltMedarbejder.php</file>
+            <file>file:/C:/xampp/htdocs/vonbulowPlanning/OpretKunde.php</file>
+            <file>file:/C:/xampp/htdocs/vonbulowPlanning/classes/Customer.php</file>
+            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/actions/alterCustomer.php</file>
+            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/actions/createCustomer.php</file>
+            <file>file:/C:/xampp/htdocs/vonbulowPlanning/kunder.php</file>
+            <file>file:/C:/xampp/htdocs/vonbulowPlanning/enkeltKunde.php</file>
+            <file>file:/C:/xampp/htdocs/vonbulowPlanning/include/menubar.inc.php</file>
+            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/customerHandler.php</file>
         </group>
     </open-files>
 </project-private>
