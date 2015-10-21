@@ -6,8 +6,10 @@ include 'include/menubar.inc.php';
     <div class="section group">
         <div class="col span_1_of_2">
             <!--<h2><script>document.write(Session.get("UserName"));</script></h2>-->
-            <h2><span class="header-img"><?php getCustomerFromCookie();
-print_r($_SESSION["Kunde"]->c_name); ?></span></h2>
+            <h2><span class="header-img"><?php
+                    getCustomerFromCookie();
+                    print_r($_SESSION["Kunde"]->c_name);
+                    ?></span></h2>
         </div>
         <br>
         <div class="col span_1_of_2 hidden" align="right" id="edit">
@@ -42,7 +44,7 @@ print_r($_SESSION["Kunde"]->c_name); ?></span></h2>
 <div class="dcenter">
     <div id="cssmenu" align="center" style="color: white; text-transform: uppercase">
         <br>
-        <li>Kontaktperson: <?php echo $_SESSION["Kunde"]->c_conperson ?> // Telefon: <?php echo $_SESSION["Kunde"]->c_connumber ?> // Tildelt: <?php getAssignedAssociateName(); echo $_SESSION["Assigned"]->a_name ?></li>
+        <li>Kontaktperson: <?php echo $_SESSION["Kunde"]->c_conperson ?> // Telefon: <?php echo $_SESSION["Kunde"]->c_connumber ?> // Tildelt: <?php echo getAssignedAssociateName($_SESSION["Kunde"]->c_assigned);?></li>
         <br>
     </div>
 </div>

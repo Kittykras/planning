@@ -21,12 +21,12 @@ function getCustomerFromCookie() {
     $_SESSION["Kunde"] = $customer;
 }
 
-function getAssignedAssociateName(){
+function getAssignedAssociateName($username){
     $db = new DBConnection();
     $q = "call getAssociate(:assigned)";
     $stmt = $db->prepare($q);
 //    $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
-    $stmt->execute(array(':assigned' => $_SESSION["Kunde"]->c_assigned));
+    $stmt->execute(array(':assigned' => $username));
     $associate = $stmt->fetch(PDO::FETCH_OBJ);
-    $_SESSION["Assigned"] = $associate;
+    return $associate->a_name;
 }
