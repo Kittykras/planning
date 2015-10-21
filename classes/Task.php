@@ -8,7 +8,8 @@ class Tasks{
     protected $description = null;
     protected $state = null;
     protected $assigned = null;
-    protected $timespent = null;
+    protected $hour = null;
+    protected $min = null;
     protected $fromweek = null;
     protected $toweek = null;
     

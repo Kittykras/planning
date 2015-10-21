@@ -1,6 +1,8 @@
 <?php
 include './include/top.inc.php';
 include './include/menubar.inc.php';
+include './database/taskHandler.php';
+getTaskFromCookie();
 ?>
 <link rel="stylesheet" href="input-styles.css">
 <div class="container dcenter hpic img-responsive">
@@ -12,84 +14,87 @@ include './include/menubar.inc.php';
     </div>
 </div>
 <div class="vertically-align" align="center">
-    <div class="form-group">
-        <input name="title" type="text" class="form-control input-style" id="title" placeholder="Titel">
-    </div>
-    <div class="form-group">
-        <input name="descr" type="text" class="form-control input-style" id="descr" placeholder="Beskrivelse">
-    </div>
-    <div class='form-group'>
-        <select class="form-control input-style" name='stat' id="stat">
-            <option value="black">Alm.</option>
-            <option value="#FFCC00">Gul</option>
-            <option value="red">Rød</option>
-            <option value="green">Grøn</option>
-        </select>
-    </div>
-    <div class='form-group'>
-        <select class="form-control input-style" name='assi' id="assi">
-            <?php
-            foreach ($users as $user) {
-                ?>    
-                <option value="<?php echo $user->a_username; ?>"><?php echo $user->a_name; ?></option>
+    <form role="form" action="database/actions/createTask.php" method="post">
+        <div class="form-group">
+            <input name="title" type="text" class="form-control input-style" id="title" placeholder="Titel">
+        </div>
+        <div class="form-group">
+            <input name="descr" type="text" class="form-control input-style" id="descr" placeholder="Beskrivelse">
+        </div>
+        <div class='form-group'>
+            <select class="form-control input-style" name='stat' id="stat">
+                <option value="black">Alm.</option>
+                <option value="#FFCC00">Gul</option>
+                <option value="red">Rød</option>
+                <option value="green">Grøn</option>
+            </select>
+        </div>
+        <div class='form-group'>
+            <select class="form-control input-style" name='assi' id="assi">
                 <?php
-            }
-            ?>
-        </select>
-    </div>
-    <div class='form-group group'>
-        <div class="col span_1_of_2"><input name="hour" type="number" step="1" class="form-control input-style" id="hour" placeholder="Timer"></div>
-        <div class="col span_1_of_2"><input name="hour" type="number" step="15" max="60" class="form-control input-style" id="hour" placeholder="Minutter"></div>
-    </div>
-    <!--<br>-->
-    <div class='form-group'>
-        <select class="form-control input-style" name='assi' id="assi">
-            <?php
-            for ($index = 1; $index < 53; $index++) {
-                ?>    
-                <option value="<?php echo $index; ?>"><?php echo $index; ?></option>
+                foreach ($users as $user) {
+                    ?>    
+                    <option value="<?php echo $user->a_username; ?>"><?php echo $user->a_name; ?></option>
+                    <?php
+                }
+                ?>
+            </select>
+        </div>
+        <div class='form-group group'>
+            <div class="col span_1_of_2"><input name="hour" type="number" step="1" class="form-control input-style" id="hour" placeholder="Timer"></div>
+            <div class="col span_1_of_2"><input name="min" type="number" step="15" max="60" class="form-control input-style" id="min" placeholder="Minutter"></div>
+        </div>
+        <!--<br>-->
+        <div class='form-group'>
+            <select class="form-control input-style" name="from" id="from">
                 <?php
-            }
-            ?>
-        </select>
-    </div>
-    <div class='form-group'>
-        <select class="form-control input-style" name='assi' id="assi">
-            <?php
-            for ($index = 1; $index < 53; $index++) {
-                ?>    
-                <option value="<?php echo $index; ?>"><?php echo $index; ?></option>
+                for ($index = 1; $index < 53; $index++) {
+                    ?>    
+                    <option value="<?php echo $index; ?>"><?php echo $index; ?></option>
+                    <?php
+                }
+                ?>
+            </select>
+        </div>
+        <div class='form-group'>
+            <select class="form-control input-style" name='to' id="to">
                 <?php
-            }
-            ?>
-        </select>
-    </div>
-    <div class="form-group">
-        <textarea class="form-control input-style" rows="5" id="comment" placeholder="Kommentarer"></textarea>
-    </div>
-    <button type="submit" class="btn btn-black" id="btnCreate">Opret Kunde</button>
-    <button type="submit" class="btn btn-black hidden" formaction="database/actions/alterCustomer.php" id="btnAlter">Rediger Kunde</button>
-</form>
+                for ($index = 1; $index < 53; $index++) {
+                    ?>    
+                    <option value="<?php echo $index; ?>"><?php echo $index; ?></option>
+                    <?php
+                }
+                ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <textarea class="form-control input-style" rows="5" id="comment" placeholder="Kommentarer"></textarea>
+        </div>
+        <button type="submit" class="btn btn-black" id="btnCreate">Opret Opgave</button>
+        <button type="submit" class="btn btn-black hidden" formaction="database/actions/alterTask.php" id="btnAlter">Rediger Opgave</button>
+    </form>
 </div>
-<input type="hidden" id="cName" name="cName" value="<?php echo $_SESSION["Kunde"]->c_name ?>"/>
-<input type="hidden" id="cAcro" name="cAcro" value="<?php echo $_SESSION["Kunde"]->c_acronym ?>"/>
-<input type="hidden" id="cCont" name="cCont" value="<?php echo $_SESSION["Kunde"]->c_conperson ?>"/>
-<input type="hidden" id="cTlf" name="cTlf" value="<?php echo $_SESSION["Kunde"]->c_connumber ?>"/>
-<input type="hidden" id="cBran" name="cBran" value="<?php echo $_SESSION["Kunde"]->c_branch ?>"/>
-<input type="hidden" id="cAssi" name="cAssi" value="<?php echo $_SESSION["Kunde"]->c_assigned ?>"/>
+<input type="hidden" id="title" name="title" value="<?php echo $_SESSION["Task"]->t_title ?>"/>
+<input type="hidden" id="descr" name="descr" value="<?php echo $_SESSION["Task"]->t_description ?>"/>
+<input type="hidden" id="stat" name="stat" value="<?php echo $_SESSION["Task"]->t_state ?>"/>
+<input type="hidden" id="assi" name="assi" value="<?php echo $_SESSION["Task"]->t_assigned ?>"/>
+<input type="hidden" id="hour" name="hour" value="<?php echo $_SESSION["Task"]->t_hour ?>"/>
+<input type="hidden" id="min" name="min" value="<?php echo $_SESSION["Task"]->t_min ?>"/>
+<input type="hidden" id="from" name="from" value="<?php echo $_SESSION["Task"]->t_fromweek ?>"/>
+<input type="hidden" id="to" name="to" value="<?php echo $_SESSION["Task"]->t_toweek ?>"/>
+<input type="hidden" id="comment" name="comment" value="<?php echo $_SESSION["Task"]->t_comment ?>"/>
 <?php
-//echo $_GET["editing"];
 if (isset($_GET["error"])) {
-    if ($_GET["editing"] === "edit") {
+    if (isset($_GET["editing"])) {
         ?>
         <div class="vertically-align" align="center">
-            <span class="text-danger">Der er sket en fejl i redigeringen af medarbejder. Tjek at alle felter er udfyldt, eller, hvis du er ved at ændre brugernavn, om det nye brugernavn evt. allerede existerer.</span>
+            <span class="text-danger">Der er sket en fejl i redigeringen af opgave. Tjek at alle felter er udfyldt.</span>
         </div>
         <?php
     } else {
         ?>
         <div class="vertically-align" align="center">
-            <span class="text-danger">Der er sket en fejl i oprettelsen af medarbejder. Tjek at alle felter er udfyldt, eller om brugernavn evt. allerede existerer.</span>
+            <span class="text-danger">Der er sket en fejl i oprettelsen af opgave. Tjek at alle felter er udfyldt.</span>
         </div>
         <?php
     }
@@ -107,18 +112,28 @@ if (isset($_GET["error"])) {
     });
     $(document).ready(function () {
         if ($_GET["editing"] === "edit") {
-            var name = $('#aName').val();
-            var user = $('#aUser').val();
-            var pwd = $('#aPwd').val();
-            var priv = $('#aPriv').val();
-            document.getElementById("editH4").innerHTML = "Rediger Medarbejder";
-            document.getElementById("editH2").innerHTML = "Rediger Medarbejder";
+            var title = $('#title').val();
+            var descr = $('#descr').val();
+            var stat = $('#stat').val();
+            var assi = $('#assi').val();
+            var hour = $('#hour').val();
+            var min = $('#min').val();
+            var from = $('#from').val();
+            var to = $('#to').val();
+            var comment = $('#comment').val();
+            document.getElementById("editH4").innerHTML = "Rediger Opgave";
+            document.getElementById("editH2").innerHTML = "Rediger Opgave";
             $("button#btnAlter").removeClass("hidden");
             $("button#btnCreate").addClass("hidden");
-            document.getElementById("newName").value = name;
-            document.getElementById("newUser").value = user;
-            document.getElementById("newPwd").value = pwd;
-            document.getElementById("newPriv").value = priv;
+            document.getElementById("title").value = title;
+            document.getElementById("descr").value = descr;
+            document.getElementById("stat").value = stat;
+            document.getElementById("assi").value = assi;
+            document.getElementById("hour").value = hour;
+            document.getElementById("min").value = min;
+            document.getElementById("from").value = from;
+            document.getElementById("to").value = to;
+            document.getElementById("comment").value = comment;
         }
     });
 </script>
