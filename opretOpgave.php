@@ -37,7 +37,7 @@ include './include/menubar.inc.php';
             ?>
         </select>
     </div>
-    <div class='form-group'>
+    <div class='form-group group'>
         <div class="col span_1_of_2"><input name="hour" type="number" step="1" class="form-control input-style" id="hour" placeholder="Timer"></div>
         <div class="col span_1_of_2"><input name="hour" type="number" step="15" max="60" class="form-control input-style" id="hour" placeholder="Minutter"></div>
     </div>
