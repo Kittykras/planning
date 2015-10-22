@@ -11,6 +11,16 @@ $stmt->execute();
 $customers = $stmt->fetchAll();
 
 ////print_r($users);
+
+function getTasksFromCustomer() {
+    $db = new DBConnection();
+    $q = "call getallTaskfromcus(:acronym)";
+    $stmt = $db->prepare($q);
+    $stmt->setFetchMode(PDO::FETCH_OBJ);
+    $stmt->execute(array(':acronym' => $_COOKIE["Kunde"]));
+    $ctasks = $stmt->fetchAll();
+    return $ctasks;
+}
 function getCustomerFromCookie() {
     $db = new DBConnection();
     $q = "call getCustomer(:acronym)";

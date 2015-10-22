@@ -6,14 +6,19 @@ include './database/branchHandler.php'
 <link rel="stylesheet" href="input-styles.css">
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
-        <div class="col">
+        <div class="col span_1_of_2">
             <h4 class="chead" id="editH4"><span class="header-img">Opret Kunde</span></h4>
             <h2 class="chead" id="editH2"><span class="header-img">Opret Kunde</span></h2>
+        </div>
+        <br>
+        <div class="col span_1_of_2" align="right">
+            <button type="submit" form="form" class="btn btn-black" id="btnCreate">Opret Kunde</button>
+            <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterCustomer.php" id="btnAlter">Rediger Kunde</button>
         </div>
     </div>
 </div>
 <div class="vertically-align" align="center">
-    <form role="form" action="database/actions/createCustomer.php" method="post">
+    <form id="form"role="form" action="database/actions/createCustomer.php" method="post">
         <div class="form-group">
             <input name="name" type="text" class="form-control input-style" id="name" placeholder="Navn">
         </div>
@@ -48,8 +53,7 @@ include './database/branchHandler.php'
                 ?>
             </select>
         </div>
-        <button type="submit" class="btn btn-black" id="btnCreate">Opret Kunde</button>
-        <button type="submit" class="btn btn-black hidden" formaction="database/actions/alterCustomer.php" id="btnAlter">Rediger Kunde</button>
+        
     </form>
 </div>
 <input type="hidden" id="cName" name="cName" value="<?php echo $_SESSION["Kunde"]->c_name ?>"/>

@@ -16,7 +16,7 @@ try{
     if($count == 1){
         header("location:../../kunder.php");
     } else {
-//        header("location:../../opretKunde.php?error");
+        header("location:../../opretKunde.php?error");
     }
 } catch (PDOException $e) {
     echo $e->getMessage();

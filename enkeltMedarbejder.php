@@ -38,6 +38,31 @@ include 'include/menubar.inc.php';
     </div>
 </div>
 <br>
+<div class="panel panel-default dcenter">
+    <table class="table table-condensed table-responsive">
+        <thead class="thead-style">
+            <tr>
+                <th>Uge</th>
+                <th>Opgave</th>
+                <th>Kunde</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $atasks = getTasksFromAs();
+            foreach ($atasks as $atask) {
+                ?>
+                <tr>
+                    <td><?php echo $atask->t_fromweek ?>/<?php echo $atask->t_toweek ?></td>
+                    <td><button class="btn btn-link btn-xs link-style" onclick="taskRedirect('<?php echo $atask->t_id ?>')"><span style="color: <?php echo $atask->t_state ?>">●</span> <?php echo $atask->t_title ?></td>
+                    <td><button class="btn btn-link btn-xs link-style" onclick="cusRedirect('<?php echo $atask->t_customer ?>')"><?php echo $atask->t_customer ?></button></td>
+                </tr>
+                <?php
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
 <div id="deleteModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 

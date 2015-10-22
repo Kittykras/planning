@@ -11,6 +11,15 @@ $stmt->execute();
 $users = $stmt->fetchAll();
 
 //print_r($users);
+function getTasksFromAs() {
+    $db = new DBConnection();
+    $q = "call getallTaskbyas(:username)";
+    $stmt = $db->prepare($q);
+    $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
+    $stmt->execute(array(':username' => $_COOKIE["UserName"]));
+    $atasks = $stmt->fetchAll();
+    return $atasks;
+}
 function getUserFromCookie() {
     $db = new DBConnection();
     $q = "call getassociate(:username)";

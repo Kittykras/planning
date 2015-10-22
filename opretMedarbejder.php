@@ -5,14 +5,19 @@ include './include/menubar.inc.php';
 <link rel="stylesheet" href="input-styles.css">
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
-        <div class="col">
+        <div class="col span_1_of_2">
             <h4 class="chead" id="editH4"><span class="header-img">Opret Medarbejder</span></h4>
             <h2 class="chead" id="editH2"><span class="header-img">Opret Medarbejder</span></h2>
+        </div>
+        <br>
+        <div class="col span_1_of_2" align="right">
+            <button type="submit" form="form" class="btn btn-black" id="btnCreate">Opret Medarbejder</button>
+            <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterAssociate.php" id="btnAlter">Rediger Medarbejder</button>
         </div>
     </div>
 </div>
 <div class="vertically-align" align="center">
-    <form role="form" action="database/actions/createAssociate.php" method="post">
+    <form id="form" role="form" action="database/actions/createAssociate.php" method="post">
         <div class="form-group">
             <input name="newName" type="text" class="form-control input-style" id="newName" placeholder="Navn">
         </div>
@@ -29,17 +34,6 @@ include './include/menubar.inc.php';
                 <option value="1">Admin</option>
             </select>
         </div>
-        <!--        <div class="dropdown" style='width: 142px' id='newPriv'>
-                    <button type="button" class="btn btn-black dropdown-toggle" data-toggle="dropdown" style='width: 142px'>
-                        Rettigheder <span class="caret"></span></button>
-                    <ul class="dropdown-menu dropdown-black" role="menu">
-                        <li id='1'><a href="#">Admin</a></li>
-                        <li id='2'><a href="#">Projektleder</a></li>
-                        <li id='3'><a href="#">Alm. Medarbejder</a></li>
-                    </ul>
-                </div>-->
-        <button type="submit" class="btn btn-black" id="btnCreate">Opret Medarbejder</button>
-        <button type="submit" class="btn btn-black hidden" formaction="database/actions/alterAssociate.php" id="btnAlter">Rediger Medarbejder</button>
     </form>
 </div>
 <input type="hidden" id="aName" name="aName" value="<?php echo $_SESSION["UserName"]->a_name ?>"/>
