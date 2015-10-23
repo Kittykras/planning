@@ -2,7 +2,10 @@
 include './include/top.inc.php';
 include './include/menubar.inc.php';
 include './database/taskHandler.php';
-getTaskFromCookie();
+if (isset($_GET["editing"])) {
+    getTaskFromCookie();
+    $comments = getComments();
+}
 ?>
 <link rel="stylesheet" href="input-styles.css">
 <div class="container dcenter hpic img-responsive">
@@ -46,19 +49,20 @@ getTaskFromCookie();
             </select>
         </div>
         <div class='form-group group'>
-            <div class="form-group col span_1_of_2">
-                <label alt="Timer" placeholder="Timer"></label>
-                <input title="timer" name="hour" type="number" step="1" min="0" class="form-control input-style" id="hour" required="">
+            <div class="form-group col span_1_of_2" align="left">
+                <label class="background-label">Timer</label>
+                <input style="padding-right: 30px;" name="hour" type="number" step="1" min="0" class="form-control input-style foreground-input" id="hour" required="">
             </div>
-            <div class="form-group col span_1_of_2">
-                <label alt="Minutter" placeholder="Minutter"></label>
-                <input title="minutter" name="min" type="number" step="15" min="0" max="59" class="form-control input-style" id="min" required="">
+            <div class="form-group col span_1_of_2" align="left">
+                <label class="background-label">Minutter</label>
+                <input style="padding-right: 30px;" name="min" type="number" step="15" min="0" max="59" class="form-control input-style foreground-input" id="min" required="">
             </div>
         </div>
         <!--<br>-->
         <div class="form-group group">
-            <div class='form-group col span_1_of_2'>
-                <select class="form-control input-style" name="from" id="from">
+            <div class='form-group col span_1_of_2' align="left">
+                <label class="background-label">Start Uge</label>
+                <select class="form-control input-style foreground-input" name="from" id="from">
                     <?php
                     for ($index = 1; $index < 53; $index++) {
                         ?>    
@@ -68,8 +72,9 @@ getTaskFromCookie();
                     ?>
                 </select>
             </div>
-            <div class='form-group col span_1_of_2'>
-                <select class="form-control input-style" name='to' id="to">
+            <div class='form-group col span_1_of_2' align="left">
+                <label class="background-label">Slut Uge</label>
+                <select class="form-control input-style foreground-input" name='to' id="to">
                     <?php
                     for ($index = 1; $index < 53; $index++) {
                         ?>    
@@ -93,17 +98,17 @@ getTaskFromCookie();
 <input type="hidden" id="hmin" name="hmin" value="<?php echo $_SESSION["Task"]->t_min ?>"/>
 <input type="hidden" id="hfrom" name="hfrom" value="<?php echo $_SESSION["Task"]->t_fromweek ?>"/>
 <input type="hidden" id="hto" name="hto" value="<?php echo $_SESSION["Task"]->t_toweek ?>"/>
-<?php
-if (!empty(getComments())) {
-    ?>
-    <input type="hidden" id="hcomment" name="hcomment" value="<?php echo getComments()->tc_comment; ?> - <?php echo getComments()->tc_associate; ?>, <?php echo getComments()->tc_date; ?>"/>
-    <?php
-}
-?>
-<?php
-if (isset($_GET["error"])) {
-    if (isset($_GET["editing"])) {
-        ?>
+<input type="hidden" id="hcomment" name="hcomment" value="<?php
+foreach ($comments as $comment) {
+    echo $comment->tc_comment;
+    ?> - <?php echo $comment->tc_associate; ?>, <?php
+           echo $comment->tc_date;
+       }
+       ?>"/>
+       <?php
+       if (isset($_GET["error"])) {
+           if (isset($_GET["editing"])) {
+               ?>
         <div class="vertically-align" align="center">
             <span class="text-danger">Der er sket en fejl i redigeringen af opgave. Tjek at alle felter er udfyldt.</span>
         </div>
@@ -152,9 +157,9 @@ if (isset($_GET["error"])) {
             document.getElementById("from").value = from;
             document.getElementById("to").value = to;
             document.getElementById("comment").value = comment;
-            if (document.getElementById("comment").value === "undefined") {
-                document.getElementById("comment").value = "";
-            }
+//            if (document.getElementById("comment").value === "undefined") {
+//                document.getElementById("comment").value = "";
+//            }
         }
     });
 </script>
