@@ -15,7 +15,7 @@ try{
     $q = "call createtask(:cus, :title, :descr, :stat, :assi, :timespent, :from, :to);";
     $stmt = $db->prepare($q);
     $stmt->execute(array(':cus' => $cus, ':title' => $title, ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen, ':from' => $from, ':to' => $to));
-    $q = "call createcommentonnewtask(:comment, :user)";
+    $q = "call createcommentonnewtask(:comment, :user);";
     $stmt2 = $db->prepare($q);
     $stmt2->execute(array(':comment' => $comment, ":user" => $_SESSION["user"]->a_username));
     $count = $stmt->rowCount();

@@ -1,8 +1,15 @@
 .background-label{
-    z-index: -10; position: absolute; padding-left: 18px; padding-top: 6px; font-weight: normal; color: grey;
+    z-index: -10;
+    position: absolute;
+    padding-left: 18px;
+    padding-top: 6px;
+    font-weight: normal;
+    color: grey;
 }
 .foreground-input{
-    text-align: right;  z-index: 10; background-color:rgba(0, 0, 0, 0.0);
+    text-align: right;
+    z-index: 10;
+    background-color:rgba(0, 0, 0, 0.0);
 }
 .vertically-align{
     max-width: 330px;
