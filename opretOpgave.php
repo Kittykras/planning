@@ -49,11 +49,11 @@ if (isset($_GET["editing"])) {
             </select>
         </div>
         <div class="form-group group">
-            <div class="form-group col span_1_of_2" align="left">
+            <div class="col span_1_of_2" align="left">
                 <label class="background-label">Timer</label>
                 <input style="padding-right: 30px;" name="hour" type="number" step="1" min="0" class="form-control input-style foreground-input" id="hour" required="">
             </div>
-            <div class="form-group col span_1_of_2" align="left">
+            <div class="col span_1_of_2" align="left">
                 <label class="background-label">Minutter</label>
                 <input style="padding-right: 30px;" name="min" type="number" step="15" min="0" max="59" class="form-control input-style foreground-input" id="min" required="">
             </div>
@@ -85,7 +85,11 @@ if (isset($_GET["editing"])) {
             </div>
         </div>
         <div class="form-group">
-            <textarea class="form-control input-style" rows="1" id="comment" name="comment" placeholder="Kommentarer"></textarea>
+            <textarea class="form-control input-style hidden" rows="1" id="comment" name="comment" placeholder="Kommentarer" disabled=""></textarea>
+        </div>
+        <div class="form-group" align="left">
+            <label class="background-label">Ny Kommentar</label>
+            <textarea class="form-control input-style foreground-input" style="padding-top: 29px; text-align: left;" rows="1" id="newComment" name="newComment"></textarea>
         </div>
     </form>
 </div>
@@ -147,6 +151,7 @@ if (isset($_GET["error"])) {
             var comment = $('#hcomment').val();
             document.getElementById("editH4").innerHTML = "Rediger Opgave";
             document.getElementById("editH2").innerHTML = "Rediger Opgave";
+            $("textarea#comment").removeClass("hidden");
             $("button#btnAlter").removeClass("hidden");
             $("button#btnCreate").addClass("hidden");
             document.getElementById("title").value = title;
