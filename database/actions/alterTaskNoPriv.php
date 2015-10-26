@@ -5,21 +5,13 @@ session_start();
 try {
     $user = $_SESSION["user"]->a_username;
     $id = $_COOKIE["Task"];
-    $cus = $_POST["cus"];
-    $title = $_POST["title"];
-    $descr = $_POST["descr"];
     $stat = $_POST["stat"];
-    $assi = $_POST["assi"];
     $timespen = $_POST["hour"] . ":" . $_POST["min"];
-    $from = $_POST["from"];
-    $to = $_POST["to"];
     $comment = $_POST["newComment"];
-    $inv = $_POST["inv"];
-    $exp = $_POST["exp"];
     $db = new DBConnection();
-    $q = "call altertask(:id, :cus, :title, :descr, :stat, :assi, :timespent, :from, :to, :inv, :exp);";
+    $q = "call altertasknopriv(:id, :stat, :timespent)";
     $stmt = $db->prepare($q);
-    $stmt->execute(array(':id' => $id, ':cus' => $cus, ':title' => $title, ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen, ':from' => $from, ':to' => $to, ':inv' => $inv, 'exp' => $exp));
+    $stmt->execute(array(':id' => $id, ':stat' => $stat, ':timespent' => $timespen));
     $count = $stmt->rowCount();
     $commentcount = 0;
     if ($comment != "") {

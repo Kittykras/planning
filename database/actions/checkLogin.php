@@ -18,7 +18,11 @@ try {
     if($count == 1){
         session_start();
         $_SESSION["user"] = $result;
-        header("location:../../overblik.php");
+        $cookie = $_SESSION["user"]->a_username;
+        setcookie("orderby", 't_fromweek', time() + (86400), "/vonbulowPlanning/");
+        setcookie('state', '0', time() + (86400), "/vonbulowPlanning/");
+        setcookie("UserName", $cookie, time() + (86400), "/vonbulowPlanning/");
+        header("location:../../enkeltMedarbejder.php");
         $db->close();
     }else {
         header("location:../../index.php?error");

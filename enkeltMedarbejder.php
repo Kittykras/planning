@@ -26,14 +26,14 @@ include 'include/menubar.inc.php';
                 <button type="button" class="btn btn-black dropdown-toggle" data-toggle="dropdown">
                     Status <span class="caret"></span></button>
                 <ul class="dropdown-menu dropdown-black" role="menu">
-                    <li><a href="#">Rød</a></li>
-                    <li><a href="#">Gul</a></li>
-                    <li><a href="#">Almindelig</a></li>
-                    <li><a href="#">Grøn</a></li>
+                    <li><a onclick="SetCookie('orderby', 'red', '1'); SetCookie('state', '1', '1'); location.reload()">Rød</a></li>
+                    <li><a onclick="SetCookie('orderby', '#FFCC00', '1'); SetCookie('state', '1', '1'); location.reload()">Gul</a></li>
+                    <li><a onclick="SetCookie('orderby', 'black', '1'); SetCookie('state', '1', '1'); location.reload()">Almindelig</a></li>
+                    <li><a onclick="SetCookie('orderby', 'green', '1'); SetCookie('state', '1', '1'); location.reload()">Grøn</a></li>
                 </ul>
             </div>
-            <button type="button" class="btn btn-black">Uge</button>
-            <button type="button" class="btn btn-black">Kunde</button>
+            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_fromweek', '1'); SetCookie('state', '0', '1'); location.reload()">Uge</button>
+            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_customer', '1'); SetCookie('state', '0', '1'); location.reload()">Kunde</button>
         </div>
     </div>
 </div>

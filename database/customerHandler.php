@@ -4,11 +4,19 @@ require_once 'DBConnection.php';
 require_once 'classes/Customer.php';
 
 $db = new DBConnection();
-$q = 'call getallcustomer()';
+$orderby = $_COOKIE["orderby"];
+$q = 'call getallcustomer(:orderby)';
 $stmt = $db->prepare($q);
 $stmt->setFetchMode(PDO::FETCH_CLASS, 'Customer');
-$stmt->execute();
+$stmt->execute(array(':orderby' => $orderby));
 $customers = $stmt->fetchAll();
+$db = new DBConnection();
+$orderby = 'c_name';
+$q = 'call getallcustomer(:orderby)';
+$stmt = $db->prepare($q);
+$stmt->setFetchMode(PDO::FETCH_CLASS, 'Customer');
+$stmt->execute(array(':orderby' => $orderby));
+$menucustomers = $stmt->fetchAll();
 
 ////print_r($users);
 

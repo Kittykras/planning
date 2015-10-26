@@ -17,10 +17,12 @@ if (isset($_GET["editing"])) {
         <br>
         <div class="col span_1_of_2" align="right">
             <button type="submit" form="form" class="btn btn-black" id="btnCreate">Opret Opgave</button>
+            <button type="submit" form="form" class="btn btn-black hidden" id="btnAlter" formaction="database/actions/alterTaskNoPriv.php">Rediger Opgave</button>
             <div class="btn-group dropdown hidden" id="btnAlter">
                 <button class="btn btn-black dropdown-toggle" type="submit" data-toggle="dropdown">Rediger Opgave <span class="caret"></span></button>
                 <ul class="dropdown-menu dropdown-black" role="menu">
-                    <li><a onclick="document.forms[0].action = 'database/actions/alterTask.php'; document.forms[0].submit()">Rediger</a></li>
+                    <li><a onclick="document.forms[0].action = 'database/actions/alterTask.php';
+                            document.forms[0].submit()">Rediger</a></li>
                     <li><a data-toggle="modal" data-target="#deleteModal">Slet</a></li>
                 </ul>
             </div>
@@ -98,6 +100,14 @@ if (isset($_GET["editing"])) {
             <!--<label class="background-label">Ny Kommentar</label>-->
             <textarea class="form-control input-style" rows="1" id="newComment" name="newComment" placeholder="Ny Kommentar"></textarea>
         </div>
+        <div class="form-group group">
+            <div class="form-group col span_1_of_2">
+                <input name="inv" type="text" class="form-control input-style" id="inv" placeholder="Fakturering">
+            </div>
+            <div class="form-group col span_1_of_2">
+                <input name="exp" type="text" class="form-control input-style" id="exp" placeholder="Udgifter">
+            </div>
+        </div>
     </form>
 </div>
 <div id="deleteModal" class="modal fade" role="dialog">
@@ -164,14 +174,19 @@ if (isset($_GET["error"])) {
         $_GET[decode(arguments[1])] = decode(arguments[2]);
     });
     $(document).ready(function () {
-        if (<?php print_r($_SESSION["user"]->a_privileges) ?> === 3) {
-            $('#title').attr('disabled', true);
-            $('#descr').attr('disabled', true);
-            $('#assi').attr('disabled', true);
-            $('#from').attr('disabled', true);
-            $('#to').attr('disabled', true);
-        }
         if ($_GET["editing"] === "edit") {
+            if (<?php print_r($_SESSION["user"]->a_privileges) ?> === 3) {
+                $('#title').attr('disabled', true);
+                $('#descr').attr('disabled', true);
+                $('#assi').attr('disabled', true);
+                $('#from').attr('disabled', true);
+                $('#to').attr('disabled', true);
+                $('#inv').attr('disabled', true);
+                $('#exp').attr('disabled', true);
+                $('button#btnAlter').removeClass("hidden");
+            } else {
+                $("div#btnAlter").removeClass("hidden");
+            }
             var title = $('#htitle').val();
             var descr = $('#hdescr').val();
             var stat = $('#hstat').val();
@@ -184,7 +199,6 @@ if (isset($_GET["error"])) {
             document.getElementById("editH4").innerHTML = "Rediger Opgave";
             document.getElementById("editH2").innerHTML = "Rediger Opgave";
             $("#comment").removeClass("hidden");
-            $("#btnAlter").removeClass("hidden");
             $("#btnCreate").addClass("hidden");
             document.getElementById("title").value = title;
             document.getElementById("descr").value = descr;
