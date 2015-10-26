@@ -1,8 +1,8 @@
 <?php
 require_once '../DBConnection.php';
-
+session_start();
 try{
-    $user = $_POST["user"];
+    $user = $_SESSION["user"]->a_username;;
     $cus = $_COOKIE["Kunde"];
     $title = $_POST["title"];
     $descr = $_POST["descr"];

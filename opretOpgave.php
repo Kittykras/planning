@@ -29,6 +29,7 @@ if (isset($_GET["editing"])) {
 </div>
 <div class="vertically-align" align="center">
     <form id="form" role="form" action="database/actions/createTask.php" method="post">
+        <input type="hidden" id="cus" name="cus" value="<?php echo $_SESSION["Task"]->t_customer ?>"/>
         <div class="form-group">
             <input name="title" type="text" class="form-control input-style" style="font-weight: bold" id="title" placeholder="Titel">
         </div>

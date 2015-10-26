@@ -1,11 +1,10 @@
 <?php
-
 require_once '../DBConnection.php';
 session_start();
 try {
     $user = $_SESSION["user"]->a_username;
     $id = $_COOKIE["Task"];
-    $cus = $_COOKIE["Kunde"];
+    $cus = $_POST["cus"];
     $title = $_POST["title"];
     $descr = $_POST["descr"];
     $stat = $_POST["stat"];
@@ -29,7 +28,7 @@ try {
     if ($count == 1 || $commentcount == 1) {
         header("location:../../enkeltKunde.php");
     } else {
-//        header("location:../../opretOpgave.php?editing=edit&error");
+        header("location:../../opretOpgave.php?editing=edit&error");
     }
 } catch (PDOException $e) {
     echo $e->getMessage();
