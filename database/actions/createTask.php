@@ -21,7 +21,7 @@ try{
     $stmt = $db->prepare($q);
     $stmt->execute(array(':comment' => $comment, ":user" => $user));
     if($count == 1){
-//        header("location:../../enkeltKunde.php");
+        header("location:../../enkeltKunde.php");
     } else {
         header("location:../../opretOpgave.php?error");
     }

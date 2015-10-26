@@ -16,16 +16,19 @@ if (isset($_GET["editing"])) {
         </div>
         <br>
         <div class="col span_1_of_2" align="right">
-            <button type="submit" form="form"class="btn btn-black" id="btnCreate">Opret Opgave</button>
-            <button type="submit" form="form"class="btn btn-black hidden" formaction="database/actions/alterTask.php" id="btnAlter">Rediger Opgave</button>
+            <button type="submit" form="form" class="btn btn-black" id="btnCreate">Opret Opgave</button>
+            <div class="btn-group dropdown hidden" id="btnAlter">
+                <button class="btn btn-black dropdown-toggle" type="submit" data-toggle="dropdown">Rediger Opgave <span class="caret"></span></button>
+                <ul class="dropdown-menu dropdown-black" role="menu">
+                    <li><a onclick="document.forms[0].action = 'database/actions/alterTask.php'; document.forms[0].submit()">Rediger</a></li>
+                    <li><a data-toggle="modal" data-target="#deleteModal">Slet</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 <div class="vertically-align" align="center">
     <form id="form" role="form" action="database/actions/createTask.php" method="post">
-        <div class="form-group">
-            <input type="hidden" id="user" name="user" value="<?php echo $_SESSION["user"]->a_username ?>"/>
-        </div>
         <div class="form-group">
             <input name="title" type="text" class="form-control input-style" style="font-weight: bold" id="title" placeholder="Titel">
         </div>
@@ -96,6 +99,24 @@ if (isset($_GET["editing"])) {
         </div>
     </form>
 </div>
+<div id="deleteModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Du er ved at slette en opgave. Er du sikker på du vil det?</p>
+            </div>
+            <form class="modal-footer" role="form" action="database/actions/deleteTask.php" method="post">
+                <button type="submit" class="btn btn-black">Ja</button>
+                <button type="button" class="btn btn-black" data-dismiss="modal">Nej</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 <input type="hidden" id="htitle" name="htitle" value="<?php echo $_SESSION["Task"]->t_title ?>"/>
 <input type="hidden" id="hdescr" name="hdescr" value="<?php echo $_SESSION["Task"]->t_description ?>"/>
@@ -161,9 +182,9 @@ if (isset($_GET["error"])) {
             var comment = $('#hcomment').val();
             document.getElementById("editH4").innerHTML = "Rediger Opgave";
             document.getElementById("editH2").innerHTML = "Rediger Opgave";
-            $("textarea#comment").removeClass("hidden");
-            $("button#btnAlter").removeClass("hidden");
-            $("button#btnCreate").addClass("hidden");
+            $("#comment").removeClass("hidden");
+            $("#btnAlter").removeClass("hidden");
+            $("#btnCreate").addClass("hidden");
             document.getElementById("title").value = title;
             document.getElementById("descr").value = descr;
             document.getElementById("stat").value = stat;

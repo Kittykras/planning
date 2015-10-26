@@ -79,7 +79,6 @@ include 'include/menubar.inc.php';
                 <button type="button" class="btn btn-black" data-dismiss="modal">Nej</button>
             </form>
         </div>
-
     </div>
 </div>
 <?php
