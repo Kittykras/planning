@@ -2,7 +2,7 @@
 require_once '../DBConnection.php';
 
 try{
-    $user = print_r($_SESSION["user"]->a_username);
+    $user = $_POST["user"];
     $cus = $_COOKIE["Kunde"];
     $title = $_POST["title"];
     $descr = $_POST["descr"];
@@ -11,8 +11,7 @@ try{
     $timespen = $_POST["hour"].":".$_POST["min"];
     $from = $_POST["from"];
     $to = $_POST["to"];
-    $comment = $_POST["comment"];
-    echo $user;
+    $comment = $_POST["newComment"];
     $db = new DBConnection();
     $q = "call createtask(:cus, :title, :descr, :stat, :assi, :timespent, :from, :to);";
     $stmt = $db->prepare($q);

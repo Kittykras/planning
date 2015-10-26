@@ -9,7 +9,7 @@ include 'include/menubar.inc.php';
             <h2 class="chead"><span class="header-img">Kunder</span></h2>
         </div>
         <br>
-        <div class="col span_1_of_2" align="right">
+        <div class="col span_1_of_2 hidden" align="right" id="new">
             <button type="button" class="btn btn-black" onclick="location.href='opretKunde.php'">Ny Kunde</button>
         </div>
     </div>
@@ -42,6 +42,11 @@ include 'include/menubar.inc.php';
     </table>
 </div>
 <script type="text/javascript">
+    $(document).ready(function () {
+        if (<?php print_r($_SESSION["user"]->a_privileges) ?> === 1 || <?php print_r($_SESSION["user"]->a_privileges) ?> === 2) {
+            $("div#new").removeClass("hidden");
+        }
+    });
     function redirect(user) {
         document.cookie = "Kunde=" + user;
         window.location = 'enkeltKunde.php';

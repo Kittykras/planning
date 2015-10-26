@@ -24,6 +24,9 @@ if (isset($_GET["editing"])) {
 <div class="vertically-align" align="center">
     <form id="form" role="form" action="database/actions/createTask.php" method="post">
         <div class="form-group">
+            <input type="hidden" id="user" name="user" value="<?php echo $_SESSION["user"]->a_username ?>"/>
+        </div>
+        <div class="form-group">
             <input name="title" type="text" class="form-control input-style" style="font-weight: bold" id="title" placeholder="Titel">
         </div>
         <div class="form-group">
@@ -51,11 +54,11 @@ if (isset($_GET["editing"])) {
         <div class="form-group group">
             <div class="col span_1_of_2" align="left">
                 <label class="background-label">Timer</label>
-                <input style="padding-right: 30px;" name="hour" type="number" step="1" min="0" class="form-control input-style foreground-input" id="hour" required="">
+                <input style="padding-right: 30px;" name="hour" type="number" step="1" min="0" class="form-control input-style foreground-input" id="hour" value="0">
             </div>
             <div class="col span_1_of_2" align="left">
                 <label class="background-label">Minutter</label>
-                <input style="padding-right: 30px;" name="min" type="number" step="15" min="0" max="59" class="form-control input-style foreground-input" id="min" required="">
+                <input style="padding-right: 30px;" name="min" type="number" step="15" min="0" max="59" class="form-control input-style foreground-input" id="min" value="0">
             </div>
         </div>
         <div class="form-group group">
@@ -88,8 +91,8 @@ if (isset($_GET["editing"])) {
             <textarea class="form-control input-style hidden" rows="1" id="comment" name="comment" placeholder="Kommentarer" disabled=""></textarea>
         </div>
         <div class="form-group" align="left">
-            <label class="background-label">Ny Kommentar</label>
-            <textarea class="form-control input-style foreground-input" style="padding-top: 29px; text-align: left;" rows="1" id="newComment" name="newComment"></textarea>
+            <!--<label class="background-label">Ny Kommentar</label>-->
+            <textarea class="form-control input-style" rows="1" id="newComment" name="newComment" placeholder="Ny Kommentar"></textarea>
         </div>
     </form>
 </div>
@@ -139,6 +142,13 @@ if (isset($_GET["error"])) {
         $_GET[decode(arguments[1])] = decode(arguments[2]);
     });
     $(document).ready(function () {
+        if (<?php print_r($_SESSION["user"]->a_privileges) ?> === 3) {
+            $('#title').attr('disabled', true);
+            $('#descr').attr('disabled', true);
+            $('#assi').attr('disabled', true);
+            $('#from').attr('disabled', true);
+            $('#to').attr('disabled', true);
+        }
         if ($_GET["editing"] === "edit") {
             var title = $('#htitle').val();
             var descr = $('#hdescr').val();
