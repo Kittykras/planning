@@ -13,7 +13,7 @@ $tasks = $stmt->fetchAll();
 
 function getComments(){
     $db = new DBConnection();
-    $q = "call getcomment(:task)";
+    $q = "call getAllComments(:task)";
     $stmt = $db->prepare($q);
     $stmt->setFetchMode(PDO::FETCH_OBJ);
     $stmt->execute(array(':task' => $_COOKIE["Task"]));

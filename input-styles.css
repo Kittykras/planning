@@ -35,3 +35,6 @@
     border-color: #D26232;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(210, 98, 50, 0.6);
 }
+.form-control[disabled]{
+    background-color: rgba(238,238,238, 0.5);
+}
