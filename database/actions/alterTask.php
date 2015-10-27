@@ -29,6 +29,7 @@ try {
         $commentcount = $stmt->rowCount();
     }
     if ($count == 1 || $commentcount == 1) {
+        setcookie('Kunde', $cus, time() + (86400), "/vonbulowPlanning/");
         header("location:../../enkeltKunde.php");
     } else {
         header("location:../../opretOpgave.php?editing=edit&error");

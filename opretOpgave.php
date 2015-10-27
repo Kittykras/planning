@@ -140,8 +140,7 @@ if (isset($_GET["editing"])) {
 <input type="hidden" id="hcomment" name="hcomment" value="<?php
 foreach ($comments as $comment) {
     echo $comment->tc_comment;
-    ?> - <?php echo $comment->tc_associate; ?>, <?php echo $comment->tc_date; ?>
-           <?php
+    ?> - <?php echo $comment->tc_associate; ?>, <?php echo $comment->tc_date; ?>&#10;<?php
        }
        ?>"/>
 
