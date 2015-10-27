@@ -13,7 +13,7 @@ session_start();
             <li class='has-sub'><a href='medarbejdere.php'>Medarbejdere</a>
                 <ul>
                     <?php foreach ($users as $user) { ?>
-                        <li><a href = 'enkeltMedarbejder.php' onClick="SetCookie('UserName', '<?php echo $user->a_username ?>', '1'); SetCookie('orderby', 't_fromWeek', '1')"> <?php echo $user->a_name ?></a>
+                    <li><a href = 'enkeltMedarbejder.php' onClick="SetCookie('UserName', '<?php echo $user->a_username ?>', '1'); SetCookie('orderby', 't_fromWeek', '1'); SetCookie('state', '0', '1')"> <?php echo $user->a_name ?></a>
                         </li>
                         <?php
                     }
@@ -23,7 +23,7 @@ session_start();
             <li class = "has-sub"><a href = 'kunder.php'>Kunder</a>
                 <ul>
                     <?php foreach ($menucustomers as $customer) { ?>
-                        <li><a href = 'enkeltKunde.php' onClick="SetCookie('Kunde', '<?php echo $customer->c_acronym ?>', '1'); SetCookie('orderby', 't_fromWeek', '1')"> <?php echo $customer->c_name ?></a>
+                        <li><a href = 'enkeltKunde.php' onClick="SetCookie('Kunde', '<?php echo $customer->c_acronym ?>', '1'); SetCookie('orderby', 't_fromWeek', '1'); SetCookie('state', '0', '1')"> <?php echo $customer->c_name ?></a>
                         </li>
                         <?php
                     }

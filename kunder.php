@@ -15,9 +15,8 @@ include 'include/menubar.inc.php';
     </div>
                 <div class="row" align="center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-black">Navn</button>
-                        <button type="button" class="btn btn-black">Branche</button>
-                        <!--<button type="button" class="btn btn-black">Medarbejder</button>-->
+                        <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'c_name', '1'); SetCookie('state', '0', '1'); location.reload()">Navn</button>
+                        <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'c_branch', '1'); SetCookie('state', '0', '1'); location.reload()">Branche</button>
                     </div>
                 </div>
 </div>
@@ -47,6 +46,12 @@ include 'include/menubar.inc.php';
             $("div#new").removeClass("hidden");
         }
     });
+    function SetCookie(c_name, value, expiredays) {
+        var exdate = new Date()
+        exdate.setDate(exdate.getDate() + expiredays)
+        document.cookie = c_name + "=" + escape(value) +
+                ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
+    }
     function redirect(user) {
         document.cookie = "Kunde=" + user;
         window.location = 'enkeltKunde.php';

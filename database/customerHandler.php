@@ -22,13 +22,16 @@ $menucustomers = $stmt->fetchAll();
 
 function getTasksFromCustomer() {
     $db = new DBConnection();
-    $q = "call getallTaskfromcus(:acronym)";
+    $orderby = $_COOKIE["orderby"];
+    $state = $_COOKIE["state"];
+    $q = "call getallTaskfromcus(:acronym, :state, :orderby)";
     $stmt = $db->prepare($q);
     $stmt->setFetchMode(PDO::FETCH_OBJ);
-    $stmt->execute(array(':acronym' => $_COOKIE["Kunde"]));
+    $stmt->execute(array(':acronym' => $_COOKIE["Kunde"], ':state' => $state, ':orderby' => $orderby));
     $ctasks = $stmt->fetchAll();
     return $ctasks;
 }
+
 function getCustomerFromCookie() {
     $db = new DBConnection();
     $q = "call getCustomer(:acronym)";
@@ -39,7 +42,7 @@ function getCustomerFromCookie() {
     $_SESSION["Kunde"] = $customer;
 }
 
-function getAssignedAssociateName($username){
+function getAssignedAssociateName($username) {
     $db = new DBConnection();
     $q = "call getAssociate(:assigned)";
     $stmt = $db->prepare($q);
