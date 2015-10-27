@@ -13,10 +13,12 @@ $users = $stmt->fetchAll();
 //print_r($users);
 function getTasksFromAs() {
     $db = new DBConnection();
-    $q = "call getallTaskbyas(:username)";
+    $orderby = $_COOKIE["orderby"];
+    $state = $_COOKIE["state"];
+    $q = "call getallTaskbyas(:username, :state, :orderby)";
     $stmt = $db->prepare($q);
     $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
-    $stmt->execute(array(':username' => $_COOKIE["UserName"]));
+    $stmt->execute(array(':username' => $_COOKIE["UserName"], ':state' => $state, ':orderby' => $orderby));
     $atasks = $stmt->fetchAll();
     return $atasks;
 }
