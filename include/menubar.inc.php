@@ -34,8 +34,12 @@ session_start();
                     ?>
                 </ul>
             </li>
-            <li><a href = 'overblik.php' onclick="SetCookie('orderby', 't_fromWeek', '1')">Overblik</a></li>
-            <li><a href = 'timeOversigt.php' onclick="SetCookie('orderby', 't_customer', '1')">Time Oversigt</a></li>
+            <li><a href = 'overblik.php' onclick="SetCookie('orderby', 't_fromWeek', '1');
+                    SetCookie('orderby', 't_fromWeek', '1');
+                    SetCookie('state', '0', '1')">Overblik</a></li>
+            <li><a href = 'timeOversigt.php' onclick="SetCookie('orderby', 't_customer', '1');
+                    SetCookie('orderby', 't_fromWeek', '1');
+                    SetCookie('state', '0', '1')">Time Oversigt</a></li>
             <li><a href = 'enkeltMedarbejder.php' onclick="SetCookie('UserName', '<?php echo $_SESSION["user"]->a_username ?>', '1');
                     SetCookie('orderby', 't_fromWeek', '1');
                     SetCookie('state', '0', '1');"><span class = "glyphicon glyphicon-user"></span> <?php print_r($_SESSION["user"]->a_name)
