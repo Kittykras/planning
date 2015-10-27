@@ -17,7 +17,7 @@ function getTasksFromAs() {
     $state = $_COOKIE["state"];
     $q = "call getallTaskbyas(:username, :state, :orderby)";
     $stmt = $db->prepare($q);
-    $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
+    $stmt->setFetchMode(PDO::FETCH_OBJ);
     $stmt->execute(array(':username' => $_COOKIE["UserName"], ':state' => $state, ':orderby' => $orderby));
     $atasks = $stmt->fetchAll();
     return $atasks;

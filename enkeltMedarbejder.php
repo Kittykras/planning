@@ -34,7 +34,7 @@ include 'include/menubar.inc.php';
             </div>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_fromweek', '1'); SetCookie('state', '0', '1'); location.reload()">Uge</button>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_customer', '1'); SetCookie('state', '0', '1'); location.reload()">Kunde</button>
-            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'tc_datetime', '1'); SetCookie('state', '0', '1'); location.reload()">Kommentar</button>
+            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'tc_date', '1'); SetCookie('state', '0', '1'); location.reload()">Kommentar</button>
         </div>
     </div>
 </div>

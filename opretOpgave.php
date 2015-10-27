@@ -110,10 +110,9 @@ if (isset($_GET["editing"])) {
         </div>
     </form>
 </div>
+
 <div id="deleteModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
-        <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -207,9 +206,6 @@ if (isset($_GET["error"])) {
             document.getElementById("from").value = from;
             document.getElementById("to").value = to;
             document.getElementById("comment").value = comment;
-//            if (document.getElementById("comment").value === "undefined") {
-//                document.getElementById("comment").value = "";
-//            }
         }
     });
 </script>

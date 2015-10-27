@@ -40,7 +40,7 @@ include 'include/menubar.inc.php';
             </div>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_fromweek', '1'); SetCookie('state', '0', '1'); location.reload()">Uge</button>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_assigned', '1'); SetCookie('state', '0', '1'); location.reload()">Medarbejder</button>
-            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'tc_datetime', '1'); SetCookie('state', '0', '1'); location.reload()">Kommentar</button>
+            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'tc_date', '1'); SetCookie('state', '0', '1'); location.reload()">Kommentar</button>
         </div>
     </div>
 </div>
@@ -80,10 +80,9 @@ include 'include/menubar.inc.php';
         <br>
     </div>
 </div>
+
 <div id="deleteModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
-        <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -96,9 +95,9 @@ include 'include/menubar.inc.php';
                 <button type="button" class="btn btn-black" data-dismiss="modal">Nej</button>
             </form>
         </div>
-
     </div>
 </div>
+
 <?php
 if (isset($_GET["error"])) {
     ?>
