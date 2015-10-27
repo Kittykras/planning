@@ -102,6 +102,14 @@ if (isset($_GET["error"])) {
         document.cookie = c_name + "=" + escape(value) +
                 ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
     }
+    function cusRedirect(cust) {
+        document.cookie = "Kunde=" + cust;
+        window.location = 'enkeltKunde.php';
+    }
+    function taskRedirect(task){
+        document.cookie = "Task=" + task;
+        window.location = "opretOpgave.php?editing=edit";
+    }
 </script>
 </body>
 </html>
