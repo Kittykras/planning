@@ -21,7 +21,7 @@ session_start();
                     ?>
                 </ul>
             </li>
-            <li  id="nav" class = "has-sub active"><a id="nav" href = 'kunder.php' onclick="SetCookie('orderby', 'c_name', '1');
+            <li  id="nav" class = "has-sub"><a id="nav" href = 'kunder.php' onclick="SetCookie('orderby', 'c_name', '1');
                     SetCookie('state', '0', '1')">Kunder</a>
                 <ul>
                     <?php foreach ($menucustomers as $customer) { ?>
