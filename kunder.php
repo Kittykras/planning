@@ -37,10 +37,12 @@ include 'include/menubar.inc.php';
             <?php
             foreach ($customers as $customer) {
                 ?>
-                <tr><td><button class="btn btn-link btn-xs link-style" onclick="redirect('<?php echo $customer->c_acronym ?>')"><?php echo $customer->c_name; ?></button></td><td><?php echo $customer->c_branch; ?></td></tr>
-                        <?php
-                    }
-                    ?>
+                <tr><td><button class="btn btn-link btn-xs link-style" onclick="redirect('<?php echo $customer->c_acronym ?>')"><?php echo $customer->c_name; ?></button></td>
+                    <td><?php echo $customer->c_branch; ?></td>
+                </tr>
+                <?php
+            }
+            ?>
         </tbody>
     </table>
 </div>
@@ -59,8 +61,6 @@ include 'include/menubar.inc.php';
     function redirect(user) {
         document.cookie = "Kunde=" + user;
         window.location = 'enkeltKunde.php';
-    }
-    
     }
 </script>
 </body>
