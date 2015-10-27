@@ -43,7 +43,7 @@ include 'include/menubar.inc.php';
             <?php
             foreach ($users as $user) {
                 ?>
-                <tr><td><button class="btn btn-link btn-xs link-style" onclick="redirect('<?php echo $user->a_username ?>')"><?php echo $user->a_name; ?></button></td></tr>
+            <tr><td><button class="btn btn-link btn-xs link-style" onclick="SetCookie('UserName', '<?php echo $user->a_username ?>', '1');redirect('<?php echo $user->a_username ?>')"><?php echo $user->a_name; ?></button></td></tr>
                         <?php
                     }
                     ?>
@@ -51,6 +51,12 @@ include 'include/menubar.inc.php';
     </table>
 </div>
 <script type="text/javascript">
+    function SetCookie(c_name, value, expiredays) {
+        var exdate = new Date()
+        exdate.setDate(exdate.getDate() + expiredays)
+        document.cookie = c_name + "=" + escape(value) +
+                ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString()+";path=/vonbulowPlanning/")
+    }
     function redirect(user) {
         document.cookie = "UserName=" + user;
         window.location = 'enkeltMedarbejder.php';
