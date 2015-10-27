@@ -1,16 +1,19 @@
-//$(document).ready(function() {
-//
-//$('#cssmenu ul li a').each(function() {
-//    var path = window.location.href;
-//    var current = path.substring(path.lastIndexOf('/'));
-//    var url = $(this).attr('href');
-//
-//    if (url === current) {
-//        $(this).addClass('active');
-//    };
-//});     
+$(function () {
+        setNavigation();
+    });
 
-//});
+    function setNavigation() {
+        var path = window.location.pathname;
+        path = path.replace(/\/vonbulowPlanning/, "");
+        path = decodeURIComponent(path);
+
+        $(".cssmenu ul a").each(function () {
+            var href = $(this).attr('href');
+            if (path.substring(0, href.length) === href) {
+                $(this).closest('li').addClass('active');
+            }
+        });
+    }
 (function($) {
 
   $.fn.menumaker = function(options) {

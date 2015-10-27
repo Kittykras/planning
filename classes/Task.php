@@ -12,6 +12,32 @@ class Tasks{
     protected $min = null;
     protected $fromweek = null;
     protected $toweek = null;
+    protected $commentTime = null;
+    
+    function getHour() {
+        return $this->hour;
+    }
+
+    function getMin() {
+        return $this->min;
+    }
+
+    function getCommentTime() {
+        return $this->commentTime;
+    }
+
+    function setHour($hour) {
+        $this->hour = $hour;
+    }
+
+    function setMin($min) {
+        $this->min = $min;
+    }
+
+    function setCommentTime($commentTime) {
+        $this->commentTime = $commentTime;
+    }
+
     
     function getId() {
         return $this->id;

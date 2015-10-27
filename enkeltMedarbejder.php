@@ -34,6 +34,7 @@ include 'include/menubar.inc.php';
             </div>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_fromweek', '1'); SetCookie('state', '0', '1'); location.reload()">Uge</button>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_customer', '1'); SetCookie('state', '0', '1'); location.reload()">Kunde</button>
+            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'tc_datetime', '1'); SetCookie('state', '0', '1'); location.reload()">Kommentar</button>
         </div>
     </div>
 </div>
@@ -45,6 +46,7 @@ include 'include/menubar.inc.php';
                 <th>Uge</th>
                 <th>Opgave</th>
                 <th>Kunde</th>
+                <th>Kommentar</th>
             </tr>
         </thead>
         <tbody>
@@ -56,6 +58,7 @@ include 'include/menubar.inc.php';
                     <td><?php echo $atask->t_fromweek ?>/<?php echo $atask->t_toweek ?></td>
                     <td><button class="btn btn-link btn-xs link-style" onclick="taskRedirect('<?php echo $atask->t_id ?>')"><span style="color: <?php echo $atask->t_state ?>">●</span> <?php echo $atask->t_title ?></td>
                     <td><button class="btn btn-link btn-xs link-style" onclick="cusRedirect('<?php echo $atask->t_customer ?>')"><?php echo $atask->t_customer ?></button></td>
+                    <td><?php echo $atask->tc_datetime ?></td>
                 </tr>
                 <?php
             }

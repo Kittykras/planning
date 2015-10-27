@@ -40,6 +40,7 @@ include 'include/menubar.inc.php';
             </div>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_fromweek', '1'); SetCookie('state', '0', '1'); location.reload()">Uge</button>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_assigned', '1'); SetCookie('state', '0', '1'); location.reload()">Medarbejder</button>
+            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'tc_datetime', '1'); SetCookie('state', '0', '1'); location.reload()">Kommentar</button>
         </div>
     </div>
 </div>
@@ -51,6 +52,7 @@ include 'include/menubar.inc.php';
                 <th>Uge</th>
                 <th>Opgave</th>
                 <th>Medarb.</th>
+                <th>Kommentar</th>
             </tr>
         </thead>
         <tbody>
@@ -62,6 +64,7 @@ include 'include/menubar.inc.php';
                     <td><?php echo $ctask->t_fromweek ?>/<?php echo $ctask->t_toweek ?></td>
                     <td><button class="btn btn-link btn-xs link-style" onclick="taskRedirect('<?php echo $ctask->t_id ?>')"><span style="color: <?php echo $ctask->t_state ?>">●</span> <?php echo $ctask->t_title ?></td>
                     <td><button class="btn btn-link btn-xs link-style" onclick="redirect('<?php echo $ctask->t_assigned ?>')"><?php echo $ctask->t_assigned ?></button></td>
+                    <td><?php echo $ctask->tc_datetime ?></td>
                 </tr>
                 <?php
             }
