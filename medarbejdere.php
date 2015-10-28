@@ -12,7 +12,7 @@ include 'include/menubar.inc.php';
             <h2 class="chead"><span class="header-img">Medarbejdere</span></h2>
         </div>
         <br>
-        <div class="col span_1_of_2" align="right">
+        <div id="new" class="col span_1_of_2 hidden" align="right">
             <button type="button" class="btn btn-black" onclick="location.href='opretMedarbejder.php'">Ny Medarbejder</button>
         </div>
     </div>
@@ -54,17 +54,12 @@ include 'include/menubar.inc.php';
         </tbody>
     </table>
 </div>
-<!--<script type="text/javascript">
-    function SetCookie(c_name, value, expiredays) {
-        var exdate = new Date()
-        exdate.setDate(exdate.getDate() + expiredays)
-        document.cookie = c_name + "=" + escape(value) +
-                ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString()+";path=/vonbulowPlanning/")
-    }
-    function redirect(user) {
-        document.cookie = "UserName=" + user;
-        window.location = 'enkeltMedarbejder.php';
-    }
-</script>-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (<?php print_r($_SESSION["user"]->a_privileges) ?> === 1 || <?php print_r($_SESSION["user"]->a_privileges) ?> === 2) {
+            $("div#new").removeClass("hidden");
+        }
+    });
+</script>
 </body>
 </html>
