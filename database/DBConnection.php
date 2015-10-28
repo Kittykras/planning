@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -24,7 +25,7 @@ class DBConnection{
         $this->dbname = "vonbulowplanning";
         $this->username = "root";
         $this->password = "root";
-        $this->pdo = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+        $this->pdo = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
     }
     
     public function prepare($q){

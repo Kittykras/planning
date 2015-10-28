@@ -1,8 +1,8 @@
 function SetCookie(c_name, value, expiredays) {
-    var exdate = new Date()
-    exdate.setDate(exdate.getDate() + expiredays)
-    document.cookie = c_name + "=" + escape(value) +
-            ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + expiredays);
+    document.cookie = c_name + "=" + value +
+            ((expiredays === null) ? "" : ";expires=" + exdate.toGMTString()+";path=/vonbulowPlanning/");
 }
 function SetActive(aktiv) {
     SetCookie('medarbejder', '', '1');
@@ -29,15 +29,12 @@ function SetActive(aktiv) {
     }
 }
 function redirect(user) {
-    document.cookie = "UserName=" + user;
     window.location = 'enkeltMedarbejder.php';
 }
 function cusRedirect(cust) {
-    document.cookie = "Kunde=" + cust;
     window.location = 'enkeltKunde.php';
 }
 function taskRedirect(task) {
-    document.cookie = "Task=" + task;
     window.location = "opretOpgave.php?editing=edit";
 }
 
