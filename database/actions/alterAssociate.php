@@ -13,6 +13,7 @@ try{
     $stmt->execute(array(':oldUser' => $oldUser, ':newName' => $newName, ':newUser' => $newUser, ':newPwd' => $newPwd, ':newPriv' => $newPriv));
     $count = $stmt->rowCount();
     if($count == 1){
+        setcookie("UserName", $newUser, time() + (86400), "/vonbulowPlanning/");
         header("location:../../enkeltMedarbejder.php");
     } else {
         header("location:../../opretMedarbejder.php?editing=edit&error");
