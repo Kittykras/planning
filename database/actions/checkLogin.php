@@ -22,6 +22,11 @@ try {
         setcookie("orderby", 't_fromweek', time() + (86400), "/vonbulowPlanning/");
         setcookie('state', '0', time() + (86400), "/vonbulowPlanning/");
         setcookie("UserName", $cookie, time() + (86400), "/vonbulowPlanning/");
+        SetCookie('medarbejder', '',  time() + (86400), "/vonbulowPlanning/");
+        SetCookie('kunder', '',  time() + (86400), "/vonbulowPlanning/");
+        SetCookie('overblik', '',  time() + (86400), "/vonbulowPlanning/");
+        SetCookie('timeoversigt', '',  time() + (86400), "/vonbulowPlanning/");
+        setcookie('login','active', time() + (86400), "/vonbulowPlanning/");
         header("location:../../enkeltMedarbejder.php");
         $db->close();
     }else {

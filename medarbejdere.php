@@ -47,13 +47,14 @@ include 'include/menubar.inc.php';
             foreach ($users as $user) {
                 ?>
             <tr><td><button class="btn btn-link btn-xs link-style" onclick="SetCookie('UserName', '<?php echo $user->a_username ?>', '1');redirect('<?php echo $user->a_username ?>')"><?php echo $user->a_name; ?></button></td></tr>
+            <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                         <?php
                     }
                     ?>
         </tbody>
     </table>
 </div>
-<script type="text/javascript">
+<!--<script type="text/javascript">
     function SetCookie(c_name, value, expiredays) {
         var exdate = new Date()
         exdate.setDate(exdate.getDate() + expiredays)
@@ -64,6 +65,6 @@ include 'include/menubar.inc.php';
         document.cookie = "UserName=" + user;
         window.location = 'enkeltMedarbejder.php';
     }
-</script>
+</script>-->
 </body>
 </html>

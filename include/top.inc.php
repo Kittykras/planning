@@ -18,6 +18,7 @@
         <script src="number.js"></script>
         <script src="script.js"></script>
         <script src="sessions.js"></script>
+        <script src="redirectAndCookies.js"></script>
         <link rel="stylesheet" href="styles.css">
         <title>vonbulow</title>
     </head>

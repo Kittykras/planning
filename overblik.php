@@ -29,6 +29,7 @@ include './database/taskHandler.php';
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_fromweek', '1'); SetCookie('state', '0', '1'); location.reload()">Uge</button>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_customer', '1'); SetCookie('state', '0', '1'); location.reload()">Kunde</button>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_assigned', '1'); SetCookie('state', '0', '1'); location.reload()">Medarbejder</button>
+            <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
         </div>
     </div>
 </div>
@@ -52,6 +53,7 @@ include './database/taskHandler.php';
                     <td><button class="btn btn-link btn-xs link-style" onclick="taskRedirect('<?php echo $task->t_id ?>')"><span style="color: <?php echo $task->t_state ?>">●</span> <?php echo $task->t_title ?></td>
                     <td><button class="btn btn-link btn-xs link-style" onclick="cusRedirect('<?php echo $task->t_customer ?>')"><?php echo $task->t_customer ?></button></td>
                     <td><button class="btn btn-link btn-xs link-style" onclick="redirect('<?php echo $task->t_assigned ?>')"><?php echo $task->t_assigned ?></button></td>
+                    <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                 </tr>
                 <?php
             }
@@ -59,7 +61,7 @@ include './database/taskHandler.php';
         </tbody>
     </table>
 </div>
-<script type="text/javascript">
+<!--<script type="text/javascript">
     function SetCookie(c_name, value, expiredays) {
         var exdate = new Date();
         exdate.setDate(exdate.getDate() + expiredays);
@@ -78,6 +80,6 @@ include './database/taskHandler.php';
         document.cookie = "Task=" + task;
         window.location = "opretOpgave.php?editing=edit";
     }
-</script>
+</script>-->
 </body>
 <html>

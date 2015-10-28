@@ -35,6 +35,7 @@ include 'include/menubar.inc.php';
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_fromweek', '1'); SetCookie('state', '0', '1'); location.reload()">Uge</button>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_customer', '1'); SetCookie('state', '0', '1'); location.reload()">Kunde</button>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'tc_date', '1'); SetCookie('state', '0', '1'); location.reload()">Kommentar</button>
+            <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
         </div>
     </div>
 </div>
@@ -58,6 +59,7 @@ include 'include/menubar.inc.php';
                     <td><?php echo $atask->t_fromweek ?>/<?php echo $atask->t_toweek ?></td>
                     <td><button class="btn btn-link btn-xs link-style" onclick="taskRedirect('<?php echo $atask->t_id ?>')"><span style="color: <?php echo $atask->t_state ?>">●</span> <?php echo $atask->t_title ?></td>
                     <td><button class="btn btn-link btn-xs link-style" onclick="cusRedirect('<?php echo $atask->t_customer ?>')"><?php echo $atask->t_customer ?></button></td>
+                    <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                     <td><?php echo $atask->tc_datetime ?></td>
                 </tr>
                 <?php
@@ -99,21 +101,4 @@ if (isset($_GET["error"])) {
             $("div#edit").removeClass("hidden");
         }
     });
-    function SetCookie(c_name, value, expiredays) {
-        var exdate = new Date();
-        exdate.setDate(exdate.getDate() + expiredays);
-        document.cookie = c_name + "=" + escape(value) +
-                ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString()+";path=/vonbulowPlanning/");
-    }
-    function cusRedirect(cust) {
-        document.cookie = "Kunde=" + cust;
-        window.location = 'enkeltKunde.php';
-    }
-    function taskRedirect(task){
-        document.cookie = "Task=" + task;
-        window.location = "opretOpgave.php?editing=edit";
-    }
 </script>
-</body>
-</html>
-

@@ -22,6 +22,7 @@ include 'include/menubar.inc.php';
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'c_branch', '1');
                     SetCookie('state', '0', '1');
                     location.reload()">Branche</button>
+            <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
         </div>
     </div>
 </div>
@@ -39,6 +40,7 @@ include 'include/menubar.inc.php';
             foreach ($customers as $customer) {
                 ?>
                 <tr><td><button class="btn btn-link btn-xs link-style" onclick="SetCookie('Kunde', '<?php echo $customer->c_acronym ?>', '1');redirect('<?php echo $customer->c_acronym ?>')"><?php echo $customer->c_name; ?></button></td>
+                    <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                     <td><?php echo $customer->c_branch; ?></td>
                 </tr>
                 <?php
@@ -53,16 +55,16 @@ include 'include/menubar.inc.php';
             $("div#new").removeClass("hidden");
         }
     });
-    function SetCookie(c_name, value, expiredays) {
-        var exdate = new Date()
-        exdate.setDate(exdate.getDate() + expiredays)
-        document.cookie = c_name + "=" + escape(value) +
-                ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString()+";path=/vonbulowPlanning/")
-    }
-    function redirect(user) {
-        document.cookie = "Kunde=" + user;
-        window.location = 'enkeltKunde.php';
-    }
+//    function SetCookie(c_name, value, expiredays) {
+//        var exdate = new Date()
+//        exdate.setDate(exdate.getDate() + expiredays)
+//        document.cookie = c_name + "=" + escape(value) +
+//                ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString()+";path=/vonbulowPlanning/")
+//    }
+//    function redirect(user) {
+//        document.cookie = "Kunde=" + user;
+//        window.location = 'enkeltKunde.php';
+//    }
 </script>
 </body>
 </html>

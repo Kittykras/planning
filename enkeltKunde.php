@@ -41,6 +41,7 @@ include 'include/menubar.inc.php';
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_fromweek', '1'); SetCookie('state', '0', '1'); location.reload()">Uge</button>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_assigned', '1'); SetCookie('state', '0', '1'); location.reload()">Medarbejder</button>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'tc_date', '1'); SetCookie('state', '0', '1'); location.reload()">Kommentar</button>
+            <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
         </div>
     </div>
 </div>
@@ -64,6 +65,7 @@ include 'include/menubar.inc.php';
                     <td><?php echo $ctask->t_fromweek ?>/<?php echo $ctask->t_toweek ?></td>
                     <td><button class="btn btn-link btn-xs link-style" onclick="taskRedirect('<?php echo $ctask->t_id ?>')"><span style="color: <?php echo $ctask->t_state ?>">●</span> <?php echo $ctask->t_title ?></td>
                     <td><button class="btn btn-link btn-xs link-style" onclick="redirect('<?php echo $ctask->t_assigned ?>')"><?php echo $ctask->t_assigned ?></button></td>
+                    <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                     <td><?php echo $ctask->tc_datetime ?></td>
                 </tr>
                 <?php
@@ -113,25 +115,8 @@ if (isset($_GET["error"])) {
             $("div#edit").removeClass("hidden");
         }
     });
-    function SetCookie(c_name, value, expiredays) {
-        var exdate = new Date();
-        exdate.setDate(exdate.getDate() + expiredays);
-        document.cookie = c_name + "=" + escape(value) +
-                ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString()+";path=/vonbulowPlanning/");
-    }
-    function redirect(user) {
-        document.cookie = "UserName=" + user;
-        window.location = 'enkeltMedarbejder.php';
-    }
-    function cusRedirect(cust) {
-        document.cookie = "Kunde=" + cust;
-        window.location = 'enkeltKunde.php';
-    }
-    function taskRedirect(task){
-        document.cookie = "Task=" + task;
-        window.location = "opretOpgave.php?editing=edit";
-    }
 </script>
-</body>
-</html>
+<?php
+include './include/bottom.inc.php';
+?>
 
