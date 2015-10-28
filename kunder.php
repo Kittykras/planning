@@ -1,6 +1,7 @@
 <?php
 include 'include/top.inc.php';
 include 'include/menubar.inc.php';
+
 ?>
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
