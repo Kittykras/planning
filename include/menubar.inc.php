@@ -56,42 +56,25 @@ session_start();
 
 <script type="text/javascript">
     function SetActivejeps(aktiv) {
-        
-        switch (aktiv) {
-            case 'medarbejder':
-                
-                SetCookie('medarbejder', 'active', '1');
+        SetCookie('medarbejder', '', '1');
                 SetCookie('kunder', '', '1');
                 SetCookie('overblik', '', '1');
                 SetCookie('timeoversigt', '', '1');
-                SetCookie('login', '', '1');
+                SetCookie('login', '', '1');      
+        switch (aktiv) {          
+            case 'medarbejder':
+                SetCookie('medarbejder', 'active', '1');
                 break;
             case 'kunder':
-                SetCookie('medarbejder', '', '1');
                 SetCookie('kunder', 'active', '1');
-                SetCookie('overblik', '', '1');
-                SetCookie('timeoversigt', '', '1');
-                SetCookie('login', '', '1');
                 break;
             case 'overblik':
-                SetCookie('medarbejder', '', '1');
-                SetCookie('kunder', '', '1');
                 SetCookie('overblik', 'active', '1');
-                SetCookie('timeoversigt', '', '1');
-                SetCookie('login', '', '1');
                 break;
             case 'timeoversigt':
-                SetCookie('medarbejder', '', '1');
-                SetCookie('kunder', '', '1');
-                SetCookie('overblik', '', '1');
                 SetCookie('timeoversigt', 'active', '1');
-                SetCookie('login', '', '1');
                 break;
             case 'login':
-                SetCookie('medarbejder', '', '1');
-                SetCookie('kunder', '', '1');
-                SetCookie('overblik', '', '1');
-                SetCookie('timeoversigt', '', '1');
                 SetCookie('login', 'active', '1');
                 break;
         }
