@@ -39,7 +39,7 @@ include 'include/menubar.inc.php';
             <?php
             foreach ($customers as $customer) {
                 ?>
-                <tr><td><button class="btn btn-link btn-xs link-style" onclick="SetCookie('Kunde', '<?php echo $customer->c_acronym ?>', '1');redirect('<?php echo $customer->c_acronym ?>')"><?php echo $customer->c_name; ?></button></td>
+                <tr><td><button class="btn btn-link btn-xs link-style" onclick="SetCookie('Kunde', '<?php echo $customer->c_acronym ?>', '1');cusRedirect('<?php echo $customer->c_acronym ?>')"><?php echo $customer->c_name; ?></button></td>
                     <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                     <td><?php echo $customer->c_branch; ?></td>
                 </tr>
