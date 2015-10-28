@@ -29,12 +29,15 @@ function SetActive(aktiv) {
     }
 }
 function redirect(user) {
+    SetCookie('UserName', user, '1');
     window.location = 'enkeltMedarbejder.php';
 }
 function cusRedirect(cust) {
+    SetCookie('Kunde', cust, '1');
     window.location = 'enkeltKunde.php';
 }
 function taskRedirect(task) {
+    SetCookie('Task', task, '1');
     window.location = "opretOpgave.php?editing=edit";
 }
 
