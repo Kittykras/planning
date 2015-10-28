@@ -59,6 +59,3 @@ include './database/taskHandler.php';
         </tbody>
     </table>
 </div>
-<?php
-include './include/bottom.inc.php';
-?>

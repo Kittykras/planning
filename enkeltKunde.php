@@ -116,7 +116,4 @@ if (isset($_GET["error"])) {
         }
     });
 </script>
-<?php
-include './include/bottom.inc.php';
-?>
 

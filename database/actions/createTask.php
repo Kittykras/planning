@@ -15,9 +15,9 @@ try{
     $inv = $_POST["inv"];
     $exp = $_POST["exp"];
     $db = new DBConnection();
-    $q = "call createtask(:cus, :title, :descr, :stat, :assi, :timespent, :from, :to, :inv, :exp);";
+    $q = "call createtask(:user, :cus, :title, :descr, :stat, :assi, :timespent, :from, :to, :inv, :exp);";
     $stmt = $db->prepare($q);
-    $stmt->execute(array(':cus' => $cus, ':title' => $title, ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen, ':from' => $from, ':to' => $to, ':inv' => $inv, ':exp' => $exp));
+    $stmt->execute(array(':user' => $user, ':cus' => $cus, ':title' => $title, ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen, ':from' => $from, ':to' => $to, ':inv' => $inv, ':exp' => $exp));
     $count = $stmt->rowCount();
     $q = "call createcommentonnewtask(:comment, :user);";
     $stmt = $db->prepare($q);
