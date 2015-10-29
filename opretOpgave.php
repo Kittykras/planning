@@ -8,6 +8,9 @@ if (isset($_GET["editing"])) {
 }
 ?>
 <link rel="stylesheet" href="input-styles.css">
+<script scr="quicksilver.js"></script>
+<script scr="jquery.quickselect.js"></script>
+<link 
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
@@ -74,7 +77,7 @@ if (isset($_GET["editing"])) {
                     <?php
                     for ($index = 1; $index < 53; $index++) {
                         ?>    
-                        <option title="Start Uge" value="<?php echo $index; ?>"><?php echo $index; ?></option>
+                    <option title="Start Uge" value="<?php echo $index; ?>"><?php echo $index; ?></option>
                         <?php
                     }
                     ?>
