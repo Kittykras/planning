@@ -4,8 +4,8 @@ include 'database/customerHandler.php';
 session_start();
 ?>
 <div class="dcenter">
-    <nav class="navbar navbar-inverse">
-        <div container-fluid>
+    <nav class="navbar navbar-style">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
@@ -17,9 +17,9 @@ session_start();
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li class='dropdown <?php echo $_COOKIE['medarbejder'] ?>'>
-                        <!--<div class="navbar-btn">-->
-                        <a data-toggle="dropdown" class="dropdown-toggle" href = 'medarbejdere.php' onclick="SetActive('medarbejder');">Medarbejdere</a>
-                            <!--<a data-toggle="dropdown" class="dropdown-toggle"><span class="caret"></span></a>-->
+                        <div class="split-menuitem">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href = 'medarbejdere.php' onclick="SetActive('medarbejder');">Medarbejdere</a>
+                            <a data-toggle="dropdown" class="dropdown-toggle"><span class="caret"></span></a>
                             <ul class="dropdown-menu inverse-dropdown">
                                 <?php foreach ($users as $user) { ?>
                                     <li><a href = 'enkeltMedarbejder.php' onClick="SetCookie('UserName', '<?php echo $user->a_username ?>', '1');
@@ -31,18 +31,17 @@ session_start();
                                 }
                                 ?>
                             </ul>
-                        <!--</div>-->
+                        </div>
                     </li>
                     <li  class = "dropdown <?php echo $_COOKIE['kunder'] ?>">
-                        <div class="nav navbar-inverse navbar-nav navbar-btn">
+                        <div class="split-menuitem">
                             <a href = 'kunder.php' onclick="SetCookie('orderby', 'c_name', '1');
                                     SetCookie('state', '0', '1');
                                     SetActive('kunder');">Kunder</a>
-                                <a data-toggle="dropdown" class="dropdown-toggle"><span class="caret"></span></a>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="caret"></span></a>
                             <ul class="dropdown-menu inverse-dropdown">
                                 <?php foreach ($menucustomers as $customer) { ?>
                                     <li><a href = 'enkeltKunde.php' onClick="SetCookie('Kunde', '<?php echo $customer->c_acronym ?>', '1');
-
                                                 SetCookie('orderby', 't_fromWeek', '1');
                                                 SetCookie('state', '0', '1');
                                                 SetActive('kunder');"> <?php echo $customer->c_name ?></a>

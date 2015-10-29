@@ -386,6 +386,30 @@ h4.chead{
 .btn-black:active,.btn-black:hover, .btn-black:focus{
     color: #D26232;
 }
+.split-menuitem a{
+    color: white;
+    position: relative;
+    display: block;
+    float: left;
+    padding: 15px 15px;
+    line-height: 20px;
+}
+/*.split-menuitem a .dropdown-toggle{
+    float: left;
+}*/
+.navbar-style{
+    background: black;
+}
+.navbar-style li a{
+    color: white;
+}
+.navbar-style li a:hover, .navbar-style li a:active{
+    background: black;
+    color: #D26232;
+}
+.navbar-style li a:active{
+    color: #D26232;
+}
 .inverse-dropdown{
     background: black;
     border-color: #080808;
