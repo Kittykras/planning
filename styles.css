@@ -13,7 +13,7 @@ h2, h4{
     display: none;
 }
 @import url(https://fonts.googleapis.com/css?family=Play:400,700);
-/*#cssmenu,
+#cssmenu,
 #cssmenu ul,
 #cssmenu ul li,
 #cssmenu ul li a,
@@ -200,9 +200,9 @@ h2, h4{
 }
 #cssmenu ul ul li.has-sub:hover > a::after {
     border-color: #D26232;
-}*/
+}
 
-/*  SECTIONS  */
+/*  SECTIONS  
 .section {
     clear: both;
     padding: 0px;
@@ -246,7 +246,7 @@ h4.chead{
 }
 
 @media all and (max-width: 768px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (-o-min-device-pixel-ratio: 2/1) and (max-width: 1024px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min-resolution: 192dpi) and (max-width: 1024px), only screen and (min-resolution: 2dppx) and (max-width: 1024px) {
-    /*    #cssmenu {
+        #cssmenu {
             width: 100%;
         }
         .navbar-header{
@@ -369,7 +369,7 @@ h4.chead{
         }
         #cssmenu .submenu-button.submenu-opened:after {
             display: none;
-        }*/
+        }
     h2.chead{
         display: none;
     }
@@ -386,7 +386,7 @@ h4.chead{
 .btn-black:active,.btn-black:hover, .btn-black:focus{
     color: #D26232;
 }
-.split-menuitem a{
+/*.split-menuitem a{
     color: white;
     position: relative;
     display: block;
@@ -397,17 +397,17 @@ h4.chead{
 /*.split-menuitem a .dropdown-toggle{
     float: left;
 }*/
-.navbar-style{
+/*.navbar-style{
     background: black;
 }
 .navbar-style li a{
     color: white;
 }
-.navbar-style li a:hover, .navbar-style li a:active{
+.navbar-style li a:hover{
     background: black;
     color: #D26232;
 }
-.navbar-style li a:active{
+.navbar-style li:active, .active{
     color: #D26232;
 }
 .inverse-dropdown{
@@ -420,15 +420,15 @@ h4.chead{
 .inverse-dropdown li a:hover{
     color: #D26232;
     background: black;
-}
-/*.dropdown-black, .dropdown-menu>li>a{
+}*/
+.dropdown-black, .dropdown-menu>li>a{
     background: black;
     color: white;
 }
 .dropdown-black>li>a:focus,.dropdown-menu>li>a:hover{
     background: black;
     color: #D26232;
-}*/
+}
 .dcenter{
     max-width: 940px;
     margin: 0 auto;

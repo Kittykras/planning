@@ -24,11 +24,9 @@
                 }
             });
 
-            cssmenu.find('li ul').parent().addClass('has-sub');
-
-            multiTg = function () {
-                cssmenu.find(".has-sub").prepend('<span class="submenu-button"></span>');
-                cssmenu.find('.submenu-button').on('click', function () {
+//            multiTg = function () {
+                $(".has-sub").append('<span class="submenu-button"></span>');
+                $('.submenu-button').click(function () {
                     $(this).toggleClass('submenu-opened');
                     if ($(this).siblings('ul').hasClass('open')) {
                         $(this).siblings('ul').removeClass('open').hide();
@@ -37,27 +35,27 @@
                         $(this).siblings('ul').addClass('open').show();
                     }
                 });
-            };
-
-            if (settings.format === 'multitoggle')
-                multiTg();
-            else
-                cssmenu.addClass('dropdown');
-
-            if (settings.sticky === true)
-                cssmenu.css('position', 'fixed');
-
-            resizeFix = function () {
-                if ($(window).width() > 768) {
-                    cssmenu.find('ul').show();
-                }
-
-                if ($(window).width() <= 768) {
-                    cssmenu.find('ul').hide().removeClass('open');
-                }
-            };
-            resizeFix();
-            return $(window).on('resize', resizeFix);
+//            };
+//
+//            if (settings.format === 'multitoggle')
+//                multiTg();
+//            else
+//                cssmenu.addClass('dropdown');
+//
+//            if (settings.sticky === true)
+//                cssmenu.css('position', 'fixed');
+//
+//            resizeFix = function () {
+//                if ($(window).width() > 768) {
+//                    cssmenu.find('ul').show();
+//                }
+//
+//                if ($(window).width() <= 768) {
+//                    cssmenu.find('ul').hide().removeClass('open');
+//                }
+//            };
+//            resizeFix();
+//            return $(window).on('resize', resizeFix);
 
         });
     };
