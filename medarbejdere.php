@@ -1,9 +1,6 @@
 <?php
-
 include 'include/top.inc.php';
 include 'include/menubar.inc.php';
-
-
 ?>
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
@@ -13,7 +10,7 @@ include 'include/menubar.inc.php';
         </div>
         <br>
         <div id="new" class="col span_1_of_2 hidden" align="right">
-            <button type="button" class="btn btn-black" onclick="location.href='opretMedarbejder.php'">Ny Medarbejder</button>
+            <button type="button" class="btn btn-black" onclick="location.href = 'opretMedarbejder.php'">Ny Medarbejder</button>
         </div>
     </div>
     <!--            <div class="row" align="center">
@@ -36,28 +33,30 @@ include 'include/menubar.inc.php';
 </div>
 <br>
 <div class="panel panel-default dcenter">
-    <table class="table table-condensed table-responsive">
-        <thead class="thead-style">
-            <tr>
-                <th>Navn</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($users as $user) {
+    <div class="table-responsive">
+        <table class="table table-condensed">
+            <thead class="thead-style">
+                <tr>
+                    <th>Navn</th>
+                </tr>
+            </thead>
+            <tbody>
+<?php
+foreach ($users as $user) {
+    ?>
+                    <tr><td><button class="btn btn-link btn-xs link-style" onclick="redirect('<?php echo $user->a_username ?>')"><?php echo $user->a_name; ?></button></td></tr>
+                    <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
+                    <?php
+                }
                 ?>
-            <tr><td><button class="btn btn-link btn-xs link-style" onclick="redirect('<?php echo $user->a_username ?>')"><?php echo $user->a_name; ?></button></td></tr>
-            <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
-                        <?php
-                    }
-                    ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
         if (<?php print_r($_SESSION["user"]->a_privileges) ?> === 1 || <?php print_r($_SESSION["user"]->a_privileges) ?> === 2) {
-            $("div#new").removeClass("hidden");
+    $("div#new").removeClass("hidden");
         }
     });
 </script>

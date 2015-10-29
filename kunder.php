@@ -1,7 +1,6 @@
 <?php
 include 'include/top.inc.php';
 include 'include/menubar.inc.php';
-
 ?>
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
@@ -28,26 +27,28 @@ include 'include/menubar.inc.php';
 </div>
 <br>
 <div class="panel panel-default dcenter">
-    <table class="table table-condensed table-responsive">
-        <thead class="thead-style">
-            <tr>
-                <th>Navn</th>
-                <th>Branche</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($customers as $customer) {
-                ?>
-                <tr><td><button class="btn btn-link btn-xs link-style" onclick="cusRedirect('<?php echo $customer->c_acronym ?>')"><?php echo $customer->c_name; ?></button></td>
-                    <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
-                    <td><?php echo $customer->c_branch; ?></td>
+    <div class="table-responsive">
+        <table class="table table-condensed">
+            <thead class="thead-style">
+                <tr>
+                    <th>Navn</th>
+                    <th>Branche</th>
                 </tr>
+            </thead>
+            <tbody>
                 <?php
-            }
-            ?>
-        </tbody>
-    </table>
+                foreach ($customers as $customer) {
+                    ?>
+                    <tr><td><button class="btn btn-link btn-xs link-style" onclick="cusRedirect('<?php echo $customer->c_acronym ?>')"><?php echo $customer->c_name; ?></button></td>
+                        <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
+                        <td><?php echo $customer->c_branch; ?></td>
+                    </tr>
+                    <?php
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
