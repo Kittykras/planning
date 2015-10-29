@@ -56,7 +56,7 @@ print_r($_SESSION["UserName"]->a_name); ?></span></h2>
 </div>
 <br>
 <div class="panel panel-default dcenter">
-    <div class="table-responsive">
+    <div id="no-more-tables" class="table-responsive">
         <table class="table table-condensed">
             <thead class="thead-style">
                 <tr>
@@ -73,8 +73,8 @@ print_r($_SESSION["UserName"]->a_name); ?></span></h2>
                     ?>
                     <tr>
                         <td><?php echo $atask->t_fromweek ?>/<?php echo $atask->t_toweek ?></td>
-                        <td><button class="btn btn-link btn-xs link-style" onclick="taskRedirect('<?php echo $atask->t_id ?>')"><span style="color: <?php echo $atask->t_state ?>">●</span> <?php echo $atask->t_title ?></td>
-                        <td><button class="btn btn-link btn-xs link-style" onclick="cusRedirect('<?php echo $atask->t_customer ?>')"><?php echo $atask->t_customer ?></button></td>
+                        <td><button class="btn btn-link btn-xs table-button link-style" onclick="taskRedirect('<?php echo $atask->t_id ?>')"><span style="color: <?php echo $atask->t_state ?>">●</span> <?php echo $atask->t_title ?></td>
+                        <td><button class="btn btn-link btn-xs table-button link-style" onclick="cusRedirect('<?php echo $atask->t_customer ?>')"><?php echo $atask->t_customer ?></button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                         <td><?php echo $atask->tc_datetime ?></td>
                     </tr>

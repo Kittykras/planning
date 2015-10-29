@@ -33,7 +33,7 @@ include 'include/menubar.inc.php';
 </div>
 <br>
 <div class="panel panel-default dcenter">
-    <div class="table-responsive">
+    <div id="no-more-tables" class="table-responsive">
         <table class="table table-condensed">
             <thead class="thead-style">
                 <tr>
@@ -41,10 +41,10 @@ include 'include/menubar.inc.php';
                 </tr>
             </thead>
             <tbody>
-<?php
-foreach ($users as $user) {
-    ?>
-                    <tr><td><button class="btn btn-link btn-xs link-style" onclick="redirect('<?php echo $user->a_username ?>')"><?php echo $user->a_name; ?></button></td></tr>
+                <?php
+                foreach ($users as $user) {
+                    ?>
+                    <tr><td><button class="btn btn-link btn-xs table-button link-style" onclick="redirect('<?php echo $user->a_username ?>')"><?php echo $user->a_name; ?></button></td></tr>
                     <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                     <?php
                 }
@@ -56,7 +56,7 @@ foreach ($users as $user) {
 <script type="text/javascript">
     $(document).ready(function () {
         if (<?php print_r($_SESSION["user"]->a_privileges) ?> === 1 || <?php print_r($_SESSION["user"]->a_privileges) ?> === 2) {
-    $("div#new").removeClass("hidden");
+            $("div#new").removeClass("hidden");
         }
     });
 </script>

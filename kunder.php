@@ -27,7 +27,7 @@ include 'include/menubar.inc.php';
 </div>
 <br>
 <div class="panel panel-default dcenter">
-    <div class="table-responsive">
+    <div id="no-more-tables" class="table-responsive">
         <table class="table table-condensed">
             <thead class="thead-style">
                 <tr>
@@ -39,7 +39,7 @@ include 'include/menubar.inc.php';
                 <?php
                 foreach ($customers as $customer) {
                     ?>
-                    <tr><td><button class="btn btn-link btn-xs link-style" onclick="cusRedirect('<?php echo $customer->c_acronym ?>')"><?php echo $customer->c_name; ?></button></td>
+                    <tr><td><button class="btn btn-link btn-xs table-button link-style" onclick="cusRedirect('<?php echo $customer->c_acronym ?>')"><?php echo $customer->c_name; ?></button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                         <td><?php echo $customer->c_branch; ?></td>
                     </tr>

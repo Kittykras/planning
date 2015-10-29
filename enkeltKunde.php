@@ -61,7 +61,7 @@ include 'include/menubar.inc.php';
 </div>
 <br>
 <div class="panel panel-default dcenter">
-    <div class="table-responsive">
+    <div id="no-more-tables" class="table-responsive">
         <table class="table table-condensed ">
             <thead class="thead-style">
                 <tr>
@@ -78,8 +78,8 @@ include 'include/menubar.inc.php';
                     ?>
                     <tr>
                         <td><?php echo $ctask->t_fromweek ?>/<?php echo $ctask->t_toweek ?></td>
-                        <td><button class="btn btn-link btn-xs link-style" onclick="taskRedirect('<?php echo $ctask->t_id ?>')"><span style="color: <?php echo $ctask->t_state ?>">●</span> <?php echo $ctask->t_title ?></td>
-                        <td><button class="btn btn-link btn-xs link-style" onclick="redirect('<?php echo $ctask->t_assigned ?>')"><?php echo $ctask->t_assigned ?></button></td>
+                        <td><button class="btn btn-link btn-xs table-button link-style" onclick="taskRedirect('<?php echo $ctask->t_id ?>')"><span style="color: <?php echo $ctask->t_state ?>">●</span> <?php echo $ctask->t_title ?></td>
+                        <td><button class="btn btn-link btn-xs table-button link-style" onclick="redirect('<?php echo $ctask->t_assigned ?>')"><?php echo $ctask->t_assigned ?></button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                         <td><?php echo $ctask->tc_datetime ?></td>
                     </tr>
