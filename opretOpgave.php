@@ -146,6 +146,8 @@ if (isset($_GET["editing"])) {
 <input type="hidden" id="hmin" name="hmin" value="<?php echo $_SESSION["Task"]->t_min ?>"/>
 <input type="hidden" id="hfrom" name="hfrom" value="<?php echo $_SESSION["Task"]->t_fromweek ?>"/>
 <input type="hidden" id="hto" name="hto" value="<?php echo $_SESSION["Task"]->t_toweek ?>"/>
+<input type="hidden" id="hinv" name="hinv" value="<?php echo $_SESSION["Task"]->t_invoicing ?>"/>
+<input type="hidden" id="hexp" name="hexp" value="<?php echo $_SESSION["Task"]->t_expenses ?>"/>
 <input type="hidden" id="hcomment" name="hcomment" value="<?php
 foreach ($comments as $comment) {
     echo $comment->tc_associate;
@@ -201,6 +203,8 @@ if (isset($_GET["error"])) {
             var min = $('#hmin').val();
             var from = $('#hfrom').val();
             var to = $('#hto').val();
+            var inv = $('#hinv').val();
+            var exp = $('#hexp').val();
             var comment = $('#hcomment').val();
             document.getElementById("editH4").innerHTML = "Rediger Opgave";
             document.getElementById("editH2").innerHTML = "Rediger Opgave";
@@ -214,6 +218,8 @@ if (isset($_GET["error"])) {
             document.getElementById("min").value = min;
             document.getElementById("from").value = from;
             document.getElementById("to").value = to;
+            document.getElementById("inv").value = inv;
+            document.getElementById("exp").value = exp;
             document.getElementById("comment").value = comment;
         }
     });

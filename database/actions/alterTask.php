@@ -11,15 +11,19 @@ try {
     $stat = $_POST["stat"];
     $assi = $_POST["assi"];
     $timespen = $_POST["hour"] . ":" . $_POST["min"];
-    $from = $_POST["from"];
-    $to = $_POST["to"];
+    $fromArray = split('\-',$_POST["from"]);
+    $fromYear = $fromArray[0];
+    $fromWeek = $fromArray[1];
+    $toArray = split('\-', $_POST["to"]);
+    $toYear = $toArray[0];
+    $toWeek = $toArray[1];
     $comment = $_POST["newComment"];
     $inv = $_POST["inv"];
     $exp = $_POST["exp"];
     $db = new DBConnection();
-    $q = "call altertask(:id, :cus, :title, :descr, :stat, :assi, :timespent, :from, :to, :inv, :exp);";
+    $q = "call altertask(:id, :cus, :title, :descr, :stat, :assi, :timespent, :fromWeek, :fromYear, :toWeek, :toYear, :inv, :exp);";
     $stmt = $db->prepare($q);
-    $stmt->execute(array(':id' => $id, ':cus' => $cus, ':title' => $title, ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen, ':from' => $from, ':to' => $to, ':inv' => $inv, 'exp' => $exp));
+    $stmt->execute(array(':id' => $id, ':cus' => $cus, ':title' => $title, ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen, ':fromWeek' => $fromWeek,':fromYear' => $fromYear, ':toWeek' => $toWeek,':toYear' => $toYear, ':inv' => $inv, 'exp' => $exp));
     $count = $stmt->rowCount();
     $commentcount = 0;
     if ($comment != "") {
@@ -28,7 +32,7 @@ try {
         $stmt->execute(array(':id' => $id, ':comment' => $comment, ":user" => $user));
         $commentcount = $stmt->rowCount();
     }
-    if ($count == 1 || $commentcount == 1) {
+    if ($count == 1) {
         setcookie('Kunde', $cus, time() + (86400), "/vonbulowPlanning/");
         header("location:../../enkeltKunde.php");
     } else {
