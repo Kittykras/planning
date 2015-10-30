@@ -7,10 +7,33 @@ if (isset($_GET["editing"])) {
     $comments = getComments();
 }
 ?>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#from").datepicker({
+            showWeek: true,
+            firstDay: 1,
+            onSelect: function (dat, inst) {
+                var week = $.datepicker.iso8601Week(new Date(dat));
+                $('#from').val($.datepicker.formatDate('yy-', new Date(dat)) + (week < 10 ? '0' : '') + week)
+            }
+        });
+    });
+    $(function () {
+        $("#to").datepicker({
+            showWeek: true,
+            firstDay: 1,
+            onSelect: function (dat, inst) {
+                var week = $.datepicker.iso8601Week(new Date(dat));
+                $('#to').val($.datepicker.formatDate('yy-', new Date(dat)) + (week < 10 ? '0' : '') + week)
+            }
+        });
+    });
+</script>
+<script src="number.js"></script>
+<link href="number.css" rel="stylesheet">
 <link rel="stylesheet" href="input-styles.css">
-<script scr="quicksilver.js"></script>
-<script scr="jquery.quickselect.js"></script>
-<link 
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
@@ -25,7 +48,7 @@ if (isset($_GET["editing"])) {
                 <button class="btn btn-black dropdown-toggle" type="submit" data-toggle="dropdown">Rediger Opgave <span class="caret"></span></button>
                 <ul class="dropdown-menu dropdown-black" role="menu">
                     <li><a onclick="document.forms[0].action = 'database/actions/alterTask.php';
-                            document.forms[0].submit()">Rediger</a></li>
+        document.forms[0].submit()">Rediger</a></li>
                     <li><a data-toggle="modal" data-target="#deleteModal">Slet</a></li>
                 </ul>
             </div>
@@ -72,28 +95,12 @@ if (isset($_GET["editing"])) {
         </div>
         <div class="form-group group">
             <div class="form-group col span_1_of_2" align="left">
-                <label class="background-label">Start Uge</label>
-                <select class="form-control input-style foreground-input" name="from" id="from">
-                    <?php
-                    for ($index = 1; $index < 53; $index++) {
-                        ?>    
-                    <option title="Start Uge" value="<?php echo $index; ?>"><?php echo $index; ?></option>
-                        <?php
-                    }
-                    ?>
-                </select>
+                <label class="background-label">Fra</label>
+                <input type="text" id="from" name="from" class="form-control input-style foreground-input">
             </div>
             <div class="form-group col span_1_of_2" align="left">
-                <label class="background-label">Slut Uge</label>
-                <select class="form-control input-style foreground-input" name='to' id="to">
-                    <?php
-                    for ($index = 1; $index < 53; $index++) {
-                        ?>    
-                        <option title="Slut Uge"value="<?php echo $index; ?>"><?php echo $index; ?></option>
-                        <?php
-                    }
-                    ?>
-                </select>
+                <label class="background-label">Til</label>
+                <input type="text" id="to" name="to" class="form-control input-style foreground-input">
             </div>
         </div>
         <div class="form-group">
@@ -141,7 +148,8 @@ if (isset($_GET["editing"])) {
 <input type="hidden" id="hto" name="hto" value="<?php echo $_SESSION["Task"]->t_toweek ?>"/>
 <input type="hidden" id="hcomment" name="hcomment" value="<?php
 foreach ($comments as $comment) {
-    echo $comment->tc_associate;?>, <?php echo $comment->tc_date; ?> - &#10;<?php echo $comment->tc_comment; ?>&#10;<?php
+    echo $comment->tc_associate;
+    ?>, <?php echo $comment->tc_date; ?> - &#10;<?php echo $comment->tc_comment; ?>&#10;<?php
        }
        ?>"/>
 
@@ -165,12 +173,10 @@ if (isset($_GET["error"])) {
 <script language="javascript" type="text/javascript">
     $("input[type=number").number();
     var $_GET = {};
-
     document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
         function decode(s) {
             return decodeURIComponent(s.split("+").join(" "));
         }
-
         $_GET[decode(arguments[1])] = decode(arguments[2]);
     });
     $(document).ready(function () {

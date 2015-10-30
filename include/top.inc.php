@@ -10,13 +10,11 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <!--Optional theme--> 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-        <link href="number.css" rel="stylesheet">
         <!--Latest compiled and minified JavaScript--> 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="core.js"></script>
-        <script src="number.js"></script>
         <script src="script.js"></script>
 <!--        <script src="sessions.js"></script>-->
         <script src="redirectAndCookies.js"></script>
