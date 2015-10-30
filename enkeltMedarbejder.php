@@ -60,10 +60,10 @@ print_r($_SESSION["UserName"]->a_name); ?></span></h2>
         <table class="table table-condensed">
             <thead class="thead-style">
                 <tr>
-                    <th>Uge</th>
+                    <th style="max-width: 125px;">Uge</th>
                     <th>Opgave</th>
-                    <th>Kunde</th>
-                    <th>Kommentar</th>
+                    <th style="max-width: 125px;">Kunde</th>
+                    <th style="max-width: 125px;">Kommentar</th>
                 </tr>
             </thead>
             <tbody>

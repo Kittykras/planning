@@ -65,10 +65,10 @@ include 'include/menubar.inc.php';
         <table class="table table-condensed ">
             <thead class="thead-style">
                 <tr>
-                    <th>Uge</th>
+                    <th style="max-width: 125px;">Uge</th>
                     <th>Opgave</th>
-                    <th>Medarb.</th>
-                    <th>Kommentar</th>
+                    <th style="max-width: 125px;">Medarb.</th>
+                    <th style="max-width: 125px;">Kommentar</th>
                 </tr>
             </thead>
             <tbody>

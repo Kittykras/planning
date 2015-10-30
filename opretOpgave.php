@@ -16,7 +16,7 @@ if (isset($_GET["editing"])) {
             firstDay: 1,
             onSelect: function (dat, inst) {
                 var week = $.datepicker.iso8601Week(new Date(dat));
-                $('#from').val($.datepicker.formatDate('yy-', new Date(dat)) + (week < 10 ? '0' : '') + week)
+                $('#from').val($.datepicker.formatDate('yy-', new Date(dat)) + (week < 10 ? '0' : '') + week);
             }
         });
     });
@@ -26,7 +26,7 @@ if (isset($_GET["editing"])) {
             firstDay: 1,
             onSelect: function (dat, inst) {
                 var week = $.datepicker.iso8601Week(new Date(dat));
-                $('#to').val($.datepicker.formatDate('yy-', new Date(dat)) + (week < 10 ? '0' : '') + week)
+                $('#to').val($.datepicker.formatDate('yy-', new Date(dat)) + (week < 10 ? '0' : '') + week);
             }
         });
     });
@@ -172,6 +172,7 @@ if (isset($_GET["error"])) {
     }
 }
 ?>
+
 <script language="javascript" type="text/javascript">
     $("input[type=number").number();
     var $_GET = {};

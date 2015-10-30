@@ -49,10 +49,10 @@ include './database/taskHandler.php';
         <table class="table table-condensed">
             <thead class="thead-style">
                 <tr>
-                    <th>Kunde</th>
+                    <th style="max-width: 125px;">Kunde</th>
                     <th>Opgave</th>
-                    <th>Medarb.</th>
-                    <th>Timer</th>
+                    <th style="max-width: 125px;">Medarb.</th>
+                    <th style="max-width: 125px;">Timer</th>
                 </tr>
             </thead>
             <tbody>

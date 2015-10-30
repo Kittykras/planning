@@ -52,10 +52,10 @@ include './database/taskHandler.php';
         <table class="table table-condensed">
             <thead class="thead-style">
                 <tr>
-                    <th>Uge</th>
+                    <th style="max-width: 125px;">Uge</th>
                     <th>Opgave</th>
-                    <th>Kunde</th>
-                    <th>Medarb.</th>
+                    <th style="max-width: 125px;">Kunde</th>
+                    <th style="max-width: 125px;">Medarb.</th>
                 </tr>
             </thead>
             <tbody>
