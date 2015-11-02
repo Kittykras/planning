@@ -3,7 +3,6 @@ require_once '../DBConnection.php';
 session_start();
 try {
     $user = $_SESSION["user"]->a_username;
-    ;
     $cus = $_COOKIE["Kunde"];
     $title = $_POST["title"];
     $descr = $_POST["descr"];
@@ -27,10 +26,20 @@ try {
         ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen,
         ':fromWeek' => $fromWeek,':fromYear' => $fromYear, ':toWeek' => $toWeek, ':toYear' => $toYear, ':inv' => $inv, ':exp' => $exp));
     $count = $stmt->rowCount();
-    if ($comment != "") {
-        $q = "call createcommentonnewtask(:comment, :user);";
+    if ($comment === "") {
+        $commentDate = '0000-00-00 00:00:00';
+        $q = "call createcommentonnewtask(:comment, :user, :commentDate);";
         $stmt = $db->prepare($q);
-        $stmt->execute(array(':comment' => $comment, ":user" => $user));
+        $stmt->execute(array(':comment' => $comment, ":user" => $user, ":commentDate" => $commentDate));
+    } else {
+        $commentDate = '0000-00-00 00:00:00';
+        $q = "call createcommentonnewtask(:comment, :user, :commentDate);";
+        $stmt = $db->prepare($q);
+        $stmt->execute(array(':comment' => $comment, ":user" => $user, ":commentDate" => $commentDate));
+        $commentDate = date('Y-m-d H:i:s');
+        $q = "call createcommentonnewtask(:comment, :user, :commentDate);";
+        $stmt = $db->prepare($q);
+        $stmt->execute(array(':comment' => $comment, ":user" => $user, ":commentDate" => $commentDate));
     }
     if ($count > 0) {
         header("location:../../enkeltKunde.php");

@@ -150,8 +150,10 @@ if (isset($_GET["editing"])) {
 <input type="hidden" id="hexp" name="hexp" value="<?php echo $_SESSION["Task"]->t_expenses ?>"/>
 <input type="hidden" id="hcomment" name="hcomment" value="<?php
 foreach ($comments as $comment) {
-    echo $comment->tc_associate;
-    ?>, <?php echo $comment->tc_date; ?> - &#10;<?php echo $comment->tc_comment; ?>&#10;<?php
+    if ($comment->tc_date != '0/0 00:00') {
+        echo $comment->tc_associate;
+        ?>, <?php echo $comment->tc_date; ?> - &#10;<?php echo $comment->tc_comment; ?>&#10;<?php
+           }
        }
        ?>"/>
 
