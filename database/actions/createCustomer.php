@@ -14,9 +14,9 @@ try{
     $stmt->execute(array(':acro' => $acro, ':name' => $name, ':bran' => $bran, ':cont' => $cont, ':tlf' => $tlf, ':assi' => $assi));
     $count = $stmt->rowCount();
     if($count == 1){
-        header("location:../../kunder.php");
+        header("location:../../customers.php");
     } else {
-        header("location:../../opretKunde.php?error");
+        header("location:../../customerForm.php?error");
     }
 } catch (PDOException $e) {
     echo $e->getMessage();

@@ -18,10 +18,10 @@ session_start();
         <!--<div class="collapse navbar-collapse" id="myNavbar">-->
             <li class='has-sub <?php echo $_COOKIE['medarbejder'] ?>'>
                 <!--<div class="split-menuitem">-->
-                <a href = 'medarbejdere.php' onclick="SetActive('medarbejder');">Medarbejdere</a>
+                <a href = 'associates.php' onclick="SetActive('medarbejder');">Medarbejdere</a>
                 <ul>
                     <?php foreach ($users as $user) { ?>
-                        <li><a href = 'enkeltMedarbejder.php' onClick="SetCookie('UserName', '<?php echo $user->a_username ?>', '1');
+                        <li><a href = 'singleAssociate.php' onClick="SetCookie('UserName', '<?php echo $user->a_username ?>', '1');
                                             SetCookie('orderby', 't_fromWeek', '1');
                                             SetCookie('state', '0', '1');
                                             SetActive('medarbejder');"> <?php echo $user->a_name ?></a>
@@ -33,12 +33,12 @@ session_start();
             </li>
             <li  class = "has-sub <?php echo $_COOKIE['kunder'] ?>">
                 <!--<div class="split-menuitem">-->
-                <a href = 'kunder.php' onclick="SetCookie('orderby', 'c_name', '1');
+                <a href = 'customers.php' onclick="SetCookie('orderby', 'c_name', '1');
                                 SetCookie('state', '0', '1');
                                 SetActive('kunder');">Kunder</a>
                 <ul>
                     <?php foreach ($menucustomers as $customer) { ?>
-                        <li><a href = 'enkeltKunde.php' onClick="SetCookie('Kunde', '<?php echo $customer->c_acronym ?>', '1');
+                        <li><a href = 'singleCustomer.php' onClick="SetCookie('Kunde', '<?php echo $customer->c_acronym ?>', '1');
                                             SetCookie('orderby', 't_fromWeek', '1');
                                             SetCookie('state', '0', '1');
                                             SetActive('kunder');"> <?php echo $customer->c_name ?></a>
@@ -48,15 +48,15 @@ session_start();
                     ?>
                 </ul>
             </li>
-            <li class = "<?php echo $_COOKIE['overblik'] ?>"><a href = 'overblik.php' onclick="SetCookie('orderbydfjklgnsdrjkbgdrui', 't_fromWeek', '1');
+            <li class = "<?php echo $_COOKIE['overblik'] ?>"><a href = 'overview.php' onclick="SetCookie('orderbydfjklgnsdrjkbgdrui', 't_fromWeek', '1');
                             SetCookie('orderby', 't_fromweek', '1');
                             SetCookie('state', '0', '1');
                             SetActive('overblik');">Overblik</a></li>
-            <li class = "<?php echo $_COOKIE['timeoversigt'] ?>"><a href = 'timeOversigt.php' onclick="SetCookie('orderby', 't_customer', '1');
+            <li class = "<?php echo $_COOKIE['timeoversigt'] ?>"><a href = 'timeOverview.php' onclick="SetCookie('orderby', 't_customer', '1');
                             SetCookie('orderby', 't_customer', '1');
                             SetCookie('state', '0', '1');
                             SetActive('timeoversigt');">Time Oversigt</a></li>
-            <li class = "<?php echo $_COOKIE['login'] ?>"><a href = 'enkeltMedarbejder.php' onclick="SetCookie('UserName', '<?php echo $_SESSION["user"]->a_username ?>', '1');
+            <li class = "<?php echo $_COOKIE['login'] ?>"><a href = 'singleAssociate.php' onclick="SetCookie('UserName', '<?php echo $_SESSION["user"]->a_username ?>', '1');
                             SetCookie('orderby', 't_fromWeek', '1');
                             SetCookie('state', '0', '1');
                             SetActive('login');"><span class = "glyphicon glyphicon-user"></span> <?php print_r($_SESSION["user"]->a_name)

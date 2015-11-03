@@ -12,9 +12,9 @@ try{
     $stmt->execute(array(':newName' => $newName, ':newUser' => $newUser, ':newPwd' => $newPwd, ':newPriv' => $newPriv));
     $count = $stmt->rowCount();
     if($count == 1){
-        header("location:../../medarbejdere.php");
+        header("location:../../associates.php");
     } else {
-        header("location:../../opretMedarbejder.php?error");
+        header("location:../../associateForm.php?error");
     }
 } catch (PDOException $e) {
     echo $e->getMessage();

@@ -10,7 +10,7 @@ include 'include/menubar.inc.php';
         </div>
         <br>
         <div class="col span_1_of_2 hidden" align="right" id="new">
-            <button type="button" class="btn btn-black" onclick="location.href = 'opretKunde.php'">Ny Kunde</button>
+            <button type="button" class="btn btn-black" onclick="location.href = 'customerForm.php'">Ny Kunde</button>
         </div>
     </div>
     <div class="row" align="center">

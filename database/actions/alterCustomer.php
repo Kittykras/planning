@@ -17,7 +17,7 @@ try{
     if($count == 1){
         header("location:../../kunder.php");
     } else {
-        header("location:../../opretKunde.php?editing = edit&error");
+        header("location:../../customerForm.php?editing = edit&error");
     }
 } catch (PDOException $e) {
     echo $e->getMessage();

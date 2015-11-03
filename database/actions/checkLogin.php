@@ -27,7 +27,7 @@ try {
         SetCookie('overblik', '',  time() + (86400), "/vonbulowPlanning/");
         SetCookie('timeoversigt', '',  time() + (86400), "/vonbulowPlanning/");
         setcookie('login','active', time() + (86400), "/vonbulowPlanning/");
-        header("location:../../enkeltMedarbejder.php");
+        header("location:../../singleAssociate.php");
         $db->close();
     }else {
         header("location:../../index.php?error");

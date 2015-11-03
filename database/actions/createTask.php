@@ -26,25 +26,15 @@ try {
         ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen,
         ':fromWeek' => $fromWeek,':fromYear' => $fromYear, ':toWeek' => $toWeek, ':toYear' => $toYear, ':inv' => $inv, ':exp' => $exp));
     $count = $stmt->rowCount();
-    if ($comment === "") {
-        $commentDate = '0000-00-00 00:00:00';
-        $q = "call createcommentonnewtask(:comment, :user, :commentDate);";
+    if ($comment != "") {
+        $q = "call createcommentonnewtask(:comment, :user);";
         $stmt = $db->prepare($q);
-        $stmt->execute(array(':comment' => $comment, ":user" => $user, ":commentDate" => $commentDate));
-    } else {
-        $commentDate = '0000-00-00 00:00:00';
-        $q = "call createcommentonnewtask(:comment, :user, :commentDate);";
-        $stmt = $db->prepare($q);
-        $stmt->execute(array(':comment' => $comment, ":user" => $user, ":commentDate" => $commentDate));
-        $commentDate = date('Y-m-d H:i:s');
-        $q = "call createcommentonnewtask(:comment, :user, :commentDate);";
-        $stmt = $db->prepare($q);
-        $stmt->execute(array(':comment' => $comment, ":user" => $user, ":commentDate" => $commentDate));
+        $stmt->execute(array(':comment' => $comment, ":user" => $user));
     }
     if ($count > 0) {
-        header("location:../../enkeltKunde.php");
+        header("location:../../singleCustomer.php");
     } else {
-        header("location:../../opretOpgave.php?error");
+        header("location:../../taskForm.php?error");
     }
 } catch (PDOException $e) {
     echo $e->getMessage();

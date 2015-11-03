@@ -6,16 +6,21 @@ include 'include/menubar.inc.php';
     <div class="section group">
         <div class="col span_1_of_2">
             <!--<h2><script>document.write(Session.get("UserName"));</script></h2>-->
-            <h2><span class="header-img"><?php getUserFromCookie();
-print_r($_SESSION["UserName"]->a_name); ?></span></h2>
+            <h2><span class="header-img"><?php
+                    getCustomerFromCookie();
+                    print_r($_SESSION["Kunde"]->c_name);
+                    ?></span></h2>
         </div>
         <br>
+        <div class="col span_1_of_2" align="right">
+            <button type="button" class="btn btn-black" onclick="location.href = 'taskForm.php'">Ny Opgave</button>
+        </div>
         <div class="col span_1_of_2 hidden" align="right" id="edit">
             <div class="btn-group dropdown">
                 <button type="button" class="btn btn-black dropdown-toggle" data-toggle="dropdown">
                     Rediger <span class="caret"></span></button>
                 <ul class="dropdown-menu dropdown-black" role="menu">
-                    <li><a href="opretMedarbejder.php?editing=edit">Rediger</a></li>
+                    <li><a href="customerForm.php?editing=edit">Rediger</a></li>
                     <li><a data-toggle="modal" data-target="#deleteModal">Slet</a></li>
                 </ul>
             </div>
@@ -44,9 +49,9 @@ print_r($_SESSION["UserName"]->a_name); ?></span></h2>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_fromweek', '1');
                     SetCookie('state', '0', '1');
                     location.reload()">Uge</button>
-            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_customer', '1');
+            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_assigned', '1');
                     SetCookie('state', '0', '1');
-                    location.reload()">Kunde</button>
+                    location.reload()">Medarbejder</button>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'tc_date', '1');
                     SetCookie('state', '0', '1');
                     location.reload()">Kommentar</button>
@@ -57,26 +62,26 @@ print_r($_SESSION["UserName"]->a_name); ?></span></h2>
 <br>
 <div class="panel panel-default dcenter">
     <div id="no-more-tables" class="table-responsive">
-        <table class="table table-condensed">
+        <table class="table table-condensed ">
             <thead class="thead-style">
                 <tr>
                     <th style="max-width: 125px;">Uge</th>
                     <th>Opgave</th>
-                    <th style="max-width: 125px;">Kunde</th>
+                    <th style="max-width: 125px;">Medarb.</th>
                     <th style="max-width: 125px;">Kommentar</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                $atasks = getTasksFromAs();
-                foreach ($atasks as $atask) {
+                $ctasks = getTasksFromCustomer();
+                foreach ($ctasks as $ctask) {
                     ?>
                     <tr>
-                        <td><?php echo $atask->t_fromweek ?>/<?php echo $atask->t_toweek ?></td>
-                        <td><button class="btn btn-link btn-xs table-button link-style" onclick="taskRedirect('<?php echo $atask->t_id ?>')"><span style="color: <?php echo $atask->t_state ?>">●</span> <?php echo $atask->t_title ?></td>
-                        <td><button class="btn btn-link btn-xs table-button link-style" onclick="cusRedirect('<?php echo $atask->t_customer ?>')"><?php echo $atask->t_customer ?></button></td>
+                        <td><?php echo $ctask->t_fromweek ?>/<?php echo $ctask->t_toweek ?></td>
+                        <td><button class="btn btn-link btn-xs table-button link-style" onclick="taskRedirect('<?php echo $ctask->t_id ?>')"><span style="color: <?php echo $ctask->t_state ?>">●</span> <?php echo $ctask->t_title ?></td>
+                        <td><button class="btn btn-link btn-xs table-button link-style" onclick="redirect('<?php echo $ctask->t_assigned ?>')"><?php echo $ctask->t_assigned ?></button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
-                        <td><?php echo $atask->tc_datetime ?></td>
+                        <td><?php echo $ctask->tc_date ?></td>
                     </tr>
                     <?php
                 }
@@ -85,29 +90,37 @@ print_r($_SESSION["UserName"]->a_name); ?></span></h2>
         </table>
     </div>
 </div>
+<br>
+<div class="dcenter">
+    <div id="cssmenu" align="center" style="color: white; text-transform: uppercase">
+        <br>
+        <li>Kontaktperson: <?php echo $_SESSION["Kunde"]->c_conperson ?> // Telefon: <?php echo $_SESSION["Kunde"]->c_connumber ?> // Tildelt: <?php echo getAssignedAssociateName($_SESSION["Kunde"]->c_assigned); ?></li>
+        <br>
+    </div>
+</div>
+
 <div id="deleteModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
-        <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <p>Du er ved at slette en medarbejder. Er du sikker på du vil det?</p>
+                <p>Du er ved at slette en kunde. Er du sikker på du vil det?</p>
             </div>
-            <form class="modal-footer" role="form" action="database/actions/deleteAssociate.php" method="post">
+            <form class="modal-footer" role="form" action="database/actions/deleteCustomer.php" method="post">
                 <button type="submit" class="btn btn-black">Ja</button>
                 <button type="button" class="btn btn-black" data-dismiss="modal">Nej</button>
             </form>
         </div>
     </div>
 </div>
+
 <?php
 if (isset($_GET["error"])) {
     ?>
     <div class="vertically-align" align="center">
-        <span class="text-danger">Medarbejder blev ikke slettet. Forbindelsen til databasen fejlede. Genindlæs og prøv igen.</span>
+        <span class="text-danger">Kunde blev ikke slettet. Forbindelsen til databasen fejlede. Genindlæs og prøv igen.</span>
     </div>
     <?php
 }
@@ -119,3 +132,4 @@ if (isset($_GET["error"])) {
         }
     });
 </script>
+

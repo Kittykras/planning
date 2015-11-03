@@ -14,9 +14,9 @@ try{
     $count = $stmt->rowCount();
     if($count == 1){
         setcookie("UserName", $newUser, time() + (86400), "/vonbulowPlanning/");
-        header("location:../../enkeltMedarbejder.php");
+        header("location:../../singleAssociate.php");
     } else {
-        header("location:../../opretMedarbejder.php?editing=edit&error");
+        header("location:../../associateForm.php?editing=edit&error");
     }
 } catch (PDOException $e) {
     echo $e->getMessage();

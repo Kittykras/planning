@@ -9,9 +9,9 @@ try{
     $stmt->execute(array(":delName"=>$delName));
     $count = $stmt->rowCount();
     if($count == 1){
-        header("location:../../medarbejdere.php");
+        header("location:../../associates.php");
     } else {
-        header("location:../../enkeltMedarbejder.php?error");
+        header("location:../../singleAssociate.php?error");
     }
 } catch (PDOException $e) {
     echo $e->getMessage();

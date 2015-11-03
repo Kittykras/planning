@@ -34,9 +34,9 @@ try {
     }
     if ($count == 1) {
         setcookie('Kunde', $cus, time() + (86400), "/vonbulowPlanning/");
-        header("location:../../enkeltKunde.php");
+        header("location:../../singleCustomer.php");
     } else {
-        header("location:../../opretOpgave.php?editing=edit&error");
+        header("location:../../taskForm.php?editing=edit&error");
     }
 } catch (PDOException $e) {
     echo $e->getMessage();

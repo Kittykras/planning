@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/actions/createTask.php</file>
+            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/taskHandler.php</file>
             <file>file:/C:/xampp/htdocs/vonbulowPlanning/timeOversigt.php</file>
+            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/actions/alterTask.php</file>
+            <file>file:/C:/xampp/htdocs/vonbulowPlanning/opretOpgave.php</file>
             <file>file:/C:/xampp/htdocs/vonbulowPlanning/enkeltKunde.php</file>
+            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/customerHandler.php</file>
             <file>file:/C:/xampp/htdocs/vonbulowPlanning/enkeltMedarbejder.php</file>
             <file>file:/C:/xampp/htdocs/vonbulowPlanning/overblik.php</file>
         </group>

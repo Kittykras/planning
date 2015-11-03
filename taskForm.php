@@ -31,9 +31,9 @@ if (isset($_GET["editing"])) {
         });
     });
 </script>
-<script src="number.js"></script>
-<link href="number.css" rel="stylesheet">
-<link rel="stylesheet" href="input-styles.css">
+<script src="functions/number.js"></script>
+<link href="styles/number.css" rel="stylesheet">
+<link rel="stylesheet" href="styles/input-styles.css">
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
@@ -150,11 +150,9 @@ if (isset($_GET["editing"])) {
 <input type="hidden" id="hexp" name="hexp" value="<?php echo $_SESSION["Task"]->t_expenses ?>"/>
 <input type="hidden" id="hcomment" name="hcomment" value="<?php
 foreach ($comments as $comment) {
-    if ($comment->tc_date != '0/0 00:00') {
         echo $comment->tc_associate;
         ?>, <?php echo $comment->tc_date; ?> - &#10;<?php echo $comment->tc_comment; ?>&#10;<?php
            }
-       }
        ?>"/>
 
 <?php

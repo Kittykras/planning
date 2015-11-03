@@ -6,7 +6,7 @@ h2, h4{
     color: white;
 }
 .header-img{
-    background-image: url('images/header-img.jpg');
+    background-image: url('../images/header-img.jpg');
     color: black;
 }
 .hidden{
@@ -434,7 +434,7 @@ h4.chead{
     margin: 0 auto;
 }
 .hpic{
-    background-image: url('images/about-sm.jpg');
+    background-image: url('../images/about-sm.jpg');
     min-height: 75px;
 }
 .thead-style{

@@ -3,7 +3,7 @@ include './include/top.inc.php';
 include './include/menubar.inc.php';
 include './database/branchHandler.php'
 ?>
-<link rel="stylesheet" href="input-styles.css">
+<link rel="stylesheet" href="styles/input-styles.css">
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
