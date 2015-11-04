@@ -1,7 +1,7 @@
 <?php
-include './include/top.inc.php';
-include './include/menubar.inc.php';
-include './database/branchHandler.php'
+include 'include/top.inc.php';
+include 'include/menubar.inc.php';
+include 'database/branchHandler.php'
 ?>
 <link rel="stylesheet" href="./styles/input-styles.css">
 <div class="container dcenter hpic img-responsive">
@@ -13,12 +13,12 @@ include './database/branchHandler.php'
         <br>
         <div class="col span_1_of_2" align="right">
             <button type="submit" form="form" class="btn btn-black" id="btnCreate">Opret Kunde</button>
-            <button type="submit" form="form" class="btn btn-black hidden" formaction="./database/actions/alterCustomer.php" id="btnAlter">Rediger Kunde</button>
+            <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterCustomer.php" id="btnAlter">Rediger Kunde</button>
         </div>
     </div>
 </div>
 <div class="vertically-align" align="center">
-    <form id="form"role="form" action="./database/actions/createCustomer.php" method="post">
+    <form id="form"role="form" action="database/actions/createCustomer.php" method="post">
         <div class="form-group">
             <input name="name" type="text" class="form-control input-style" id="name" placeholder="Navn">
         </div>

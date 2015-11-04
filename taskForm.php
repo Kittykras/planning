@@ -1,7 +1,7 @@
 <?php
-include './include/top.inc.php';
-include './include/menubar.inc.php';
-include './database/taskHandler.php';
+include 'include/top.inc.php';
+include 'include/menubar.inc.php';
+include 'database/taskHandler.php';
 if (isset($_GET["editing"])) {
     getTaskFromCookie();
     $comments = getComments();
@@ -31,9 +31,9 @@ if (isset($_GET["editing"])) {
         });
     });
 </script>
-<script src="./functions/number.js"></script>
-<link href="./styles/number.css" rel="stylesheet">
-<link rel="stylesheet" href="./styles/input-styles.css">
+<script src="functions/number.js"></script>
+<link href="styles/number.css" rel="stylesheet">
+<link rel="stylesheet" href="styles/input-styles.css">
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
@@ -43,11 +43,11 @@ if (isset($_GET["editing"])) {
         <br>
         <div class="col span_1_of_2" align="right">
             <button type="submit" form="form" class="btn btn-black" id="btnCreate">Opret Opgave</button>
-            <button type="submit" form="form" class="btn btn-black hidden" id="btnAlter" formaction="./database/actions/alterTaskNoPriv.php">Rediger Opgave</button>
+            <button type="submit" form="form" class="btn btn-black hidden" id="btnAlter" formaction="database/actions/alterTaskNoPriv.php">Rediger Opgave</button>
             <div class="btn-group dropdown hidden" id="btnAlter">
                 <button class="btn btn-black dropdown-toggle" type="submit" data-toggle="dropdown">Rediger Opgave <span class="caret"></span></button>
                 <ul class="dropdown-menu dropdown-black" role="menu">
-                    <li><a onclick="document.forms[0].action = './database/actions/alterTask.php';
+                    <li><a onclick="document.forms[0].action = 'database/actions/alterTask.php';
         document.forms[0].submit()">Rediger</a></li>
                     <li><a data-toggle="modal" data-target="#deleteModal">Slet</a></li>
                 </ul>
@@ -56,7 +56,7 @@ if (isset($_GET["editing"])) {
     </div>
 </div>
 <div class="vertically-align" align="center">
-    <form id="form" role="form" action="./database/actions/createTask.php" method="post">
+    <form id="form" role="form" action="database/actions/createTask.php" method="post">
         <input type="hidden" id="cus" name="cus" value="<?php echo $_SESSION["Task"]->t_customer ?>"/>
         <div class="form-group">
             <input name="title" type="text" class="form-control input-style" style="font-weight: bold" id="title" placeholder="Titel">
@@ -130,7 +130,7 @@ if (isset($_GET["editing"])) {
             <div class="modal-body">
                 <p>Du er ved at slette en opgave. Er du sikker på du vil det?</p>
             </div>
-            <form class="modal-footer" role="form" action="./database/actions/deleteTask.php" method="post">
+            <form class="modal-footer" role="form" action="database/actions/deleteTask.php" method="post">
                 <button type="submit" class="btn btn-black">Ja</button>
                 <button type="button" class="btn btn-black" data-dismiss="modal">Nej</button>
             </form>

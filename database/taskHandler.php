@@ -1,5 +1,5 @@
 <?php
-require_once './DBConnection.php';
+require_once 'DBConnection.php';
 //require_once 'classes/Task.php';
 
 $db = new DBConnection();

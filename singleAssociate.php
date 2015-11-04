@@ -1,6 +1,6 @@
 <?php
-include './include/top.inc.php';
-include './include/menubar.inc.php';
+include 'include/top.inc.php';
+include 'include/menubar.inc.php';
 ?>
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
@@ -96,7 +96,7 @@ print_r($_SESSION["UserName"]->a_name); ?></span></h2>
             <div class="modal-body">
                 <p>Du er ved at slette en medarbejder. Er du sikker på du vil det?</p>
             </div>
-            <form class="modal-footer" role="form" action="./database/actions/deleteAssociate.php" method="post">
+            <form class="modal-footer" role="form" action="database/actions/deleteAssociate.php" method="post">
                 <button type="submit" class="btn btn-black">Ja</button>
                 <button type="button" class="btn btn-black" data-dismiss="modal">Nej</button>
             </form>

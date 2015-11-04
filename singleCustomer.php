@@ -1,6 +1,6 @@
 <?php
-include './include/top.inc.php';
-include './include/menubar.inc.php';
+include 'include/top.inc.php';
+include 'include/menubar.inc.php';
 ?>
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
@@ -108,7 +108,7 @@ include './include/menubar.inc.php';
             <div class="modal-body">
                 <p>Du er ved at slette en kunde. Er du sikker på du vil det?</p>
             </div>
-            <form class="modal-footer" role="form" action="./database/actions/deleteCustomer.php" method="post">
+            <form class="modal-footer" role="form" action="database/actions/deleteCustomer.php" method="post">
                 <button type="submit" class="btn btn-black">Ja</button>
                 <button type="button" class="btn btn-black" data-dismiss="modal">Nej</button>
             </form>

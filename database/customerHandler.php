@@ -1,7 +1,7 @@
 <?php
 
-require_once './DBConnection.php';
-require_once './classes/Customer.php';
+require_once 'DBConnection.php';
+require_once 'classes/Customer.php';
 
 $db = new DBConnection();
 $orderby = $_COOKIE["orderby"];
