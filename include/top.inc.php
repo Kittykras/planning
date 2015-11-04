@@ -20,6 +20,6 @@
         <script src="functions/redirectAndCookies.js"></script>
         <link rel="stylesheet" href="styles/styles.css">
         <link rel="stylesheet" href="styles/tables.css">
-        <title>vonbulow</title>
+        <title>planning</title>
     </head>
     <body>
