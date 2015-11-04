@@ -2,7 +2,7 @@
 include 'include/top.inc.php';
 ?>
 <link rel="stylesheet" href="styles/login.css">
-<script src="login.js"></script>
+<script src="functions/login.js"></script>
 <div class="vertically-align" align="center">
     <form role="form" action="database/actions/checkLogin.php" method="post">
         <div class="form-group">

@@ -48,7 +48,7 @@ session_start();
                     ?>
                 </ul>
             </li>
-            <li class = "<?php echo $_COOKIE['overblik'] ?>"><a href = 'overview.php' onclick="SetCookie('orderbydfjklgnsdrjkbgdrui', 't_fromWeek', '1');
+            <li class = "<?php echo $_COOKIE['overblik'] ?>"><a href = 'overview.php' onclick="SetCookie('orderby', 't_fromWeek', '1');
                             SetCookie('orderby', 't_fromweek', '1');
                             SetCookie('state', '0', '1');
                             SetActive('overblik');">Overblik</a></li>

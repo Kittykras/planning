@@ -15,10 +15,11 @@ function getTasksFromAs() {
     $db = new DBConnection();
     $orderby = $_COOKIE["orderby"];
     $state = $_COOKIE["state"];
+    $username = $_COOKIE["UserName"];
     $q = "call getallTaskbyas(:username, :state, :orderby)";
     $stmt = $db->prepare($q);
     $stmt->setFetchMode(PDO::FETCH_OBJ);
-    $stmt->execute(array(':username' => $_COOKIE["UserName"], ':state' => $state, ':orderby' => $orderby));
+    $stmt->execute(array(':username' => $username, ':state' => $state, ':orderby' => $orderby));
     $atasks = $stmt->fetchAll();
     return $atasks;
 }
