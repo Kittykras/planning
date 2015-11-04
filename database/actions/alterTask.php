@@ -33,7 +33,7 @@ try {
         $commentcount = $stmt->rowCount();
     }
     if ($count == 1) {
-        setcookie('Kunde', $cus, time() + (86400), "/vonbulowPlanning/");
+        setcookie('Kunde', $cus, time() + (86400), "/planning/");
         header("location:../../singleCustomer.php");
     } else {
         header("location:../../taskForm.php?editing=edit&error");

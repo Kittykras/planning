@@ -2,7 +2,7 @@ function SetCookie(c_name, value, expiredays) {
     var exdate = new Date();
     exdate.setDate(exdate.getDate() + expiredays);
     document.cookie = c_name + "=" + value +
-            ((expiredays === null) ? "" : ";expires=" + exdate.toGMTString()+";path=/vonbulowPlanning/");
+            ((expiredays === null) ? "" : ";expires=" + exdate.toGMTString()+";path=/planning/");
 }
 function SetActive(aktiv) {
     SetCookie('medarbejder', '', '1');

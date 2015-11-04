@@ -12,12 +12,12 @@ include './include/menubar.inc.php';
         <br>
         <div class="col span_1_of_2" align="right">
             <button type="submit" form="form" class="btn btn-black" id="btnCreate">Opret Medarbejder</button>
-            <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterAssociate.php" id="btnAlter">Rediger Medarbejder</button>
+            <button type="submit" form="form" class="btn btn-black hidden" formaction="./database/actions/alterAssociate.php" id="btnAlter">Rediger Medarbejder</button>
         </div>
     </div>
 </div>
 <div class="vertically-align" align="center">
-    <form id="form" role="form" action="database/actions/createAssociate.php" method="post">
+    <form id="form" role="form" action="./database/actions/createAssociate.php" method="post">
         <div class="form-group">
             <input name="newName" type="text" class="form-control input-style" id="newName" placeholder="Navn">
         </div>

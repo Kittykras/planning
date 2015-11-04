@@ -13,7 +13,7 @@ try{
     $stmt->execute(array(':oldUser' => $oldUser, ':newName' => $newName, ':newUser' => $newUser, ':newPwd' => $newPwd, ':newPriv' => $newPriv));
     $count = $stmt->rowCount();
     if($count == 1){
-        setcookie("UserName", $newUser, time() + (86400), "/vonbulowPlanning/");
+        setcookie("UserName", $newUser, time() + (86400), "/planning/");
         header("location:../../singleAssociate.php");
     } else {
         header("location:../../associateForm.php?editing=edit&error");

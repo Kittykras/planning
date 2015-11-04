@@ -1,6 +1,6 @@
 <?php
-include 'database/userHandler.php';
-include 'database/customerHandler.php';
+include './database/userHandler.php';
+include './database/customerHandler.php';
 session_start();
 ?>
 <div class="dcenter">

@@ -1,7 +1,7 @@
 <?php
-include 'include/top.inc.php';
+include './include/top.inc.php';
 ?>
-<link rel="stylesheet" href="styles/login.css">
+<link rel="stylesheet" href="./styles/login.css">
 <script src="login.js"></script>
 <div class="vertically-align" align="center">
     <form role="form" action="database/actions/checkLogin.php" method="post">
