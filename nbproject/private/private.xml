@@ -3,51 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/include/menubar.inc.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/timeOverview.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/taskForm.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/singleCustomer.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/singleAssociate.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/overview.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/index.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/customers.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/customerForm.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/associates.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/associateForm.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/styles/tables.css</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/styles/styles.css</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/styles/number.css</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/styles/menu.css</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/styles/login.css</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/styles/input-styles.css</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/styles/html5reset.css</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/include/top.inc.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/functions/script.js</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/functions/redirectAndCookies.js</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/actions/checkLogin.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/actions/createAssociate.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/actions/createCustomer.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/actions/createTask.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/actions/deleteAssociate.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/actions/deleteCustomer.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/actions/deleteTask.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/actions/alterAssociate.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/actions/alterCustomer.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/actions/alterTask.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/actions/alterTaskNoPriv.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/DBConnection.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/branchHandler.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/customerHandler.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/taskHandler.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/database/userHandler.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/classes/Customer.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/classes/Task.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/classes/User.php</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/functions/core.js</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/functions/jquery.quickselect.js</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/functions/login.js</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/functions/number.js</file>
-            <file>file:/C:/xampp/htdocs/vonbulowPlanning/functions/quicksilver.js</file>
+            <file>file:/C:/xampp/htdocs/planning/customers.php</file>
+            <file>file:/C:/xampp/htdocs/planning/database/DBConnection.php</file>
+            <file>file:/C:/xampp/htdocs/planning/database/actions/checkLogin.php</file>
+            <file>file:/C:/xampp/htdocs/planning/nbproject/project.xml</file>
+            <file>file:/C:/xampp/htdocs/planning/functions/redirectAndCookies.js</file>
         </group>
     </open-files>
 </project-private>
