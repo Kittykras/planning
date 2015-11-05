@@ -31,6 +31,9 @@ include 'database/branchHandler.php'
         <div class="form-group">
             <input name="tlf" type="text" class="form-control input-style" id="tlf" placeholder="Telefon">
         </div>
+        <div class="form-group">
+            <input name="mail" type="email" class="form-control input-style" id="mail" placeholder="Email">
+        </div>
         <div class='form-group'>
             <select class="form-control input-style" name='bran' id="bran">
                 <?php
@@ -60,6 +63,7 @@ include 'database/branchHandler.php'
 <input type="hidden" id="cAcro" name="cAcro" value="<?php echo $_SESSION["Kunde"]->c_acronym ?>"/>
 <input type="hidden" id="cCont" name="cCont" value="<?php echo $_SESSION["Kunde"]->c_conperson ?>"/>
 <input type="hidden" id="cTlf" name="cTlf" value="<?php echo $_SESSION["Kunde"]->c_connumber ?>"/>
+<input type="hidden" id="cMail" name="cMail" value="<?php echo $_SESSION["Kunde"]->c_conmail ?>"/>
 <input type="hidden" id="cBran" name="cBran" value="<?php echo $_SESSION["Kunde"]->c_branch ?>"/>
 <input type="hidden" id="cAssi" name="cAssi" value="<?php echo $_SESSION["Kunde"]->c_assigned ?>"/>
 <?php
@@ -96,6 +100,7 @@ if (isset($_GET["error"])) {
             var acro = $('#cAcro').val();
             var cont = $('#cCont').val();
             var tlf = $('#cTlf').val();
+            var mail = $('#cMail').val();
             var bran = $('#cBran').val();
             var assi = $('#cAssi').val();
             document.getElementById("editH4").innerHTML = "Rediger Kunde";
@@ -106,6 +111,7 @@ if (isset($_GET["error"])) {
             document.getElementById("acro").value = acro;
             document.getElementById("cont").value = cont;
             document.getElementById("tlf").value = tlf;
+            document.getElementById("mail").value = mail;
             document.getElementById("bran").value = bran;
             document.getElementById("assi").value = assi;
         }
