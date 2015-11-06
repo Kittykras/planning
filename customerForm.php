@@ -39,7 +39,7 @@ include 'database/branchHandler.php';
             <select class="form-control input-style" name='bran' id="bran">
                 <?php
                 foreach ($branches as $branch) {
-                ?>    
+                ?>
                 <option value="<?php echo $branch->b_title; ?>"><?php echo $branch->b_title; ?></option>
                 <?php
                 }
