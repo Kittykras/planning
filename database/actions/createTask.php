@@ -1,5 +1,7 @@
 <?php 
 require_once '../DBConnection.php';
+$session_expiration = time() + 3600 * 24; // +1 days
+session_set_cookie_params($session_expiration);
 session_start();
 try {
     $user = $_SESSION["user"]->a_username;

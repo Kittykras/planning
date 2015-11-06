@@ -77,7 +77,7 @@ print_r($_SESSION["UserName"]->a_name); ?></span></h2>
                         <td><button class="btn btn-link btn-xs table-button link-style" onclick="taskRedirect('<?php echo $atask->t_id ?>')"><span style="color: <?php echo $atask->t_state ?>">●</span> <?php echo $atask->t_title ?></td>
                         <td><button class="btn btn-link btn-xs table-button link-style" onclick="cusRedirect('<?php echo $atask->t_customer ?>')"><?php echo $atask->t_customer ?></button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
-                        <td><?php echo $atask->tc_date ?></td>
+                        <td><?php echo $atask->tc_datee ?></td>
                     </tr>
                     <?php
                 }

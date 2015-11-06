@@ -2,6 +2,8 @@
 include 'database/userHandler.php';
 include 'database/customerHandler.php';
 if (session_status() == PHP_SESSION_NONE) {
+    $session_expiration = time() + 3600 * 24; // +1 days
+    session_set_cookie_params($session_expiration);
     session_start();
 }
 ?>

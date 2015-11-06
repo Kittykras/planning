@@ -82,7 +82,7 @@ include 'include/menubar.inc.php';
                         <td><button class="btn btn-link btn-xs table-button link-style" onclick="taskRedirect('<?php echo $ctask->t_id ?>')"><span style="color: <?php echo $ctask->t_state ?>">●</span> <?php echo $ctask->t_title ?></td>
                         <td><button class="btn btn-link btn-xs table-button link-style" onclick="redirect('<?php echo $ctask->t_assigned ?>')"><?php echo $ctask->t_assigned ?></button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
-                        <td><?php echo $ctask->tc_date ?></td>
+                        <td><?php echo $ctask->tc_datee ?></td>
                     </tr>
                     <?php
                 }
