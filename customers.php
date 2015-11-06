@@ -1,4 +1,5 @@
 <?php
+include 'include/sessionCheck.php';
 include 'include/top.inc.php';
 include 'include/menubar.inc.php';
 ?>

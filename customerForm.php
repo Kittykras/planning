@@ -1,7 +1,8 @@
 <?php
+include 'include/sessionCheck.php';
 include 'include/top.inc.php';
 include 'include/menubar.inc.php';
-include 'database/branchHandler.php'
+include 'database/branchHandler.php';
 ?>
 <link rel="stylesheet" href="./styles/input-styles.css">
 <div class="container dcenter hpic img-responsive">

@@ -3,18 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/planning/singleAssociate.php</file>
-            <file>file:/C:/xampp/htdocs/planning/include/top.inc.php</file>
-            <file>file:/C:/xampp/htdocs/planning/database/taskHandler.php</file>
-            <file>file:/C:/xampp/htdocs/planning/functions/script.js</file>
-            <file>file:/C:/xampp/htdocs/planning/functions/login.js</file>
-            <file>file:/C:/xampp/htdocs/planning/functions/redirectAndCookies.js</file>
-            <file>file:/C:/xampp/htdocs/planning/database/userHandler.php</file>
-            <file>file:/C:/xampp/htdocs/planning/database/customerHandler.php</file>
-            <file>file:/C:/xampp/htdocs/planning/database/actions/alterTask.php</file>
+            <file>file:/C:/xampp/htdocs/planning/database/actions/deleteAssociate.php</file>
+            <file>file:/C:/xampp/htdocs/planning/associates.php</file>
+            <file>file:/C:/xampp/htdocs/planning/database/actions/deleteCustomer.php</file>
+            <file>file:/C:/xampp/htdocs/planning/database/actions/deleteTask.php</file>
             <file>file:/C:/xampp/htdocs/planning/database/actions/checkLogin.php</file>
-            <file>file:/C:/xampp/htdocs/planning/index.php</file>
-            <file>file:/C:/xampp/htdocs/planning/include/menubar.inc.php</file>
+            <file>file:/C:/xampp/htdocs/planning/database/actions/createTask.php</file>
         </group>
     </open-files>
 </project-private>
