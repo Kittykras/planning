@@ -59,7 +59,7 @@ if (session_status() == PHP_SESSION_NONE) {
             <li class = "<?php echo $_COOKIE['timeoversigt'] ?>"><a href = 'timeOverview.php' onclick="SetCookie('orderby', 't_customer', '1');
                     SetCookie('orderby', 't_customer', '1');
                     SetCookie('state', '0', '1');
-                    SetActive('timeoversigt');">Time Oversigt</a></li>
+                    SetActive('timeoversigt');">Timer</a></li>
             <li class = "<?php echo $_COOKIE['login'] ?>"><a href = 'singleAssociate.php' onclick="SetCookie('UserName', '<?php echo $_SESSION["user"]->a_username ?>', '1');
                     SetCookie('orderby', 't_fromWeek', '1');
                     SetCookie('state', '0', '1');

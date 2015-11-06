@@ -7,13 +7,13 @@ include 'include/menubar.inc.php';
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
-            <h4 class="chead" id="editH4"><span class="header-img">Opret Medarbejder</span></h4>
-            <h2 class="chead" id="editH2"><span class="header-img">Opret Medarbejder</span></h2>
+            <h4 class="chead" id="editH4"><span class="header-img">Opret Branche</span></h4>
+            <h2 class="chead" id="editH2"><span class="header-img">Opret Branche</span></h2>
         </div>
         <br>
         <div class="col span_1_of_2" align="right">
-            <button type="submit" form="form" class="btn btn-black" id="btnCreate">Opret Medarbejder</button>
-            <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterAssociate.php" id="btnAlter">Rediger Medarbejder</button>
+            <button type="submit" form="form" class="btn btn-black" id="btnCreate">Opret Branche</button>
+            <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterAssociate.php" id="btnAlter">Rediger Branche</button>
         </div>
     </div>
 </div>

@@ -113,10 +113,10 @@ if (isset($_GET["editing"])) {
         </div>
         <div class="form-group group">
             <div class="form-group col span_1_of_2">
-                <input name="inv" type="text" class="form-control input-style" id="inv" placeholder="Fakturering">
+                <input name="exp" type="text" class="form-control input-style" id="exp" placeholder="Udgifter">
             </div>
             <div class="form-group col span_1_of_2">
-                <input name="exp" type="text" class="form-control input-style" id="exp" placeholder="Udgifter">
+                <input name="inv" type="text" class="form-control input-style" id="inv" placeholder="Tilbud">
             </div>
         </div>
     </form>

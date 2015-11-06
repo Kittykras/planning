@@ -24,7 +24,7 @@ include 'database/branchHandler.php';
             <input name="name" type="text" class="form-control input-style" id="name" placeholder="Navn">
         </div>
         <div class="form-group">
-            <input name="acro" type="text" class="form-control input-style" id="acro" placeholder="Forkortelse">
+            <input name="acro" type="text" class="form-control input-style" id="acro" placeholder="Forkortelse (max 5 bogstaver)">
         </div>
         <div class="form-group">
             <input name="cont" type="text" class="form-control input-style" id="cont" placeholder="Kontaktperson">
