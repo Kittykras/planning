@@ -67,7 +67,7 @@ include 'database/branchHandler.php';
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3>Branche</h3>
+                <h3>Opret Branche</h3>
             </div>
             <div class="modal-body">
                 <input class="form-control input-style" type="text" id="branch" placeholder="Branche">
