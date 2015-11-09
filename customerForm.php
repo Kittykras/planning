@@ -35,31 +35,50 @@ include 'database/branchHandler.php';
         <div class="form-group">
             <input name="mail" type="email" class="form-control input-style" id="mail" placeholder="Email">
         </div>
-        <div class='form-group'>
-            <select class="form-control input-style" name='bran' id="bran">
+        <div id="branchHolder" class='form-group'>
+            <select class="form-control input-style" name='bran' id="bran" onchange="openModal(this.value)">
                 <?php
                 foreach ($branches as $branch) {
-                ?>
-                <option value="<?php echo $branch->b_title; ?>"><?php echo $branch->b_title; ?></option>
-                <?php
+                    ?>
+                    <option value="<?php echo $branch->b_title; ?>"><?php echo $branch->b_title; ?></option>
+                    <?php
                 }
                 ?>
+                <option value="newBranch">Ny Branche</option>
             </select>
         </div>
         <div class='form-group'>
             <select class="form-control input-style" name='assi' id="assi">
                 <?php
                 foreach ($users as $user) {
-                ?>    
-                <option value="<?php echo $user->a_username; ?>"><?php echo $user->a_name; ?></option>
-                <?php
+                    ?>    
+                    <option value="<?php echo $user->a_username; ?>"><?php echo $user->a_name; ?></option>
+                    <?php
                 }
                 ?>
             </select>
         </div>
-        
+
     </form>
 </div>
+
+<div id="branchModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3>Branche</h3>
+            </div>
+            <div class="modal-body">
+                <input class="form-control input-style" type="text" id="branch" placeholder="Branche">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-black" onclick="updateBranch()">Opret</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <input type="hidden" id="cName" name="cName" value="<?php echo $_SESSION["Kunde"]->c_name ?>"/>
 <input type="hidden" id="cAcro" name="cAcro" value="<?php echo $_SESSION["Kunde"]->c_acronym ?>"/>
 <input type="hidden" id="cCont" name="cCont" value="<?php echo $_SESSION["Kunde"]->c_conperson ?>"/>
@@ -86,6 +105,23 @@ if (isset($_GET["error"])) {
 }
 ?>
 <script language="javascript" type="text/javascript">
+    function updateBranch() {
+        var val = document.getElementById('branch').value;
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                document.getElementById("branchHolder").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "database/actions/createBranch.php?q=" + val, true);
+        xmlhttp.send();
+        $('#branchModal').modal('hide');
+    }
+    function openModal(value) {
+        if (value === 'newBranch') {
+            $('#branchModal').modal('show');
+        }
+    }
     var $_GET = {};
 
     document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
