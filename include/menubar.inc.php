@@ -68,5 +68,3 @@ if (session_status() == PHP_SESSION_NONE) {
         </ul>
     </div>
 </div>
-</nav>
-</div>
