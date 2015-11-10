@@ -92,13 +92,13 @@ if (isset($_GET["error"])) {
     if (isset($_GET["editing"])) {
         ?>
         <div class="vertically-align" align="center">
-            <span class="text-danger">Der er sket en fejl i redigeringen af kunde. Tjek at alle felter er udfyldt, eller, hvis du er ved at ændre forkortelse, om det nye forkortelse evt. allerede eksisterer.</span>
+            <span class="text-danger">Der er sket en fejl i redigeringen af kunde. Tjek at alle felter er udfyldt, eller, hvis du er ved at ændre forkortelse, om det nye forkortelse er på max 5 bogstaver, eller evt. allerede eksisterer.</span>
         </div>
         <?php
     } else {
         ?>
         <div class="vertically-align" align="center">
-            <span class="text-danger">Der er sket en fejl i oprettelsen af kunde. Tjek at alle felter er udfyldt, eller om forkortelsen evt. allerede eksisterer.</span>
+            <span class="text-danger">Der er sket en fejl i oprettelsen af kunde. Tjek at alle felter er udfyldt, og om forkortelsen er på max 5 bogstaver, eller evt. allerede eksisterer.</span>
         </div>
         <?php
     }

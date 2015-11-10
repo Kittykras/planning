@@ -47,13 +47,13 @@ if (isset($_GET["error"])) {
     if ($_GET["editing"] === "edit") {
         ?>
         <div class="vertically-align" align="center">
-            <span class="text-danger">Der er sket en fejl i redigeringen af medarbejder. Tjek at alle felter er udfyldt, eller, hvis du er ved at ændre brugernavn, om det nye brugernavn evt. allerede existerer.</span>
+            <span class="text-danger">Der er sket en fejl i redigeringen af medarbejder. Tjek at alle felter er udfyldt, eller, hvis du er ved at ændre brugernavn, om det nye brugernavn er på max 4 bogstaver, eller evt. allerede existerer.</span>
         </div>
         <?php
     } else {
         ?>
         <div class="vertically-align" align="center">
-            <span class="text-danger">Der er sket en fejl i oprettelsen af medarbejder. Tjek at alle felter er udfyldt, eller om brugernavn evt. allerede existerer.</span>
+            <span class="text-danger">Der er sket en fejl i oprettelsen af medarbejder. Tjek at alle felter er udfyldt, og om brugernavn er på max 4 bogstaver, eller evt. allerede existerer.</span>
         </div>
         <?php
     }
