@@ -13,7 +13,7 @@ include 'database/branchHandler.php';
         </div>
         <br>
         <div class="col span_1_of_2" align="right">
-            <button type="submit" form="form" class="btn btn-black" id="btnCreate">Opret Kunde</button>
+            <button type="submit" form="form" class="btn btn-black" id="btnCreate" onsubmit="selectAll()">Opret Kunde</button>
             <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterCustomer.php" id="btnAlter">Rediger Kunde</button>
         </div>
     </div>
@@ -58,7 +58,20 @@ include 'database/branchHandler.php';
                 ?>
             </select>
         </div>
-
+        <div id="dest" class="group">
+            <div class="form-group">
+                <input type="text" name="url" class="form-control input-style" id="url" placeholder="Link">
+            </div>
+            <div class="form-group">
+                <input type="text" name="user" class="form-control input-style" id="user" placeholder="Link">
+            </div>
+            <div class="form-group span_1_of_2">
+                <input type="text" name="pwd" class="form-control input-style" id="pwd" placeholder="Link">
+            </div>
+            <div class="form-group span_1_of_2">
+                <button class="btn btn-black" onclick="addLink()">Tilføj link</button>
+            </div>
+        </div>
     </form>
 </div>
 
@@ -105,6 +118,22 @@ if (isset($_GET["error"])) {
 }
 ?>
 <script language="javascript" type="text/javascript">
+    var urls;
+    function addLink(){
+        var url = document.getElementById('url').value;
+        var user = document.getElementById('user').value;
+        var pwd = document.getElementById('pwd').value;
+        var dest = {url: url, user: user, pwd: pwd};
+        urls.push(dest);
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                document.getElementById("dest").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "database/actions/addLink.php?q=" + urls, true);
+        xmlhttp.send();
+    }
     function updateBranch() {
         var val = document.getElementById('branch').value;
         xmlhttp = new XMLHttpRequest();

@@ -17,7 +17,7 @@ try {
         $branches = $stmt->fetchAll();
         echo '<select class="form-control input-style" name="bran" id="bran" onchange="openModal(this.value)">';
         foreach ($branches as $branch) {
-            echo '<option value="'; echo $branch->b_title; echo '">'; echo $branch->b_title; echo '</option>';
+            echo '<option value="'. $branch->b_title. '">'.$branch->b_title.'</option>';
         }
         echo '<option value="newBranch">Ny Branche</option>
             </select>';

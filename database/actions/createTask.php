@@ -20,6 +20,7 @@ try {
     $comment = $_POST["newComment"];
     $inv = $_POST["inv"];
     $exp = $_POST["exp"];
+    $press = $_POST["press"];
     $db = new DBConnection();
     $q = "call createtask(:user, :cus, :title, :descr, :stat, :assi, :timespent,"
             . " :fromWeek, :fromYear, :toWeek, :toYear, :inv, :exp);";

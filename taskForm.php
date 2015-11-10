@@ -119,6 +119,11 @@ if (isset($_GET["editing"])) {
                 <input name="inv" type="text" class="form-control input-style" id="inv" placeholder="Tilbud">
             </div>
         </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label><input class="form-control input-style" type="checkbox" name="press" value="true">Presse</label>
+            </div>
+        </div>
     </form>
 </div>
 
@@ -151,9 +156,9 @@ if (isset($_GET["editing"])) {
 <input type="hidden" id="hexp" name="hexp" value="<?php echo $_SESSION["Task"]->t_expenses ?>"/>
 <input type="hidden" id="hcomment" name="hcomment" value="<?php
 foreach ($comments as $comment) {
-        echo $comment->tc_associate;
-        ?>, <?php echo $comment->tc_date; ?> - &#10;<?php echo $comment->tc_comment; ?>&#10;<?php
-           }
+    echo $comment->tc_associate;
+    ?>, <?php echo $comment->tc_date; ?> - &#10;<?php echo $comment->tc_comment; ?>&#10;<?php
+       }
        ?>"/>
 
 <?php
