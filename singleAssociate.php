@@ -7,7 +7,9 @@ include 'include/menubar.inc.php';
     <div class="section group">
         <div class="col span_1_of_2">
             <!--<h2><script>document.write(Session.get("UserName"));</script></h2>-->
-            <h2><span class="header-img"><?php getUserFromCookie();
+            <h4 class="chead"><span class="header-img"><?php getUserFromCookie();
+print_r($_SESSION["UserName"]->a_name); ?></span></h4>
+            <h2 class="chead"><span class="header-img"><?php getUserFromCookie();
 print_r($_SESSION["UserName"]->a_name); ?></span></h2>
         </div>
         <br>
