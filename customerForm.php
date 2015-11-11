@@ -58,18 +58,20 @@ include 'database/branchHandler.php';
                 ?>
             </select>
         </div>
-        <div id="dest" class="group">
+        <div id="dest">
             <div class="form-group">
                 <input type="text" name="url" class="form-control input-style" id="url" placeholder="Link">
             </div>
             <div class="form-group">
-                <input type="text" name="user" class="form-control input-style" id="user" placeholder="Link">
+                <input type="text" name="user" class="form-control input-style" id="user" placeholder="Brugernavn">
             </div>
-            <div class="form-group span_1_of_2">
-                <input type="text" name="pwd" class="form-control input-style" id="pwd" placeholder="Link">
-            </div>
-            <div class="form-group span_1_of_2">
-                <button class="btn btn-black" onclick="addLink()">Tilføj link</button>
+            <div class=" form-group group">
+                <div class="form-group col span_1_of_2">
+                    <input type="text" name="pwd" class="form-control input-style" id="pwd" placeholder="Adgangskode">
+                </div>
+                <div class="form-group col span_1_of_2">
+                    <button type="button" class="btn btn-black" onclick="addLink()">Tilføj link</button>
+                </div>
             </div>
         </div>
     </form>
@@ -118,20 +120,21 @@ if (isset($_GET["error"])) {
 }
 ?>
 <script language="javascript" type="text/javascript">
-    var urls;
-    function addLink(){
+    var urls=[];
+    function addLink() {
         var url = document.getElementById('url').value;
         var user = document.getElementById('user').value;
         var pwd = document.getElementById('pwd').value;
         var dest = {url: url, user: user, pwd: pwd};
         urls.push(dest);
+        var json = JSON.stringify(urls);
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                 document.getElementById("dest").innerHTML = xmlhttp.responseText;
             }
         };
-        xmlhttp.open("GET", "database/actions/addLink.php?q=" + urls, true);
+        xmlhttp.open("GET", "database/actions/addLink.php?q=" + json, true);
         xmlhttp.send();
     }
     function updateBranch() {

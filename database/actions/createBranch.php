@@ -1,5 +1,4 @@
 <?php
-
 include_once '../DBConnection.php';
 try {
     $branch = $_GET['q'];
