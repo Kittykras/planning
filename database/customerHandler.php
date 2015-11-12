@@ -20,6 +20,17 @@ $menucustomers = $stmt->fetchAll();
 
 ////print_r($users);
 
+function getLinkFromCustomer(){
+    $db = new DBConnection();
+    $acro = $_COOKIE["Kunde"];
+    $q = "call getcusdesti(:acro)";
+    $stmt = $db->prepare($q);
+    $stmt->setFetchMode(PDO::FETCH_OBJ);
+    $stmt->execute(array(':acro' => $acro));
+    $links = $stmt->fetchAll();
+    return $links;
+}
+
 function getTasksFromCustomer() {
     $db = new DBConnection();
     $orderby = $_COOKIE["orderby"];

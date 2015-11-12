@@ -3,6 +3,9 @@ include 'include/sessionCheck.php';
 include 'include/top.inc.php';
 include 'include/menubar.inc.php';
 include 'database/branchHandler.php';
+if (isset($_GET["editing"])) {
+    getLinkFromCustomer();
+}
 ?>
 <link rel="stylesheet" href="./styles/input-styles.css">
 <div class="container dcenter hpic img-responsive">
@@ -13,13 +16,13 @@ include 'database/branchHandler.php';
         </div>
         <br>
         <div class="col span_1_of_2" align="right">
-            <button type="submit" form="form" class="btn btn-black" id="btnCreate" onsubmit="selectAll()">Opret Kunde</button>
-            <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterCustomer.php" id="btnAlter">Rediger Kunde</button>
+            <button type="submit" form="form" class="btn btn-black" id="btnCreate" onsubmit="selectAll()">Gem</button>
+            <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterCustomer.php" id="btnAlter">Gem</button>
         </div>
     </div>
 </div>
 <div class="vertically-align" align="center">
-    <form id="form"role="form" action="database/actions/createCustomer.php" method="post">
+    <form id="form" role="form" action="database/actions/createCustomer.php" method="post">
         <div class="form-group">
             <input name="name" type="text" class="form-control input-style" id="name" placeholder="Navn">
         </div>
@@ -70,9 +73,32 @@ include 'database/branchHandler.php';
                     <input type="text" name="pwd" class="form-control input-style" id="pwd" placeholder="Adgangskode">
                 </div>
                 <div class="form-group col span_1_of_2">
+                    <?php // if (!empty($links)) { ?>
                     <button type="button" class="btn btn-black" onclick="addLink()">Tilføj link</button>
+                    //<?php
+//                    } else {
+//                        
+                    ?>
+                    <!--<button type="button" class="btn btn-black" onclick="addLink('undefined')">Tilføj link</button>-->
+                    //<?php
+//                    }
+//                    
+                    ?>
                 </div>
             </div>
+                <?php if (!empty($links)) { ?>
+                <select name="urls" id="urls" class="form-control input-style" onclick="openLinkModal(this.value)">
+                    <?php
+                    foreach ($links as $link) {
+                        ?>
+                        <option value=" <?php echo $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+                <?php
+            }
+            ?>
         </div>
     </form>
 </div>
@@ -84,7 +110,7 @@ include 'database/branchHandler.php';
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h3>Opret Branche</h3>
             </div>
-            <div class="modal-body">
+            <div class="modal-body vertically-align">
                 <input class="form-control input-style" type="text" id="branch" placeholder="Branche">
             </div>
             <div class="modal-footer">
@@ -94,6 +120,28 @@ include 'database/branchHandler.php';
     </div>
 </div>
 
+<div id="linkModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3>Rediger Link</h3>
+            </div>
+            <div class="modal-body vertically-align">
+                <input type="hidden" id="oldLink" name="oldLink"/>
+                <input class="form-control input-style" type="text" id="urlEdit" placeholder="Link">
+                <input class="form-control input-style" type="text" id="userEdit" placeholder="Brugernavn">
+                <input class="form-control input-style" type="text" id="pwdEdit" placeholder="Adgangskode">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-black" onclick="editLink()">Rediger</button>
+                <button type="button" class="btn btn-black" onclick="deleteLink()">Slet</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="links" name="links"/>
 <input type="hidden" id="cName" name="cName" value="<?php echo $_SESSION["Kunde"]->c_name ?>"/>
 <input type="hidden" id="cAcro" name="cAcro" value="<?php echo $_SESSION["Kunde"]->c_acronym ?>"/>
 <input type="hidden" id="cCont" name="cCont" value="<?php echo $_SESSION["Kunde"]->c_conperson ?>"/>
@@ -120,12 +168,68 @@ if (isset($_GET["error"])) {
 }
 ?>
 <script language="javascript" type="text/javascript">
-    var urls=[];
+    var urls = [];
+    function deleteLink() {
+        var oldLink = document.getElementById('oldLink').value;
+        var index = urls.map(function (e) {
+            return e.url;
+        }).indexOf(oldLink);
+        urls.splice(index, 1);
+        var json = JSON.stringify(urls);
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                document.getElementById("dest").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "database/actions/addLink.php?q=" + json, true);
+        xmlhttp.send();
+        $('#linkModal').modal('hide');
+    }
+    function editLink() {
+        var oldLink = document.getElementById('oldLink').value;
+        var url = document.getElementById('urlEdit').value;
+        var user = document.getElementById('userEdit').value;
+        var pwd = document.getElementById('pwdEdit').value;
+        var index = urls.map(function (e) {
+            return e.url;
+        }).indexOf(oldLink);
+        urls[index].url = url;
+        urls[index].user = user;
+        urls[index].pwd = pwd;
+        var json = JSON.stringify(urls);
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                document.getElementById("dest").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "database/actions/addLink.php?q=" + json, true);
+        xmlhttp.send();
+        $('#linkModal').modal('hide');
+    }
+    function openLinkModal(value) {
+        var link = value.split("¤");
+        document.getElementById("oldLink").value = link[1];
+        document.getElementById("urlEdit").value = link[1];
+        document.getElementById("userEdit").value = link[2];
+        document.getElementById("pwdEdit").value = link[3];
+        $('#linkModal').modal('show');
+    }
     function addLink() {
+//        if (array !== 'undefined') {
+//            var links = JSON.parse(array);
+//            if (typeof links !== 'undefined') {
+//                var link;
+//                for (link in links) {
+//                    urls.push(link);
+//                }
+//            }
+//        }
         var url = document.getElementById('url').value;
         var user = document.getElementById('user').value;
         var pwd = document.getElementById('pwd').value;
-        var dest = {url: url, user: user, pwd: pwd};
+        var dest = {id: 0, url: url, user: user, pwd: pwd};
         urls.push(dest);
         var json = JSON.stringify(urls);
         xmlhttp = new XMLHttpRequest();
@@ -153,6 +257,14 @@ if (isset($_GET["error"])) {
         if (value === 'newBranch') {
             $('#branchModal').modal('show');
         }
+    }
+    function selectAll() {
+//        $("#urls>option[selected!=true]").attr('selected', 'selected');
+//        var url;
+//        for(url in urls){
+//            document.getElementById('links').value += url;
+//        }
+        $("#form").submit();
     }
     var $_GET = {};
 

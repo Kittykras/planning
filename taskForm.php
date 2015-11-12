@@ -43,13 +43,13 @@ if (isset($_GET["editing"])) {
         </div>
         <br>
         <div class="col span_1_of_2" align="right">
-            <button type="submit" form="form" class="btn btn-black" id="btnCreate">Opret Opgave</button>
+            <button type="submit" form="form" class="btn btn-black" id="btnCreate">Gem</button>
             <button type="submit" form="form" class="btn btn-black hidden" id="btnAlter" formaction="database/actions/alterTaskNoPriv.php">Rediger Opgave</button>
             <div class="btn-group dropdown hidden" id="btnAlter">
                 <button class="btn btn-black dropdown-toggle" type="submit" data-toggle="dropdown">Rediger Opgave <span class="caret"></span></button>
                 <ul class="dropdown-menu dropdown-black" role="menu">
                     <li><a onclick="document.forms[0].action = 'database/actions/alterTask.php';
-        document.forms[0].submit()">Rediger</a></li>
+        document.forms[0].submit()">Gem</a></li>
                     <li><a data-toggle="modal" data-target="#deleteModal">Slet</a></li>
                 </ul>
             </div>
@@ -119,9 +119,9 @@ if (isset($_GET["editing"])) {
                 <input name="inv" type="text" class="form-control input-style" id="inv" placeholder="Tilbud">
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" align="left">
             <div class="checkbox">
-                <label><input class="form-control input-style" type="checkbox" name="press" value="true">Presse</label>
+                <label><input type="checkbox" name="press" value="true">Presse</label>
             </div>
         </div>
     </form>

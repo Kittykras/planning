@@ -1,7 +1,8 @@
 <?php
+
 require_once '../DBConnection.php';
 
-try{
+try {
     $oldCus = $_COOKIE["Kunde"];
     $name = $_POST["name"];
     $acro = $_POST["acro"];
@@ -9,17 +10,45 @@ try{
     $tlf = $_POST["tlf"];
     $mail = $_POST["mail"];
     $bran = $_POST["bran"];
-    $assi= $_POST["assi"];
+    $assi = $_POST["assi"];
     $db = new DBConnection();
     $q = "call altercustomer(:oldCus, :acro, :name, :bran, :cont, :tlf, :mail, :assi);";
     $stmt = $db->prepare($q);
-    $stmt->execute(array(':oldCus' => $oldCus,':acro' => $acro, ':name' => $name, ':bran' => $bran, ':cont' => $cont, ':tlf' => $tlf, ':mail' => $mail, ':assi' => $assi));
+    $stmt->execute(array(':oldCus' => $oldCus, ':acro' => $acro, ':name' => $name, ':bran' => $bran, ':cont' => $cont, ':tlf' => $tlf, ':mail' => $mail, ':assi' => $assi));
     $count = $stmt->rowCount();
-    if($count == 1){
-        header("location:../../customers.php");
-    } else {
-        header("location:../../customerForm.php?editing = edit&error");
+    if (isset($_POST["urls"])) {
+        $links = array();
+        
+
+        class url {
+
+            public $id;
+            public $url;
+            public $user;
+            public $pwd;
+
+        }
+
+        foreach ($_POST["urls"] as $link) {
+            $temp = split('\¤', $link);
+            $obj = new url();
+            $obj->id = $temp[0];
+            $obj->url = $temp[1];
+            $obj->user = $temp[2];
+            $obj->pwd = $temp[3];
+            array_push($links, $obj);
+        }
+        foreach ($links as $link) {
+            $q = "call createdisti(:id,:url, :user, :pwd, :acro)";
+            $stmt = $db->prepare($q);
+            $stmt->execute(array(':id' => $link->id, ':url' => $link->url, ':user' => $link->user, ':pwd' => $link->pwd, ':acro' => $acro));
+        }
     }
+//    if ($count == 1) {
+//        header("location:../../customers.php");
+//    } else {
+//        header("location:../../customerForm.php?editing = edit&error");
+//    }
 } catch (PDOException $e) {
     echo $e->getMessage();
 }

@@ -20,14 +20,14 @@ try {
     $comment = $_POST["newComment"];
     $inv = $_POST["inv"];
     $exp = $_POST["exp"];
-    $press = $_POST["press"];
+    $press = isset($_POST['press']) && $_POST['press']  ? "true" : "false";
     $db = new DBConnection();
     $q = "call createtask(:user, :cus, :title, :descr, :stat, :assi, :timespent,"
-            . " :fromWeek, :fromYear, :toWeek, :toYear, :inv, :exp);";
+            . " :fromWeek, :fromYear, :toWeek, :toYear, :inv, :exp, :press);";
     $stmt = $db->prepare($q);
     $stmt->execute(array(':user' => $user, ':cus' => $cus, ':title' => $title, 
         ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen,
-        ':fromWeek' => $fromWeek,':fromYear' => $fromYear, ':toWeek' => $toWeek, ':toYear' => $toYear, ':inv' => $inv, ':exp' => $exp));
+        ':fromWeek' => $fromWeek,':fromYear' => $fromYear, ':toWeek' => $toWeek, ':toYear' => $toYear, ':inv' => $inv, ':exp' => $exp, ':press' => $press));
     $count = $stmt->rowCount();
     if ($comment != "") {
         $q = "call createcommentonnewtask(:comment, :user);";

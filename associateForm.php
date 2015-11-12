@@ -12,8 +12,8 @@ include 'include/menubar.inc.php';
         </div>
         <br>
         <div class="col span_1_of_2" align="right">
-            <button type="submit" form="form" class="btn btn-black" id="btnCreate">Opret Medarbejder</button>
-            <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterAssociate.php" id="btnAlter">Rediger Medarbejder</button>
+            <button type="submit" form="form" class="btn btn-black" id="btnCreate">Gem</button>
+            <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterAssociate.php" id="btnAlter">Gem</button>
         </div>
     </div>
 </div>

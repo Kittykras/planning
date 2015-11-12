@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/xampp/htdocs/planning/database/actions/addLink.php</file>
             <file>file:/C:/xampp/htdocs/planning/taskForm.php</file>
+            <file>file:/C:/xampp/htdocs/planning/database/actions/createCustomer.php</file>
             <file>file:/C:/xampp/htdocs/planning/associateForm.php</file>
             <file>file:/C:/xampp/htdocs/planning/database/actions/alterTask.php</file>
             <file>file:/C:/xampp/htdocs/planning/database/actions/createBranch.php</file>

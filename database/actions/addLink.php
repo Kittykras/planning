@@ -22,10 +22,15 @@ if (!empty($urls)) {
                     <button type="button" class="btn btn-black" onclick="addLink()">Tilføj link</button>
                 </div>
             </div>';
-    echo '<select name="urls" id="urls" class="form-control input-style">';
-    foreach ($urls as $url) {
-        echo '<option value="' . $url->url . '¤' . $url->user . '¤' . $url->pwd . '">' . $url->url . '</option>';
+    if (count($urls) === 1) {
+        echo '<select multiple name="urls[]" id="urls" class="form-control input-style" onclick="openLinkModal(this.value)">';
+    } else {
+        echo '<select multiple name="urls[]" id="urls" class="form-control input-style" onchange="openLinkModal(this.value)">';
     }
+    foreach ($urls as $url) {
+        echo '<option value="' . $url->id . '¤' . $url->url . '¤' . $url->user . '¤' . $url->pwd . '">' . $url->url . '</option>';
+    }
+    echo '</select>';
 } else {
     echo '<div class="form-group">
                 <input type="text" name="url" class="form-control input-style" id="url" placeholder="Link">
