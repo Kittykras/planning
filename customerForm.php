@@ -3,9 +3,7 @@ include 'include/sessionCheck.php';
 include 'include/top.inc.php';
 include 'include/menubar.inc.php';
 include 'database/branchHandler.php';
-if (isset($_GET["editing"])) {
-    getLinkFromCustomer();
-}
+$links = getLinksFromCustomer();
 ?>
 <link rel="stylesheet" href="./styles/input-styles.css">
 <div class="container dcenter hpic img-responsive">
@@ -75,23 +73,23 @@ if (isset($_GET["editing"])) {
                 <div class="form-group col span_1_of_2">
                     <?php // if (!empty($links)) { ?>
                     <button type="button" class="btn btn-black" onclick="addLink()">Tilføj link</button>
-                    //<?php
+                    <?php
 //                    } else {
 //                        
                     ?>
                     <!--<button type="button" class="btn btn-black" onclick="addLink('undefined')">Tilføj link</button>-->
-                    //<?php
+                    <?php
 //                    }
 //                    
                     ?>
                 </div>
             </div>
-                <?php if (!empty($links)) { ?>
-                <select name="urls" id="urls" class="form-control input-style" onclick="openLinkModal(this.value)">
+            <?php if (!empty($links)) { ?>
+                <select multiple name="urls[ ]" id="urls" class="form-control input-style" onclick="openLinkModal(this.value)">
                     <?php
                     foreach ($links as $link) {
                         ?>
-                        <option value=" <?php echo $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
+                        <option value=" <?php echo $link->id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
                         <?php
                     }
                     ?>
@@ -141,7 +139,6 @@ if (isset($_GET["editing"])) {
     </div>
 </div>
 
-<input type="hidden" id="links" name="links"/>
 <input type="hidden" id="cName" name="cName" value="<?php echo $_SESSION["Kunde"]->c_name ?>"/>
 <input type="hidden" id="cAcro" name="cAcro" value="<?php echo $_SESSION["Kunde"]->c_acronym ?>"/>
 <input type="hidden" id="cCont" name="cCont" value="<?php echo $_SESSION["Kunde"]->c_conperson ?>"/>

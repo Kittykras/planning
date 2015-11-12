@@ -15,9 +15,9 @@ try {
     $stmt = $db->prepare($q);
     $stmt->execute(array(':acro' => $acro, ':name' => $name, ':bran' => $bran, ':cont' => $cont, ':tlf' => $tlf, ':mail' => $mail, ':assi' => $assi));
     $count = $stmt->rowCount();
-    $urls = $_POST["urls"];
-    echo $urls[0].' '.$urls[1];
+//    echo $urls[0].' '.$urls[1];
     if (isset($_POST["urls"])) {
+        $urls = $_POST["urls"];
         $links = array();
 
         class url {
@@ -29,7 +29,7 @@ try {
 
         }
 
-        foreach ($_POST["urls"] as $link) {
+        foreach ($urls as $link) {
             $temp = split('\¤', $link);
             $obj = new url();
             $obj->id = $temp[0];
@@ -44,11 +44,11 @@ try {
             $stmt->execute(array(':id' => $link->id, ':url' => $link->url, ':user' => $link->user, ':pwd' => $link->pwd, ':acro' => $acro));
         }
     }
-//    if ($count == 1) {
-//        header("location:../../customers.php");
-//    } else {
-//        header("location:../../customerForm.php?error");
-//    }
+    if ($count == 1) {
+        header("location:../../customers.php");
+    } else {
+        header("location:../../customerForm.php?error");
+    }
 } catch (PDOException $e) {
     echo $e->getMessage();
 }

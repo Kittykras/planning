@@ -17,8 +17,8 @@ try {
     $stmt->execute(array(':oldCus' => $oldCus, ':acro' => $acro, ':name' => $name, ':bran' => $bran, ':cont' => $cont, ':tlf' => $tlf, ':mail' => $mail, ':assi' => $assi));
     $count = $stmt->rowCount();
     if (isset($_POST["urls"])) {
+        $urls = $_POST["urls"];
         $links = array();
-        
 
         class url {
 
@@ -29,7 +29,7 @@ try {
 
         }
 
-        foreach ($_POST["urls"] as $link) {
+        foreach ($urls as $link) {
             $temp = split('\¤', $link);
             $obj = new url();
             $obj->id = $temp[0];
@@ -38,8 +38,9 @@ try {
             $obj->pwd = $temp[3];
             array_push($links, $obj);
         }
+        
         foreach ($links as $link) {
-            $q = "call createdisti(:id,:url, :user, :pwd, :acro)";
+            $q = "call createdisti(:id, :url, :user, :pwd, :acro)";
             $stmt = $db->prepare($q);
             $stmt->execute(array(':id' => $link->id, ':url' => $link->url, ':user' => $link->user, ':pwd' => $link->pwd, ':acro' => $acro));
         }

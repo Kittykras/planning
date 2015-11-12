@@ -20,7 +20,7 @@ $menucustomers = $stmt->fetchAll();
 
 ////print_r($users);
 
-function getLinkFromCustomer(){
+function getLinksFromCustomer(){
     $db = new DBConnection();
     $acro = $_COOKIE["Kunde"];
     $q = "call getcusdesti(:acro)";
