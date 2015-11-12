@@ -16,7 +16,7 @@ if (isset($_GET["editing"])) {
         </div>
         <br>
         <div class="col span_1_of_2" align="right">
-            <button type="submit" form="form" class="btn btn-black" id="btnCreate" onsubmit="selectAll()">Gem</button>
+            <button type="submit" form="form" class="btn btn-black" id="btnCreate" onclick="selectAll()">Gem</button>
             <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterCustomer.php" id="btnAlter">Gem</button>
         </div>
     </div>
@@ -260,6 +260,9 @@ if (isset($_GET["error"])) {
     }
     function selectAll() {
 //        $("#urls>option[selected!=true]").attr('selected', 'selected');
+        $('#urls').each(function () {
+            $('#urls option').prop("selected", true);
+        });
 //        var url;
 //        for(url in urls){
 //            document.getElementById('links').value += url;

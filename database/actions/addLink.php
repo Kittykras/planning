@@ -23,9 +23,9 @@ if (!empty($urls)) {
                 </div>
             </div>';
     if (count($urls) === 1) {
-        echo '<select multiple name="urls[]" id="urls" class="form-control input-style" onclick="openLinkModal(this.value)">';
+        echo '<select multiple name="urls[ ]" id="urls" class="form-control input-style" onclick="openLinkModal(this.value)">';
     } else {
-        echo '<select multiple name="urls[]" id="urls" class="form-control input-style" onchange="openLinkModal(this.value)">';
+        echo '<select multiple name="urls[ ]" id="urls" class="form-control input-style" onchange="openLinkModal(this.value)">';
     }
     foreach ($urls as $url) {
         echo '<option value="' . $url->id . '¤' . $url->url . '¤' . $url->user . '¤' . $url->pwd . '">' . $url->url . '</option>';
