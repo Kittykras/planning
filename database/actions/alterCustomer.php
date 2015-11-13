@@ -45,11 +45,11 @@ try {
             $stmt->execute(array(':id' => $link->id, ':url' => $link->url, ':user' => $link->user, ':pwd' => $link->pwd, ':acro' => $acro));
         }
     }
-//    if ($count == 1) {
-//        header("location:../../customers.php");
-//    } else {
-//        header("location:../../customerForm.php?editing = edit&error");
-//    }
+    if ($count == 1) {
+        header("location:../../customers.php");
+    } else {
+        header("location:../../customerForm.php?editing = edit&error");
+    }
 } catch (PDOException $e) {
     echo $e->getMessage();
 }

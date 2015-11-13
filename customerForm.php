@@ -71,17 +71,7 @@ $links = getLinksFromCustomer();
                     <input type="text" name="pwd" class="form-control input-style" id="pwd" placeholder="Adgangskode">
                 </div>
                 <div class="form-group col span_1_of_2">
-                    <?php // if (!empty($links)) { ?>
                     <button type="button" class="btn btn-black" onclick="addLink()">Tilføj link</button>
-                    <?php
-//                    } else {
-//                        
-                    ?>
-                    <!--<button type="button" class="btn btn-black" onclick="addLink('undefined')">Tilføj link</button>-->
-                    <?php
-//                    }
-//                    
-                    ?>
                 </div>
             </div>
             <?php if (!empty($links)) { ?>
@@ -298,11 +288,4 @@ if (isset($_GET["error"])) {
     });
 </script>
 </body>
-</html><?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+</html>
