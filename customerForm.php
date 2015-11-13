@@ -187,11 +187,11 @@ if (isset($_GET["error"])) {
         var user = document.getElementById('userEdit').value;
         var pwd = document.getElementById('pwdEdit').value;
         var index = urls.map(function (e) {
-            return e.url;
+            return e.d_url;
         }).indexOf(oldLink);
-        urls[index].url = url;
-        urls[index].user = user;
-        urls[index].pwd = pwd;
+        urls[index].d_url = url;
+        urls[index].d_username = user;
+        urls[index].d_password = pwd;
         var json = JSON.stringify(urls);
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {

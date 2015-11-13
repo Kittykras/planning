@@ -100,39 +100,42 @@ include 'include/menubar.inc.php';
     <div id="cssmenu" align="center" style="color: white; text-transform: uppercase">
         <br>
         <li>Kontaktperson: <?php echo $_SESSION["Kunde"]->c_conperson ?> // Telefon: <?php echo $_SESSION["Kunde"]->c_connumber ?> // Tildelt: <?php echo getAssignedAssociateName($_SESSION["Kunde"]->c_assigned); ?></li>
-        <br>
-    </div>
-</div>
-
-<div id="deleteModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p>Du er ved at slette en kunde. Er du sikker på du vil det?</p>
-            </div>
-            <form class="modal-footer" role="form" action="database/actions/deleteCustomer.php" method="post">
-                <button type="submit" class="btn btn-black">Ja</button>
-                <button type="button" class="btn btn-black" data-dismiss="modal">Nej</button>
-            </form>
+        <li>Presse Links: <select><?php $links = getLinksFromCustomer();
+                foreach ($links as $link) { ?> <option> Link: <?php echo $link->d_url ?> Brugernavn: <?php echo $link->d_username ?> Adgangskode: <?php echo $link->d_password ?></option>
+    <?php } ?></select></li>
+            <br>
         </div>
     </div>
-</div>
 
-<?php
-if (isset($_GET["error"])) {
-    ?>
-    <div class="vertically-align" align="center">
-        <span class="text-danger">Kunde blev ikke slettet. Forbindelsen til databasen fejlede. Genindlæs og prøv igen.</span>
+    <div id="deleteModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Du er ved at slette en kunde. Er du sikker på du vil det?</p>
+                </div>
+                <form class="modal-footer" role="form" action="database/actions/deleteCustomer.php" method="post">
+                    <button type="submit" class="btn btn-black">Ja</button>
+                    <button type="button" class="btn btn-black" data-dismiss="modal">Nej</button>
+                </form>
+            </div>
+        </div>
     </div>
+
     <?php
-}
-?>
-<script>
-    $(document).ready(function () {
-        if (<?php print_r($_SESSION["user"]->a_privileges) ?> === 1) {
+    if (isset($_GET["error"])) {
+        ?>
+        <div class="vertically-align" align="center">
+            <span class="text-danger">Kunde blev ikke slettet. Forbindelsen til databasen fejlede. Genindlæs og prøv igen.</span>
+        </div>
+        <?php
+    }
+    ?>
+    <script>
+        $(document).ready(function () {
+            if (<?php print_r($_SESSION["user"]->a_privileges) ?> === 1) {
             $("div#edit").removeClass("hidden");
         }
     });
