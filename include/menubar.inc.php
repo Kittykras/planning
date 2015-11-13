@@ -17,7 +17,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                 </button>-->
-                <a class="navbar-brand" style="color: white" href="#"><span style="color: #D26232">+</span>vonbülow.co</a>
+                <a class="navbar-brand" style="color: white" href="singleAssociate.php"><span style="color: #D26232">+</span>vonbülow.co</a>
             </div>
             <!--<div class="collapse navbar-collapse" id="myNavbar">-->
             <li class='has-sub <?php echo $_COOKIE['medarbejder'] ?>'>
