@@ -28,7 +28,7 @@ if (!empty($urls)) {
         echo '<select multiple name="urls[ ]" id="urls" class="form-control input-style" onchange="openLinkModal(this.value)">';
     }
     foreach ($urls as $url) {
-        echo '<option value="' . $url->id . '¤' . $url->url . '¤' . $url->user . '¤' . $url->pwd . '">' . $url->url . '</option>';
+        echo '<option value="' . $url->d_id . '¤' . $url->d_url . '¤' . $url->d_username . '¤' . $url->d_password . '">' . $url->d_url . '</option>';
     }
     echo '</select>';
 } else {

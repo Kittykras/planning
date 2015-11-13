@@ -89,7 +89,7 @@ $links = getLinksFromCustomer();
                     <?php
                     foreach ($links as $link) {
                         ?>
-                        <option value=" <?php echo $link->id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
+                        <option value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
                         <?php
                     }
                     ?>
@@ -167,10 +167,11 @@ if (isset($_GET["error"])) {
 <script language="javascript" type="text/javascript">
     var urls = [];
     addArrayToUrls(<?php echo json_encode($links) ?>);
-    function addArrayToUrls(array){
-        window.alert(array);
-        for(var link in array){
-            urls.push(link);
+    function addArrayToUrls(array) {
+        for (i = 0; i < array.length; i++) {
+            var dest = {d_id: array[i].d_id, d_url: array[i].d_url, d_username: array[i].d_username, d_password: array[i].d_password};
+            console.log(dest);
+            urls.push(dest);
         }
     }
     function deleteLink() {
@@ -224,7 +225,7 @@ if (isset($_GET["error"])) {
         var url = document.getElementById('url').value;
         var user = document.getElementById('user').value;
         var pwd = document.getElementById('pwd').value;
-        var dest = {id: 0, url: url, user: user, pwd: pwd};
+        var dest = {d_id: 0, d_url: url, d_username: user, d_password: pwd};
         urls.push(dest);
         var json = JSON.stringify(urls);
         xmlhttp = new XMLHttpRequest();
