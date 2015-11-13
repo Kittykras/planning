@@ -22,10 +22,9 @@ try {
     $exp = $_POST["exp"];
     $press = isset($_POST['press']) && $_POST['press']  ? "true" : "false";
     $db = new DBConnection();
-    $q = "call createtask(:user, :cus, :title, :descr, :stat, :assi, :timespent,"
-            . " :fromWeek, :fromYear, :toWeek, :toYear, :inv, :exp, :press);";
+    $q = "call createtask(:cus, :title, :descr, :stat, :assi, :timespent, :fromWeek, :fromYear, :toWeek, :toYear, :inv, :exp, :press);";
     $stmt = $db->prepare($q);
-    $stmt->execute(array(':user' => $user, ':cus' => $cus, ':title' => $title, 
+    $stmt->execute(array(':cus' => $cus, ':title' => $title, 
         ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen,
         ':fromWeek' => $fromWeek,':fromYear' => $fromYear, ':toWeek' => $toWeek, ':toYear' => $toYear, ':inv' => $inv, ':exp' => $exp, ':press' => $press));
     $count = $stmt->rowCount();
@@ -34,11 +33,11 @@ try {
         $stmt = $db->prepare($q);
         $stmt->execute(array(':comment' => $comment, ":user" => $user));
     }
-    if ($count > 0) {
-        header("location:../../singleCustomer.php");
-    } else {
-        header("location:../../taskForm.php?error");
-    }
+//    if ($count > 0) {
+//        header("location:../../singleCustomer.php");
+//    } else {
+//        header("location:../../taskForm.php?error");
+//    }
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
