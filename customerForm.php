@@ -166,6 +166,13 @@ if (isset($_GET["error"])) {
 ?>
 <script language="javascript" type="text/javascript">
     var urls = [];
+    addArrayToUrls(<?php echo json_encode($links) ?>);
+    function addArrayToUrls(array){
+        window.alert(array);
+        for(var link in array){
+            urls.push(link);
+        }
+    }
     function deleteLink() {
         var oldLink = document.getElementById('oldLink').value;
         var index = urls.map(function (e) {
@@ -214,15 +221,6 @@ if (isset($_GET["error"])) {
         $('#linkModal').modal('show');
     }
     function addLink() {
-//        if (array !== 'undefined') {
-//            var links = JSON.parse(array);
-//            if (typeof links !== 'undefined') {
-//                var link;
-//                for (link in links) {
-//                    urls.push(link);
-//                }
-//            }
-//        }
         var url = document.getElementById('url').value;
         var user = document.getElementById('user').value;
         var pwd = document.getElementById('pwd').value;
