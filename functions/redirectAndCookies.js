@@ -9,6 +9,7 @@ function SetActive(aktiv) {
     SetCookie('kunder', '', '1');
     SetCookie('overblik', '', '1');
     SetCookie('timeoversigt', '', '1');
+    SetCookie('presse', '', '1');
     SetCookie('login', '', '1');
     switch (aktiv) {
         case 'medarbejder':
@@ -22,6 +23,9 @@ function SetActive(aktiv) {
             break;
         case 'timeoversigt':
             SetCookie('timeoversigt', 'active', '1');
+            break;
+        case 'presse':
+            SetCookie('presse', 'active', '1');
             break;
         case 'login':
             SetCookie('login', 'active', '1');

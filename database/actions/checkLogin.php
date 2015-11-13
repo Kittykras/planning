@@ -23,6 +23,7 @@ try {
         SetCookie('kunder', '', time() + (86400), "/planning/");
         SetCookie('overblik', '', time() + (86400), "/planning/");
         SetCookie('timeoversigt', '', time() + (86400), "/planning/");
+        SetCookie('presse', '', time() + (86400), "/planning/");
         setcookie('login', 'active', time() + (86400), "/planning/");
         header("location:../../singleAssociate.php");
         $db->close();

@@ -121,7 +121,7 @@ if (isset($_GET["editing"])) {
         </div>
         <div class="form-group" align="left">
             <div class="checkbox">
-                <label><input type="checkbox" name="press" value="true">Presse</label>
+                <label><input type="checkbox" name="press" id="press" value="true">Presse</label>
             </div>
         </div>
     </form>
@@ -160,6 +160,8 @@ foreach ($comments as $comment) {
     ?>, <?php echo $comment->tc_date; ?> - &#10;<?php echo $comment->tc_comment; ?>&#10;<?php
        }
        ?>"/>
+<input type="hidden" id="hpress" name="hpress" value="<?php echo $_SESSION["Task"]->t_press ?>"/>
+
 
 <?php
 if (isset($_GET["error"])) {
@@ -213,6 +215,8 @@ if (isset($_GET["error"])) {
             var inv = $('#hinv').val();
             var exp = $('#hexp').val();
             var comment = $('#hcomment').val();
+            var press = $('#hpress').val();
+            console.log(press);
             document.getElementById("editH4").innerHTML = "Rediger Opgave";
             document.getElementById("editH2").innerHTML = "Rediger Opgave";
             $("#comment").removeClass("hidden");
@@ -228,6 +232,9 @@ if (isset($_GET["error"])) {
             document.getElementById("inv").value = inv;
             document.getElementById("exp").value = exp;
             document.getElementById("comment").value = comment;
+            if (press === '1') {
+                document.getElementById("press").checked = true;
+            }
         }
     });
 </script>

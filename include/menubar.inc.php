@@ -26,9 +26,9 @@ if (session_status() == PHP_SESSION_NONE) {
                 <ul>
                     <?php foreach ($users as $user) { ?>
                         <li><a href = 'singleAssociate.php' onClick="SetCookie('UserName', '<?php echo $user->a_username ?>', '1');
-                                SetCookie('orderby', 't_fromWeek', '1');
-                                SetCookie('state', '0', '1');
-                                SetActive('medarbejder');"> <?php echo $user->a_name ?></a>
+                                    SetCookie('orderby', 't_fromWeek', '1');
+                                    SetCookie('state', '0', '1');
+                                    SetActive('medarbejder');"> <?php echo $user->a_name ?></a>
                         </li>
                         <?php
                     }
@@ -43,9 +43,9 @@ if (session_status() == PHP_SESSION_NONE) {
                 <ul>
                     <?php foreach ($menucustomers as $customer) { ?>
                         <li><a href = 'singleCustomer.php' onClick="SetCookie('Kunde', '<?php echo $customer->c_acronym ?>', '1');
-                                SetCookie('orderby', 't_fromWeek', '1');
-                                SetCookie('state', '0', '1');
-                                SetActive('kunder');"> <?php echo $customer->c_name ?></a>
+                                    SetCookie('orderby', 't_fromWeek', '1');
+                                    SetCookie('state', '0', '1');
+                                    SetActive('kunder');"> <?php echo $customer->c_name ?></a>
                         </li>
                         <?php
                     }
@@ -60,6 +60,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     SetCookie('orderby', 't_customer', '1');
                     SetCookie('state', '0', '1');
                     SetActive('timeoversigt');">Timer</a></li>
+            <li class = "<?php echo $_COOKIE['presse'] ?>"><a href = 'press.php' onclick="SetActive('presse');">Presse</a></li>
             <li class = "<?php echo $_COOKIE['login'] ?>"><a href = 'singleAssociate.php' onclick="SetCookie('UserName', '<?php echo $_SESSION["user"]->a_username ?>', '1');
                     SetCookie('orderby', 't_fromWeek', '1');
                     SetCookie('state', '0', '1');

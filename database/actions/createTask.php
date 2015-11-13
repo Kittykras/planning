@@ -33,11 +33,11 @@ try {
         $stmt = $db->prepare($q);
         $stmt->execute(array(':comment' => $comment, ":user" => $user));
     }
-//    if ($count > 0) {
-//        header("location:../../singleCustomer.php");
-//    } else {
-//        header("location:../../taskForm.php?error");
-//    }
+    if ($count > 0) {
+        header("location:../../singleCustomer.php");
+    } else {
+        header("location:../../taskForm.php?error");
+    }
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
