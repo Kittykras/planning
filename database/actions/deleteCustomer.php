@@ -8,7 +8,7 @@ try{
     $stmt = $db->prepare($q);
     $stmt->execute(array(":delName"=>$delName));
     $count = $stmt->rowCount();
-    if($count == 1){
+    if($stmt != FALSE){
         header("location:../../customers.php");
     } else {
         header("location:../../singleCustomer.php?error");

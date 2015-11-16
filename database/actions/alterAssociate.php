@@ -12,7 +12,7 @@ try{
     $stmt = $db->prepare($q);
     $stmt->execute(array(':oldUser' => $oldUser, ':newName' => $newName, ':newUser' => $newUser, ':newPwd' => $newPwd, ':newPriv' => $newPriv));
     $count = $stmt->rowCount();
-    if($count == 1){
+    if($stmt != FALSE){
         setcookie("UserName", $newUser, time() + (86400), "/planning/");
         header("location:../../singleAssociate.php");
     } else {

@@ -9,7 +9,7 @@ try {
     $stmt->setFetchMode(PDO::FETCH_OBJ);
     $stmt->execute(array(':oldBranch' => $oldBranch,':branch' => $branch));
     $count = $stmt->rowCount();
-    if ($count === 1) {
+    if ($stmt != FALSE) {
         header("location:../../customers.php");
     } else {
         header("location:../../customers.php?error");

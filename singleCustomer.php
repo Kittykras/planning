@@ -133,7 +133,7 @@ $links = getLinksFromCustomer();
                             </div>
                             <div class="modal-body vertically-align">
                                 <input type="hidden" id="oldLink" name="oldLink">
-                                <input class="form-control input-style" type="text" id="urlEdit" placeholder="Link">
+                                <input disabled="" class="form-control input-style" type="text" id="urlEdit" placeholder="Link">
                                 <input class="form-control input-style" type="text" id="userEdit" placeholder="Brugernavn">
                                 <input class="form-control input-style" type="text" id="pwdEdit" placeholder="Adgangskode">
                             </div>
