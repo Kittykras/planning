@@ -103,7 +103,7 @@ $links = getLinksFromCustomer();
         <?php if (!empty($links)) {
             if (count($links) === 1) {
                 ?><li class="form-inline">Presse Links: <select class="form-control input-sm input-style" onclick="openLinkModal(this.value)"><?php } else {
-                ?><li class="form-inline">Presse Links: <select class="form-control input-sm input-style" onclick="openLinkModal(this.value)"><?php } foreach ($links as $link) { ?> <option value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"><?php echo $link->d_url ?></option>
+                ?><li class="form-inline">Presse Links: <select class="form-control input-sm input-style" onchange="openLinkModal(this.value)"><?php } foreach ($links as $link) { ?> <option value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"><?php echo $link->d_url ?></option>
     <?php } ?></select></li><?php } ?>
                 <br>
                 </div>
@@ -132,7 +132,7 @@ $links = getLinksFromCustomer();
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
                             <div class="modal-body vertically-align">
-                                <input type="hidden" id="oldLink" name="oldLink"/>
+                                <input type="hidden" id="oldLink" name="oldLink">
                                 <input class="form-control input-style" type="text" id="urlEdit" placeholder="Link">
                                 <input class="form-control input-style" type="text" id="userEdit" placeholder="Brugernavn">
                                 <input class="form-control input-style" type="text" id="pwdEdit" placeholder="Adgangskode">

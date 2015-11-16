@@ -42,7 +42,7 @@ include 'include/menubar.inc.php';
                     ?>
                     <tr><td><button class="btn btn-link btn-xs table-button link-style" onclick="cusRedirect('<?php echo $customer->c_acronym ?>')"><?php echo $customer->c_name; ?></button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
-                        <td><?php echo $customer->c_branch; ?></td>
+                        <td><button class="btn btn-link btn-xs table-button link-style" onclick="openBranchModal(<?php echo $customer->c_branch; ?>)"><?php echo $customer->c_branch; ?></button></td>
                     </tr>
                     <?php
                 }
@@ -51,7 +51,40 @@ include 'include/menubar.inc.php';
         </table>
     </div>
 </div>
+<div id="branchModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3>Rediger Branche</h3>
+            </div>
+            <form role="form" action="database/actions/alterBranch.php" method="post">
+                <div class="modal-body vertically-align">
+                    <input type="hidden" id="oldBranch" name="oldBranch">
+                    <input class="form-control input-style" type="text" name="" id="branch" placeholder="Branche">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-black">Gem</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<?php
+if (isset($_GET["error"])) {
+    ?>
+    <div class="vertically-align" align="center">
+        <span class="text-danger">Branche blev ikke redigeret. </span>
+    </div>
+    <?php
+}
+?>
 <script type="text/javascript">
+    function openBranchModal(value) {
+        document.getElementById('oldBranch').value = value;
+        document.getElementById('branch').value = value;
+        $('#branchModal').modal('show');
+    }
     $(document).ready(function () {
         if (<?php print_r($_SESSION["user"]->a_privileges) ?> === 1 || <?php print_r($_SESSION["user"]->a_privileges) ?> === 2) {
             $("div#new").removeClass("hidden");

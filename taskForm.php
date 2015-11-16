@@ -67,7 +67,7 @@ if (isset($_GET["editing"])) {
         </div>
         <div class='form-group'>
             <select class="form-control input-style" name='stat' id="stat">
-                <option value="black">Alm.</option>
+                <option value="white">Alm.</option>
                 <option value="#FFCC00">Gul</option>
                 <option value="red">Rød</option>
                 <option value="green">Grøn</option>

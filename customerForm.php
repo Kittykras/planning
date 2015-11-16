@@ -14,7 +14,7 @@ $links = getLinksFromCustomerEdit();
         </div>
         <br>
         <div class="col span_1_of_2" align="right">
-            <button type="submit" form="form" class="btn btn-black" id="btnCreate" onclick="selectAll()">Gem</button>
+            <button type="submit" form="form" class="btn btn-black" id="btnCreate">Gem</button>
             <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterCustomer.php" id="btnAlter">Gem</button>
         </div>
     </div>
@@ -79,7 +79,7 @@ $links = getLinksFromCustomerEdit();
                     <?php
                     foreach ($links as $link) {
                         ?>
-                        <option value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
+                    <option selected="selected" value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
                         <?php
                     }
                     ?>
@@ -160,7 +160,6 @@ if (isset($_GET["error"])) {
     function addArrayToUrls(array) {
         for (i = 0; i < array.length; i++) {
             var dest = {d_id: array[i].d_id, d_url: array[i].d_url, d_username: array[i].d_username, d_password: array[i].d_password};
-            console.log(dest);
             urls.push(dest);
         }
     }
@@ -244,17 +243,17 @@ if (isset($_GET["error"])) {
             $('#branchModal').modal('show');
         }
     }
-    function selectAll() {
-//        $("#urls>option[selected!=true]").attr('selected', 'selected');
-        $('#urls').each(function () {
-            $('#urls option').prop("selected", true);
-        });
-//        var url;
-//        for(url in urls){
-//            document.getElementById('links').value += url;
-//        }
-        $("#form").submit();
-    }
+//    function selectAll() {
+////        $("#urls>option[selected!=true]").attr('selected', 'selected');
+////        $('#urls').each(function () {
+//            $('#urls option').prop("selected", true);
+////        });
+////        var url;
+////        for(url in urls){
+////            document.getElementById('links').value += url;
+////        }
+//        $("#form").submit();
+//    }
     var $_GET = {};
 
     document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {

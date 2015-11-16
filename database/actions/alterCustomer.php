@@ -16,6 +16,7 @@ try {
     $stmt = $db->prepare($q);
     $stmt->execute(array(':oldCus' => $oldCus, ':acro' => $acro, ':name' => $name, ':bran' => $bran, ':cont' => $cont, ':tlf' => $tlf, ':mail' => $mail, ':assi' => $assi));
     $count = $stmt->rowCount();
+    var_dump(isset($_POST["urls"]));
     if (isset($_POST["urls"])) {
         $urls = $_POST["urls"];
         $links = array();
@@ -45,10 +46,10 @@ try {
             $stmt->execute(array(':id' => $link->id, ':url' => $link->url, ':user' => $link->user, ':pwd' => $link->pwd, ':acro' => $acro));
         }
     }
-    if ($count == 1) {
+    if ($stmt != FALSE) {
         header("location:../../customers.php");
     } else {
-        header("location:../../customerForm.php?editing = edit&error");
+        header("location:../../customerForm.php?editing=edit&error");
     }
 } catch (PDOException $e) {
     echo $e->getMessage();
