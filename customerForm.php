@@ -74,19 +74,21 @@ $links = getLinksFromCustomerEdit();
                     <button type="button" class="btn btn-black" onclick="addLink()">Tilføj link</button>
                 </div>
             </div>
-            <?php if (!empty($links)) { ?>
-                <select multiple name="urls[ ]" id="urls" class="form-control input-style" onclick="openLinkModal(this.value)">
-                    <?php
-                    foreach ($links as $link) {
+            <?php if (!empty($links)) {
+                if (count($links) === 1) { ?>
+                    <select multiple name="urls[ ]" id="urls" class="form-control input-style" onclick="openLinkModal(this.value)">
+                        <?php } else { ?>
+                        <select multiple name="urls[ ]" id="urls" class="form-control input-style" onchange="openLinkModal(this.value)">
+                        <?php } foreach ($links as $link) {
+                            ?>
+                            <option selected="selected" value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
+                            <?php
+                        }
                         ?>
-                    <option selected="selected" value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
-                        <?php
-                    }
-                    ?>
-                </select>
-                <?php
-            }
-            ?>
+                    </select>
+                    <?php
+                }
+                ?>
         </div>
     </form>
 </div>

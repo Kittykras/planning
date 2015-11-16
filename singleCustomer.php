@@ -134,8 +134,8 @@ $links = getLinksFromCustomer();
                             <div class="modal-body vertically-align">
                                 <input type="hidden" id="oldLink" name="oldLink">
                                 <input disabled="" class="form-control input-style" type="text" id="urlEdit" placeholder="Link">
-                                <input class="form-control input-style" type="text" id="userEdit" placeholder="Brugernavn">
-                                <input class="form-control input-style" type="text" id="pwdEdit" placeholder="Adgangskode">
+                                <input disabled="" class="form-control input-style" type="text" id="userEdit" placeholder="Brugernavn">
+                                <input disabled="" class="form-control input-style" type="text" id="pwdEdit" placeholder="Adgangskode">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-black" data-dismiss="modal">OK</button>

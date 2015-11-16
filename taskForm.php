@@ -104,21 +104,23 @@ if (isset($_GET["editing"])) {
                 <input type="text" id="to" name="to" class="form-control input-style foreground-input">
             </div>
         </div>
-        <div class="form-group">
-            <?php if (!empty($comments)) { ?>
-                <select multiple name="comments[ ]" id="comments" class="form-control input-style" onclick="openLinkModal(this.value)">
-                    <?php
-                    foreach ($comments as $comment) {
-                        ?>
-                    <option value=" <?php echo $comment->d_id . '¤' . $comment->d_url . '¤' . $comment->d_username . '¤' . $comment->d_password ?>"> <?php echo $comment->tc_associate;
+        <div id="commentDiv" class="form-group">
+            <?php if (!empty($comments)) {
+                if (count($comments) === 1) { ?>
+                    <select multiple name="comments[ ]" id="comments" class="form-control input-style" onclick="openModal(this.value)">
+                        <?php } else { ?>
+                        <select multiple name="comments[ ]" id="comments" class="form-control input-style" onchange="openModal(this.value)">
+                        <?php } foreach ($comments as $comment) {
+                            ?>
+                            <option  value="<?php echo $comment->tc_id . '¤' . $comment->tc_comment ?>"><?php echo $comment->tc_associate;
     ?>, <?php echo $comment->tc_date; ?> - &#10;<?php echo $comment->tc_comment; ?></option>
-                        <?php
-                    }
-                    ?>
-                </select>
-                <?php
-            }
-            ?>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                    <?php
+                }
+                ?>
             <!--<textarea class="form-control input-style hidden" rows="1" id="comment" name="comment" placeholder="Kommentarer" disabled=""></textarea>-->
         </div>
         <div class="form-group" align="left">
@@ -158,6 +160,24 @@ if (isset($_GET["editing"])) {
     </div>
 </div>
 
+<div id="commentModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3>Slet Kommentar?</h3>
+            </div>
+            <div class="modal-body vertically-align">
+                <input type="hidden" id="oldComment" name="oldComment"/>
+                <textarea class="form-control input-style hidden" rows="1" id="comment" name="comment" placeholder="Kommentarer" disabled=""></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-black" onclick="deleteComment()">Slet</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <input type="hidden" id="htitle" name="htitle" value="<?php echo $_SESSION["Task"]->t_title ?>"/>
 <input type="hidden" id="hdescr" name="hdescr" value="<?php echo $_SESSION["Task"]->t_description ?>"/>
 <input type="hidden" id="hstat" name="hstat" value="<?php echo $_SESSION["Task"]->t_state ?>"/>
@@ -168,12 +188,12 @@ if (isset($_GET["editing"])) {
 <input type="hidden" id="hto" name="hto" value="<?php echo $_SESSION["Task"]->t_toweek ?>"/>
 <input type="hidden" id="hinv" name="hinv" value="<?php echo $_SESSION["Task"]->t_invoicing ?>"/>
 <input type="hidden" id="hexp" name="hexp" value="<?php echo $_SESSION["Task"]->t_expenses ?>"/>
-<input type="hidden" id="hcomment" name="hcomment" value="<?php
+<!--<input type="hidden" id="hcomment" name="hcomment" value="<?php
 foreach ($comments as $comment) {
     echo $comment->tc_associate;
     ?>, <?php echo $comment->tc_date; ?> - &#10;<?php echo $comment->tc_comment; ?>&#10;<?php
-       }
-       ?>"/>
+}
+?>"/>-->
 <input type="hidden" id="hpress" name="hpress" value="<?php echo $_SESSION["Task"]->t_press ?>"/>
 
 
@@ -196,6 +216,24 @@ if (isset($_GET["error"])) {
 ?>
 
 <script language="javascript" type="text/javascript">
+    function deleteComment(){
+        var id = document.getElementById('oldComment').value;
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                document.getElementById("commentDiv").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "database/actions/deleteComment.php?q=" + id, true);
+        xmlhttp.send();
+        $('#commentModal').modal('hide');
+    }
+    function openModal(value) {
+        var comment = value.split("¤");
+        document.getElementById("oldComment").value = comment[0];
+        document.getElementById("comment").value = comment[1];
+        $('#commentModal').modal('show');
+    }
     $("input[type=number").number();
     var $_GET = {};
     document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
@@ -228,7 +266,6 @@ if (isset($_GET["error"])) {
             var to = $('#hto').val();
             var inv = $('#hinv').val();
             var exp = $('#hexp').val();
-            var comment = $('#hcomment').val();
             var press = $('#hpress').val();
             console.log(press);
             document.getElementById("editH4").innerHTML = "<span class='header-img'>Rediger Opgave</span>";
@@ -245,7 +282,6 @@ if (isset($_GET["error"])) {
             document.getElementById("to").value = to;
             document.getElementById("inv").value = inv;
             document.getElementById("exp").value = exp;
-            document.getElementById("comment").value = comment;
             if (press === '1') {
                 document.getElementById("press").checked = true;
             }
