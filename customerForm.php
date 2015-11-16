@@ -243,17 +243,6 @@ if (isset($_GET["error"])) {
             $('#branchModal').modal('show');
         }
     }
-//    function selectAll() {
-////        $("#urls>option[selected!=true]").attr('selected', 'selected');
-////        $('#urls').each(function () {
-//            $('#urls option').prop("selected", true);
-////        });
-////        var url;
-////        for(url in urls){
-////            document.getElementById('links').value += url;
-////        }
-//        $("#form").submit();
-//    }
     var $_GET = {};
 
     document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
