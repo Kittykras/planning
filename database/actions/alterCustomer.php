@@ -16,7 +16,6 @@ try {
     $stmt = $db->prepare($q);
     $stmt->execute(array(':oldCus' => $oldCus, ':acro' => $acro, ':name' => $name, ':bran' => $bran, ':cont' => $cont, ':tlf' => $tlf, ':mail' => $mail, ':assi' => $assi));
     $count = $stmt->rowCount();
-    var_dump(isset($_POST["urls"]));
     if (isset($_POST["urls"])) {
         $urls = $_POST["urls"];
         $links = array();
