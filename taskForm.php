@@ -217,8 +217,8 @@ if (isset($_GET["error"])) {
             var comment = $('#hcomment').val();
             var press = $('#hpress').val();
             console.log(press);
-            document.getElementById("editH4").innerHTML = "Rediger Opgave";
-            document.getElementById("editH2").innerHTML = "Rediger Opgave";
+            document.getElementById("editH4").innerHTML = "<span class='header-img'>Rediger Opgave</span>";
+            document.getElementById("editH2").innerHTML = "<span class='header-img'>Rediger Opgave</span>";
             $("#comment").removeClass("hidden");
             $("#btnCreate").addClass("hidden");
             document.getElementById("title").value = title;

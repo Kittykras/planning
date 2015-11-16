@@ -75,8 +75,8 @@ if (isset($_GET["error"])) {
             var user = $('#aUser').val();
             var pwd = $('#aPwd').val();
             var priv = $('#aPriv').val();
-            document.getElementById("editH4").innerHTML = "Rediger Medarbejder";
-            document.getElementById("editH2").innerHTML = "Rediger Medarbejder";
+            document.getElementById("editH4").innerHTML = "<span class='header-img'>Rediger Medarbejder</span>";
+            document.getElementById("editH2").innerHTML = "<span class='header-img'>Rediger Medarbejder</span>";
             $("button#btnAlter").removeClass("hidden");
             $("button#btnCreate").addClass("hidden");
             document.getElementById("newName").value = name;

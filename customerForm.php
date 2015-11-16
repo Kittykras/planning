@@ -261,8 +261,8 @@ if (isset($_GET["error"])) {
             var mail = $('#cMail').val();
             var bran = $('#cBran').val();
             var assi = $('#cAssi').val();
-            document.getElementById("editH4").innerHTML = "Rediger Kunde";
-            document.getElementById("editH2").innerHTML = "Rediger Kunde";
+            document.getElementById("editH4").innerHTML = "<span class='header-img'>Rediger Kunde</span>";
+            document.getElementById("editH2").innerHTML = "<span class='header-img'>Rediger Kunde</span>";
             $("button#btnAlter").removeClass("hidden");
             $("button#btnCreate").addClass("hidden");
             document.getElementById("name").value = name;
