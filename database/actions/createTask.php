@@ -34,6 +34,12 @@ try {
         $stmt->execute(array(':comment' => $comment, ":user" => $user));
     }
     if ($count > 0) {
+        SetCookie('medarbejder', '', time() + (86400), "/planning/");
+        SetCookie('kunder', 'active', time() + (86400), "/planning/");
+        SetCookie('overblik', '', time() + (86400), "/planning/");
+        SetCookie('timeoversigt', '', time() + (86400), "/planning/");
+        SetCookie('presse', '', time() + (86400), "/planning/");
+        setcookie('login', '', time() + (86400), "/planning/");
         header("location:../../singleCustomer.php");
     } else {
         header("location:../../taskForm.php?error");

@@ -9,6 +9,12 @@ try{
     $stmt->execute(array(":delName"=>$delName));
     $count = $stmt->rowCount();
     if($stmt != FALSE){
+        SetCookie('medarbejder', 'active', time() + (86400), "/planning/");
+        SetCookie('kunder', '', time() + (86400), "/planning/");
+        SetCookie('overblik', '', time() + (86400), "/planning/");
+        SetCookie('timeoversigt', '', time() + (86400), "/planning/");
+        SetCookie('presse', '', time() + (86400), "/planning/");
+        setcookie('login', '', time() + (86400), "/planning/");
         header("location:../../associates.php");
     } else {
         header("location:../../singleAssociate.php?error");

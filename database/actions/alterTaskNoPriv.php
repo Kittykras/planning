@@ -26,6 +26,12 @@ try {
     }
     if ($stmt != FALSE) {
         setcookie('Kunde', $cus, time() + (86400), "/planning/");
+        SetCookie('medarbejder', '', time() + (86400), "/planning/");
+        SetCookie('kunder', 'active', time() + (86400), "/planning/");
+        SetCookie('overblik', '', time() + (86400), "/planning/");
+        SetCookie('timeoversigt', '', time() + (86400), "/planning/");
+        SetCookie('presse', '', time() + (86400), "/planning/");
+        setcookie('login', '', time() + (86400), "/planning/");
         header("location:../../singleCustomer.php");
     } else {
         header("location:../../taskForm.php?editing=edit&error");
