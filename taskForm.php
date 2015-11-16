@@ -105,7 +105,21 @@ if (isset($_GET["editing"])) {
             </div>
         </div>
         <div class="form-group">
-            <textarea class="form-control input-style hidden" rows="1" id="comment" name="comment" placeholder="Kommentarer" disabled=""></textarea>
+            <?php if (!empty($comments)) { ?>
+                <select multiple name="comments[ ]" id="comments" class="form-control input-style" onclick="openLinkModal(this.value)">
+                    <?php
+                    foreach ($comments as $comment) {
+                        ?>
+                    <option value=" <?php echo $comment->d_id . '¤' . $comment->d_url . '¤' . $comment->d_username . '¤' . $comment->d_password ?>"> <?php echo $comment->tc_associate;
+    ?>, <?php echo $comment->tc_date; ?> - &#10;<?php echo $comment->tc_comment; ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+                <?php
+            }
+            ?>
+            <!--<textarea class="form-control input-style hidden" rows="1" id="comment" name="comment" placeholder="Kommentarer" disabled=""></textarea>-->
         </div>
         <div class="form-group" align="left">
             <!--<label class="background-label">Ny Kommentar</label>-->

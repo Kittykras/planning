@@ -59,7 +59,7 @@ include 'include/menubar.inc.php';
                 <h3>Rediger Branche</h3>
             </div>
             <form role="form" action="database/actions/alterBranch.php" method="post">
-                <div class="modal-body vertically-align">
+                <div class="modal-body vertically-align"/>
                     <input type="hidden" id="oldBranch" name="oldBranch">
                     <input class="form-control input-style" type="text" name="" id="branch" placeholder="Branche">
                 </div>

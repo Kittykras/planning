@@ -27,7 +27,7 @@ include 'database/taskHandler.php';
                     <li><a onclick="SetCookie('orderby', '#FFCC00', '1');
                             SetCookie('state', '1', '1');
                             location.reload()">Gul</a></li>
-                    <li><a onclick="SetCookie('orderby', 'black', '1');
+                    <li><a onclick="SetCookie('orderby', 'white', '1');
                             SetCookie('state', '1', '1');
                             location.reload()">Almindelig</a></li>
                     <li><a onclick="SetCookie('orderby', 'green', '1');
