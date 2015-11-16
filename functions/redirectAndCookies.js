@@ -33,14 +33,17 @@ function SetActive(aktiv) {
     }
 }
 function redirect(user) {
+    SetActive('medarbejder');
     SetCookie('UserName', user, '1');
     window.location = 'singleAssociate.php';
 }
 function cusRedirect(cust) {
+    SetActive('kunder');
     SetCookie('Kunde', cust, '1');
     window.location = 'singleCustomer.php';
 }
 function taskRedirect(task) {
+    SetActive('kunder');
     SetCookie('Task', task, '1');
     window.location = "taskForm.php?editing=edit";
 }
