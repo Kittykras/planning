@@ -3,6 +3,7 @@
 include_once '../DBConnection.php';
 try {
     $comment = $_GET['q'];
+    $task = $_COOKIE['Task'];
     $db = new DBConnection();
     $q = "call deletecomment(:comment)";
     $stmt = $db->prepare($q);
@@ -10,10 +11,10 @@ try {
     $stmt->execute(array(':comment' => $comment));
     $count = $stmt->rowCount();
     if ($stmt != FALSE) {
-        $q = 'call getallcomments()';
+        $q = 'call getAllComments(:task)';
         $stmt = $db->prepare($q);
         $stmt->setFetchMode(PDO::FETCH_OBJ);
-        $stmt->execute();
+        $stmt->execute(array(':task' => $task));
         $comments = $stmt->fetchAll();
         if (count($comments) === 1) {
             echo '<select multiple name="comments[ ]" id="comments" class="form-control input-style" onclick="openModal(this.value)">';
