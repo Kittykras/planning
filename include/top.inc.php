@@ -20,6 +20,7 @@
         <script src="functions/redirectAndCookies.js"></script>
         <link rel="stylesheet" href="styles/styles.css">
         <link rel="stylesheet" href="styles/tables.css">
+        <link rel="stylesheet" href="styles/input-styles.css">
         <title>planning</title>
     </head>
     <body>

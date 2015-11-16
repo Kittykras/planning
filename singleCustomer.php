@@ -2,11 +2,11 @@
 include 'include/sessionCheck.php';
 include 'include/top.inc.php';
 include 'include/menubar.inc.php';
+$links = getLinksFromCustomer();
 ?>
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
-            <!--<h2><script>document.write(Session.get("UserName"));</script></h2>-->
             <h4 class="chead"><span class="header-img"><?php
                     getCustomerFromCookie();
                     print_r($_SESSION["Kunde"]->c_name);
@@ -100,44 +100,72 @@ include 'include/menubar.inc.php';
     <div id="cssmenu" align="center" style="color: white; text-transform: uppercase">
         <br>
         <li>Kontaktperson: <?php echo $_SESSION["Kunde"]->c_conperson ?> // Telefon: <?php echo $_SESSION["Kunde"]->c_connumber ?> // Tildelt: <?php echo getAssignedAssociateName($_SESSION["Kunde"]->c_assigned); ?></li>
-        <li>Presse Links: <select><?php $links = getLinksFromCustomer();
-                foreach ($links as $link) { ?> <option> Link: <?php echo $link->d_url ?> Brugernavn: <?php echo $link->d_username ?> Adgangskode: <?php echo $link->d_password ?></option>
-    <?php } ?></select></li>
-            <br>
-        </div>
-    </div>
-
-    <div id="deleteModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <?php if (!empty($links)) {
+            if (count($links) === 1) {
+                ?><li class="form-inline">Presse Links: <select class="form-control input-sm input-style" onclick="openLinkModal(this.value)"><?php } else {
+                ?><li class="form-inline">Presse Links: <select class="form-control input-sm input-style" onclick="openLinkModal(this.value)"><?php } foreach ($links as $link) { ?> <option value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"><?php echo $link->d_url ?></option>
+    <?php } ?></select></li><?php } ?>
+                <br>
                 </div>
-                <div class="modal-body">
-                    <p>Du er ved at slette en kunde. Er du sikker på du vil det?</p>
                 </div>
-                <form class="modal-footer" role="form" action="database/actions/deleteCustomer.php" method="post">
-                    <button type="submit" class="btn btn-black">Ja</button>
-                    <button type="button" class="btn btn-black" data-dismiss="modal">Nej</button>
-                </form>
-            </div>
-        </div>
-    </div>
 
-    <?php
-    if (isset($_GET["error"])) {
-        ?>
-        <div class="vertically-align" align="center">
-            <span class="text-danger">Kunde blev ikke slettet. Forbindelsen til databasen fejlede. Genindlæs og prøv igen.</span>
-        </div>
-        <?php
-    }
-    ?>
-    <script>
-        $(document).ready(function () {
-            if (<?php print_r($_SESSION["user"]->a_privileges) ?> === 1) {
-            $("div#edit").removeClass("hidden");
-        }
-    });
-</script>
+                <div id="deleteModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Du er ved at slette en kunde. Er du sikker på du vil det?</p>
+                            </div>
+                            <form class="modal-footer" role="form" action="database/actions/deleteCustomer.php" method="post">
+                                <button type="submit" class="btn btn-black">Ja</button>
+                                <button type="button" class="btn btn-black" data-dismiss="modal">Nej</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="linkModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body vertically-align">
+                                <input type="hidden" id="oldLink" name="oldLink"/>
+                                <input class="form-control input-style" type="text" id="urlEdit" placeholder="Link">
+                                <input class="form-control input-style" type="text" id="userEdit" placeholder="Brugernavn">
+                                <input class="form-control input-style" type="text" id="pwdEdit" placeholder="Adgangskode">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-black" data-dismiss="modal">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <?php
+                if (isset($_GET["error"])) {
+                    ?>
+                    <div class="vertically-align" align="center">
+                        <span class="text-danger">Kunde blev ikke slettet. Forbindelsen til databasen fejlede. Genindlæs og prøv igen.</span>
+                    </div>
+                    <?php
+                }
+                ?>
+                <script>
+                    function openLinkModal(value) {
+                        var link = value.split("¤");
+                        document.getElementById("oldLink").value = link[1];
+                        document.getElementById("urlEdit").value = link[1];
+                        document.getElementById("userEdit").value = link[2];
+                        document.getElementById("pwdEdit").value = link[3];
+                        $('#linkModal').modal('show');
+                    }
+                    $(document).ready(function () {
+                        if (<?php print_r($_SESSION["user"]->a_privileges) ?> === 1) {
+                            $("div#edit").removeClass("hidden");
+                        }
+                    });
+                </script>
 

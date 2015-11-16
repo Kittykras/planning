@@ -27,15 +27,15 @@ try {
     $q = "call altertask(:id, :cus, :title, :descr, :stat, :assi, :timespent, :fromWeek, :fromYear, :toWeek, :toYear, :inv, :exp, :press);";
     $stmt = $db->prepare($q);
     $stmt->execute(array(':id' => $id, ':cus' => $cus, ':title' => $title, ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen, ':fromWeek' => $fromWeek,':fromYear' => $fromYear, ':toWeek' => $toWeek,':toYear' => $toYear, ':inv' => $inv, ':exp' => $exp, ':press' => $press));
-    $count = $stmt->rowCount();
-    $commentcount = 0;
+//    $count = $stmt->rowCount();
+//    $commentcount = 0;
     if ($comment != "") {
         $q = "call createcomment(:id, :comment, :user);";
         $stmt = $db->prepare($q);
         $stmt->execute(array(':id' => $id, ':comment' => $comment, ":user" => $user));
-        $commentcount = $stmt->rowCount();
+//        $commentcount = $stmt->rowCount();
     }
-    if ($count == 1) {
+    if ($stmt != FALSE) {
         setcookie('Kunde', $cus, time() + (86400), "/planning/");
         header("location:../../singleCustomer.php");
     } else {

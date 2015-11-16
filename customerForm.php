@@ -3,7 +3,7 @@ include 'include/sessionCheck.php';
 include 'include/top.inc.php';
 include 'include/menubar.inc.php';
 include 'database/branchHandler.php';
-$links = getLinksFromCustomer();
+$links = getLinksFromCustomerEdit();
 ?>
 <link rel="stylesheet" href="./styles/input-styles.css">
 <div class="container dcenter hpic img-responsive">
