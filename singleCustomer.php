@@ -105,7 +105,7 @@ $links = getLinksFromCustomer();
 <div class="dcenter">
     <div id="cssmenu" align="center" style="color: white; text-transform: uppercase">
         <br>
-        <li>Kontaktperson: <?php echo $_SESSION["Kunde"]->c_conperson ?> // Telefon: <?php echo $_SESSION["Kunde"]->c_connumber ?> // Tildelt: <?php echo getAssignedAssociateName($_SESSION["Kunde"]->c_assigned); ?></li>
+        <li>Kontaktperson: <?php echo $_SESSION["Kunde"]->c_conperson ?> // Telefon: <?php echo $_SESSION["Kunde"]->c_connumber ?> // Email: <?php echo $_SESSION["Kunde"]->c_conmail ?> // Tildelt: <?php echo getAssignedAssociateName($_SESSION["Kunde"]->c_assigned); ?></li>
         <?php
         if (!empty($links)) {
             if (count($links) === 1) {
