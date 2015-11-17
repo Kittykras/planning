@@ -215,7 +215,9 @@ body{
     float:left;
     margin: 1% 0 1% 1.6%;
 }
-.col:first-child { margin-left: 0; }
+.col:first-child {
+    margin-left: 0; 
+}
 
 /*  GROUPING  */
 .group:before,
