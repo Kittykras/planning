@@ -232,7 +232,7 @@ if (isset($_GET["error"])) {
         document.getElementById("comment").value = comment[1];
         $('#commentModal').modal('show');
     }
-//    See number.css
+//    See number.js
     $("input[type=number").number();
 //    Function to get url variables
     var $_GET = {};
