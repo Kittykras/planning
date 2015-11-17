@@ -60,8 +60,8 @@ include 'include/menubar.inc.php';
             </div>
             <form role="form" action="database/actions/alterBranch.php" method="post">
                 <div class="modal-body vertically-align"/>
-                    <input type="hidden" id="oldBranch" name="oldBranch">
-                    <input class="form-control input-style" type="text" name="branch" id="branch" placeholder="Branche">
+                <input type="hidden" id="oldBranch" name="oldBranch">
+                <input class="form-control input-style" type="text" name="branch" id="branch" placeholder="Branche">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-black">Gem</button>

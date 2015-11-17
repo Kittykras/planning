@@ -12,9 +12,9 @@ if (session_status() == PHP_SESSION_NONE) {
         <ul>
             <div class="navbar-header">
                 <a class="navbar-brand" style="color: white" href="singleAssociate.php" onclick="SetCookie('UserName', '<?php echo $_SESSION["user"]->a_username ?>', '1');
-                    SetCookie('orderby', 't_fromWeek', '1');
-                    SetCookie('state', '0', '1');
-                    SetActive('login');"><span style="color: #D26232">+</span>vonbülow.co</a>
+                        SetCookie('orderby', 't_fromWeek', '1');
+                        SetCookie('state', '0', '1');
+                        SetActive('login');"><span style="color: #D26232">+</span>vonbülow.co</a>
             </div>
             <li class='has-sub <?php echo $_COOKIE['medarbejder'] ?>'>
                 <a href = 'associates.php' onclick="SetActive('medarbejder');">Medarbejdere</a>
@@ -53,7 +53,8 @@ if (session_status() == PHP_SESSION_NONE) {
                     SetCookie('state', '0', '1');
                     SetActive('timeoversigt');">Timer</a></li>
             <li class = "<?php echo $_COOKIE['presse'] ?>"><a href = 'press.php' onclick="SetCookie('orderby', 't_fromweek', '1');
-                    SetCookie('state', '0', '1');SetActive('presse');">Presse</a></li>
+                    SetCookie('state', '0', '1');
+                    SetActive('presse');">Presse</a></li>
             <li class = "<?php echo $_COOKIE['login'] ?>"><a href = 'singleAssociate.php' onclick="SetCookie('UserName', '<?php echo $_SESSION["user"]->a_username ?>', '1');
                     SetCookie('orderby', 't_fromWeek', '1');
                     SetCookie('state', '0', '1');

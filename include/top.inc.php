@@ -16,7 +16,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="functions/core.js"></script>
         <script src="functions/script.js"></script>
-<!--        <script src="sessions.js"></script>-->
         <script src="functions/redirectAndCookies.js"></script>
         <link rel="stylesheet" href="styles/styles.css">
         <link rel="stylesheet" href="styles/tables.css">

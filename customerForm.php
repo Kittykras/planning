@@ -6,6 +6,7 @@ include 'database/branchHandler.php';
 $links = getLinksFromCustomerEdit();
 ?>
 <link rel="stylesheet" href="./styles/input-styles.css">
+<!-- Header -->
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
@@ -19,6 +20,7 @@ $links = getLinksFromCustomerEdit();
         </div>
     </div>
 </div>
+<!-- Form for creating/altering customer -->
 <div class="vertically-align" align="center">
     <form id="form" role="form" action="database/actions/createCustomer.php" method="post">
         <div class="form-group">
@@ -75,7 +77,8 @@ $links = getLinksFromCustomerEdit();
                 </div>
             </div>
             <?php if (!empty($links)) {
-                if (count($links) === 1) { ?>
+                if (count($links) === 1) {
+                    ?>
                     <select multiple name="urls[ ]" id="urls" class="form-control input-style" onclick="openLinkModal(this.value)">
                         <?php } else { ?>
                         <select multiple name="urls[ ]" id="urls" class="form-control input-style" onchange="openLinkModal(this.value)">
@@ -92,7 +95,7 @@ $links = getLinksFromCustomerEdit();
         </div>
     </form>
 </div>
-
+<!-- Popup for creating new branch -->
 <div id="branchModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -109,7 +112,7 @@ $links = getLinksFromCustomerEdit();
         </div>
     </div>
 </div>
-
+<!-- Popup for altering link -->
 <div id="linkModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -130,7 +133,7 @@ $links = getLinksFromCustomerEdit();
         </div>
     </div>
 </div>
-
+<!-- Hidden values to fill out form -->
 <input type="hidden" id="cName" name="cName" value="<?php echo $_SESSION["Kunde"]->c_name ?>"/>
 <input type="hidden" id="cAcro" name="cAcro" value="<?php echo $_SESSION["Kunde"]->c_acronym ?>"/>
 <input type="hidden" id="cCont" name="cCont" value="<?php echo $_SESSION["Kunde"]->c_conperson ?>"/>
@@ -138,8 +141,8 @@ $links = getLinksFromCustomerEdit();
 <input type="hidden" id="cMail" name="cMail" value="<?php echo $_SESSION["Kunde"]->c_conmail ?>"/>
 <input type="hidden" id="cBran" name="cBran" value="<?php echo $_SESSION["Kunde"]->c_branch ?>"/>
 <input type="hidden" id="cAssi" name="cAssi" value="<?php echo $_SESSION["Kunde"]->c_assigned ?>"/>
+<!-- Errormessages -->
 <?php
-//echo $_GET["editing"];
 if (isset($_GET["error"])) {
     if (isset($_GET["editing"])) {
         ?>
@@ -156,6 +159,7 @@ if (isset($_GET["error"])) {
     }
 }
 ?>
+<!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
     var urls = [];
     addArrayToUrls(<?php echo json_encode($links) ?>);
@@ -165,19 +169,22 @@ if (isset($_GET["error"])) {
             urls.push(dest);
         }
     }
-    function selectAll(){
+    function selectAll() {
         selectBox = document.getElementById("urls");
 
-        for (var i = 0; i < selectBox.options.length; i++) 
-        { 
-             selectBox.options[i].selected = true; 
-        } 
+        for (var i = 0; i < selectBox.options.length; i++)
+        {
+            selectBox.options[i].selected = true;
+        }
     }
     function deleteLink() {
-        var oldLink = document.getElementById('oldLink').value;
+        var oldlink = document.getElementById('oldLink').value;
+        var splitarray = oldlink.split('¤');
+        var oldId = splitarray[0];
+        var oldUrl = splitarray[1];
         var index = urls.map(function (e) {
             return e.url;
-        }).indexOf(oldLink);
+        }).indexOf(oldUrl);
         urls.splice(index, 1);
         var json = JSON.stringify(urls);
         xmlhttp = new XMLHttpRequest();
@@ -186,18 +193,20 @@ if (isset($_GET["error"])) {
                 document.getElementById("dest").innerHTML = xmlhttp.responseText;
             }
         };
-        xmlhttp.open("GET", "database/actions/addLink.php?q=" + json, true);
+        xmlhttp.open("GET", "database/actions/deleteLink.php?q=" + json +"&oldlink="+oldId, true);
         xmlhttp.send();
         $('#linkModal').modal('hide');
     }
     function editLink() {
-        var oldLink = document.getElementById('oldLink').value;
+        var oldlink = document.getElementById('oldLink').value;
+        var splitarray = oldlink.split('¤');
+        var oldUrl = splitarray[1];
         var url = document.getElementById('urlEdit').value;
         var user = document.getElementById('userEdit').value;
         var pwd = document.getElementById('pwdEdit').value;
         var index = urls.map(function (e) {
             return e.d_url;
-        }).indexOf(oldLink);
+        }).indexOf(oldUrl);
         urls[index].d_url = url;
         urls[index].d_username = user;
         urls[index].d_password = pwd;
@@ -214,7 +223,7 @@ if (isset($_GET["error"])) {
     }
     function openLinkModal(value) {
         var link = value.split("¤");
-        document.getElementById("oldLink").value = link[1];
+        document.getElementById("oldLink").value = link[0]+'¤'+link[1];
         document.getElementById("urlEdit").value = link[1];
         document.getElementById("userEdit").value = link[2];
         document.getElementById("pwdEdit").value = link[3];

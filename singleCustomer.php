@@ -100,7 +100,8 @@ $links = getLinksFromCustomer();
     <div id="cssmenu" align="center" style="color: white; text-transform: uppercase">
         <br>
         <li>Kontaktperson: <?php echo $_SESSION["Kunde"]->c_conperson ?> // Telefon: <?php echo $_SESSION["Kunde"]->c_connumber ?> // Tildelt: <?php echo getAssignedAssociateName($_SESSION["Kunde"]->c_assigned); ?></li>
-        <?php if (!empty($links)) {
+        <?php
+        if (!empty($links)) {
             if (count($links) === 1) {
                 ?><li class="form-inline">Presse Links: <select class="form-control input-sm input-style" onclick="openLinkModal(this.value)"><?php } else {
                 ?><li class="form-inline">Presse Links: <select class="form-control input-sm input-style" onchange="openLinkModal(this.value)"><?php } foreach ($links as $link) { ?> <option value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"><?php echo $link->d_url ?></option>

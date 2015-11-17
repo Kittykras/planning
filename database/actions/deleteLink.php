@@ -1,6 +1,12 @@
 <?php
-
+include_once '../DBConnection.php';
 $urls = json_decode($_REQUEST['q']);
+$oldlink = $_REQUEST['oldlink'];
+$db = new DBConnection();
+$q = "call deletedesti(:oldlink)";
+$stmt = $db->prepare($q);
+$stmt->setFetchMode(PDO::FETCH_OBJ);
+$stmt->execute(array(':oldlink' => $oldlink));
 if (!empty($urls)) {
     echo '<div class="form-group">
                 <input type="text" name="url" class="form-control input-style" id="url" placeholder="Link">

@@ -4,6 +4,7 @@ include 'include/top.inc.php';
 include 'include/menubar.inc.php';
 ?>
 <link rel="stylesheet" href="styles/input-styles.css">
+<!-- Header -->
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
@@ -17,6 +18,7 @@ include 'include/menubar.inc.php';
         </div>
     </div>
 </div>
+<!-- Form for creating/altering associate -->
 <div class="vertically-align" align="center">
     <form id="form" role="form" action="database/actions/createAssociate.php" method="post">
         <div class="form-group">
@@ -37,12 +39,13 @@ include 'include/menubar.inc.php';
         </div>
     </form>
 </div>
+<!-- Hidden values to fill out form -->
 <input type="hidden" id="aName" name="aName" value="<?php echo $_SESSION["UserName"]->a_name ?>"/>
 <input type="hidden" id="aUser" name="aUser" value="<?php echo $_SESSION["UserName"]->a_username ?>"/>
 <input type="hidden" id="aPwd" name="aPwd" value="<?php echo $_SESSION["UserName"]->a_password ?>"/>
 <input type="hidden" id="aPriv" name="aPriv" value="<?php echo $_SESSION["UserName"]->a_privileges ?>"/>
+<!-- Errormessages -->
 <?php
-//echo $_GET["editing"];
 if (isset($_GET["error"])) {
     if ($_GET["editing"] === "edit") {
         ?>
@@ -59,6 +62,7 @@ if (isset($_GET["error"])) {
     }
 }
 ?>
+<!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
     var $_GET = {};
 

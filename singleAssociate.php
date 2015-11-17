@@ -6,11 +6,12 @@ include 'include/menubar.inc.php';
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
-            <!--<h2><script>document.write(Session.get("UserName"));</script></h2>-->
             <h4 class="chead"><span class="header-img"><?php getUserFromCookie();
-print_r($_SESSION["UserName"]->a_name); ?></span></h4>
+print_r($_SESSION["UserName"]->a_name);
+?></span></h4>
             <h2 class="chead"><span class="header-img"><?php getUserFromCookie();
-print_r($_SESSION["UserName"]->a_name); ?></span></h2>
+                    print_r($_SESSION["UserName"]->a_name);
+?></span></h2>
         </div>
         <br>
         <div class="col span_1_of_2 hidden" align="right" id="edit">
@@ -90,8 +91,6 @@ print_r($_SESSION["UserName"]->a_name); ?></span></h2>
 </div>
 <div id="deleteModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
-        <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>

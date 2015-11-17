@@ -106,14 +106,15 @@ if (isset($_GET["editing"])) {
         </div>
         <div id="commentDiv" class="form-group">
             <?php if (!empty($comments)) {
-                if (count($comments) === 1) { ?>
+                if (count($comments) === 1) {
+                    ?>
                     <select multiple name="comments[ ]" id="comments" class="form-control input-style" onclick="openModal(this.value)">
                         <?php } else { ?>
                         <select multiple name="comments[ ]" id="comments" class="form-control input-style" onchange="openModal(this.value)">
                         <?php } foreach ($comments as $comment) {
                             ?>
                             <option  value="<?php echo $comment->tc_id . '¤' . $comment->tc_comment ?>"><?php echo $comment->tc_associate;
-    ?>, <?php echo $comment->tc_date; ?> - &#10;<?php echo $comment->tc_comment; ?></option>
+                            ?>, <?php echo $comment->tc_date; ?> - &#10;<?php echo $comment->tc_comment; ?></option>
                             <?php
                         }
                         ?>
@@ -121,10 +122,8 @@ if (isset($_GET["editing"])) {
                     <?php
                 }
                 ?>
-            <!--<textarea class="form-control input-style hidden" rows="1" id="comment" name="comment" placeholder="Kommentarer" disabled=""></textarea>-->
         </div>
         <div class="form-group" align="left">
-            <!--<label class="background-label">Ny Kommentar</label>-->
             <textarea class="form-control input-style" rows="1" id="newComment" name="newComment" placeholder="Ny Kommentar"></textarea>
         </div>
         <div class="form-group group">
@@ -188,12 +187,6 @@ if (isset($_GET["editing"])) {
 <input type="hidden" id="hto" name="hto" value="<?php echo $_SESSION["Task"]->t_toweek ?>"/>
 <input type="hidden" id="hinv" name="hinv" value="<?php echo $_SESSION["Task"]->t_invoicing ?>"/>
 <input type="hidden" id="hexp" name="hexp" value="<?php echo $_SESSION["Task"]->t_expenses ?>"/>
-<!--<input type="hidden" id="hcomment" name="hcomment" value="<?php
-foreach ($comments as $comment) {
-    echo $comment->tc_associate;
-    ?>, <?php echo $comment->tc_date; ?> - &#10;<?php echo $comment->tc_comment; ?>&#10;<?php
-}
-?>"/>-->
 <input type="hidden" id="hpress" name="hpress" value="<?php echo $_SESSION["Task"]->t_press ?>"/>
 
 
@@ -216,7 +209,7 @@ if (isset($_GET["error"])) {
 ?>
 
 <script language="javascript" type="text/javascript">
-    function deleteComment(){
+    function deleteComment() {
         var id = document.getElementById('oldComment').value;
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {

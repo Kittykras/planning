@@ -10,10 +10,6 @@ include 'database/taskHandler.php';
             <h4 class="chead"><span class="header-img">Presse</span></h4>
             <h2 class="chead"><span class="header-img">Presse</span></h2>
         </div>
-        <!--                <div class="col span_1_of_2" align="right">
-                            <br>
-                            <button type="button" class="btn btn-black">Ny Kunde</button>
-                        </div>-->
     </div>
     <div class="row" align="center">
         <div class="btn-group">
