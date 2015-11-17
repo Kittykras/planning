@@ -12,13 +12,14 @@ include 'include/menubar.inc.php';
             <h2 class="chead" id="editH2"><span class="header-img">Opret Medarbejder</span></h2>
         </div>
         <br>
+        <!-- Button for submitting form -->
         <div class="col span_1_of_2" align="right">
             <button type="submit" form="form" class="btn btn-black" id="btnCreate">Gem</button>
             <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterAssociate.php" id="btnAlter">Gem</button>
         </div>
     </div>
 </div>
-<!-- Form for creating/altering associate -->
+<!-- Form for creating/altering selected associate -->
 <div class="vertically-align" align="center">
     <form id="form" role="form" action="database/actions/createAssociate.php" method="post">
         <div class="form-group">
@@ -64,6 +65,7 @@ if (isset($_GET["error"])) {
 ?>
 <!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
+//    Function to get url variables
     var $_GET = {};
 
     document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
@@ -73,6 +75,7 @@ if (isset($_GET["error"])) {
 
         $_GET[decode(arguments[1])] = decode(arguments[2]);
     });
+//    Function for filling out form when altering associate
     $(document).ready(function () {
         if ($_GET["editing"] === "edit") {
             var name = $('#aName').val();

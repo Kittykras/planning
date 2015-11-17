@@ -3,6 +3,7 @@ include 'include/sessionCheck.php';
 include 'include/top.inc.php';
 include 'include/menubar.inc.php';
 ?>
+<!-- Header -->
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
@@ -10,10 +11,12 @@ include 'include/menubar.inc.php';
             <h2 class="chead"><span class="header-img">Kunder</span></h2>
         </div>
         <br>
+        <!-- Button for the option to create new customer -->
         <div class="col span_1_of_2 hidden" align="right" id="new">
             <button type="button" class="btn btn-black" onclick="location.href = 'customerForm.php'">Ny Kunde</button>
         </div>
     </div>
+    <!-- Buttons for sorting the table values -->
     <div class="row" align="center">
         <div class="btn-group">
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'c_name', '1');
@@ -27,6 +30,7 @@ include 'include/menubar.inc.php';
     </div>
 </div>
 <br>
+<!-- Table containing customers -->
 <div class="panel panel-default dcenter">
     <div id="no-more-tables" class="table-responsive">
         <table class="table table-condensed">
@@ -40,9 +44,9 @@ include 'include/menubar.inc.php';
                 <?php
                 foreach ($customers as $customer) {
                     ?>
-                    <tr><td><button class="btn btn-link btn-xs table-button link-style" onclick="cusRedirect('<?php echo $customer->c_acronym ?>')"><?php echo $customer->c_name; ?></button></td>
+                    <tr><td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $customer->c_acronym ?>')"><?php echo $customer->c_name; ?></button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
-                        <td><button class="btn btn-link btn-xs table-button link-style" onclick="openBranchModal('<?php echo $customer->c_branch ?>')"><?php echo $customer->c_branch ?></button></td>
+                        <td><button class="btn btn-link btn-xs table-button" onclick="openBranchModal('<?php echo $customer->c_branch ?>')"><?php echo $customer->c_branch ?></button></td>
                     </tr>
                     <?php
                 }

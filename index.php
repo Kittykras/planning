@@ -3,6 +3,7 @@ include 'include/top.inc.php';
 ?>
 <link rel="stylesheet" href="styles/login.css">
 <script src="functions/login.js"></script>
+<!-- Form to login -->
 <div class="vertically-align" align="center">
     <form role="form" action="database/actions/checkLogin.php" method="post">
         <div class="form-group">
@@ -17,9 +18,9 @@ include 'include/top.inc.php';
         <button type="submit" class="btn btn-black">Log Ind</button>
     </form>
 </div>
-
 </body>
 </html>
+<!-- Errormessages -->
 <?php
 if (isset($_GET["error"])) {
     ?>

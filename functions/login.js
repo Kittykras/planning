@@ -1,4 +1,5 @@
-            $(function() {
+//Function for remembering user information
+$(function() {
  
                 if (localStorage.chkbx && localStorage.chkbx !== '') {
                     $('#remember_me').attr('checked', 'checked');

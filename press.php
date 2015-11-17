@@ -4,6 +4,7 @@ include 'include/top.inc.php';
 include 'include/menubar.inc.php';
 include 'database/taskHandler.php';
 ?>
+<!-- Header -->
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2 ">
@@ -11,6 +12,7 @@ include 'database/taskHandler.php';
             <h2 class="chead"><span class="header-img">Presse</span></h2>
         </div>
     </div>
+    <!-- Buttons for sorting the table values -->
     <div class="row" align="center">
         <div class="btn-group">
             <div class="btn-group dropdown">
@@ -45,6 +47,7 @@ include 'database/taskHandler.php';
     </div>
 </div>
 <br>
+<!-- Table containing all press tasks -->
 <div class="panel panel-default dcenter">
     <div id="no-more-tables" class="table-responsive">
         <table class="table table-condensed">
@@ -63,9 +66,9 @@ include 'database/taskHandler.php';
                     ?>
                     <tr>
                         <td><?php echo $task->t_fromweek ?>/<?php echo $task->t_toweek ?></td>
-                        <td><button class="btn btn-link btn-xs table-button link-style" onclick="taskRedirect('<?php echo $task->t_id ?>')"><span style="color: <?php echo $task->t_state ?>">●</span> <?php echo $task->t_title ?></td>
-                        <td><button class="btn btn-link btn-xs table-button link-style" onclick="cusRedirect('<?php echo $task->t_customer ?>')"><?php echo $task->t_customer ?></button></td>
-                        <td><button class="btn btn-link btn-xs table-button link-style" onclick="redirect('<?php echo $task->t_assigned ?>')"><?php echo $task->t_assigned ?></button></td>
+                        <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $task->t_id ?>')"><span style="color: <?php echo $task->t_state ?>">●</span> <?php echo $task->t_title ?></td>
+                        <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $task->t_customer ?>')"><?php echo $task->t_customer ?></button></td>
+                        <td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $task->t_assigned ?>')"><?php echo $task->t_assigned ?></button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                     </tr>
                     <?php

@@ -1,9 +1,11 @@
+//Function to set cookie with name, value and how many days it should last
 function SetCookie(c_name, value, expiredays) {
     var exdate = new Date();
     exdate.setDate(exdate.getDate() + expiredays);
     document.cookie = c_name + "=" + value +
             ((expiredays === null) ? "" : ";expires=" + exdate.toGMTString()+";path=/planning/");
 }
+//Function to set active menuitem
 function SetActive(aktiv) {
     SetCookie('medarbejder', '', '1');
     SetCookie('kunder', '', '1');
@@ -32,6 +34,7 @@ function SetActive(aktiv) {
             break;
     }
 }
+//Functions to redirect the user to the chosen page with the right values
 function redirect(user) {
     SetActive('medarbejder');
     SetCookie('UserName', user, '1');

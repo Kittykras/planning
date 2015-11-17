@@ -10,6 +10,7 @@ if (isset($_GET["editing"])) {
 ?>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<!-- JQuery to transforming date fields to calendar -->
 <script>
     $(function () {
         $("#from").datepicker({
@@ -35,6 +36,7 @@ if (isset($_GET["editing"])) {
 <script src="functions/number.js"></script>
 <link href="styles/number.css" rel="stylesheet">
 <link rel="stylesheet" href="styles/input-styles.css">
+<!-- Header -->
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
@@ -42,6 +44,7 @@ if (isset($_GET["editing"])) {
             <h2 class="chead" id="editH2"><span class="header-img">Opret Opgave</span></h2>
         </div>
         <br>
+        <!-- Button for submitting form -->
         <div class="col span_1_of_2" align="right">
             <button type="submit" form="form" class="btn btn-black" id="btnCreate">Gem</button>
             <button type="submit" form="form" class="btn btn-black hidden" id="btnAlter" formaction="database/actions/alterTaskNoPriv.php">Rediger Opgave</button>
@@ -56,6 +59,7 @@ if (isset($_GET["editing"])) {
         </div>
     </div>
 </div>
+<!-- Form for creating/altering task -->
 <div class="vertically-align" align="center">
     <form id="form" role="form" action="database/actions/createTask.php" method="post">
         <input type="hidden" id="cus" name="cus" value="<?php echo $_SESSION["Task"]->t_customer ?>"/>
@@ -141,7 +145,7 @@ if (isset($_GET["editing"])) {
         </div>
     </form>
 </div>
-
+<!-- Popup for deleting this task -->
 <div id="deleteModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -158,7 +162,7 @@ if (isset($_GET["editing"])) {
         </div>
     </div>
 </div>
-
+<!-- Popup for deleting selected comment -->
 <div id="commentModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -176,7 +180,7 @@ if (isset($_GET["editing"])) {
         </div>
     </div>
 </div>
-
+<!-- Hidden values to fill out form -->
 <input type="hidden" id="htitle" name="htitle" value="<?php echo $_SESSION["Task"]->t_title ?>"/>
 <input type="hidden" id="hdescr" name="hdescr" value="<?php echo $_SESSION["Task"]->t_description ?>"/>
 <input type="hidden" id="hstat" name="hstat" value="<?php echo $_SESSION["Task"]->t_state ?>"/>
@@ -188,8 +192,7 @@ if (isset($_GET["editing"])) {
 <input type="hidden" id="hinv" name="hinv" value="<?php echo $_SESSION["Task"]->t_invoicing ?>"/>
 <input type="hidden" id="hexp" name="hexp" value="<?php echo $_SESSION["Task"]->t_expenses ?>"/>
 <input type="hidden" id="hpress" name="hpress" value="<?php echo $_SESSION["Task"]->t_press ?>"/>
-
-
+<!-- ErrorMessages -->
 <?php
 if (isset($_GET["error"])) {
     if (isset($_GET["editing"])) {
@@ -207,8 +210,9 @@ if (isset($_GET["error"])) {
     }
 }
 ?>
-
+<!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
+//    Function for deleting comment
     function deleteComment() {
         var id = document.getElementById('oldComment').value;
         xmlhttp = new XMLHttpRequest();
@@ -221,13 +225,16 @@ if (isset($_GET["error"])) {
         xmlhttp.send();
         $('#commentModal').modal('hide');
     }
+//    Function to open popup with selected comment
     function openModal(value) {
         var comment = value.split("¤");
         document.getElementById("oldComment").value = comment[0];
         document.getElementById("comment").value = comment[1];
         $('#commentModal').modal('show');
     }
+//    See number.css
     $("input[type=number").number();
+//    Function to get url variables
     var $_GET = {};
     document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
         function decode(s) {
@@ -235,6 +242,7 @@ if (isset($_GET["error"])) {
         }
         $_GET[decode(arguments[1])] = decode(arguments[2]);
     });
+//    Function for filling out form when altering task
     $(document).ready(function () {
         if ($_GET["editing"] === "edit") {
             if (<?php print_r($_SESSION["user"]->a_privileges) ?> === 3) {

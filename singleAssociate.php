@@ -3,17 +3,21 @@ include 'include/sessionCheck.php';
 include 'include/top.inc.php';
 include 'include/menubar.inc.php';
 ?>
+<!-- Header -->
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
-            <h4 class="chead"><span class="header-img"><?php getUserFromCookie();
-print_r($_SESSION["UserName"]->a_name);
-?></span></h4>
-            <h2 class="chead"><span class="header-img"><?php getUserFromCookie();
+            <h4 class="chead"><span class="header-img"><?php
+                    getUserFromCookie();
                     print_r($_SESSION["UserName"]->a_name);
-?></span></h2>
+                    ?></span></h4>
+            <h2 class="chead"><span class="header-img"><?php
+                    getUserFromCookie();
+                    print_r($_SESSION["UserName"]->a_name);
+                    ?></span></h2>
         </div>
         <br>
+        <!-- Buttons for the option to alter/delete this associate -->
         <div class="col span_1_of_2 hidden" align="right" id="edit">
             <div class="btn-group dropdown">
                 <button type="button" class="btn btn-black dropdown-toggle" data-toggle="dropdown">
@@ -25,6 +29,7 @@ print_r($_SESSION["UserName"]->a_name);
             </div>
         </div>
     </div>
+    <!-- Buttons for sorting table values -->
     <div class="row" align="center">
         <div class="btn-group">
             <div class="btn-group dropdown">
@@ -59,6 +64,7 @@ print_r($_SESSION["UserName"]->a_name);
     </div>
 </div>
 <br>
+<!-- Table containing tasks assigned to this associate -->
 <div class="panel panel-default dcenter">
     <div id="no-more-tables" class="table-responsive">
         <table class="table table-condensed">
@@ -77,8 +83,8 @@ print_r($_SESSION["UserName"]->a_name);
                     ?>
                     <tr>
                         <td><?php echo $atask->t_fromweek ?>/<?php echo $atask->t_toweek ?></td>
-                        <td><button class="btn btn-link btn-xs table-button link-style" onclick="taskRedirect('<?php echo $atask->t_id ?>')"><span style="color: <?php echo $atask->t_state ?>">●</span> <?php echo $atask->t_title ?></td>
-                        <td><button class="btn btn-link btn-xs table-button link-style" onclick="cusRedirect('<?php echo $atask->t_customer ?>')"><?php echo $atask->t_customer ?></button></td>
+                        <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $atask->t_id ?>')"><span style="color: <?php echo $atask->t_state ?>">●</span> <?php echo $atask->t_title ?></td>
+                        <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $atask->t_customer ?>')"><?php echo $atask->t_customer ?></button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                         <td><?php echo $atask->tc_datee ?></td>
                     </tr>
@@ -89,6 +95,7 @@ print_r($_SESSION["UserName"]->a_name);
         </table>
     </div>
 </div>
+<!-- Popup for deleting associate -->
 <div id="deleteModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -105,6 +112,7 @@ print_r($_SESSION["UserName"]->a_name);
         </div>
     </div>
 </div>
+<!-- Errormessages -->
 <?php
 if (isset($_GET["error"])) {
     ?>
@@ -114,7 +122,9 @@ if (isset($_GET["error"])) {
     <?php
 }
 ?>
+<!-- Javascript functions -->
 <script>
+//    Function to determine whether the logged in user has the needed privileges to view the whole page
     $(document).ready(function () {
         if (<?php print_r($_SESSION["user"]->a_privileges) ?> === 1) {
             $("div#edit").removeClass("hidden");

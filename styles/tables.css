@@ -1,5 +1,15 @@
+/* Styling the table headers */
+.thead-style{
+    background-color: #D26232;
+}
+/* Styling link like buttons in table rows */
 .table-button{
-    white-space: normal; text-align: left;
+    white-space: normal; 
+    text-align: left;
+    color:black;
+}
+.table-button:active, .table-button:hover, .table-button:focus, .table-button[disabled]{
+    color: #D26232;
 }
 @media only screen and (max-width: 300px) {
 

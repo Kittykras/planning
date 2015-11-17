@@ -4,6 +4,7 @@ include 'include/top.inc.php';
 include 'include/menubar.inc.php';
 $links = getLinksFromCustomer();
 ?>
+<!-- Header -->
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
@@ -17,9 +18,11 @@ $links = getLinksFromCustomer();
                     ?></span></h2>
         </div>
         <br>
+        <!-- Button for the option to create task -->
         <div class="col span_1_of_2" align="right">
             <button type="button" class="btn btn-black" onclick="location.href = 'taskForm.php'">Ny Opgave</button>
         </div>
+        <!-- Buttons for the option to alter/delete this customer -->
         <div class="col span_1_of_2 hidden" align="right" id="edit">
             <div class="btn-group dropdown">
                 <button type="button" class="btn btn-black dropdown-toggle" data-toggle="dropdown">
@@ -31,6 +34,7 @@ $links = getLinksFromCustomer();
             </div>
         </div>
     </div>
+    <!-- Buttons for sorting the table values -->
     <div class="row" align="center">
         <div class="btn-group">
             <div class="btn-group dropdown">
@@ -65,6 +69,7 @@ $links = getLinksFromCustomer();
     </div>
 </div>
 <br>
+<!-- Table containing tasks on this customer -->
 <div class="panel panel-default dcenter">
     <div id="no-more-tables" class="table-responsive">
         <table class="table table-condensed ">
@@ -83,8 +88,8 @@ $links = getLinksFromCustomer();
                     ?>
                     <tr>
                         <td><?php echo $ctask->t_fromweek ?>/<?php echo $ctask->t_toweek ?></td>
-                        <td><button class="btn btn-link btn-xs table-button link-style" onclick="taskRedirect('<?php echo $ctask->t_id ?>')"><span style="color: <?php echo $ctask->t_state ?>">●</span> <?php echo $ctask->t_title ?></td>
-                        <td><button class="btn btn-link btn-xs table-button link-style" onclick="redirect('<?php echo $ctask->t_assigned ?>')"><?php echo $ctask->t_assigned ?></button></td>
+                        <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $ctask->t_id ?>')"><span style="color: <?php echo $ctask->t_state ?>">●</span> <?php echo $ctask->t_title ?></td>
+                        <td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $ctask->t_assigned ?>')"><?php echo $ctask->t_assigned ?></button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                         <td><?php echo $ctask->tc_datee ?></td>
                     </tr>
@@ -96,6 +101,7 @@ $links = getLinksFromCustomer();
     </div>
 </div>
 <br>
+<!-- Information on this customer -->
 <div class="dcenter">
     <div id="cssmenu" align="center" style="color: white; text-transform: uppercase">
         <br>
@@ -105,11 +111,11 @@ $links = getLinksFromCustomer();
             if (count($links) === 1) {
                 ?><li class="form-inline">Presse Links: <select class="form-control input-sm input-style" onclick="openLinkModal(this.value)"><?php } else {
                 ?><li class="form-inline">Presse Links: <select class="form-control input-sm input-style" onchange="openLinkModal(this.value)"><?php } foreach ($links as $link) { ?> <option value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"><?php echo $link->d_url ?></option>
-    <?php } ?></select></li><?php } ?>
+                            <?php } ?></select></li><?php } ?>
                 <br>
                 </div>
                 </div>
-
+                <!-- Popup for the deleting this customer -->
                 <div id="deleteModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -126,6 +132,7 @@ $links = getLinksFromCustomer();
                         </div>
                     </div>
                 </div>
+                <!-- Popup to view username and password on the selected link -->
                 <div id="linkModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -144,7 +151,7 @@ $links = getLinksFromCustomer();
                         </div>
                     </div>
                 </div>
-
+                <!-- Errormessages -->
                 <?php
                 if (isset($_GET["error"])) {
                     ?>
@@ -154,7 +161,9 @@ $links = getLinksFromCustomer();
                     <?php
                 }
                 ?>
+                <!-- Javascript functions -->
                 <script>
+//                    Function to open popup with the selected link
                     function openLinkModal(value) {
                         var link = value.split("¤");
                         document.getElementById("oldLink").value = link[1];
@@ -163,6 +172,7 @@ $links = getLinksFromCustomer();
                         document.getElementById("pwdEdit").value = link[3];
                         $('#linkModal').modal('show');
                     }
+//                    Function to determine whether the logged in user has the needed privileges to view the whole page
                     $(document).ready(function () {
                         if (<?php print_r($_SESSION["user"]->a_privileges) ?> === 1) {
                             $("div#edit").removeClass("hidden");

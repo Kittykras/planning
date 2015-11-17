@@ -14,13 +14,14 @@ $links = getLinksFromCustomerEdit();
             <h2 class="chead" id="editH2"><span class="header-img">Opret Kunde</span></h2>
         </div>
         <br>
+        <!-- Button for submitting form -->
         <div class="col span_1_of_2" align="right">
             <button type="submit" form="form" class="btn btn-black" id="btnCreate" onclick="selectAll()">Gem</button>
             <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterCustomer.php" onclick="selectAll()" id="btnAlter">Gem</button>
         </div>
     </div>
 </div>
-<!-- Form for creating/altering customer -->
+<!-- Form for creating/altering selected customer -->
 <div class="vertically-align" align="center">
     <form id="form" role="form" action="database/actions/createCustomer.php" method="post">
         <div class="form-group">
@@ -112,7 +113,7 @@ $links = getLinksFromCustomerEdit();
         </div>
     </div>
 </div>
-<!-- Popup for altering link -->
+<!-- Popup for altering/deleting selected link -->
 <div id="linkModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -163,12 +164,14 @@ if (isset($_GET["error"])) {
 <script language="javascript" type="text/javascript">
     var urls = [];
     addArrayToUrls(<?php echo json_encode($links) ?>);
+//    Function to add links from database to array
     function addArrayToUrls(array) {
         for (i = 0; i < array.length; i++) {
             var dest = {d_id: array[i].d_id, d_url: array[i].d_url, d_username: array[i].d_username, d_password: array[i].d_password};
             urls.push(dest);
         }
     }
+//    Function to select all links from selectbox
     function selectAll() {
         selectBox = document.getElementById("urls");
 
@@ -177,6 +180,7 @@ if (isset($_GET["error"])) {
             selectBox.options[i].selected = true;
         }
     }
+//    Function to delete link and refill selectbox
     function deleteLink() {
         var oldlink = document.getElementById('oldLink').value;
         var splitarray = oldlink.split('¤');
@@ -197,6 +201,7 @@ if (isset($_GET["error"])) {
         xmlhttp.send();
         $('#linkModal').modal('hide');
     }
+//    Function to alter link and refill selectbox
     function editLink() {
         var oldlink = document.getElementById('oldLink').value;
         var splitarray = oldlink.split('¤');
@@ -221,6 +226,7 @@ if (isset($_GET["error"])) {
         xmlhttp.send();
         $('#linkModal').modal('hide');
     }
+//    Function to open popup with the selected link
     function openLinkModal(value) {
         var link = value.split("¤");
         document.getElementById("oldLink").value = link[0]+'¤'+link[1];
@@ -229,6 +235,7 @@ if (isset($_GET["error"])) {
         document.getElementById("pwdEdit").value = link[3];
         $('#linkModal').modal('show');
     }
+//    Function to add link to selectbox
     function addLink() {
         var url = document.getElementById('url').value;
         var user = document.getElementById('user').value;
@@ -245,6 +252,7 @@ if (isset($_GET["error"])) {
         xmlhttp.open("GET", "database/actions/addLink.php?q=" + json, true);
         xmlhttp.send();
     }
+//    Function to add new branch to selectbox
     function updateBranch() {
         var val = document.getElementById('branch').value;
         xmlhttp = new XMLHttpRequest();
@@ -257,11 +265,13 @@ if (isset($_GET["error"])) {
         xmlhttp.send();
         $('#branchModal').modal('hide');
     }
+//    Function to open popup to add branch
     function openModal(value) {
         if (value === 'newBranch') {
             $('#branchModal').modal('show');
         }
     }
+//    Function to get url variables
     var $_GET = {};
 
     document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
@@ -271,6 +281,7 @@ if (isset($_GET["error"])) {
 
         $_GET[decode(arguments[1])] = decode(arguments[2]);
     });
+//    Function for filling out form when altering customer
     $(document).ready(function () {
         if ($_GET["editing"] === "edit") {
             var name = $('#cName').val();
