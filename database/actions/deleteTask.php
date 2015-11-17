@@ -15,6 +15,8 @@ try{
         SetCookie('timeoversigt', '', time() + (86400), "/planning/");
         SetCookie('presse', '', time() + (86400), "/planning/");
         setcookie('login', '', time() + (86400), "/planning/");
+        setcookie('orderby', 't_fromweek', time() + (86400), "/planning/");
+        setcookie('state', '0', time() + (86400), "/planning/");
         header("location:../../singleCustomer.php");
     } else {
         header("location:../../taskForm.php?editing=edit&error");

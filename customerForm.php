@@ -14,8 +14,8 @@ $links = getLinksFromCustomerEdit();
         </div>
         <br>
         <div class="col span_1_of_2" align="right">
-            <button type="submit" form="form" class="btn btn-black" id="btnCreate">Gem</button>
-            <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterCustomer.php" id="btnAlter">Gem</button>
+            <button type="submit" form="form" class="btn btn-black" id="btnCreate" onclick="selectAll()">Gem</button>
+            <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterCustomer.php" onclick="selectAll()" id="btnAlter">Gem</button>
         </div>
     </div>
 </div>
@@ -81,7 +81,7 @@ $links = getLinksFromCustomerEdit();
                         <select multiple name="urls[ ]" id="urls" class="form-control input-style" onchange="openLinkModal(this.value)">
                         <?php } foreach ($links as $link) {
                             ?>
-                            <option selected="selected" value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
+                            <option value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
                             <?php
                         }
                         ?>
@@ -164,6 +164,14 @@ if (isset($_GET["error"])) {
             var dest = {d_id: array[i].d_id, d_url: array[i].d_url, d_username: array[i].d_username, d_password: array[i].d_password};
             urls.push(dest);
         }
+    }
+    function selectAll(){
+        selectBox = document.getElementById("urls");
+
+        for (var i = 0; i < selectBox.options.length; i++) 
+        { 
+             selectBox.options[i].selected = true; 
+        } 
     }
     function deleteLink() {
         var oldLink = document.getElementById('oldLink').value;

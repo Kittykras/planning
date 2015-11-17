@@ -51,6 +51,8 @@ try {
         SetCookie('timeoversigt', '', time() + (86400), "/planning/");
         SetCookie('presse', '', time() + (86400), "/planning/");
         setcookie('login', '', time() + (86400), "/planning/");
+        setcookie('orderby', 'c_name', time() + (86400), "/planning/");
+        setcookie('state', '0', time() + (86400), "/planning/");
         header("location:../../customers.php");
     } else {
         header("location:../../customerForm.php?error");

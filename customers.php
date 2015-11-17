@@ -42,7 +42,7 @@ include 'include/menubar.inc.php';
                     ?>
                     <tr><td><button class="btn btn-link btn-xs table-button link-style" onclick="cusRedirect('<?php echo $customer->c_acronym ?>')"><?php echo $customer->c_name; ?></button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
-                        <td><button class="btn btn-link btn-xs table-button link-style" onclick="openBranchModal(<?php echo $customer->c_branch; ?>)"><?php echo $customer->c_branch; ?></button></td>
+                        <td><button class="btn btn-link btn-xs table-button link-style" onclick="openBranchModal('<?php echo $customer->c_branch ?>')"><?php echo $customer->c_branch ?></button></td>
                     </tr>
                     <?php
                 }
@@ -61,7 +61,7 @@ include 'include/menubar.inc.php';
             <form role="form" action="database/actions/alterBranch.php" method="post">
                 <div class="modal-body vertically-align"/>
                     <input type="hidden" id="oldBranch" name="oldBranch">
-                    <input class="form-control input-style" type="text" name="" id="branch" placeholder="Branche">
+                    <input class="form-control input-style" type="text" name="branch" id="branch" placeholder="Branche">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-black">Gem</button>
@@ -74,7 +74,7 @@ include 'include/menubar.inc.php';
 if (isset($_GET["error"])) {
     ?>
     <div class="vertically-align" align="center">
-        <span class="text-danger">Branche blev ikke redigeret. </span>
+        <span class="text-danger">Branche blev ikke redigeret. Prøv venligst igen.</span>
     </div>
     <?php
 }
