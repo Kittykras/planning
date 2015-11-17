@@ -202,7 +202,7 @@ body{
     border-color: #D26232;
 }
 
-/*  SECTIONS  
+/*  SECTIONS  */
 .section {
     clear: both;
     padding: 0px;
@@ -381,7 +381,7 @@ h4.chead{
         margin-top: 25px;
     }
 }
-/* styling for buttons */
+/* Styling for buttons */
 .btn-black{
     background: black;
     color: white;
@@ -404,7 +404,7 @@ h4.chead{
     max-width: 940px;
     margin: 0 auto;
 }
-/* background image behind headlines and button in headers */
+/* Background image behind headlines and button in headers */
 .hpic{
     background-image: url('../images/about-sm.jpg');
     min-height: 75px;
