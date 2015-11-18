@@ -1,4 +1,7 @@
 <?php
+function isMobile() {
+    return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+}
 include_once '../DBConnection.php';
 $urls = json_decode($_REQUEST['q']);
 $oldlink = $_REQUEST['oldlink'];
@@ -22,11 +25,18 @@ if (!empty($urls)) {
                     <button type="button" class="btn btn-black" onclick="addLink()">Tilføj link</button>
                 </div>
             </div>';
-    if (count($urls) === 1) {
-        echo '<select multiple name="urls[ ]" id="urls" class="form-control input-style" onclick="openLinkModal(this.value)">';
+    if (!isMobile()) {
+        if (count($urls) === 1) {
+            echo '<select name="viewlinks" id="viewlinks" class="form-control input-style" onclick="openLinkModal(this.value)">';
+        }
     } else {
-        echo '<select multiple name="urls[ ]" id="urls" class="form-control input-style" onchange="openLinkModal(this.value)">';
+        echo '<select name="viewlinks" id="viewlinks" class="form-control input-style" onchange="openLinkModal(this.value)">';
     }
+    foreach ($urls as $url) {
+        echo '<option value="' . $url->d_id . '¤' . $url->d_url . '¤' . $url->d_username . '¤' . $url->d_password . '">' . $url->d_url . '</option>';
+    }
+    echo '</select>';
+    echo '<select class="hidden" multiple name="urls[ ]" id="urls">';
     foreach ($urls as $url) {
         echo '<option value="' . $url->d_id . '¤' . $url->d_url . '¤' . $url->d_username . '¤' . $url->d_password . '">' . $url->d_url . '</option>';
     }

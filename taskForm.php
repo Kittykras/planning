@@ -9,8 +9,8 @@ if (isset($_GET["editing"])) {
 }
 ?>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <!-- JQuery to transforming date fields to calendar -->
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
     $(function () {
         $("#from").datepicker({
@@ -109,17 +109,23 @@ if (isset($_GET["editing"])) {
             </div>
         </div>
         <div id="commentDiv" class="form-group">
-            <?php if (!empty($comments)) {
-                if (count($comments) === 1) {
-                    ?>
-                    <select multiple name="comments[ ]" id="comments" class="form-control input-style" onclick="openModal(this.value)">
-                        <?php } else { ?>
-                        <select multiple name="comments[ ]" id="comments" class="form-control input-style" onchange="openModal(this.value)">
-                        <?php } foreach ($comments as $comment) {
-                            ?>
-                            <option  value="<?php echo $comment->tc_id . '¤' . $comment->tc_comment ?>"><?php echo $comment->tc_associate;
-                            ?>, <?php echo $comment->tc_date; ?> - &#10;<?php echo $comment->tc_comment; ?></option>
+            <?php
+            $i = 0;
+            if (!empty($comments)) {
+                if (!isMobile()) {
+                    if (count($comments) === 1) {
+                        ?>
+                        <select name="comments[ ]" id="comments" class="form-control input-style" onclick="openModal(this.value)">
                             <?php
+                        }
+                    } else {
+                        ?>
+                        <select name="comments[ ]" id="comments" class="form-control input-style" onchange="openModal(this.value)">
+                        <?php } ?>
+                        <?php foreach ($comments as $comment) { ?>
+                                <option value="<?php echo $comment->tc_id . '¤' . $comment->tc_comment ?>"><?php echo $comment->tc_associate;
+                                    ?>, <?php echo $comment->tc_date; ?> - &#10;<?php echo $comment->tc_comment; ?></option>
+                                <?php
                         }
                         ?>
                     </select>

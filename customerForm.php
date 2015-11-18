@@ -77,13 +77,31 @@ $links = getLinksFromCustomerEdit();
                     <button type="button" class="btn btn-black" onclick="addLink()">Tilføj link</button>
                 </div>
             </div>
-            <?php if (!empty($links)) {
-                if (count($links) === 1) {
-                    ?>
-                    <select multiple name="urls[ ]" id="urls" class="form-control input-style" onclick="openLinkModal(this.value)">
-                        <?php } else { ?>
-                        <select multiple name="urls[ ]" id="urls" class="form-control input-style" onchange="openLinkModal(this.value)">
-                        <?php } foreach ($links as $link) {
+            <?php
+            if (!empty($links)) {
+                if (!isMobile()) {
+                    if (count($links) === 1) {
+                        ?>
+                        <select name="viewlinks" id="viewlinks" class="form-control input-style" onclick="openLinkModal(this.value)">
+                            <?php
+                        }
+                    } else {
+                        ?>
+                        <select name="viewlinks" id="viewlinks" class="form-control input-style" onchange="openLinkModal(this.value)">
+                        <?php } ?>
+                        <?php foreach ($links as $link) {
+                            ?>
+                            <option value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                    <?php
+                }
+                ?>
+                <?php if (!empty($links)) { ?>
+                            <select class="hidden" multiple name="urls[ ]" id="urls">
+                        <?php foreach ($links as $link) {
                             ?>
                             <option value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
                             <?php
@@ -164,14 +182,14 @@ if (isset($_GET["error"])) {
 <script language="javascript" type="text/javascript">
     var urls = [];
     addArrayToUrls(<?php echo json_encode($links) ?>);
-//    Function to add links from database to array
+    //    Function to add links from database to array
     function addArrayToUrls(array) {
         for (i = 0; i < array.length; i++) {
             var dest = {d_id: array[i].d_id, d_url: array[i].d_url, d_username: array[i].d_username, d_password: array[i].d_password};
             urls.push(dest);
         }
     }
-//    Function to select all links from selectbox
+    //    Function to select all links from selectbox
     function selectAll() {
         selectBox = document.getElementById("urls");
 
@@ -180,7 +198,7 @@ if (isset($_GET["error"])) {
             selectBox.options[i].selected = true;
         }
     }
-//    Function to delete link and refill selectbox
+    //    Function to delete link and refill selectbox
     function deleteLink() {
         var oldlink = document.getElementById('oldLink').value;
         var splitarray = oldlink.split('¤');
@@ -197,11 +215,11 @@ if (isset($_GET["error"])) {
                 document.getElementById("dest").innerHTML = xmlhttp.responseText;
             }
         };
-        xmlhttp.open("GET", "database/actions/deleteLink.php?q=" + json +"&oldlink="+oldId, true);
+        xmlhttp.open("GET", "database/actions/deleteLink.php?q=" + json + "&oldlink=" + oldId, true);
         xmlhttp.send();
         $('#linkModal').modal('hide');
     }
-//    Function to alter link and refill selectbox
+    //    Function to alter link and refill selectbox
     function editLink() {
         var oldlink = document.getElementById('oldLink').value;
         var splitarray = oldlink.split('¤');
@@ -226,16 +244,16 @@ if (isset($_GET["error"])) {
         xmlhttp.send();
         $('#linkModal').modal('hide');
     }
-//    Function to open popup with the selected link
+    //    Function to open popup with the selected link
     function openLinkModal(value) {
         var link = value.split("¤");
-        document.getElementById("oldLink").value = link[0]+'¤'+link[1];
+        document.getElementById("oldLink").value = link[0] + '¤' + link[1];
         document.getElementById("urlEdit").value = link[1];
         document.getElementById("userEdit").value = link[2];
         document.getElementById("pwdEdit").value = link[3];
         $('#linkModal').modal('show');
     }
-//    Function to add link to selectbox
+    //    Function to add link to selectbox
     function addLink() {
         var url = document.getElementById('url').value;
         var user = document.getElementById('user').value;
@@ -252,7 +270,7 @@ if (isset($_GET["error"])) {
         xmlhttp.open("GET", "database/actions/addLink.php?q=" + json, true);
         xmlhttp.send();
     }
-//    Function to add new branch to selectbox
+    //    Function to add new branch to selectbox
     function updateBranch() {
         var val = document.getElementById('branch').value;
         xmlhttp = new XMLHttpRequest();
@@ -265,13 +283,13 @@ if (isset($_GET["error"])) {
         xmlhttp.send();
         $('#branchModal').modal('hide');
     }
-//    Function to open popup to add branch
+    //    Function to open popup to add branch
     function openModal(value) {
         if (value === 'newBranch') {
             $('#branchModal').modal('show');
         }
     }
-//    Function to get url variables
+    //    Function to get url variables
     var $_GET = {};
 
     document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
@@ -281,7 +299,7 @@ if (isset($_GET["error"])) {
 
         $_GET[decode(arguments[1])] = decode(arguments[2]);
     });
-//    Function for filling out form when altering customer
+    //    Function for filling out form when altering customer
     $(document).ready(function () {
         if ($_GET["editing"] === "edit") {
             var name = $('#cName').val();
