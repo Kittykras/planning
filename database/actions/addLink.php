@@ -1,9 +1,4 @@
 <?php
-
-function isMobile() {
-    return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
-}
-
 $urls = json_decode($_REQUEST['q']);
 if (!empty($urls)) {
     echo '<div class="form-group">
@@ -20,10 +15,8 @@ if (!empty($urls)) {
                     <button type="button" class="btn btn-black" onclick="addLink()">Tilføj link</button>
                 </div>
             </div>';
-    if (!isMobile()) {
         if (count($urls) === 1) {
             echo '<select name="viewlinks" id="viewlinks" class="form-control input-style" onclick="openLinkModal(this.value)">';
-        }
     } else {
         echo '<select name="viewlinks" id="viewlinks" class="form-control input-style" onchange="openLinkModal(this.value)">';
     }

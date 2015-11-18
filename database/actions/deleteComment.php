@@ -1,9 +1,4 @@
 <?php
-
-function isMobile() {
-    return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
-}
-
 include_once '../DBConnection.php';
 try {
     $comment = $_GET['q'];
@@ -20,10 +15,8 @@ try {
         $stmt->setFetchMode(PDO::FETCH_OBJ);
         $stmt->execute(array(':task' => $task));
         $comments = $stmt->fetchAll();
-        if (!isMobile()) {
             if (count($comments) === 1) {
                 echo '<select name="comments[ ]" id="comments" class="form-control input-style" onclick="openModal(this.value)">';
-            }
         } else {
             echo '<select name="comments[ ]" id="comments" class="form-control input-style" data-native-menu="false" onchange="openModal(this.value)">';
         }

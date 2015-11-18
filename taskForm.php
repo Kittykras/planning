@@ -112,12 +112,10 @@ if (isset($_GET["editing"])) {
             <?php
             $i = 0;
             if (!empty($comments)) {
-                if (!isMobile()) {
                     if (count($comments) === 1) {
                         ?>
                         <select name="comments[ ]" id="comments" class="form-control input-style" onclick="openModal(this.value)">
                             <?php
-                        }
                     } else {
                         ?>
                         <select name="comments[ ]" id="comments" class="form-control input-style" onchange="openModal(this.value)">

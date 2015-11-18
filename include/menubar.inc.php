@@ -1,9 +1,6 @@
 <?php
 include 'database/userHandler.php';
 include 'database/customerHandler.php';
-function isMobile() {
-    return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
-}
 if (session_status() == PHP_SESSION_NONE) {
     $session_expiration = time() + 3600 * 24; // +1 days
     session_set_cookie_params($session_expiration);

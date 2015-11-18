@@ -79,12 +79,10 @@ $links = getLinksFromCustomerEdit();
             </div>
             <?php
             if (!empty($links)) {
-                if (!isMobile()) {
                     if (count($links) === 1) {
                         ?>
                         <select name="viewlinks" id="viewlinks" class="form-control input-style" onclick="openLinkModal(this.value)">
                             <?php
-                        }
                     } else {
                         ?>
                         <select name="viewlinks" id="viewlinks" class="form-control input-style" onchange="openLinkModal(this.value)">
