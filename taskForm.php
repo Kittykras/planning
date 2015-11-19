@@ -247,8 +247,6 @@ if (isset($_GET["error"])) {
             var min = $('#hmin').val();
             var from = $('#hfrom').val();
             var to = $('#hto').val();
-            var inv = $('#hinv').val();
-            var exp = $('#hexp').val();
             var press = $('#hpress').val();
             var prelease = $('#hprelease').val();
             document.getElementById("editH4").innerHTML = "<span class='header-img'>Rediger Opgave</span>";
