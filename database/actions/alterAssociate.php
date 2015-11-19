@@ -24,7 +24,7 @@ try{
         setcookie('state', '0', time() + (86400), "/planning/");
         header("location:../../singleAssociate.php");
     } else {
-        header("location:../../associateForm.php?editing=edit&error");
+        header("location:../../associateForm.php?edit&error");
     }
 } catch (PDOException $e) {
     echo $e->getMessage();

@@ -162,7 +162,7 @@ $links = getLinksFromCustomerEdit();
 <!-- Errormessages -->
 <?php
 if (isset($_GET["error"])) {
-    if (isset($_GET["editing"])) {
+    if (isset($_GET["edit"])) {
         ?>
         <div class="vertically-align" align="center">
             <span class="text-danger">Der er sket en fejl i redigeringen af kunde. Tjek at alle felter er udfyldt, eller, hvis du er ved at ændre forkortelse, om det nye forkortelse er på max 5 bogstaver, eller evt. allerede eksisterer.</span>
@@ -288,19 +288,10 @@ if (isset($_GET["error"])) {
             $('#branchModal').modal('show');
         }
     }
-    //    Function to get url variables
-    var $_GET = {};
-
-    document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
-        function decode(s) {
-            return decodeURIComponent(s.split("+").join(" "));
-        }
-
-        $_GET[decode(arguments[1])] = decode(arguments[2]);
-    });
     //    Function for filling out form when altering customer
-    $(document).ready(function () {
-        if ($_GET["editing"] === "edit") {
+    $(window).load(function () {
+        var editing = window.location.search;
+        if (editing === "?edit") {
             var name = $('#cName').val();
             var acro = $('#cAcro').val();
             var cont = $('#cCont').val();

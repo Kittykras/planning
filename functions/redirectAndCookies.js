@@ -48,7 +48,7 @@ function cusRedirect(cust) {
 function taskRedirect(task) {
     SetActive('kunder');
     SetCookie('Task', task, '1');
-    window.location = "taskForm.php?editing=edit";
+    window.location = "taskForm.php?edit";
 }
 
 

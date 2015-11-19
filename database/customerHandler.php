@@ -21,7 +21,7 @@ $menucustomers = $stmt->fetchAll();
 ////print_r($users);
 
 function getLinksFromCustomerEdit() {
-    if (isset($_GET["editing"])) {
+    if (isset($_GET["edit"])) {
         $db = new DBConnection();
         $acro = $_COOKIE["Kunde"];
         $q = "call getcusdesti(:acro)";

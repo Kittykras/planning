@@ -3,7 +3,7 @@ include 'include/sessionCheck.php';
 include 'include/top.inc.php';
 include 'include/menubar.inc.php';
 include 'database/taskHandler.php';
-if (isset($_GET["editing"])) {
+if (isset($_GET["edit"])) {
     getTaskFromCookie();
     $comments = getComments();
 }
@@ -137,7 +137,7 @@ if (isset($_GET["editing"])) {
         <div class="form-group group">
             <div class="col span_1_of_2" align="left">
                 <div class="checkbox">
-                    <label><input type="checkbox" name="press" id="press" value="true">Presse</label>
+                    <label><input type="checkbox" name="press" id="press" value="true" onchange="showDate()">Presse</label>
                 </div>
             </div>
             <div class="col span_1_of_2">
@@ -152,7 +152,7 @@ if (isset($_GET["editing"])) {
         <button class="btn btn-black dropdown-toggle" type="submit" data-toggle="dropdown">Rediger Opgave <span class="caret"></span></button>
         <ul class="dropdown-menu dropdown-black" role="menu">
             <li><a onclick="document.forms[0].action = 'database/actions/alterTask.php';
-                        document.forms[0].submit()">Gem</a></li>
+                    document.forms[0].submit()">Gem</a></li>
             <li><a data-toggle="modal" data-target="#deleteModal">Slet</a></li>
         </ul>
     </div>
@@ -207,7 +207,7 @@ if (isset($_GET["editing"])) {
 <!-- ErrorMessages -->
 <?php
 if (isset($_GET["error"])) {
-    if (isset($_GET["editing"])) {
+    if (isset($_GET["edit"])) {
         ?>
         <div class="vertically-align" align="center">
             <span class="text-danger">Der er sket en fejl i redigeringen af opgave. Tjek at alle felter er udfyldt.</span>
@@ -224,42 +224,10 @@ if (isset($_GET["error"])) {
 ?>
 <!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
-    //    Function for deleting comment
-    function deleteComment() {
-        var id = document.getElementById('oldComment').value;
-        xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                document.getElementById("commentDiv").innerHTML = xmlhttp.responseText;
-            }
-        };
-        xmlhttp.open("GET", "database/actions/deleteComment.php?q=" + id, true);
-        xmlhttp.send();
-        $('#commentModal').modal('hide');
-    }
-    //    Function to open popup with selected comment
-    function openModal(value) {
-        var comment = value.split("¤");
-        document.getElementById("oldComment").value = comment[0];
-        document.getElementById("comment").value = comment[1];
-        $('#commentModal').modal('show');
-    }
-    //    See number.js
-    $("input[type=number").number();
-    //    Function to get url variables
-    var $_GET = {};
-    document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
-        function decode(s) {
-            return decodeURIComponent(s.split("+").join(" "));
-        }
-        $_GET[decode(arguments[1])] = decode(arguments[2]);
-    });
-    $("#press").change(function () {
-        $("#pressdate").toggleClass("hidden");
-    });
     //    Function for filling out form when altering task
-    $(document).ready(function () {
-        if ($_GET["editing"] === "edit") {
+    $(window).load(function () {
+        var editing = window.location.search;
+        if (editing === "?edit") {
             if (<?php print_r($_SESSION["user"]->a_privileges) ?> === 3) {
                 $('#title').attr('disabled', true);
                 $('#descr').attr('disabled', true);
@@ -303,6 +271,33 @@ if (isset($_GET["error"])) {
             }
         }
     });
+    //    Function for deleting comment
+    function deleteComment() {
+        var id = document.getElementById('oldComment').value;
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                document.getElementById("commentDiv").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "database/actions/deleteComment.php?q=" + id, true);
+        xmlhttp.send();
+        $('#commentModal').modal('hide');
+    }
+    //    Function to open popup with selected comment
+    function openModal(value) {
+        var comment = value.split("¤");
+        document.getElementById("oldComment").value = comment[0];
+        document.getElementById("comment").value = comment[1];
+        $('#commentModal').modal('show');
+    }
+    //    See number.js
+    $("input[type=number").number();
+    //    Function for showing release date, when press is checked
+    function showDate(){
+        $("#pressdate").toggleClass("hidden");
+    };
+    
 </script>
 </body>
 </html>

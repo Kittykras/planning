@@ -35,10 +35,8 @@ include 'include/menubar.inc.php';
         </div>
     </form>
     <!-- Button for submitting form -->
-    <div class="form-group">
-        <button type="submit" form="form" class="btn btn-black" id="btnCreate">Gem</button>
-        <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterAssociate.php" id="btnAlter">Gem</button>
-    </div>
+    <button type="submit" form="form" class="btn btn-black" id="btnCreate">Gem</button>
+    <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterAssociate.php" id="btnAlter">Gem</button>
 </div>
 <!-- Hidden values to fill out form -->
 <input type="hidden" id="aName" name="aName" value="<?php echo $_SESSION["UserName"]->a_name ?>"/>
@@ -48,7 +46,7 @@ include 'include/menubar.inc.php';
 <!-- Errormessages -->
 <?php
 if (isset($_GET["error"])) {
-    if ($_GET["editing"] === "edit") {
+    if (isset($_GET["edit"])) {
         ?>
         <div class="vertically-align" align="center">
             <span class="text-danger">Der er sket en fejl i redigeringen af medarbejder. Tjek at alle felter er udfyldt, eller, hvis du er ved at ændre brugernavn, om det nye brugernavn er på max 4 bogstaver, eller evt. allerede existerer.</span>
@@ -65,19 +63,10 @@ if (isset($_GET["error"])) {
 ?>
 <!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
-//    Function to get url variables
-    var $_GET = {};
-
-    document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
-        function decode(s) {
-            return decodeURIComponent(s.split("+").join(" "));
-        }
-
-        $_GET[decode(arguments[1])] = decode(arguments[2]);
-    });
 //    Function for filling out form when altering associate
-    $(document).ready(function () {
-        if ($_GET["editing"] === "edit") {
+    $(window).load(function () {
+        var editing = window.location.search;
+        if (editing === "?edit") {
             var name = $('#aName').val();
             var user = $('#aUser').val();
             var pwd = $('#aPwd').val();

@@ -23,7 +23,7 @@ include 'include/menubar.inc.php';
                 <button type="button" class="btn btn-black dropdown-toggle" data-toggle="dropdown">
                     Rediger <span class="caret"></span></button>
                 <ul class="dropdown-menu dropdown-black" role="menu">
-                    <li><a href="associateForm.php?editing=edit">Rediger</a></li>
+                    <li><a href="associateForm.php?edit">Rediger</a></li>
                     <li><a data-toggle="modal" data-target="#deleteModal">Slet</a></li>
                 </ul>
             </div>

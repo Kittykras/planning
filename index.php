@@ -12,9 +12,9 @@ include 'include/top.inc.php';
         <div class="form-group">
             <input name="pwd" type="password" class="form-control" id="pwd" placeholder="Kodeord">
         </div>
-        <label class="checkbox">
-            <input type="checkbox" value="remember-me" id="remember_me"> Husk mig
-        </label>
+        <div class="checkbox">
+            <label><input type="checkbox" value="remember-me" id="remember_me"> Husk mig</label>
+        </div>
         <button type="submit" class="btn btn-black">Log Ind</button>
     </form>
 </div>

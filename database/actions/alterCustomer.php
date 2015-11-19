@@ -56,7 +56,7 @@ try {
         setcookie('state', '0', time() + (86400), "/planning/");
         header("location:../../customers.php");
     } else {
-        header("location:../../customerForm.php?editing=edit&error");
+        header("location:../../customerForm.php?edit&error");
     }
 } catch (PDOException $e) {
     echo $e->getMessage();
