@@ -264,7 +264,6 @@ if (isset($_GET["error"])) {
             document.getElementById("from").value = from;
             document.getElementById("to").value = to;
             if (press === "1") {
-                console.log(press);
                 document.getElementById("press").checked = true;
                 $("#pressdate").removeClass("hidden");
                 document.getElementById("pressdate").value = prelease;
