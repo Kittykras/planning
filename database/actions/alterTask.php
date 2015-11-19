@@ -27,8 +27,8 @@ try {
         $pressrelease = "0000-00-00";
     } else {
         $datearray = split('\/', $pressdate);
-        $day = $datearray[0];
-        $month = $datearray[1];
+        $day = $datearray[1];
+        $month = $datearray[0];
         $year = $datearray[2];
         $pressrelease = $year . '-' . $month . '-' . $day;
     }
