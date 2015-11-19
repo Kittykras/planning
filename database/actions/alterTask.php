@@ -7,20 +7,20 @@ session_start();
 try {
     $user = $_SESSION["user"]->a_username;
     $id = $_COOKIE["Task"];
-    $cus = $_POST["cus"];
+    $cus = $_COOKIE["Kunde"];
     $title = $_POST["title"];
     $descr = $_POST["descr"];
     $stat = $_POST["stat"];
     $assi = $_POST["assi"];
     $timespen = $_POST["hour"] . ":" . $_POST["min"];
-    $fromArray = split('\-',$_POST["from"]);
+    $fromArray = split('\-', $_POST["from"]);
     $fromYear = $fromArray[0];
     $fromWeek = $fromArray[1];
     $toArray = split('\-', $_POST["to"]);
     $toYear = $toArray[0];
     $toWeek = $toArray[1];
     $comment = $_POST["newComment"];
-    $press = isset($_POST['press']) && $_POST['press']  ? "true" : "false";
+    $press = isset($_POST['press']) && $_POST['press'] ? "true" : "false";
     $pressdate = $_POST["pressdate"];
     $pressrelease = "";
     if ($pressdate === "") {
@@ -33,31 +33,29 @@ try {
         $pressrelease = $year . '-' . $month . '-' . $day;
     }
     $db = new DBConnection();
-    $q = "call altertask(:id, :cus, :title, :descr, :stat, :assi, :timespent, :fromWeek, :fromYear, :toWeek, :toYear, :pressrelease,:press);";
+    $q = "call altertask(:id, :cus, :title, :descr, :stat, :assi, :timespent, :fromWeek, :fromYear, :toWeek, :toYear, :pressrelease, :press);";
     $stmt = $db->prepare($q);
-    $stmt->execute(array(':id' => $id, ':cus' => $cus, ':title' => $title, ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen, ':fromWeek' => $fromWeek,':fromYear' => $fromYear, ':toWeek' => $toWeek,':toYear' => $toYear, ':pressrelease' => $pressrelease,':press' => $press));
-//    $count = $stmt->rowCount();
-//    $commentcount = 0;
+    $stmt->execute(array(':id' => $id,':cus' => $cus, ':title' => $title,
+        ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen,
+        ':fromWeek' => $fromWeek, ':fromYear' => $fromYear, ':toWeek' => $toWeek, ':toYear' => $toYear, ':pressrelease' => $pressrelease, ':press' => $press));
     if ($comment != "") {
-        $q = "call createcomment(:id, :comment, :user);";
+        $q = "call createcommentonnewtask(:comment, :user);";
         $stmt = $db->prepare($q);
-        $stmt->execute(array(':id' => $id, ':comment' => $comment, ":user" => $user));
-//        $commentcount = $stmt->rowCount();
+        $stmt->execute(array(':comment' => $comment, ":user" => $user));
     }
-//    if ($stmt != FALSE) {
-//        setcookie('Kunde', $cus, time() + (86400), "/planning/");
-//        SetCookie('medarbejder', '', time() + (86400), "/planning/");
-//        SetCookie('kunder', 'active', time() + (86400), "/planning/");
-//        SetCookie('overblik', '', time() + (86400), "/planning/");
-//        SetCookie('timeoversigt', '', time() + (86400), "/planning/");
-//        SetCookie('presse', '', time() + (86400), "/planning/");
-//        setcookie('login', '', time() + (86400), "/planning/");
-//        setcookie('orderby', 't_fromweek', time() + (86400), "/planning/");
-//        setcookie('state', '0', time() + (86400), "/planning/");
-//        header("location:../../singleCustomer.php");
-//    } else {
-//        header("location:../../taskForm.php?edit&error");
-//    }
+    if ($stmt != FALSE) {
+        SetCookie('medarbejder', '', time() + (86400), "/planning/");
+        SetCookie('kunder', 'active', time() + (86400), "/planning/");
+        SetCookie('overblik', '', time() + (86400), "/planning/");
+        SetCookie('timeoversigt', '', time() + (86400), "/planning/");
+        SetCookie('presse', '', time() + (86400), "/planning/");
+        setcookie('login', '', time() + (86400), "/planning/");
+        setcookie('orderby', 't_fromweek', time() + (86400), "/planning/");
+        setcookie('state', '0', time() + (86400), "/planning/");
+        header("location:../../singleCustomer.php");
+    } else {
+        header("location:../../taskForm.php?edit&error");
+    }
 } catch (PDOException $e) {
     echo $e->getMessage();
 }

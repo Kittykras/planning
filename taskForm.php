@@ -201,9 +201,8 @@ if (isset($_GET["edit"])) {
 <input type="hidden" id="hmin" name="hmin" value="<?php echo $_SESSION["Task"]->t_min ?>"/>
 <input type="hidden" id="hfrom" name="hfrom" value="<?php echo $_SESSION["Task"]->t_fromweek ?>"/>
 <input type="hidden" id="hto" name="hto" value="<?php echo $_SESSION["Task"]->t_toweek ?>"/>
-<input type="hidden" id="hinv" name="hinv" value="<?php echo $_SESSION["Task"]->t_invoicing ?>"/>
-<input type="hidden" id="hexp" name="hexp" value="<?php echo $_SESSION["Task"]->t_expenses ?>"/>
 <input type="hidden" id="hpress" name="hpress" value="<?php echo $_SESSION["Task"]->t_press ?>"/>
+<input type="hidden" id="hprelease" name="hprelease" value="<?php echo $_SESSION["Task"]->p_release ?>"/>
 <!-- ErrorMessages -->
 <?php
 if (isset($_GET["error"])) {
@@ -251,7 +250,7 @@ if (isset($_GET["error"])) {
             var inv = $('#hinv').val();
             var exp = $('#hexp').val();
             var press = $('#hpress').val();
-            console.log(press);
+            var prelease = $('#hprelease').val();
             document.getElementById("editH4").innerHTML = "<span class='header-img'>Rediger Opgave</span>";
             document.getElementById("editH2").innerHTML = "<span class='header-img'>Rediger Opgave</span>";
             $("#comment").removeClass("hidden");
@@ -264,10 +263,11 @@ if (isset($_GET["error"])) {
             document.getElementById("min").value = min;
             document.getElementById("from").value = from;
             document.getElementById("to").value = to;
-            document.getElementById("inv").value = inv;
-            document.getElementById("exp").value = exp;
-            if (press === '1') {
+            if (press === "1") {
+                console.log(press);
                 document.getElementById("press").checked = true;
+                $("#pressdate").removeClass("hidden");
+                document.getElementById("pressdate").value = prelease;
             }
         }
     });
@@ -294,10 +294,11 @@ if (isset($_GET["error"])) {
     //    See number.js
     $("input[type=number").number();
     //    Function for showing release date, when press is checked
-    function showDate(){
+    function showDate() {
         $("#pressdate").toggleClass("hidden");
-    };
-    
+    }
+    ;
+
 </script>
 </body>
 </html>
