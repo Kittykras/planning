@@ -23,10 +23,11 @@ try {
     $inv = $_POST["inv"];
     $exp = $_POST["exp"];
     $press = isset($_POST['press']) && $_POST['press']  ? "true" : "false";
+    $pressdate = $_POST["pressdate"];
     $db = new DBConnection();
-    $q = "call altertask(:id, :cus, :title, :descr, :stat, :assi, :timespent, :fromWeek, :fromYear, :toWeek, :toYear, :inv, :exp, :press);";
+    $q = "call altertask(:id, :cus, :title, :descr, :stat, :assi, :timespent, :fromWeek, :fromYear, :toWeek, :toYear, :inv, :exp, :pressdate,:press);";
     $stmt = $db->prepare($q);
-    $stmt->execute(array(':id' => $id, ':cus' => $cus, ':title' => $title, ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen, ':fromWeek' => $fromWeek,':fromYear' => $fromYear, ':toWeek' => $toWeek,':toYear' => $toYear, ':inv' => $inv, ':exp' => $exp, ':press' => $press));
+    $stmt->execute(array(':id' => $id, ':cus' => $cus, ':title' => $title, ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen, ':fromWeek' => $fromWeek,':fromYear' => $fromYear, ':toWeek' => $toWeek,':toYear' => $toYear, ':inv' => $inv, ':exp' => $exp, ':pressdate' => $pressdate,':press' => $press));
 //    $count = $stmt->rowCount();
 //    $commentcount = 0;
     if ($comment != "") {

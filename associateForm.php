@@ -12,11 +12,6 @@ include 'include/menubar.inc.php';
             <h2 class="chead" id="editH2"><span class="header-img">Opret Medarbejder</span></h2>
         </div>
         <br>
-        <!-- Button for submitting form -->
-        <div class="col span_1_of_2" align="right">
-            <button type="submit" form="form" class="btn btn-black" id="btnCreate">Gem</button>
-            <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterAssociate.php" id="btnAlter">Gem</button>
-        </div>
     </div>
 </div>
 <!-- Form for creating/altering selected associate -->
@@ -39,6 +34,11 @@ include 'include/menubar.inc.php';
             </select>
         </div>
     </form>
+    <!-- Button for submitting form -->
+    <div class="form-group">
+        <button type="submit" form="form" class="btn btn-black" id="btnCreate">Gem</button>
+        <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterAssociate.php" id="btnAlter">Gem</button>
+    </div>
 </div>
 <!-- Hidden values to fill out form -->
 <input type="hidden" id="aName" name="aName" value="<?php echo $_SESSION["UserName"]->a_name ?>"/>

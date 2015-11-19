@@ -32,6 +32,9 @@ if (isset($_GET["editing"])) {
             }
         });
     });
+    $(function () {
+        $("#pressdate").datepicker();
+    });
 </script>
 <script src="functions/number.js"></script>
 <link href="styles/number.css" rel="stylesheet">
@@ -44,19 +47,6 @@ if (isset($_GET["editing"])) {
             <h2 class="chead" id="editH2"><span class="header-img">Opret Opgave</span></h2>
         </div>
         <br>
-        <!-- Button for submitting form -->
-        <div class="col span_1_of_2" align="right">
-            <button type="submit" form="form" class="btn btn-black" id="btnCreate">Gem</button>
-            <button type="submit" form="form" class="btn btn-black hidden" id="btnAlter" formaction="database/actions/alterTaskNoPriv.php">Rediger Opgave</button>
-            <div class="btn-group dropdown hidden" id="btnAlter">
-                <button class="btn btn-black dropdown-toggle" type="submit" data-toggle="dropdown">Rediger Opgave <span class="caret"></span></button>
-                <ul class="dropdown-menu dropdown-black" role="menu">
-                    <li><a onclick="document.forms[0].action = 'database/actions/alterTask.php';
-        document.forms[0].submit()">Gem</a></li>
-                    <li><a data-toggle="modal" data-target="#deleteModal">Slet</a></li>
-                </ul>
-            </div>
-        </div>
     </div>
 </div>
 <!-- Form for creating/altering task -->
@@ -69,24 +59,26 @@ if (isset($_GET["editing"])) {
         <div class="form-group">
             <textarea class="form-control input-style" rows="1" id="descr" name="descr" placeholder="Beskrivelse"></textarea>
         </div>
-        <div class='form-group'>
-            <select class="form-control input-style" name='stat' id="stat">
-                <option value="white">Alm.</option>
-                <option value="#FFCC00">Gul</option>
-                <option value="red">Rød</option>
-                <option value="green">Grøn</option>
-            </select>
-        </div>
-        <div class='form-group'>
-            <select class="form-control input-style" name='assi' id="assi">
-                <?php
-                foreach ($users as $user) {
-                    ?>    
-                    <option value="<?php echo $user->a_username; ?>"><?php echo $user->a_name; ?></option>
+        <div class="form-group group">
+            <div class="col span_1_of_2">
+                <select class="form-control input-style" name='stat' id="stat">
+                    <option value="white">Alm.</option>
+                    <option value="#FFCC00">Gul</option>
+                    <option value="red">Rød</option>
+                    <option value="green">Grøn</option>
+                </select>
+            </div>
+            <div class="col span_1_of_2">
+                <select class="form-control input-style" name='assi' id="assi">
                     <?php
-                }
-                ?>
-            </select>
+                    foreach ($users as $user) {
+                        ?>    
+                        <option value="<?php echo $user->a_username; ?>"><?php echo $user->a_name; ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+            </div>
         </div>
         <div class="form-group group">
             <div class="col span_1_of_2" align="left">
@@ -112,18 +104,18 @@ if (isset($_GET["editing"])) {
             <?php
             $i = 0;
             if (!empty($comments)) {
-                    if (count($comments) === 1) {
-                        ?>
-                        <select name="comments[ ]" id="comments" class="form-control input-style" onclick="openModal(this.value)">
-                            <?php
+                if (count($comments) === 1) {
+                    ?>
+                    <select name="comments[ ]" id="comments" class="form-control input-style" onclick="openModal(this.value)">
+                        <?php
                     } else {
                         ?>
                         <select name="comments[ ]" id="comments" class="form-control input-style" onchange="openModal(this.value)">
                         <?php } ?>
                         <?php foreach ($comments as $comment) { ?>
-                                <option value="<?php echo $comment->tc_id . '¤' . $comment->tc_comment ?>"><?php echo $comment->tc_associate;
-                                    ?>, <?php echo $comment->tc_date; ?> - &#10;<?php echo $comment->tc_comment; ?></option>
-                                <?php
+                            <option value="<?php echo $comment->tc_id . '¤' . $comment->tc_comment ?>"><?php echo $comment->tc_associate;
+                            ?>, <?php echo $comment->tc_date; ?> - &#10;<?php echo $comment->tc_comment; ?></option>
+                            <?php
                         }
                         ?>
                     </select>
@@ -134,20 +126,36 @@ if (isset($_GET["editing"])) {
         <div class="form-group" align="left">
             <textarea class="form-control input-style" rows="1" id="newComment" name="newComment" placeholder="Ny Kommentar"></textarea>
         </div>
+        <!--        <div class="form-group group">
+                    <div class="form-group col span_1_of_2">
+                        <input name="exp" type="text" class="form-control input-style" id="exp" placeholder="Udgifter">
+                    </div>
+                    <div class="form-group col span_1_of_2">
+                        <input name="inv" type="text" class="form-control input-style" id="inv" placeholder="Tilbud">
+                    </div>
+                </div>-->
         <div class="form-group group">
-            <div class="form-group col span_1_of_2">
-                <input name="exp" type="text" class="form-control input-style" id="exp" placeholder="Udgifter">
+            <div class="col span_1_of_2" align="left">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="press" id="press" value="true">Presse</label>
+                </div>
             </div>
-            <div class="form-group col span_1_of_2">
-                <input name="inv" type="text" class="form-control input-style" id="inv" placeholder="Tilbud">
-            </div>
-        </div>
-        <div class="form-group" align="left">
-            <div class="checkbox">
-                <label><input type="checkbox" name="press" id="press" value="true">Presse</label>
+            <div class="col span_1_of_2">
+                <input type="text" id="pressdate" name="pressdate" class="hidden form-control input-style" placeholder="Udgivelse Dato">
             </div>
         </div>
     </form>
+    <!-- Button for submitting form -->
+    <button type="submit" form="form" class="btn btn-black" id="btnCreate">Gem</button>
+    <button type="submit" form="form" class="btn btn-black hidden" id="btnAlter" formaction="database/actions/alterTaskNoPriv.php">Rediger Opgave</button>
+    <div class="btn-group dropdown hidden" id="btnAlter">
+        <button class="btn btn-black dropdown-toggle" type="submit" data-toggle="dropdown">Rediger Opgave <span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-black" role="menu">
+            <li><a onclick="document.forms[0].action = 'database/actions/alterTask.php';
+                        document.forms[0].submit()">Gem</a></li>
+            <li><a data-toggle="modal" data-target="#deleteModal">Slet</a></li>
+        </ul>
+    </div>
 </div>
 <!-- Popup for deleting this task -->
 <div id="deleteModal" class="modal fade" role="dialog">
@@ -216,7 +224,7 @@ if (isset($_GET["error"])) {
 ?>
 <!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
-//    Function for deleting comment
+    //    Function for deleting comment
     function deleteComment() {
         var id = document.getElementById('oldComment').value;
         xmlhttp = new XMLHttpRequest();
@@ -229,16 +237,16 @@ if (isset($_GET["error"])) {
         xmlhttp.send();
         $('#commentModal').modal('hide');
     }
-//    Function to open popup with selected comment
+    //    Function to open popup with selected comment
     function openModal(value) {
         var comment = value.split("¤");
         document.getElementById("oldComment").value = comment[0];
         document.getElementById("comment").value = comment[1];
         $('#commentModal').modal('show');
     }
-//    See number.js
+    //    See number.js
     $("input[type=number").number();
-//    Function to get url variables
+    //    Function to get url variables
     var $_GET = {};
     document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
         function decode(s) {
@@ -246,7 +254,10 @@ if (isset($_GET["error"])) {
         }
         $_GET[decode(arguments[1])] = decode(arguments[2]);
     });
-//    Function for filling out form when altering task
+    $("#press").change(function () {
+        $("#pressdate").toggleClass("hidden");
+    });
+    //    Function for filling out form when altering task
     $(document).ready(function () {
         if ($_GET["editing"] === "edit") {
             if (<?php print_r($_SESSION["user"]->a_privileges) ?> === 3) {

@@ -14,11 +14,6 @@ $links = getLinksFromCustomerEdit();
             <h2 class="chead" id="editH2"><span class="header-img">Opret Kunde</span></h2>
         </div>
         <br>
-        <!-- Button for submitting form -->
-        <div class="col span_1_of_2" align="right">
-            <button type="submit" form="form" class="btn btn-black" id="btnCreate" onclick="selectAll()">Gem</button>
-            <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterCustomer.php" onclick="selectAll()" id="btnAlter">Gem</button>
-        </div>
     </div>
 </div>
 <!-- Form for creating/altering selected customer -->
@@ -39,28 +34,30 @@ $links = getLinksFromCustomerEdit();
         <div class="form-group">
             <input name="mail" type="email" class="form-control input-style" id="mail" placeholder="Email">
         </div>
-        <div id="branchHolder" class='form-group'>
-            <select class="form-control input-style" name='bran' id="bran" onchange="openModal(this.value)">
-                <?php
-                foreach ($branches as $branch) {
+        <div class="form-group group">
+            <div id="branchHolder" class="col span_1_of_2">
+                <select class="form-control input-style" name="bran" id="bran" onchange="openModal(this.value)">
+                    <?php
+                    foreach ($branches as $branch) {
+                        ?>
+                        <option value="<?php echo $branch->b_title; ?>"><?php echo $branch->b_title; ?></option>
+                        <?php
+                    }
                     ?>
-                    <option value="<?php echo $branch->b_title; ?>"><?php echo $branch->b_title; ?></option>
+                    <option value="newBranch">Ny Branche</option>
+                </select>
+            </div>
+            <div class="col span_1_of_2">
+                <select class="form-control input-style" name="assi" id="assi">
                     <?php
-                }
-                ?>
-                <option value="newBranch">Ny Branche</option>
-            </select>
-        </div>
-        <div class='form-group'>
-            <select class="form-control input-style" name='assi' id="assi">
-                <?php
-                foreach ($users as $user) {
-                    ?>    
-                    <option value="<?php echo $user->a_username; ?>"><?php echo $user->a_name; ?></option>
-                    <?php
-                }
-                ?>
-            </select>
+                    foreach ($users as $user) {
+                        ?>    
+                        <option value="<?php echo $user->a_username; ?>"><?php echo $user->a_name; ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+            </div>
         </div>
         <div id="dest">
             <div class="form-group">
@@ -74,43 +71,47 @@ $links = getLinksFromCustomerEdit();
                     <input type="text" name="pwd" class="form-control input-style" id="pwd" placeholder="Adgangskode">
                 </div>
                 <div class="form-group col span_1_of_2">
-                    <button type="button" class="btn btn-black" onclick="addLink()">Tilføj link</button>
+                    <button type="button"  style="width: 100%;"class="btn btn-black" onclick="addLink()">Tilføj link</button>
                 </div>
             </div>
-            <?php
-            if (!empty($links)) {
-                    if (count($links) === 1) {
+            <?php if (!empty($links)) { ?>
+                <div class="form-group">
+                    <?php if (count($links) === 1) {
                         ?>
                         <select name="viewlinks" id="viewlinks" class="form-control input-style" onclick="openLinkModal(this.value)">
                             <?php
-                    } else {
-                        ?>
-                        <select name="viewlinks" id="viewlinks" class="form-control input-style" onchange="openLinkModal(this.value)">
-                        <?php } ?>
-                        <?php foreach ($links as $link) {
+                        } else {
                             ?>
-                            <option value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
-                            <?php
-                        }
-                        ?>
-                    </select>
-                    <?php
-                }
-                ?>
-                <?php if (!empty($links)) { ?>
-                            <select class="hidden" multiple name="urls[ ]" id="urls">
-                        <?php foreach ($links as $link) {
+                            <select name="viewlinks" id="viewlinks" class="form-control input-style" onchange="openLinkModal(this.value)">
+                            <?php } ?>
+                            <?php foreach ($links as $link) {
+                                ?>
+                                <option value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
+                                <?php
+                            }
                             ?>
-                            <option value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
-                            <?php
-                        }
+                        </select>
+                </div>
+                <?php
+            }
+            ?>
+            <?php if (!empty($links)) { ?>
+                <select class="hidden" multiple name="urls[ ]" id="urls">
+                    <?php foreach ($links as $link) {
                         ?>
-                    </select>
-                    <?php
-                }
-                ?>
+                        <option value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+                <?php
+            }
+            ?>
         </div>
     </form>
+    <!-- Button for submitting form -->
+        <button type="submit" form="form" class="btn btn-black" id="btnCreate" onclick="selectAll()">Gem</button>
+        <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterCustomer.php" onclick="selectAll()" id="btnAlter">Gem</button>
 </div>
 <!-- Popup for creating new branch -->
 <div id="branchModal" class="modal fade" role="dialog">

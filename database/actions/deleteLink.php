@@ -1,4 +1,5 @@
 <?php
+
 include_once '../DBConnection.php';
 $urls = json_decode($_REQUEST['q']);
 $oldlink = $_REQUEST['oldlink'];
@@ -22,15 +23,16 @@ if (!empty($urls)) {
                     <button type="button" class="btn btn-black" onclick="addLink()">Tilføj link</button>
                 </div>
             </div>';
-        if (count($urls) === 1) {
-            echo '<select name="viewlinks" id="viewlinks" class="form-control input-style" onclick="openLinkModal(this.value)">';
+    echo '<div class="form-group">';
+    if (count($urls) === 1) {
+        echo '<select name="viewlinks" id="viewlinks" class="form-control input-style" onclick="openLinkModal(this.value)">';
     } else {
         echo '<select name="viewlinks" id="viewlinks" class="form-control input-style" onchange="openLinkModal(this.value)">';
     }
     foreach ($urls as $url) {
         echo '<option value="' . $url->d_id . '¤' . $url->d_url . '¤' . $url->d_username . '¤' . $url->d_password . '">' . $url->d_url . '</option>';
     }
-    echo '</select>';
+    echo '</select></div>';
     echo '<select class="hidden" multiple name="urls[ ]" id="urls">';
     foreach ($urls as $url) {
         echo '<option value="' . $url->d_id . '¤' . $url->d_url . '¤' . $url->d_username . '¤' . $url->d_password . '">' . $url->d_url . '</option>';
@@ -51,5 +53,4 @@ if (!empty($urls)) {
                     <button type="button" class="btn btn-black" onclick="addLink()">Tilføj link</button>
                 </div>
             </div>';
-    echo 'Husk at udfylde Link feltet';
 }
