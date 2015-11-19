@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 require_once '../DBConnection.php';
 $session_expiration = time() + 3600 * 24; // +1 days
 session_set_cookie_params($session_expiration);
@@ -11,23 +12,31 @@ try {
     $stat = $_POST["stat"];
     $assi = $_POST["assi"];
     $timespen = $_POST["hour"] . ":" . $_POST["min"];
-    $fromArray = split('\-',$_POST["from"]);
+    $fromArray = split('\-', $_POST["from"]);
     $fromYear = $fromArray[0];
     $fromWeek = $fromArray[1];
     $toArray = split('\-', $_POST["to"]);
     $toYear = $toArray[0];
     $toWeek = $toArray[1];
     $comment = $_POST["newComment"];
-    $inv = $_POST["inv"];
-    $exp = $_POST["exp"];
-    $press = isset($_POST['press']) && $_POST['press']  ? "true" : "false";
+    $press = isset($_POST['press']) && $_POST['press'] ? "true" : "false";
     $pressdate = $_POST["pressdate"];
+    $pressrelease = "";
+    if ($pressdate === "") {
+        $pressrelease = "0000-00-00";
+    } else {
+        $datearray = split('\/', $pressdate);
+        $day = $datearray[0];
+        $month = $datearray[1];
+        $year = $datearray[2];
+        $pressrelease = $year . '-' . $month . '-' . $day;
+    }
     $db = new DBConnection();
-    $q = "call createtask(:cus, :title, :descr, :stat, :assi, :timespent, :fromWeek, :fromYear, :toWeek, :toYear, :inv, :exp, :pressdate,:press);";
+    $q = "call createtask(:cus, :title, :descr, :stat, :assi, :timespent, :fromWeek, :fromYear, :toWeek, :toYear, :pressrelease, :press);";
     $stmt = $db->prepare($q);
-    $stmt->execute(array(':cus' => $cus, ':title' => $title, 
+    $stmt->execute(array(':cus' => $cus, ':title' => $title,
         ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen,
-        ':fromWeek' => $fromWeek,':fromYear' => $fromYear, ':toWeek' => $toWeek, ':toYear' => $toYear, ':inv' => $inv, ':exp' => $exp, ':pressdate' => $pressdate,':press' => $press));
+        ':fromWeek' => $fromWeek, ':fromYear' => $fromYear, ':toWeek' => $toWeek, ':toYear' => $toYear, ':pressrelease' => $pressrelease, ':press' => $press));
     $count = $stmt->rowCount();
     if ($comment != "") {
         $q = "call createcommentonnewtask(:comment, :user);";
