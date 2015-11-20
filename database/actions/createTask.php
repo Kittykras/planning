@@ -21,22 +21,15 @@ try {
     $comment = $_POST["newComment"];
     $press = isset($_POST['press']) && $_POST['press'] ? "true" : "false";
     $pressdate = $_POST["pressdate"];
-    $pressrelease = "";
     if ($pressdate === "") {
-        $pressrelease = "0000-00-00";
-    } else {
-        $datearray = split('\/', $pressdate);
-        $day = $datearray[1];
-        $month = $datearray[0];
-        $year = $datearray[2];
-        $pressrelease = $year . '-' . $month . '-' . $day;
-    }
+        $pressdate = "0000-00-00";
+    } 
     $db = new DBConnection();
-    $q = "call createtask(:cus, :title, :descr, :stat, :assi, :timespent, :fromWeek, :fromYear, :toWeek, :toYear, :pressrelease, :press);";
+    $q = "call createtask(:cus, :title, :descr, :stat, :assi, :timespent, :fromWeek, :fromYear, :toWeek, :toYear, :pressdate, :press);";
     $stmt = $db->prepare($q);
     $stmt->execute(array(':cus' => $cus, ':title' => $title,
         ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen,
-        ':fromWeek' => $fromWeek, ':fromYear' => $fromYear, ':toWeek' => $toWeek, ':toYear' => $toYear, ':pressrelease' => $pressrelease, ':press' => $press));
+        ':fromWeek' => $fromWeek, ':fromYear' => $fromYear, ':toWeek' => $toWeek, ':toYear' => $toYear, ':pressdate' => $pressdate, ':press' => $press));
     $count = $stmt->rowCount();
     if ($comment != "") {
         $q = "call createcommentonnewtask(:comment, :user);";

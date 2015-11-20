@@ -60,58 +60,50 @@ $links = getLinksFromCustomerEdit();
             </div>
         </div>
         <div id="dest">
-            <div class="form-group">
-                <input type="text" name="url" class="form-control input-style" id="url" placeholder="Link">
-            </div>
-            <div class="form-group">
-                <input type="text" name="user" class="form-control input-style" id="user" placeholder="Brugernavn">
-            </div>
-            <div class=" form-group group">
-                <div class="form-group col span_1_of_2">
+            <div class="form-group group">
+                <div class="col span_1_of_3">
+                    <input type="text" name="url" class="form-control input-style" id="url" placeholder="Link">
+                </div>
+                <div class="col span_1_of_3">
+                    <input type="text" name="user" class="form-control input-style" id="user" placeholder="Brugernavn">
+                </div>
+                <div class="col span_1_of_3">
                     <input type="text" name="pwd" class="form-control input-style" id="pwd" placeholder="Adgangskode">
                 </div>
-                <div class="form-group col span_1_of_2">
-                    <button type="button"  style="width: 100%;"class="btn btn-black" onclick="addLink()">Tilføj link</button>
-                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-black span_1_of_3" onclick="addLink()">Tilføj link</button>
             </div>
             <?php if (!empty($links)) { ?>
-                <div class="form-group">
-                    <?php if (count($links) === 1) {
-                        ?>
-                        <select name="viewlinks" id="viewlinks" class="form-control input-style" onclick="openLinkModal(this.value)">
-                            <?php
-                        } else {
-                            ?>
-                            <select name="viewlinks" id="viewlinks" class="form-control input-style" onchange="openLinkModal(this.value)">
-                            <?php } ?>
-                            <?php foreach ($links as $link) {
-                                ?>
-                                <option value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
-                                <?php
-                            }
-                            ?>
-                        </select>
-                </div>
-                <?php
-            }
-            ?>
-            <?php if (!empty($links)) { ?>
-                <select class="hidden" multiple name="urls[ ]" id="urls">
-                    <?php foreach ($links as $link) {
-                        ?>
-                        <option value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
-                        <?php
-                    }
+                <?php foreach ($links as $link) {
                     ?>
-                </select>
+                    <div class="form-group">
+                        <input onclick="openLinkModal(this.value)" class="form-control input-style" value=" <?php echo $link->d_url . ' // ' . $link->d_username . ' // ' . $link->d_password ?>">
+                    </div>
+                    <?php
+                }
+                ?>
                 <?php
             }
             ?>
         </div>
-    </form>
-    <!-- Button for submitting form -->
-        <button type="submit" form="form" class="btn btn-black" id="btnCreate" onclick="selectAll()">Gem</button>
-        <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterCustomer.php" onclick="selectAll()" id="btnAlter">Gem</button>
+        <?php if (!empty($links)) { ?>
+            <select class="hidden" multiple name="urls[ ]" id="urls">
+                <?php foreach ($links as $link) {
+                    ?>
+                    <option value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
+                    <?php
+                }
+                ?>
+            </select>
+            <?php
+        }
+        ?>
+</div>
+</form>
+<!-- Button for submitting form -->
+<button type="submit" form="form" class="btn btn-black" id="btnCreate" onclick="selectAll()">Gem</button>
+<button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterCustomer.php" onclick="selectAll()" id="btnAlter">Gem</button>
 </div>
 <!-- Popup for creating new branch -->
 <div id="branchModal" class="modal fade" role="dialog">
@@ -221,14 +213,19 @@ if (isset($_GET["error"])) {
     //    Function to alter link and refill selectbox
     function editLink() {
         var oldlink = document.getElementById('oldLink').value;
-        var splitarray = oldlink.split('¤');
-        var oldUrl = splitarray[1];
+        console.log(oldlink);
+//        var splitarray = oldlink.split('¤');
+//        var oldUrl = splitarray[1];
         var url = document.getElementById('urlEdit').value;
+        console.log(url);
         var user = document.getElementById('userEdit').value;
+        console.log(user);
         var pwd = document.getElementById('pwdEdit').value;
+        console.log(pwd);
         var index = urls.map(function (e) {
             return e.d_url;
-        }).indexOf(oldUrl);
+        }).indexOf(oldlink);
+        console.log(index);
         urls[index].d_url = url;
         urls[index].d_username = user;
         urls[index].d_password = pwd;
@@ -245,11 +242,11 @@ if (isset($_GET["error"])) {
     }
     //    Function to open popup with the selected link
     function openLinkModal(value) {
-        var link = value.split("¤");
-        document.getElementById("oldLink").value = link[0] + '¤' + link[1];
-        document.getElementById("urlEdit").value = link[1];
-        document.getElementById("userEdit").value = link[2];
-        document.getElementById("pwdEdit").value = link[3];
+        var link = value.split(" // ");
+        document.getElementById("oldLink").value = link[0];
+        document.getElementById("urlEdit").value = link[0];
+        document.getElementById("userEdit").value = link[1];
+        document.getElementById("pwdEdit").value = link[2];
         $('#linkModal').modal('show');
     }
     //    Function to add link to selectbox

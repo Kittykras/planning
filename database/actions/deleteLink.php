@@ -9,30 +9,25 @@ $stmt = $db->prepare($q);
 $stmt->setFetchMode(PDO::FETCH_OBJ);
 $stmt->execute(array(':oldlink' => $oldlink));
 if (!empty($urls)) {
-    echo '<div class="form-group">
-                <input type="text" name="url" class="form-control input-style" id="url" placeholder="Link">
-            </div>
-            <div class="form-group">
-                <input type="text" name="user" class="form-control input-style" id="user" placeholder="Brugernavn">
-            </div>
-            <div class=" form-group group">
-                <div class="form-group col span_1_of_2">
+    echo '<div class="form-group group">
+                <div class="col span_1_of_3">
+                    <input type="text" name="url" class="form-control input-style" id="url" placeholder="Link">
+                </div>
+                <div class="col span_1_of_3">
+                    <input type="text" name="user" class="form-control input-style" id="user" placeholder="Brugernavn">
+                </div>
+                <div class="col span_1_of_3">
                     <input type="text" name="pwd" class="form-control input-style" id="pwd" placeholder="Adgangskode">
                 </div>
-                <div class="form-group col span_1_of_2">
-                    <button type="button" class="btn btn-black" onclick="addLink()">Tilføj link</button>
-                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-black span_1_of_3" onclick="addLink()">Tilføj link</button>
             </div>';
-    echo '<div class="form-group">';
-    if (count($urls) === 1) {
-        echo '<select name="viewlinks" id="viewlinks" class="form-control input-style" onclick="openLinkModal(this.value)">';
-    } else {
-        echo '<select name="viewlinks" id="viewlinks" class="form-control input-style" onchange="openLinkModal(this.value)">';
-    }
     foreach ($urls as $url) {
-        echo '<option value="' . $url->d_id . '¤' . $url->d_url . '¤' . $url->d_username . '¤' . $url->d_password . '">' . $url->d_url . '</option>';
+        echo '<div class="form-group">';
+        echo '<input class="form-control input-style" value="' . $url->d_url . ' // ' . $url->d_username . ' // ' . $url->d_password . '">';
+        echo '</div>';
     }
-    echo '</select></div>';
     echo '<select class="hidden" multiple name="urls[ ]" id="urls">';
     foreach ($urls as $url) {
         echo '<option value="' . $url->d_id . '¤' . $url->d_url . '¤' . $url->d_username . '¤' . $url->d_password . '">' . $url->d_url . '</option>';

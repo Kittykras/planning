@@ -33,7 +33,12 @@ if (isset($_GET["edit"])) {
         });
     });
     $(function () {
-        $("#pressdate").datepicker();
+        $("#pressdate").datepicker({
+            firstDay: 1,
+            onSelect: function (dat, inst) {
+                $('#pressdate').val($.datepicker.formatDate("yy-mm-dd", new Date(2007, 1 - 1, 26)));
+            }
+        });
     });
 </script>
 <script src="functions/number.js"></script>
@@ -102,7 +107,6 @@ if (isset($_GET["edit"])) {
         </div>
         <div id="commentDiv" class="form-group">
             <?php
-            $i = 0;
             if (!empty($comments)) {
                 if (count($comments) === 1) {
                     ?>
@@ -147,14 +151,10 @@ if (isset($_GET["edit"])) {
     </form>
     <!-- Button for submitting form -->
     <button type="submit" form="form" class="btn btn-black" id="btnCreate">Gem</button>
-    <button type="submit" form="form" class="btn btn-black hidden" id="btnAlter" formaction="database/actions/alterTaskNoPriv.php">Rediger Opgave</button>
-    <div class="btn-group dropdown hidden" id="btnAlter">
-        <button class="btn btn-black dropdown-toggle" type="submit" data-toggle="dropdown">Rediger Opgave <span class="caret"></span></button>
-        <ul class="dropdown-menu dropdown-black" role="menu">
-            <li><a onclick="document.forms[0].action = 'database/actions/alterTask.php';
-                    document.forms[0].submit()">Gem</a></li>
-            <li><a data-toggle="modal" data-target="#deleteModal">Slet</a></li>
-        </ul>
+    <button type="submit" form="form" class="btn btn-black hidden" id="btnAlter" formaction="database/actions/alterTaskNoPriv.php">Gem</button>
+    <div class="hidden" id="btnAlter">
+        <button type="submit" form="form" class="btn btn-black" formaction="database/actions/alterTask.php">Gem</button>
+        <button class="btn btn-black" data-toggle="modal" data-target="#deletModal">Slet</button>
     </div>
 </div>
 <!-- Popup for deleting this task -->
@@ -233,8 +233,7 @@ if (isset($_GET["error"])) {
                 $('#assi').attr('disabled', true);
                 $('#from').attr('disabled', true);
                 $('#to').attr('disabled', true);
-                $('#inv').attr('disabled', true);
-                $('#exp').attr('disabled', true);
+                $('#pressdate').attr('disabled', true);
                 $('button#btnAlter').removeClass("hidden");
             } else {
                 $("div#btnAlter").removeClass("hidden");

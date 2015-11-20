@@ -105,13 +105,11 @@ $links = getLinksFromCustomer();
 <div class="dcenter">
     <div id="cssmenu" align="center" style="color: white; text-transform: uppercase">
         <br>
-        <li>Kontaktperson: <?php echo $_SESSION["Kunde"]->c_conperson ?> // Telefon: <?php echo $_SESSION["Kunde"]->c_connumber ?> // Email: <?php echo $_SESSION["Kunde"]->c_conmail ?> // Tildelt: <?php echo getAssignedAssociateName($_SESSION["Kunde"]->c_assigned); ?></li>
+        <li><?php echo $_SESSION["Kunde"]->c_conperson ?> // <?php echo $_SESSION["Kunde"]->c_connumber ?> // <?php echo $_SESSION["Kunde"]->c_conmail ?> // Tildelt: <?php echo getAssignedAssociateName($_SESSION["Kunde"]->c_assigned); ?></li>
         <?php
         if (!empty($links)) {
-            if (count($links) === 1) {
-                ?><li class="form-inline">Presse Links: <select class="form-control input-sm input-style" onclick="openLinkModal(this.value)"><?php } else {
-                ?><li class="form-inline">Presse Links: <select class="form-control input-sm input-style" onchange="openLinkModal(this.value)"><?php } foreach ($links as $link) { ?> <option value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"><?php echo $link->d_url ?></option>
-                            <?php } ?></select></li><?php } ?>
+            foreach ($links as $link) {
+            ?><li><?php echo $link->d_url ?> // <?php echo $link->d_username ?> // <?php echo $link->d_password?></li><?php }} ?>
                 <br>
                 </div>
                 </div>
