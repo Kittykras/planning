@@ -36,7 +36,7 @@ if (isset($_GET["edit"])) {
         $("#pressdate").datepicker({
             firstDay: 1,
             onSelect: function (dat, inst) {
-                $('#pressdate').val($.datepicker.formatDate("yy-mm-dd", new Date(2007, 1 - 1, 26)));
+                $('#pressdate').val($.datepicker.formatDate("yy-mm-dd", new Date(dat)));
             }
         });
     });

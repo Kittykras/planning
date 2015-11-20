@@ -78,7 +78,7 @@ $links = getLinksFromCustomerEdit();
                 <?php foreach ($links as $link) {
                     ?>
                     <div class="form-group">
-                        <input onclick="openLinkModal(this.value)" class="form-control input-style" value=" <?php echo $link->d_url . ' // ' . $link->d_username . ' // ' . $link->d_password ?>">
+                        <input onclick="openLinkModal(this.value)" class="form-control input-style" value="<?php echo $link->d_url . ' // ' . $link->d_username . ' // ' . $link->d_password ?>">
                     </div>
                     <?php
                 }
@@ -242,7 +242,8 @@ if (isset($_GET["error"])) {
     }
     //    Function to open popup with the selected link
     function openLinkModal(value) {
-        var link = value.split(" // ");
+        value = value.replace(/\s+/g, '');
+        var link = value.split("//");
         document.getElementById("oldLink").value = link[0];
         document.getElementById("urlEdit").value = link[0];
         document.getElementById("userEdit").value = link[1];
