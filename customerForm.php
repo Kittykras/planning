@@ -78,7 +78,8 @@ $links = getLinksFromCustomerEdit();
                 <?php foreach ($links as $link) {
                     ?>
                     <div class="form-group">
-                        <input onclick="openLinkModal(this.value)" class="form-control input-style" value="<?php echo $link->d_url . ' // ' . $link->d_username . ' // ' . $link->d_password ?>">
+                        <input onclick="SetCookie('linkid',<?php echo $link->d_id ?>, '1');
+                                openLinkModal(this.value)" class="form-control input-style" value="<?php echo $link->d_url . ' // ' . $link->d_username . ' // ' . $link->d_password ?>">
                     </div>
                     <?php
                 }
@@ -86,24 +87,23 @@ $links = getLinksFromCustomerEdit();
                 <?php
             }
             ?>
-        </div>
-        <?php if (!empty($links)) { ?>
-            <select class="hidden" multiple name="urls[ ]" id="urls">
-                <?php foreach ($links as $link) {
+                <?php if (!empty($links)) { ?>
+                <select class="hidden" multiple name="urls[ ]" id="urls">
+                    <?php foreach ($links as $link) {
+                        ?>
+                        <option value="<?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
+                        <?php
+                    }
                     ?>
-                    <option value=" <?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
-                    <?php
-                }
-                ?>
-            </select>
-            <?php
-        }
-        ?>
-</div>
-</form>
-<!-- Button for submitting form -->
-<button type="submit" form="form" class="btn btn-black" id="btnCreate" onclick="selectAll()">Gem</button>
-<button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterCustomer.php" onclick="selectAll()" id="btnAlter">Gem</button>
+                </select>
+                <?php
+            }
+            ?>
+        </div>
+    </form>
+    <!-- Button for submitting form -->
+    <button type="submit" form="form" class="btn btn-black" id="btnCreate" onclick="selectAll()">Gem</button>
+    <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterCustomer.php" onclick="selectAll()" id="btnAlter">Gem</button>
 </div>
 <!-- Popup for creating new branch -->
 <div id="branchModal" class="modal fade" role="dialog">
@@ -192,12 +192,9 @@ if (isset($_GET["error"])) {
     //    Function to delete link and refill selectbox
     function deleteLink() {
         var oldlink = document.getElementById('oldLink').value;
-        var splitarray = oldlink.split('¤');
-        var oldId = splitarray[0];
-        var oldUrl = splitarray[1];
         var index = urls.map(function (e) {
             return e.url;
-        }).indexOf(oldUrl);
+        }).indexOf(oldlink);
         urls.splice(index, 1);
         var json = JSON.stringify(urls);
         xmlhttp = new XMLHttpRequest();
@@ -206,7 +203,7 @@ if (isset($_GET["error"])) {
                 document.getElementById("dest").innerHTML = xmlhttp.responseText;
             }
         };
-        xmlhttp.open("GET", "database/actions/deleteLink.php?q=" + json + "&oldlink=" + oldId, true);
+        xmlhttp.open("GET", "database/actions/deleteLink.php?q=" + json, true);
         xmlhttp.send();
         $('#linkModal').modal('hide');
     }
@@ -242,6 +239,7 @@ if (isset($_GET["error"])) {
     }
     //    Function to open popup with the selected link
     function openLinkModal(value) {
+        console.log(document.cookie);
         value = value.replace(/\s+/g, '');
         var link = value.split("//");
         document.getElementById("oldLink").value = link[0];

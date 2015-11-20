@@ -2,7 +2,7 @@
 
 include_once '../DBConnection.php';
 $urls = json_decode($_REQUEST['q']);
-$oldlink = $_REQUEST['oldlink'];
+$oldlink = $_COOKIE['linkid'];
 $db = new DBConnection();
 $q = "call deletedesti(:oldlink)";
 $stmt = $db->prepare($q);
@@ -25,7 +25,7 @@ if (!empty($urls)) {
             </div>';
     foreach ($urls as $url) {
         echo '<div class="form-group">';
-        echo '<input class="form-control input-style" value="' . $url->d_url . ' // ' . $url->d_username . ' // ' . $url->d_password . '">';
+        echo '<input onclick="openLinkModal(this.value)" class="form-control input-style" value="' . $url->d_url . ' // ' . $url->d_username . ' // ' . $url->d_password . '">';
         echo '</div>';
     }
     echo '<select class="hidden" multiple name="urls[ ]" id="urls">';
