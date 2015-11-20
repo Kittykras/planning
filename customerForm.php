@@ -87,7 +87,7 @@ $links = getLinksFromCustomerEdit();
                 <?php
             }
             ?>
-                <?php if (!empty($links)) { ?>
+            <?php if (!empty($links)) { ?>
                 <select class="hidden" multiple name="urls[ ]" id="urls">
                     <?php foreach ($links as $link) {
                         ?>
@@ -102,8 +102,8 @@ $links = getLinksFromCustomerEdit();
         </div>
     </form>
     <!-- Button for submitting form -->
-    <button type="submit" form="form" class="btn btn-black" id="btnCreate" onclick="selectAll()">Gem</button>
-    <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterCustomer.php" onclick="selectAll()" id="btnAlter">Gem</button>
+    <button type="submit" form="form" class="btn btn-black span_1_of_3" id="btnCreate" onclick="selectAll()">Gem</button>
+    <button type="submit" form="form" class="btn btn-black span_1_of_3 hidden" formaction="database/actions/alterCustomer.php" onclick="selectAll()" id="btnAlter">Gem</button>
 </div>
 <!-- Popup for creating new branch -->
 <div id="branchModal" class="modal fade" role="dialog">
