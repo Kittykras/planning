@@ -105,39 +105,6 @@ if (isset($_GET["edit"])) {
                 <input type="text" id="to" name="to" class="form-control input-style foreground-input">
             </div>
         </div>
-        <div id="commentDiv" class="form-group">
-            <?php
-            if (!empty($comments)) {
-                if (count($comments) === 1) {
-                    ?>
-                    <select name="comments[ ]" id="comments" class="form-control input-style" onclick="openModal(this.value)">
-                        <?php
-                    } else {
-                        ?>
-                        <select name="comments[ ]" id="comments" class="form-control input-style" onchange="openModal(this.value)">
-                        <?php } ?>
-                        <?php foreach ($comments as $comment) { ?>
-                            <option value="<?php echo $comment->tc_id . '¤' . $comment->tc_comment ?>"><?php echo $comment->tc_associate;
-                            ?>, <?php echo $comment->tc_date; ?> - &#10;<?php echo $comment->tc_comment; ?></option>
-                            <?php
-                        }
-                        ?>
-                    </select>
-                    <?php
-                }
-                ?>
-        </div>
-        <div class="form-group" align="left">
-            <textarea class="form-control input-style" rows="1" id="newComment" name="newComment" placeholder="Ny Kommentar"></textarea>
-        </div>
-        <!--        <div class="form-group group">
-                    <div class="form-group col span_1_of_2">
-                        <input name="exp" type="text" class="form-control input-style" id="exp" placeholder="Udgifter">
-                    </div>
-                    <div class="form-group col span_1_of_2">
-                        <input name="inv" type="text" class="form-control input-style" id="inv" placeholder="Tilbud">
-                    </div>
-                </div>-->
         <div class="form-group group">
             <div class="col span_1_of_2" align="left">
                 <div class="checkbox">
@@ -147,6 +114,23 @@ if (isset($_GET["edit"])) {
             <div class="col span_1_of_2">
                 <input type="text" id="pressdate" name="pressdate" class="hidden form-control input-style" placeholder="Udgivelse Dato">
             </div>
+        </div>
+        <div id="commentDiv" class="form-group">
+            <div class="form-group">
+                <textarea class="form-control input-style" rows="1" id="newComment" name="newComment" placeholder="Ny Kommentar"></textarea>
+            </div>
+            <?php
+            if (!empty($comments)) {
+                foreach ($comments as $comment) {
+                    ?>
+                    <div class="form-group">
+                        <textarea onclick="SetCookie('commentId', <?php echo $comment->tc_id ?>, '1');
+                                    openModal(this.value)" class="form-control input-style" rows="1"><?php echo $comment->tc_associate . ',' . $comment->tc_date . '- &#10' . $comment->tc_comment ?></textarea>
+                    </div>
+                    <?php
+                }
+            }
+            ?>
         </div>
     </form>
     <!-- Button for submitting form -->
@@ -269,21 +253,20 @@ if (isset($_GET["error"])) {
     });
     //    Function for deleting comment
     function deleteComment() {
-        var id = document.getElementById('oldComment').value;
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                 document.getElementById("commentDiv").innerHTML = xmlhttp.responseText;
             }
         };
-        xmlhttp.open("GET", "database/actions/deleteComment.php?q=" + id, true);
+        xmlhttp.open("GET", "database/actions/deleteComment.php?", true);
         xmlhttp.send();
         $('#commentModal').modal('hide');
     }
     //    Function to open popup with selected comment
     function openModal(value) {
-        var comment = value.split("¤");
-        document.getElementById("oldComment").value = comment[0];
+        value = value.replace(/(\r\n|\n|\r)/gm, "");
+        var comment = value.split("- ");
         document.getElementById("comment").value = comment[1];
         $('#commentModal').modal('show');
     }
