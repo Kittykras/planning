@@ -48,8 +48,8 @@ if (isset($_GET["edit"])) {
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
-            <h4 class="chead" id="editH4"><span class="header-img">Opret Opgave(<?php print_r($_COOKIE["Kunde"]) ?>)</span></h4>
-            <h2 class="chead" id="editH2"><span class="header-img">Opret Opgave(<?php print_r($_COOKIE["Kunde"]) ?>)</span></h2>
+            <h4 class="chead" id="editH4"><span class="header-img">Opret Opgave(<a href="singleCustomer.php"><?php print_r($_COOKIE["Kunde"]) ?></a>)</span></h4>
+            <h2 class="chead" id="editH2"><span class="header-img">Opret Opgave(<a href="singleCustomer.php"><?php print_r($_COOKIE["Kunde"]) ?></a>)</span></h2>
         </div>
         <br>
     </div>
@@ -241,8 +241,9 @@ if (isset($_GET["error"])) {
             var press = $('#hpress').val();
             var prelease = $('#hprelease').val();
             var cus = $('#cus').val();
-            document.getElementById("editH4").innerHTML = "<span class='header-img'>Rediger Opgave(" + cus + ")</span>";
-            document.getElementById("editH2").innerHTML = "<span class='header-img'>Rediger Opgave(" + cus + ")</span>";
+            SetCookie('Kunde', cus, '1');
+            document.getElementById("editH4").innerHTML = "<span class='header-img'>Rediger Opgave(<a href='singleCustomer.php'>" + cus + "</a>)</span>";
+            document.getElementById("editH2").innerHTML = "<span class='header-img'>Rediger Opgave(<a href='singleCustomer.php'>" + cus + "</a>)</span>";
             $("#comment").removeClass("hidden");
             $("#btnCreate").addClass("hidden");
             document.getElementById("title").value = title;
