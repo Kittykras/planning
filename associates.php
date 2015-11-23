@@ -31,7 +31,7 @@ include 'include/menubar.inc.php';
                 <?php
                 foreach ($users as $user) {
                     ?>
-                    <tr><td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $user->a_username ?>')"><?php echo $user->a_name; ?></button></td></tr>
+                    <tr><td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $user->a_username ?>', window.location.href)"><?php echo $user->a_name; ?></button></td></tr>
                     <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                     <?php
                 }

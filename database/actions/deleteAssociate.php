@@ -15,7 +15,7 @@ try{
         SetCookie('timeoversigt', '', time() + (86400), "/planning/");
         SetCookie('presse', '', time() + (86400), "/planning/");
         setcookie('login', '', time() + (86400), "/planning/");
-        header("location:../../associates.php");
+        header("location:".$_COOKIE['previous']);
     } else {
         header("location:../../singleAssociate.php?error");
     }

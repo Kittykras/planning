@@ -125,7 +125,7 @@ if (isset($_GET["edit"])) {
                     ?>
                     <div class="form-group">
                         <textarea onclick="SetCookie('commentId', <?php echo $comment->tc_id ?>, '1');
-                                        openModal(this.value)" class="form-control input-style" rows="1"><?php echo $comment->tc_associate . ',' . $comment->tc_date . '- &#10' . $comment->tc_comment ?></textarea>
+                                        openModal(this.value)" class="form-control input-style" rows="1"><?php echo $comment->tc_associate . ',' . $comment->tc_date . ' - ' . $comment->tc_comment ?></textarea>
                     </div>
                     <?php
                 }
@@ -266,7 +266,6 @@ if (isset($_GET["error"])) {
     }
     //    Function to open popup with selected comment
     function openModal(value) {
-        value = value.replace(/(\r\n|\n|\r)/gm, "");
         var comment = value.split("- ");
         document.getElementById("comment").value = comment[1];
         $('#commentModal').modal('show');

@@ -78,8 +78,7 @@ $links = getLinksFromCustomerEdit();
                 <?php foreach ($links as $link) {
                     ?>
                     <div class="form-group">
-                        <input onclick="SetCookie('linkid',<?php echo $link->d_id ?>, '1');
-                                openLinkModal(this.value)" class="form-control input-style" value="<?php echo $link->d_url . ' // ' . $link->d_username . ' // ' . $link->d_password ?>">
+                        <input onclick="openLinkModal(this.value)" class="form-control input-style" value="<?php echo $link->d_url . ' // ' . $link->d_username . ' // ' . $link->d_password ?>">
                     </div>
                     <?php
                 }
@@ -131,6 +130,7 @@ $links = getLinksFromCustomerEdit();
                 <h3>Rediger Link</h3>
             </div>
             <div class="modal-body vertically-align">
+                <input type="hidden" id="oldId" name="oldId"/>
                 <input type="hidden" id="oldLink" name="oldLink"/>
                 <input class="form-control input-style" type="text" id="urlEdit" placeholder="Link">
                 <input class="form-control input-style" type="text" id="userEdit" placeholder="Brugernavn">
@@ -191,9 +191,10 @@ if (isset($_GET["error"])) {
     }
     //    Function to delete link and refill selectbox
     function deleteLink() {
+        var oldId = document.getElementById('oldId').value;
         var oldlink = document.getElementById('oldLink').value;
         var index = urls.map(function (e) {
-            return e.url;
+            return e.d_url;
         }).indexOf(oldlink);
         urls.splice(index, 1);
         var json = JSON.stringify(urls);
@@ -203,7 +204,7 @@ if (isset($_GET["error"])) {
                 document.getElementById("dest").innerHTML = xmlhttp.responseText;
             }
         };
-        xmlhttp.open("GET", "database/actions/deleteLink.php?q=" + json, true);
+        xmlhttp.open("GET", "database/actions/deleteLink.php?q=" + json+"&linkid="+oldId, true);
         xmlhttp.send();
         $('#linkModal').modal('hide');
     }
@@ -211,15 +212,11 @@ if (isset($_GET["error"])) {
     function editLink() {
         var oldlink = document.getElementById('oldLink').value;
         var url = document.getElementById('urlEdit').value;
-        console.log(url);
         var user = document.getElementById('userEdit').value;
-        console.log(user);
         var pwd = document.getElementById('pwdEdit').value;
-        console.log(pwd);
         var index = urls.map(function (e) {
             return e.d_url;
         }).indexOf(oldlink);
-        console.log(index);
         urls[index].d_url = url;
         urls[index].d_username = user;
         urls[index].d_password = pwd;
@@ -238,7 +235,13 @@ if (isset($_GET["error"])) {
     function openLinkModal(value) {
         value = value.replace(/\s+/g, '');
         var link = value.split("//");
+        var index = urls.map(function (e) {
+            return e.d_url;
+        }).indexOf(link[0]);
+        var id = urls[index].d_id;
+        document.getElementById("oldId").value = id;
         document.getElementById("oldLink").value = link[0];
+        console.log(id);
         document.getElementById("urlEdit").value = link[0];
         document.getElementById("userEdit").value = link[1];
         document.getElementById("pwdEdit").value = link[2];

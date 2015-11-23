@@ -88,8 +88,8 @@ $links = getLinksFromCustomer();
                     ?>
                     <tr>
                         <td><?php echo $ctask->t_fromweek ?>/<?php echo $ctask->t_toweek ?></td>
-                        <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $ctask->t_id ?>')"><span style="color: <?php echo $ctask->t_state ?>">●</span> <?php echo $ctask->t_title ?></td>
-                        <td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $ctask->t_assigned ?>')"><?php echo $ctask->t_assigned ?></button></td>
+                        <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $ctask->t_id ?>', window.location.href)"><span style="color: <?php echo $ctask->t_state ?>">●</span> <?php echo $ctask->t_title ?></td>
+                        <td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $ctask->t_assigned ?>', window.location.href)"><?php echo $ctask->t_assigned ?></button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                         <td><?php echo $ctask->tc_datee ?></td>
                     </tr>

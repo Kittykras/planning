@@ -18,7 +18,7 @@ try {
         setcookie('login', '', time() + (86400), "/planning/");
         setcookie('orderby', 'c_name', time() + (86400), "/planning/");
         setcookie('state', '0', time() + (86400), "/planning/");
-        header("location:../../customers.php");
+        header("location:".$_COOKIE['previous']);
     } else {
         header("location:../../customers.php?error");
     }

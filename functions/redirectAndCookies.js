@@ -2,7 +2,7 @@
 function SetCookie(c_name, value, expiredays) {
     var exdate = new Date();
     exdate.setDate(exdate.getDate() + expiredays);
-    document.cookie = c_name + "=" + value + ";expires=" + exdate.toGMTString()+";path=/planning/";
+    document.cookie = c_name + "=" + value + ";expires=" + exdate.toGMTString() + ";path=/planning/";
 }
 //Function to set active menuitem
 function SetActive(aktiv) {
@@ -34,25 +34,26 @@ function SetActive(aktiv) {
     }
 }
 //Functions to redirect the user to the chosen page with the right values
-function redirect(user) {
+function redirect(user, href) {
     SetActive('medarbejder');
     SetCookie('UserName', user, '1');
-    console.log(window.location.href);
-    SetCookie('previous', window.location.href, '1');
+    SetCookie('orderby', 't_fromWeek', '1');
+    SetCookie('state', '0', '1');
+    SetCookie('previous', href, '1');
     window.location = 'singleAssociate.php';
 }
-function cusRedirect(cust) {
+function cusRedirect(cust, href) {
     SetActive('kunder');
     SetCookie('Kunde', cust, '1');
-    console.log(window.location.href);
-    SetCookie('previous', window.location.href, '1');
+    SetCookie('orderby', 't_fromWeek', '1');
+    SetCookie('state', '0', '1');
+    SetCookie('previous', href, '1');
     window.location = 'singleCustomer.php';
 }
-function taskRedirect(task) {
+function taskRedirect(task, href) {
     SetActive('kunder');
     SetCookie('Task', task, '1');
-    console.log(window.location.href);
-    SetCookie('previous', window.location.href, '1');
+    SetCookie('previous', href, '1');
     window.location = "taskForm.php?edit";
 }
 
