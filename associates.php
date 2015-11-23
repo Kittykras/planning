@@ -13,7 +13,7 @@ include 'include/menubar.inc.php';
         <br>
         <!-- Button for the option to create new associate -->
         <div id="new" class="col span_1_of_2 hidden" align="right">
-            <button type="button" class="btn btn-black" onclick="location.href = 'associateForm.php'">Ny Medarbejder</button>
+            <button type="button" class="btn btn-black" onclick="SetCookie('previous', window.location.href, '1'); location.href = 'associateForm.php'">Ny Medarbejder</button>
         </div>
     </div>
 </div>

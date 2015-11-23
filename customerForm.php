@@ -171,6 +171,14 @@ if (isset($_GET["error"])) {
 ?>
 <!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
+//    Function to prevent enter key from submitting
+    $('#form').on('keyup keypress', function (e) {
+        var code = e.keyCode || e.which;
+        if (code === 13) {
+            e.preventDefault();
+            return false;
+        }
+    });
     var urls = [];
     addArrayToUrls(<?php echo json_encode($links) ?>);
     //    Function to add links from database to array
@@ -204,7 +212,7 @@ if (isset($_GET["error"])) {
                 document.getElementById("dest").innerHTML = xmlhttp.responseText;
             }
         };
-        xmlhttp.open("GET", "database/actions/deleteLink.php?q=" + json+"&linkid="+oldId, true);
+        xmlhttp.open("GET", "database/actions/deleteLink.php?q=" + json + "&linkid=" + oldId, true);
         xmlhttp.send();
         $('#linkModal').modal('hide');
     }

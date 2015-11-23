@@ -63,6 +63,14 @@ if (isset($_GET["error"])) {
 ?>
 <!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
+    //    Function to prevent enter key from submitting
+    $('#form').on('keyup keypress', function (e) {
+        var code = e.keyCode || e.which;
+        if (code === 13) {
+            e.preventDefault();
+            return false;
+        }
+    });
 //    Function for filling out form when altering associate
     $(window).load(function () {
         var editing = window.location.search;
