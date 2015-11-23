@@ -124,7 +124,7 @@ if (isset($_GET["edit"])) {
                 foreach ($comments as $comment) {
                     ?>
                     <div class="form-group">
-                        <textarea onclick="SetCookie('commentId', <?php echo $comment->tc_id ?>, '1');
+                        <textarea disabled="" onclick="SetCookie('commentId', <?php echo $comment->tc_id ?>, '1');
                                         openModal(this.value)" class="form-control input-style" rows="1"><?php echo $comment->tc_associate . ',' . $comment->tc_date . ' - ' . $comment->tc_comment ?></textarea>
                     </div>
                     <?php

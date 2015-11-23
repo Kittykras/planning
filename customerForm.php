@@ -78,7 +78,7 @@ $links = getLinksFromCustomerEdit();
                 <?php foreach ($links as $link) {
                     ?>
                     <div class="form-group">
-                        <input onclick="openLinkModal(this.value)" class="form-control input-style" value="<?php echo $link->d_url . ' // ' . $link->d_username . ' // ' . $link->d_password ?>">
+                        <input disabled="" onclick="openLinkModal(this.value)" class="form-control input-style" value="<?php echo $link->d_url . ' // ' . $link->d_username . ' // ' . $link->d_password ?>">
                     </div>
                     <?php
                 }

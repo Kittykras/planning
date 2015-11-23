@@ -25,7 +25,7 @@ if (!empty($urls)) {
             </div>';
     foreach ($urls as $url) {
         echo '<div class="form-group">';
-        echo '<input onclick="openLinkModal(this.value)" class="form-control input-style" value="' . $url->d_url . ' // ' . $url->d_username . ' // ' . $url->d_password . '">';
+        echo '<input disabled="" onclick="openLinkModal(this.value)" class="form-control input-style" value="' . $url->d_url . ' // ' . $url->d_username . ' // ' . $url->d_password . '">';
         echo '</div>';
     }
     echo '<select class="hidden" multiple name="urls[ ]" id="urls">';

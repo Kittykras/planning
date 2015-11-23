@@ -16,7 +16,7 @@ try {
         $stmt->execute(array(':task' => $task));
         $comments = $stmt->fetchAll();
         echo '<div class="form-group">
-                <textarea class="form-control input-style" rows="1" id="newComment" name="newComment" placeholder="Ny Kommentar"></textarea>
+                <textarea disabled="" class="form-control input-style" rows="1" id="newComment" name="newComment" placeholder="Ny Kommentar"></textarea>
             </div>';
         foreach ($comments as $comment) {
             echo '<div class="form-group"><textarea  onclick="SetCookie('."'".'commentId'."'".', '.$comment->tc_id.', '."'".'1'."'".');
