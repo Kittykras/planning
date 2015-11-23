@@ -48,8 +48,8 @@ if (isset($_GET["edit"])) {
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
-            <h4 class="chead" id="editH4"><span class="header-img">Opret Opgave</span></h4>
-            <h2 class="chead" id="editH2"><span class="header-img">Opret Opgave</span></h2>
+            <h4 class="chead" id="editH4"><span class="header-img">Opret Opgave(<?php print_r($_COOKIE["Kunde"]) ?>)</span></h4>
+            <h2 class="chead" id="editH2"><span class="header-img">Opret Opgave(<?php print_r($_COOKIE["Kunde"]) ?>)</span></h2>
         </div>
         <br>
     </div>
@@ -232,8 +232,9 @@ if (isset($_GET["error"])) {
             var to = $('#hto').val();
             var press = $('#hpress').val();
             var prelease = $('#hprelease').val();
-            document.getElementById("editH4").innerHTML = "<span class='header-img'>Rediger Opgave</span>";
-            document.getElementById("editH2").innerHTML = "<span class='header-img'>Rediger Opgave</span>";
+            var cus = $('#cus').val();
+            document.getElementById("editH4").innerHTML = "<span class='header-img'>Rediger Opgave("+cus+")</span>";
+            document.getElementById("editH2").innerHTML = "<span class='header-img'>Rediger Opgave("+cus+")</span>";
             $("#comment").removeClass("hidden");
             $("#btnCreate").addClass("hidden");
             document.getElementById("title").value = title;

@@ -19,7 +19,7 @@ try {
                 <textarea class="form-control input-style" rows="1" id="newComment" name="newComment" placeholder="Ny Kommentar"></textarea>
             </div>';
         foreach ($comments as $comment) {
-            echo '<div class="form-group"><textarea  onclick="SetCookie("commentId", '.$comment->tc_id.', "1");
+            echo '<div class="form-group"><textarea  onclick="SetCookie('."'".'commentId'."'".', '.$comment->tc_id.', '."'".'1'."'".');
                             openModal(this.value)" class="form-control input-style" rows="1">' . $comment->tc_associate . ',' . $comment->tc_date . '- &#10' . $comment->tc_comment . '</textarea></div>';
         }
     }

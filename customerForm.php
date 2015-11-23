@@ -210,9 +210,6 @@ if (isset($_GET["error"])) {
     //    Function to alter link and refill selectbox
     function editLink() {
         var oldlink = document.getElementById('oldLink').value;
-        console.log(oldlink);
-//        var splitarray = oldlink.split('¤');
-//        var oldUrl = splitarray[1];
         var url = document.getElementById('urlEdit').value;
         console.log(url);
         var user = document.getElementById('userEdit').value;
@@ -239,7 +236,6 @@ if (isset($_GET["error"])) {
     }
     //    Function to open popup with the selected link
     function openLinkModal(value) {
-        console.log(document.cookie);
         value = value.replace(/\s+/g, '');
         var link = value.split("//");
         document.getElementById("oldLink").value = link[0];
