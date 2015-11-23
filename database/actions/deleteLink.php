@@ -3,7 +3,6 @@
 include_once '../DBConnection.php';
 $urls = json_decode($_REQUEST['q']);
 $oldlink = $_REQUEST['linkid'];
-echo 'hej '.$oldlink;
 $db = new DBConnection();
 $q = "call deletedesti(:oldlink)";
 $stmt = $db->prepare($q);
