@@ -1,3 +1,9 @@
+a {
+    color: black;
+}
+a:hover, a:active {
+    color: #D26232;
+}
 /* Position label behind input to make it look like a placeholder */
 .background-label{
     z-index: -10;
