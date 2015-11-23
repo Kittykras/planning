@@ -46,7 +46,7 @@ try {
         setcookie('login', '', time() + (86400), "/planning/");
         setcookie('orderby', 't_fromweek', time() + (86400), "/planning/");
         setcookie('state', '0', time() + (86400), "/planning/");
-        header("location:../../singleCustomer.php");
+        header("location:".$_COOKIE['previous']);
     } else {
         header("location:../../taskForm.php?edit&error");
     }

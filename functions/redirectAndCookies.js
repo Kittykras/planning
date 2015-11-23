@@ -37,16 +37,22 @@ function SetActive(aktiv) {
 function redirect(user) {
     SetActive('medarbejder');
     SetCookie('UserName', user, '1');
+    console.log(window.location.href);
+    SetCookie('previous', window.location.href, '1');
     window.location = 'singleAssociate.php';
 }
 function cusRedirect(cust) {
     SetActive('kunder');
     SetCookie('Kunde', cust, '1');
+    console.log(window.location.href);
+    SetCookie('previous', window.location.href, '1');
     window.location = 'singleCustomer.php';
 }
 function taskRedirect(task) {
     SetActive('kunder');
     SetCookie('Task', task, '1');
+    console.log(window.location.href);
+    SetCookie('previous', window.location.href, '1');
     window.location = "taskForm.php?edit";
 }
 

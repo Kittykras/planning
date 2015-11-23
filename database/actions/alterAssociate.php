@@ -22,7 +22,7 @@ try{
         setcookie('login', '', time() + (86400), "/planning/");
         setcookie('orderby', 't_fromweek', time() + (86400), "/planning/");
         setcookie('state', '0', time() + (86400), "/planning/");
-        header("location:../../singleAssociate.php");
+        header("location:".$_COOKIE['previous']);
     } else {
         header("location:../../associateForm.php?edit&error");
     }

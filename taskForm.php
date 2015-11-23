@@ -125,7 +125,7 @@ if (isset($_GET["edit"])) {
                     ?>
                     <div class="form-group">
                         <textarea onclick="SetCookie('commentId', <?php echo $comment->tc_id ?>, '1');
-                                    openModal(this.value)" class="form-control input-style" rows="1"><?php echo $comment->tc_associate . ',' . $comment->tc_date . '- &#10' . $comment->tc_comment ?></textarea>
+                                        openModal(this.value)" class="form-control input-style" rows="1"><?php echo $comment->tc_associate . ',' . $comment->tc_date . '- &#10' . $comment->tc_comment ?></textarea>
                     </div>
                     <?php
                 }
@@ -138,7 +138,7 @@ if (isset($_GET["edit"])) {
     <button type="submit" form="form" class="btn btn-black hidden" id="btnAlter" formaction="database/actions/alterTaskNoPriv.php">Gem</button>
     <div class="hidden" id="btnAlter">
         <button type="submit" form="form" class="btn btn-black" formaction="database/actions/alterTask.php">Gem</button>
-        <button class="btn btn-black" data-toggle="modal" data-target="#deletModal">Slet</button>
+        <button class="btn btn-black" data-toggle="modal" data-target="#deleteModal">Slet</button>
     </div>
 </div>
 <!-- Popup for deleting this task -->
@@ -233,8 +233,8 @@ if (isset($_GET["error"])) {
             var press = $('#hpress').val();
             var prelease = $('#hprelease').val();
             var cus = $('#cus').val();
-            document.getElementById("editH4").innerHTML = "<span class='header-img'>Rediger Opgave("+cus+")</span>";
-            document.getElementById("editH2").innerHTML = "<span class='header-img'>Rediger Opgave("+cus+")</span>";
+            document.getElementById("editH4").innerHTML = "<span class='header-img'>Rediger Opgave(" + cus + ")</span>";
+            document.getElementById("editH2").innerHTML = "<span class='header-img'>Rediger Opgave(" + cus + ")</span>";
             $("#comment").removeClass("hidden");
             $("#btnCreate").addClass("hidden");
             document.getElementById("title").value = title;
@@ -273,12 +273,11 @@ if (isset($_GET["error"])) {
     }
     //    See number.js
     $("input[type=number").number();
+//    $.number("defaults", {});
     //    Function for showing release date, when press is checked
     function showDate() {
         $("#pressdate").toggleClass("hidden");
     }
-    ;
-
 </script>
 </body>
 </html>
