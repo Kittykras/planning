@@ -12,18 +12,30 @@ try {
     $stat = $_POST["stat"];
     $assi = $_POST["assi"];
     $timespen = $_POST["hour"] . ":" . $_POST["min"];
-    $fromArray = split('\-', $_POST["from"]);
-    $fromYear = $fromArray[0];
-    $fromWeek = $fromArray[1];
-    $toArray = split('\-', $_POST["to"]);
-    $toYear = $toArray[0];
-    $toWeek = $toArray[1];
+    $from = $_POST["from"];
+    if (empty($from)) {
+        $fromYear = 0;
+        $fromWeek = 0;
+    } else {
+        $fromArray = split('\-', $from);
+        $fromYear = $fromArray[0];
+        $fromWeek = $fromArray[1];
+    }
+    $to = $_POST["to"];
+    if (empty($to)) {
+        $toYear = 0;
+        $toWeek = 0;
+    } else {
+        $toArray = split('\-', $to);
+        $toYear = $toArray[0];
+        $toWeek = $toArray[1];
+    }
     $comment = $_POST["newComment"];
     $press = isset($_POST['press']) && $_POST['press'] ? "true" : "false";
     $pressdate = $_POST["pressdate"];
     if ($pressdate === "") {
         $pressdate = "0000-00-00";
-    } 
+    }
     $db = new DBConnection();
     $q = "call createtask(:cus, :title, :descr, :stat, :assi, :timespent, :fromWeek, :fromYear, :toWeek, :toYear, :pressdate, :press);";
     $stmt = $db->prepare($q);
@@ -37,15 +49,7 @@ try {
         $stmt->execute(array(':comment' => $comment, ":user" => $user));
     }
     if ($count > 0) {
-        SetCookie('medarbejder', '', time() + (86400), "/planning/");
-        SetCookie('kunder', 'active', time() + (86400), "/planning/");
-        SetCookie('overblik', '', time() + (86400), "/planning/");
-        SetCookie('timeoversigt', '', time() + (86400), "/planning/");
-        SetCookie('presse', '', time() + (86400), "/planning/");
-        setcookie('login', '', time() + (86400), "/planning/");
-        setcookie('orderby', 't_fromweek', time() + (86400), "/planning/");
-        setcookie('state', '0', time() + (86400), "/planning/");
-        header("location:".$_COOKIE['previous']);
+        header("location:" . $_COOKIE['previous']);
     } else {
         header("location:../../taskForm.php?error");
     }

@@ -20,8 +20,10 @@ include 'include/menubar.inc.php';
         <div class="form-group">
             <input name="newName" type="text" class="form-control input-style" id="newName" placeholder="Navn">
         </div>
-        <div class="form-group">
-            <input name="newUser" type="text" class="form-control input-style" id="newUser" placeholder="Brugernavn(max 4 bogstaver)">
+        <div id="usererror">
+            <div class="form-group">
+                <input name="newUser" type="text" class="form-control input-style" id="newUser" placeholder="Brugernavn(max 4 bogstaver)" onblur="checkUser()">
+            </div>
         </div>
         <div class="form-group">
             <input name="newPwd" type="text" class="form-control input-style" id="newPwd" placeholder="Kodeord">
@@ -63,6 +65,17 @@ if (isset($_GET["error"])) {
 ?>
 <!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
+    function checkUser() {
+        var user = document.getElementById("newUser").value;
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                document.getElementById("usererror").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "database/actions/checkAsUser.php?q=" + user, true);
+        xmlhttp.send();
+    }
     //    Function to prevent enter key from submitting
     $('#form').on('keyup keypress', function (e) {
         var code = e.keyCode || e.which;

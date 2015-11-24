@@ -28,7 +28,7 @@ try {
     $db = new DBConnection();
     $q = "call altertask(:id, :cus, :title, :descr, :stat, :assi, :timespent, :fromWeek, :fromYear, :toWeek, :toYear, :pressdate, :press);";
     $stmt = $db->prepare($q);
-    $stmt->execute(array(':id' => $id,':cus' => $cus, ':title' => $title,
+    $stmt->execute(array(':id' => $id, ':cus' => $cus, ':title' => $title,
         ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen,
         ':fromWeek' => $fromWeek, ':fromYear' => $fromYear, ':toWeek' => $toWeek, ':toYear' => $toYear, ':pressdate' => $pressdate, ':press' => $press));
     if ($comment != "") {
@@ -38,15 +38,7 @@ try {
     }
     if ($stmt != FALSE) {
         setcookie("Kunde", $cus, time() + (86400), "/planning/");
-        SetCookie('medarbejder', '', time() + (86400), "/planning/");
-        SetCookie('kunder', 'active', time() + (86400), "/planning/");
-        SetCookie('overblik', '', time() + (86400), "/planning/");
-        SetCookie('timeoversigt', '', time() + (86400), "/planning/");
-        SetCookie('presse', '', time() + (86400), "/planning/");
-        setcookie('login', '', time() + (86400), "/planning/");
-        setcookie('orderby', 't_fromweek', time() + (86400), "/planning/");
-        setcookie('state', '0', time() + (86400), "/planning/");
-        header("location:".$_COOKIE['previous']);
+        header("location:" . $_COOKIE['previous']);
     } else {
         header("location:../../taskForm.php?edit&error");
     }

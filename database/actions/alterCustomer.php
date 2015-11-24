@@ -38,7 +38,7 @@ try {
             $obj->pwd = $temp[3];
             array_push($links, $obj);
         }
-        
+
         foreach ($links as $link) {
             $q = "call createdisti(:id, :url, :user, :pwd, :acro)";
             $stmt = $db->prepare($q);
@@ -46,15 +46,7 @@ try {
         }
     }
     if ($stmt != FALSE) {
-        SetCookie('medarbejder', '', time() + (86400), "/planning/");
-        SetCookie('kunder', 'active', time() + (86400), "/planning/");
-        SetCookie('overblik', '', time() + (86400), "/planning/");
-        SetCookie('timeoversigt', '', time() + (86400), "/planning/");
-        SetCookie('presse', '', time() + (86400), "/planning/");
-        setcookie('login', '', time() + (86400), "/planning/");
-        setcookie('orderby', 'c_name', time() + (86400), "/planning/");
-        setcookie('state', '0', time() + (86400), "/planning/");
-        header("location:".$_COOKIE['previous']);
+        header("location:" . $_COOKIE['previous']);
     } else {
         header("location:../../customerForm.php?edit&error");
     }

@@ -11,7 +11,7 @@ try {
     $stat = $_POST["stat"];
     $timespen = $_POST["hour"] . ":" . $_POST["min"];
     $comment = $_POST["newComment"];
-    $press = isset($_POST['press']) && $_POST['press']  ? "true" : "false";
+    $press = isset($_POST['press']) && $_POST['press'] ? "true" : "false";
     $db = new DBConnection();
     $q = "call altertasknopriv(:id, :stat, :timespent, :press)";
     $stmt = $db->prepare($q);
@@ -26,15 +26,7 @@ try {
     }
     if ($stmt != FALSE) {
         setcookie('Kunde', $cus, time() + (86400), "/planning/");
-        SetCookie('medarbejder', '', time() + (86400), "/planning/");
-        SetCookie('kunder', 'active', time() + (86400), "/planning/");
-        SetCookie('overblik', '', time() + (86400), "/planning/");
-        SetCookie('timeoversigt', '', time() + (86400), "/planning/");
-        SetCookie('presse', '', time() + (86400), "/planning/");
-        setcookie('login', '', time() + (86400), "/planning/");
-        setcookie('orderby', 't_fromweek', time() + (86400), "/planning/");
-        setcookie('state', '0', time() + (86400), "/planning/");
-        header("location:".$_COOKIE['previous']);
+        header("location:" . $_COOKIE['previous']);
     } else {
         header("location:../../taskForm.php?edit&error");
     }

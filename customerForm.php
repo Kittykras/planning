@@ -22,8 +22,10 @@ $links = getLinksFromCustomerEdit();
         <div class="form-group">
             <input name="name" type="text" class="form-control input-style" id="name" placeholder="Navn">
         </div>
-        <div class="form-group">
-            <input name="acro" type="text" class="form-control input-style" id="acro" placeholder="Forkortelse (max 5 bogstaver)">
+        <div id="acroerror">
+            <div class="form-group">
+                <input name="acro" type="text" class="form-control input-style" id="acro" placeholder="Forkortelse (max 5 bogstaver)" onblur="checkAcro()">
+            </div>
         </div>
         <div class="form-group">
             <input name="cont" type="text" class="form-control input-style" id="cont" placeholder="Kontaktperson">
@@ -171,6 +173,18 @@ if (isset($_GET["error"])) {
 ?>
 <!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
+//    Function to check if acronym already exists
+    function checkAcro() {
+        var acro = document.getElementById("acro").value;
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                document.getElementById("acroerror").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "database/actions/checkCusAcro.php?q=" + acro, true);
+        xmlhttp.send();
+    }
 //    Function to prevent enter key from submitting
     $('#form').on('keyup keypress', function (e) {
         var code = e.keyCode || e.which;
@@ -180,8 +194,8 @@ if (isset($_GET["error"])) {
         }
     });
     var urls = [];
-    addArrayToUrls(<?php echo json_encode($links) ?>);
     //    Function to add links from database to array
+    addArrayToUrls(<?php echo json_encode($links) ?>);
     function addArrayToUrls(array) {
         for (i = 0; i < array.length; i++) {
             var dest = {d_id: array[i].d_id, d_url: array[i].d_url, d_username: array[i].d_username, d_password: array[i].d_password};

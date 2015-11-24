@@ -18,7 +18,7 @@ if (session_status() == PHP_SESSION_NONE) {
                         SetActive('login');"><span style="color: #D26232">+</span>vonbülow.co</a>
             </div>
             <li class='has-sub <?php echo $_COOKIE['medarbejder'] ?>'>
-                <a href = 'associates.php' onclick="SetActive('medarbejder');">Medarbejdere</a>
+                <a href = 'associates.php' onclick="SetCookie('previous', window.location.href, '1'); SetActive('medarbejder');">Medarbejdere</a>
                 <ul>
                     <?php foreach ($users as $user) { ?>
                         <li><a href = 'singleAssociate.php' onClick="SetCookie('UserName', '<?php echo $user->a_username ?>', '1');

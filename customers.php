@@ -13,7 +13,7 @@ include 'include/menubar.inc.php';
         <br>
         <!-- Button for the option to create new customer -->
         <div class="col span_1_of_2 hidden" align="right" id="new">
-            <button type="button" class="btn btn-black" onclick="SetCookie('previous', window.location.href, '1'); location.href = 'customerForm.php'">Ny Kunde</button>
+            <button type="button" class="btn btn-black" onclick="location.href = 'customerForm.php'">Ny Kunde</button>
         </div>
     </div>
     <!-- Buttons for sorting the table values -->
