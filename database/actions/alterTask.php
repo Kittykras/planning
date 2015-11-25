@@ -13,12 +13,24 @@ try {
     $stat = $_POST["stat"];
     $assi = $_POST["assi"];
     $timespen = $_POST["hour"] . ":" . $_POST["min"];
-    $fromArray = split('\-', $_POST["from"]);
-    $fromYear = $fromArray[0];
-    $fromWeek = $fromArray[1];
-    $toArray = split('\-', $_POST["to"]);
-    $toYear = $toArray[0];
-    $toWeek = $toArray[1];
+    $from = $_POST["from"];
+    if (empty($from)) {
+        $fromYear = 0;
+        $fromWeek = 0;
+    } else {
+        $fromArray = split('\-', $from);
+        $fromYear = $fromArray[0];
+        $fromWeek = $fromArray[1];
+    }
+    $to = $_POST["to"];
+    if (empty($to)) {
+        $toYear = 0;
+        $toWeek = 0;
+    } else {
+        $toArray = split('\-', $to);
+        $toYear = $toArray[0];
+        $toWeek = $toArray[1];
+    }
     $comment = $_POST["newComment"];
     $press = isset($_POST['press']) && $_POST['press'] ? "true" : "false";
     $pressdate = $_POST["pressdate"];
