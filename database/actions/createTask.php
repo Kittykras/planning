@@ -32,6 +32,7 @@ try {
         $toWeek = $toArray[1];
     }
     $comment = $_POST["newComment"];
+    $mailto = $_POST["mailto"];
     $press = isset($_POST['press']) && $_POST['press'] ? "true" : "false";
     $pressdate = $_POST["pressdate"];
     if ($pressdate === "") {
@@ -48,11 +49,11 @@ try {
         $q = "call createcommentonnewtask(:comment, :user);";
         $stmt = $db->prepare($q);
         $stmt->execute(array(':comment' => $comment, ":user" => $user));
-        $q = "call getAssociate(:assi)";
+        $q = "call getAssociate(:mailto)";
         $stmt = $db->prepare($q);
-        $stmt->execute(array(':assi' => $assi));
+        $stmt->execute(array(':mailto' => $mailto));
         $asmail = $stmt->fetch(PDO::FETCH_OBJ);
-        sendmail($asmail->a_email, 'Ny kommentar på en opgave', $cus.'<br><br>'.$title.'<br><br>'.$user.' har tilføjet en kommentar<br>'.$comment);
+        sendmail($asmail->a_email, 'Ny kommentar på en opgave', 'Kunde: '.$cus.'<br><br>Opgave: '.$title.'<br><br>'.$user.' har tilføjet en kommentar<br>'.$comment);
     }
     if ($count > 0) {
         header("location:" . $_COOKIE['previous']);

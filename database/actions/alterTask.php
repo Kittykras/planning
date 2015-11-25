@@ -1,6 +1,7 @@
 <?php
 
 require_once '../DBConnection.php';
+require_once '../mailHandler.php';
 $session_expiration = time() + 3600 * 24; // +1 days
 session_set_cookie_params($session_expiration);
 session_start();
@@ -32,6 +33,7 @@ try {
         $toWeek = $toArray[1];
     }
     $comment = $_POST["newComment"];
+    $mailto = $_POST["mailto"];
     $press = isset($_POST['press']) && $_POST['press'] ? "true" : "false";
     $pressdate = $_POST["pressdate"];
     if ($pressdate === "") {
@@ -47,6 +49,11 @@ try {
         $q = "call createcomment(:id, :comment, :user);";
         $stmt = $db->prepare($q);
         $stmt->execute(array(':id' => $id, ':comment' => $comment, ":user" => $user));
+        $q = "call getAssociate(:mailto)";
+        $stmt = $db->prepare($q);
+        $stmt->execute(array(':mailto' => $mailto));
+        $asmail = $stmt->fetch(PDO::FETCH_OBJ);
+        sendmail($asmail->a_email, 'Ny kommentar på en opgave', 'Kunde: '.$cus.'<br><br>Opgave: '.$title.'<br><br>'.$user.' har tilføjet en kommentar:<br>'.$comment);
     }
     if ($stmt != FALSE) {
         setcookie("Kunde", $cus, time() + (86400), "/planning/");

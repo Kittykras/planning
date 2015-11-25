@@ -115,6 +115,22 @@ if (isset($_GET["edit"])) {
                 <input type="text" id="pressdate" name="pressdate" class="hidden form-control input-style" placeholder="Udgivelse Dato">
             </div>
         </div>
+        <div class="form-group group">
+            <div class="col span_1_of_2">
+                <label for="mailto">Kommentaren bliver tilsendt: </label>
+            </div>
+            <div class="col span_1_of_2">
+                <select class="form-control input-style" id="mailto" name="mailto">
+                    <?php
+                    foreach ($users as $user) {
+                        ?>    
+                        <option value="<?php echo $user->a_username; ?>"><?php echo $user->a_name; ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
         <div id="commentDiv" class="form-group">
             <div class="form-group">
                 <textarea class="form-control input-style" rows="1" id="newComment" name="newComment" placeholder="Ny Kommentar"></textarea>
@@ -254,6 +270,7 @@ if (isset($_GET["error"])) {
             document.getElementById("min").value = min;
             document.getElementById("from").value = from;
             document.getElementById("to").value = to;
+            document.getElementById("mailto").value = assi;
             if (press === "1") {
                 document.getElementById("press").checked = true;
                 $("#pressdate").removeClass("hidden");

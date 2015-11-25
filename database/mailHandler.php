@@ -1,9 +1,9 @@
 <?php
 function sendmail($to, $subject, $message) {
         //path to PHPMailer class
-        require_once('../phpmailer/class.phpmailer.php');
+        require_once('/../phpmailer/class.phpmailer.php');
         // optional, gets called from within class.phpmailer.php if not already loaded
-        include("phpmailer/class.smtp.php");
+        include("/../phpmailer/class.smtp.php");
         $mail = new PHPMailer();
         $mail->CharSet = "UTF-8";
         // telling the class to use SMTP
@@ -21,13 +21,13 @@ function sendmail($to, $subject, $message) {
         // set the SMTP port for the GMAIL server
         $mail->Port = 465;
         // GMAIL username
-        $mail->Username = "mail@vonbulow.org";
+        $mail->Username = "projektstyring@vonbulow.org";
         // GMAIL password
         $mail->Password = "Mark1Annette2";
         //Set reply-to email this is your own email, not the gmail account 
         //used for sending emails
-        $mail->SetFrom('mail@vonbulow.org');
-        $mail->FromName = "Michael Von Bülow";
+        $mail->SetFrom('projektstyring@vonbulow.org');
+        $mail->FromName = "Projektstyring";
         // Mail Subject
         $mail->Subject = $subject;
         //Main message
