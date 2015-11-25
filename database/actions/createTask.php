@@ -1,6 +1,7 @@
 <?php
 
 require_once '../DBConnection.php';
+require_once '../mailHandler.php';
 $session_expiration = time() + 3600 * 24; // +1 days
 session_set_cookie_params($session_expiration);
 session_start();
@@ -47,6 +48,11 @@ try {
         $q = "call createcommentonnewtask(:comment, :user);";
         $stmt = $db->prepare($q);
         $stmt->execute(array(':comment' => $comment, ":user" => $user));
+        $q = "call getAssociate(:assi)";
+        $stmt = $db->prepare($q);
+        $stmt->execute(array(':assi' => $assi));
+        $asmail = $stmt->fetch(PDO::FETCH_OBJ);
+        sendmail($asmail->a_email, 'Ny kommentar på en opgave', $cus.'<br><br>'.$title.'<br><br>'.$user.' har tilføjet en kommentar<br>'.$comment);
     }
     if ($count > 0) {
         header("location:" . $_COOKIE['previous']);

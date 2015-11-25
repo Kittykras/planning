@@ -28,6 +28,9 @@ include 'include/menubar.inc.php';
         <div class="form-group">
             <input name="newPwd" type="text" class="form-control input-style" id="newPwd" placeholder="Kodeord">
         </div>
+        <div class="form-group">
+            <input name="newMail" type="text" class="form-control input-style" id="newMail" placeholder="Email">
+        </div>
         <div class='form-group'>
             <select class="form-control input-style" name='newPriv' id="newPriv">
                 <option value="3">Medarbejder</option>
@@ -45,6 +48,7 @@ include 'include/menubar.inc.php';
 <input type="hidden" id="aUser" name="aUser" value="<?php echo $_SESSION["UserName"]->a_username ?>"/>
 <input type="hidden" id="aPwd" name="aPwd" value="<?php echo $_SESSION["UserName"]->a_password ?>"/>
 <input type="hidden" id="aPriv" name="aPriv" value="<?php echo $_SESSION["UserName"]->a_privileges ?>"/>
+<input type="hidden" id="aMail" name="aMail" value="<?php echo $_SESSION["UserName"]->a_email ?>"/>
 <!-- Errormessages -->
 <?php
 if (isset($_GET["error"])) {
@@ -92,6 +96,7 @@ if (isset($_GET["error"])) {
             var user = $('#aUser').val();
             var pwd = $('#aPwd').val();
             var priv = $('#aPriv').val();
+            var mail = $('#aMail').val();
             document.getElementById("editH4").innerHTML = "<span class='header-img'>Rediger Medarbejder</span>";
             document.getElementById("editH2").innerHTML = "<span class='header-img'>Rediger Medarbejder</span>";
             $("button#btnAlter").removeClass("hidden");
@@ -100,6 +105,7 @@ if (isset($_GET["error"])) {
             document.getElementById("newUser").value = user;
             document.getElementById("newPwd").value = pwd;
             document.getElementById("newPriv").value = priv;
+            document.getElementById("newMail").value = mail;
         }
     });
 </script>

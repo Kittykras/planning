@@ -8,10 +8,11 @@ try {
     $newUser = $_POST["newUser"];
     $newPwd = $_POST["newPwd"];
     $newPriv = $_POST["newPriv"];
+    $newMail = $_POST["newMail"];
     $db = new DBConnection();
-    $q = "call alterassociate(:oldUser, :newUser, :newPwd, :newName, :newPriv);";
+    $q = "call alterassociate(:oldUser, :newUser, :newPwd, :newName, :newPriv, :newMail);";
     $stmt = $db->prepare($q);
-    $stmt->execute(array(':oldUser' => $oldUser, ':newName' => $newName, ':newUser' => $newUser, ':newPwd' => $newPwd, ':newPriv' => $newPriv));
+    $stmt->execute(array(':oldUser' => $oldUser, ':newName' => $newName, ':newUser' => $newUser, ':newPwd' => $newPwd, ':newPriv' => $newPriv, ':newMail' => $newMail));
     $count = $stmt->rowCount();
     if ($stmt != FALSE) {
         setcookie("UserName", $newUser, time() + (86400), "/planning/");
