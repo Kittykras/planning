@@ -9,7 +9,7 @@ try{
     $stmt->execute(array(":delName"=>$delName));
     $count = $stmt->rowCount();
     if($stmt != FALSE){
-        header("location:".$_COOKIE['previous']);
+        header("location:../../associates.php");
     } else {
         header("location:../../singleAssociate.php?error");
     }
