@@ -50,10 +50,13 @@ try {
     }
     if ($stmt != FALSE) {
         setcookie("Kunde", $cus, time() + (86400), "/planning/");
+        session_start();
         $previous = $_COOKIE['previous'];
-        if (strpos($previous, 'associate') != FALSE) {
+        $associate = $_COOKIE['UserName'];
+        $loggedin = $_SESSION['user']->a_username;
+        if (strpos($previous, 'ssociate') != FALSE) {
             setcookie('kunder', '', time() + (86400), "/planning/");
-            if ($_COOKIE['UserName'] === $_SESSION["user"]->a_username) {
+            if ($associate === $loggedin) {
                 setcookie('login', 'active', time() + (86400), "/planning/");
             } else {
                 setcookie('medarbejder', 'active', time() + (86400), "/planning/");
