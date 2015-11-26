@@ -1,25 +1,24 @@
 <?php
 function sendmail($to, $subject, $message) {
         //path to PHPMailer class
-        require_once('/../phpmailer/class.phpmailer.php');
+        require_once('/../phpmailer/PHPMailerAutoload.php');
         // optional, gets called from within class.phpmailer.php if not already loaded
-        include("/../phpmailer/class.smtp.php");
-        $mail = new PHPMailer();
+        $mail = new PHPMailer(true);
         $mail->CharSet = "UTF-8";
         // telling the class to use SMTP
         $mail->IsSMTP();
         // enables SMTP debug information (for testing)
         // 1 = errors and messages
         // 2 = messages only
-        $mail->SMTPDebug = 0;
+        $mail->SMTPDebug = 2;
         // enable SMTP authentication
         $mail->SMTPAuth = true;
         // sets the prefix to the servier
-        $mail->SMTPSecure = "ssl";
+        $mail->SMTPSecure = "tls";
         // sets GMAIL as the SMTP server
         $mail->Host = "smtp.netsite.dk";
         // set the SMTP port for the GMAIL server
-        $mail->Port = 465;
+        $mail->Port = 587;
         // GMAIL username
         $mail->Username = "projektstyring@vonbulow.org";
         // GMAIL password
@@ -37,7 +36,7 @@ function sendmail($to, $subject, $message) {
         //so we will just pass email from functions arguments
         $mail->AddAddress($to, "");
         if (!$mail->Send()) {
-            //couldn't send
+            echo $mail->ErrorInfo;
             return false;
         } else {
             //successfully sent

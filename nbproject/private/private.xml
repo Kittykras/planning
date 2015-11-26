@@ -2,23 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/xampp/htdocs/planning/styles/tables.css</file>
-            <file>file:/C:/xampp/htdocs/planning/database/actions/checkCusAcro.php</file>
-            <file>file:/C:/xampp/htdocs/planning/taskForm.php</file>
-            <file>file:/C:/xampp/htdocs/planning/associates.php</file>
-            <file>file:/C:/xampp/htdocs/planning/overview.php</file>
-            <file>file:/C:/xampp/htdocs/planning/associateForm.php</file>
-            <file>file:/C:/xampp/htdocs/planning/database/actions/alterTask.php</file>
-            <file>file:/C:/xampp/htdocs/planning/styles/input-styles.css</file>
-            <file>file:/C:/xampp/htdocs/planning/include/menubar.inc.php</file>
-            <file>file:/C:/xampp/htdocs/planning/customerForm.php</file>
-            <file>file:/C:/xampp/htdocs/planning/singleAssociate.php</file>
-            <file>file:/C:/xampp/htdocs/planning/customers.php</file>
-            <file>file:/C:/xampp/htdocs/planning/database/actions/checkAsUser.php</file>
-            <file>file:/C:/xampp/htdocs/planning/functions/redirectAndCookies.js</file>
-            <file>file:/C:/xampp/htdocs/planning/database/actions/deleteCustomer.php</file>
-            <file>file:/C:/xampp/htdocs/planning/database/actions/createTask.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

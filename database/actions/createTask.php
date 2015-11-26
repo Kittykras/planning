@@ -60,6 +60,8 @@ try {
     } else {
         header("location:../../taskForm.php?error");
     }
-} catch (PDOException $e) {
+} catch (PDOException $en) {
     echo $e->getMessage();
+} catch (phpmailerException $pme){
+    echo $pme->getMessage();
 }

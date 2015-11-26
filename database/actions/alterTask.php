@@ -53,11 +53,13 @@ try {
         $stmt = $db->prepare($q);
         $stmt->execute(array(':mailto' => $mailto));
         $asmail = $stmt->fetch(PDO::FETCH_OBJ);
-        sendmail($asmail->a_email, 'Ny kommentar på en opgave', 'Kunde: '.$cus.'<br><br>Opgave: '.$title.'<br><br>'.$user.' har tilføjet en kommentar:<br>'.$comment);
+        sendmail($asmail->a_email, 'Ny kommentar på en opgave', 'Kunde: ' . $cus . '<br><br>Opgave: ' . $title . '<br><br>' . $user . ' har tilføjet en kommentar:<br>' . $comment);
     }
     if ($stmt != FALSE) {
         setcookie("Kunde", $cus, time() + (86400), "/planning/");
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         $previous = $_COOKIE['previous'];
         $associate = $_COOKIE['UserName'];
         $loggedin = $_SESSION['user']->a_username;
@@ -84,4 +86,6 @@ try {
     }
 } catch (PDOException $e) {
     echo $e->getMessage();
+} catch (phpmailerException $pme) {
+    echo $pme->getMessage();
 }
