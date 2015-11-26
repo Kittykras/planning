@@ -1,16 +1,15 @@
 <?php
 function sendmail($to, $subject, $message) {
         //path to PHPMailer class
-        require_once('/../phpmailer/PHPMailerAutoload.php');
-        // optional, gets called from within class.phpmailer.php if not already loaded
-        $mail = new PHPMailer();
+        require('phpmailer/PHPMailerAutoload.php');
+        $mail = new PHPMailer;
         $mail->CharSet = "UTF-8";
         // telling the class to use SMTP
         $mail->IsSMTP();
         // enables SMTP debug information (for testing)
         // 1 = errors and messages
         // 2 = messages only
-        $mail->SMTPDebug = 0;
+        $mail->SMTPDebug = 2;
         // enable SMTP authentication
         $mail->SMTPAuth = true;
         // sets the prefix to the servier
@@ -25,17 +24,19 @@ function sendmail($to, $subject, $message) {
         $mail->Password = "Mark1Annette2";
         //Set reply-to email this is your own email, not the gmail account 
         //used for sending emails
-        $mail->SetFrom('projektstyring@vonbulow.org');
-        $mail->FromName = "Projektstyring";
+        $mail->SetFrom('projektstyring@vonbulow.org', 'Projektstyring');
+//        $mail->FromName = "Projektstyring";
         // Mail Subject
         $mail->Subject = $subject;
         //Main message
-        $mail->MsgHTML($message);
+//        $mail->MsgHTML($message);
+        $mail->isHTML(true);
+        $mail->Body = $message;
         //Your email, here you will receive the messages from this form. 
         //This must be different from the one you use to send emails, 
         //so we will just pass email from functions arguments
         $mail->AddAddress($to, "");
-        if (!$mail->Send()) {
+        if (!$mail->send()) {
             echo $mail->ErrorInfo;
             return false;
         } else {
