@@ -3,14 +3,14 @@ function sendmail($to, $subject, $message) {
         //path to PHPMailer class
         require_once('/../phpmailer/PHPMailerAutoload.php');
         // optional, gets called from within class.phpmailer.php if not already loaded
-        $mail = new PHPMailer(true);
+        $mail = new PHPMailer();
         $mail->CharSet = "UTF-8";
         // telling the class to use SMTP
         $mail->IsSMTP();
         // enables SMTP debug information (for testing)
         // 1 = errors and messages
         // 2 = messages only
-        $mail->SMTPDebug = 2;
+        $mail->SMTPDebug = 0;
         // enable SMTP authentication
         $mail->SMTPAuth = true;
         // sets the prefix to the servier
