@@ -83,7 +83,7 @@ include 'include/menubar.inc.php';
                     ?>
                     <tr>
                         <td><?php echo $atask->t_fromweek ?>/<?php echo $atask->t_toweek ?></td>
-                        <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $atask->t_id ?>', window.location.href)"><span style="color: <?php echo $atask->t_state ?>">●</span> <?php echo $atask->t_title ?></td>
+                        <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $atask->t_id ?>', window.location.href)"><span style="color: <?php echo $atask->t_state ?>">●</span> <?php echo $atask->t_title ?> <span class="<?php echo $task->e_ikonplace ?>"></span></td>
                         <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $atask->t_customer ?>', window.location.href)"><?php echo $atask->t_customer ?></button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                         <td><?php echo $atask->tc_datee ?></td>

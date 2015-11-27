@@ -42,3 +42,13 @@ function getTaskFromPress() {
     $ptasks = $stmt->fetchAll();
     return $ptasks;
 }
+
+function getExpFromTask(){
+    $db = new DBConnection();
+    $q = "call getexpenses(:id)";
+    $stmt = $db->prepare($q);
+    $stmt->setFetchMode(PDO::FETCH_OBJ);
+    $stmt->execute(array(':id' => $_COOKIE["Task"]));
+    $expenses = $stmt->fetchAll();
+    return $expenses;
+}

@@ -40,8 +40,8 @@ include 'include/menubar.inc.php';
         </div>
     </form>
     <!-- Button for submitting form -->
-    <button type="submit" form="form" class="btn btn-black" id="btnCreate">Gem</button>
-    <button type="submit" form="form" class="btn btn-black hidden" formaction="database/actions/alterAssociate.php" id="btnAlter">Gem</button>
+    <button type="submit" form="form" class="btn btn-black span_1_of_3" id="btnCreate">Gem</button>
+    <button type="submit" form="form" class="btn btn-black span_1_of_3 hidden" formaction="database/actions/alterAssociate.php" id="btnAlter">Gem</button>
 </div>
 <!-- Hidden values to fill out form -->
 <input type="hidden" id="aName" name="aName" value="<?php echo $_SESSION["UserName"]->a_name ?>"/>

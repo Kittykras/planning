@@ -115,6 +115,9 @@ if (isset($_GET["edit"])) {
                 <input type="text" id="pressdate" name="pressdate" class="hidden form-control input-style" placeholder="Udgivelse Dato">
             </div>
         </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-black span_1_of_3" onclick="openExpModal()">Udgifter</button>
+        </div>
         <div class="form-group group">
             <div class="col span_1_of_2">
                 <label for="mailto">Kommentaren bliver tilsendt: </label>
@@ -141,7 +144,7 @@ if (isset($_GET["edit"])) {
                     ?>
                     <div class="form-group">
                         <textarea onclick="SetCookie('commentId', <?php echo $comment->tc_id ?>, '1');
-                                        openModal(this.value)" class="form-control input-style" rows="1"><?php echo $comment->tc_associate . ',' . $comment->tc_date . ' - ' . $comment->tc_comment ?></textarea>
+                                openModal(this.value)" class="form-control input-style" rows="1"><?php echo $comment->tc_associate . ',' . $comment->tc_date . ' - ' . $comment->tc_comment ?></textarea>
                     </div>
                     <?php
                 }
@@ -150,11 +153,15 @@ if (isset($_GET["edit"])) {
         </div>
     </form>
     <!-- Button for submitting form -->
-    <button type="submit" form="form" class="btn btn-black" id="btnCreate">Gem</button>
-    <button type="submit" form="form" class="btn btn-black hidden" id="btnAlter" formaction="database/actions/alterTaskNoPriv.php">Gem</button>
-    <div class="hidden" id="btnAlter">
-        <button type="submit" form="form" class="btn btn-black" formaction="database/actions/alterTask.php">Gem</button>
-        <button class="btn btn-black" data-toggle="modal" data-target="#deleteModal">Slet</button>
+    <button type="submit" form="form" class="btn btn-black span_1_of_3" id="btnCreate">Gem</button>
+    <button type="submit" form="form" class="btn btn-black span_1_of_3 hidden" id="btnAlter" formaction="database/actions/alterTaskNoPriv.php">Gem</button>
+    <div class="group hidden" id="btnAlter">
+        <div class="col span_1_of_2">
+            <button type="submit" form="form" class="btn btn-black span_2_of_3" formaction="database/actions/alterTask.php">Gem</button>
+        </div>
+        <div class="col span_1_of_2">
+            <button class="btn btn-black span_2_of_3" data-toggle="modal" data-target="#deleteModal">Slet</button>
+        </div>
     </div>
 </div>
 <!-- Popup for deleting this task -->
@@ -192,6 +199,61 @@ if (isset($_GET["edit"])) {
         </div>
     </div>
 </div>
+<!-- Popup containing expenses -->
+<div id="expModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3>Udgifter</h3>
+            </div>
+            <div id="expModalBody" class="modal-body vertically-align">
+                <input type="text" id="expenseTask" name="expenseTask" class="form-control input-style" placeholder="Opgave">
+                <div class="group">
+                    <div class="col span_1_of_2">
+                        <input type="text" id="expense" name="expense" class="form-control input-style" placeholder="Omkostninger">
+                    </div>
+                    <div class="col span_1_of_2">
+                        <input type="text" id="offer" name="offer" class="form-control input-style" placeholder="Tilbud">
+                    </div>
+                </div>
+                <div align="middle">
+                    <button type="button" class="btn btn-black span_1_of_3" onclick="createExp()">Tilføj</button>
+                </div>
+                <div class="panel panel-default">
+                    <div id="no-more-tables" class="table-responsive">
+                        <table class="table table-condensed">
+                            <thead class="thead-style">
+                                <tr>
+                                    <th>Opgave</th>
+                                    <th>Omkost.</th>
+                                    <th>Tilbud</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $expenses = getExpFromTask();
+                                foreach ($expenses as $exp) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $exp->e_text ?></td>
+                                    <td><?php echo $exp->e_expenses ?></td>
+                                    <td><?php echo $exp->e_offer ?></td>
+                                </tr>
+                                <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-black" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Hidden values to fill out form -->
 <input type="hidden" id="htitle" name="htitle" value="<?php echo $_SESSION["Task"]->t_title ?>"/>
 <input type="hidden" id="hdescr" name="hdescr" value="<?php echo $_SESSION["Task"]->t_description ?>"/>
@@ -223,6 +285,26 @@ if (isset($_GET["error"])) {
 ?>
 <!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
+    //    Function to creating expenses and adding to table
+    function createExp(){
+        var expenseTask = document.getElementById("expenseTask").value;
+        var expense = document.getElementById("expense").value;
+        var offer = document.getElementById("offer").value;
+        var expArray = [expenseTask, expense, offer];
+        var json = JSON.stringify(expArray);
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                document.getElementById("expModalBody").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "database/actions/createExp.php?q="+json, true);
+        xmlhttp.send();
+    }
+    //    Function to open popup with expenses
+    function openExpModal() {
+        $("#expModal").modal("show");
+    }
     //    Function to prevent enter key from submitting
     $('#form').on('keyup keypress', function (e) {
         var code = e.keyCode || e.which;
@@ -298,7 +380,7 @@ if (isset($_GET["error"])) {
     }
     //    See number.js
     $("input[type=number").number();
-//    $.number("defaults", {});
+    //    $.number("defaults", {});
     //    Function for showing release date, when press is checked
     function showDate() {
         $("#pressdate").toggleClass("hidden");

@@ -68,6 +68,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     SetCookie('previous', window.location.href, '1');
                     SetActive('login');"><span class = "glyphicon glyphicon-user"></span> <?php print_r($_SESSION["user"]->a_name)
                     ?></a></li>
+            <li><a href='index.php'><span class="glyphicon glyphicon-log-out"></span> Log ud</a></li>
         </ul>
     </div>
 </div>
