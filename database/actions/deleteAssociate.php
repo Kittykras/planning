@@ -2,7 +2,7 @@
 require_once '../DBConnection.php';
 
 try{
-    $delName = $_COOKIE["UserName"];
+    $delName = htmlEntities2($_COOKIE["UserName"]);
     $db = new DBConnection();
     $q = "call deleteassociate(:delName);";
     $stmt = $db->prepare($q);
@@ -16,3 +16,4 @@ try{
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
+

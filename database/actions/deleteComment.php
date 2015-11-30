@@ -1,7 +1,7 @@
 <?php
 include_once '../DBConnection.php';
 try {
-    $comment = $_COOKIE['commentId'];
+    $comment = htmlEntities2($_COOKIE['commentId']);
     $task = $_COOKIE['Task'];
     $db = new DBConnection();
     $q = "call deletecomment(:comment)";
@@ -26,3 +26,4 @@ try {
 } catch (PDOException $ex) {
     echo $ex->getMessage();
 }
+

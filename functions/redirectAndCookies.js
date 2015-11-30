@@ -2,7 +2,7 @@
 function SetCookie(c_name, value, expiredays) {
     var exdate = new Date();
     exdate.setDate(exdate.getDate()+1);
-    document.cookie = c_name + "=" + value + ";expires=" + exdate.toGMTString() + ";path=/planning/";
+    document.cookie = c_name + "=" + htmlEntities(value) + ";expires=" + exdate.toGMTString() + ";path=/planning/";
 }
 //Function to set active menuitem
 function SetActive(aktiv) {
@@ -45,7 +45,7 @@ function redirect(user, href) {
 function cusRedirect(cust, href) {
 //    window.alert('hej' + cust);
     SetActive('kunder');
-    SetCookie('Kunde', htmlEntities(cust), '1');
+    SetCookie('Kunde', cust, '1');
     SetCookie('orderby', 't_fromWeek', '1');
     SetCookie('state', '0', '1');
     SetCookie('previous', href, '1');

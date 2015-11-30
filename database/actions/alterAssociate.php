@@ -3,7 +3,7 @@
 require_once '../DBConnection.php';
 
 try {
-    $oldUser = $_COOKIE["UserName"];
+    $oldUser = htmlEntities2($_COOKIE["UserName"]);
     $newName = $_POST["newName"];
     $newUser = $_POST["newUser"];
     $newPwd = $_POST["newPwd"];
@@ -23,3 +23,4 @@ try {
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
+

@@ -43,9 +43,11 @@ include 'include/menubar.inc.php';
             <tbody>
                 <?php
                 foreach ($customers as $customer) {
+                    
                     ?>
                     <tr><td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $customer->c_acronym ?>', window.location.href)"><?php echo $customer->c_name; ?></button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
+                        
                         <td><button class="btn btn-link btn-xs table-button" onclick="openBranchModal('<?php echo $customer->c_branch ?>')"><?php echo $customer->c_branch ?></button></td>
                     </tr>
                     <?php

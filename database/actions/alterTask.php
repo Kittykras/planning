@@ -63,7 +63,7 @@ try {
             session_start();
         }
         $previous = $_COOKIE['previous'];
-        $associate = $_COOKIE['UserName'];
+        $associate = htmlEntities2($_COOKIE['UserName']);
         $loggedin = $_SESSION['user']->a_username;
         if (strpos($previous, 'ssociate') != FALSE) {
             setcookie('kunder', '', time() + (86400), "/planning/");
@@ -91,3 +91,4 @@ try {
 } catch (phpmailerException $pme) {
     echo $pme->getMessage();
 }
+

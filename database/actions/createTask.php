@@ -7,7 +7,7 @@ session_set_cookie_params($session_expiration);
 session_start();
 try {
     $user = $_SESSION["user"]->a_username;
-    $cus = $_COOKIE["Kunde"];
+    $cus = htmlEntities2($_COOKIE["Kunde"]);
     $title = $_POST["title"];
     $descr = $_POST["descr"];
     $stat = $_POST["stat"];
@@ -67,3 +67,5 @@ try {
 } catch (phpmailerException $pme) {
     echo $pme->getMessage();
 }
+
+

@@ -3,7 +3,7 @@
 require_once '../DBConnection.php';
 
 try {
-    $oldCus = $_COOKIE["Kunde"];
+    $oldCus = htmlEntities2($_COOKIE["Kunde"]);
     $name = $_POST["name"];
     $acro = $_POST["acro"];
     $cont = $_POST["cont"];
@@ -53,3 +53,5 @@ try {
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
+
+

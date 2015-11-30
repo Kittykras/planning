@@ -23,7 +23,7 @@ $menucustomers = $stmt->fetchAll();
 function getLinksFromCustomerEdit() {
     if (isset($_GET["edit"])) {
         $db = new DBConnection();
-        $acro = $_COOKIE["Kunde"];
+        $acro = htmlEntities2($_COOKIE["Kunde"]);;
         $q = "call getcusdesti(:acro)";
         $stmt = $db->prepare($q);
         $stmt->setFetchMode(PDO::FETCH_OBJ);
