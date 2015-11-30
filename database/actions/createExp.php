@@ -15,7 +15,7 @@ try {
         $stmt->setFetchMode(PDO::FETCH_OBJ);
         $stmt->execute(array(':id' => $_COOKIE['Task']));
         $expenses = $stmt->fetchAll();
-        echo '<input type="text" id="expenseTask" name="expenseTask" class="form-control input-style" placeholder="Opgave">
+        echo '<input type="hidden" id="expId"><input type="text" id="expenseTask" name="expenseTask" class="form-control input-style" placeholder="Opgave">
                 <div class="group">
                     <div class="col span_1_of_2">
                         <input type="text" id="expense" name="expense" class="form-control input-style" placeholder="Omkostninger">
@@ -52,7 +52,7 @@ try {
             </div>';
     }
 } catch (PDOException $ex) {
-    echo '<input type="text" id="expenseTask" name="expenseTask" class="form-control input-style" placeholder="Opgave">
+    echo '<input type="hidden" id="expId"><input type="text" id="expenseTask" name="expenseTask" class="form-control input-style" placeholder="Opgave">
                 <div class="group">
                     <div class="col span_1_of_2 has-error has-feedback">
                         <input type="text" id="expense" name="expense" class="form-control input-style" placeholder="Omkostninger">'
@@ -65,7 +65,7 @@ try {
     . '<span class="help-block">Skriv venligst kun tal i dette felt.</span>'
     . '</div>
                 </div>
-                <div align="middle">
+                <div id="expButton" align="middle">
                     <button type="button" class="btn btn-black span_1_of_3" onclick="createExp()">Tilføj</button>
                 </div>
                 <div class="panel panel-default">
