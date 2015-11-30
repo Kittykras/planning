@@ -48,8 +48,8 @@ if (isset($_GET["edit"])) {
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2">
-            <h4 class="chead" id="editH4"><span class="header-img">Opret Opgave(<a href="singleCustomer.php"><?php print_r($_COOKIE["Kunde"]) ?></a>)</span></h4>
-            <h2 class="chead" id="editH2"><span class="header-img">Opret Opgave(<a href="singleCustomer.php"><?php print_r($_COOKIE["Kunde"]) ?></a>)</span></h2>
+            <h4 class="chead" id="editH4"><span class="header-img">Opret Opgave(<a href="singleCustomer.php"><?php print_r(htmlEntities2($_COOKIE["Kunde"])) ?></a>)</span></h4>
+            <h2 class="chead" id="editH2"><span class="header-img">Opret Opgave(<a href="singleCustomer.php"><?php print_r(htmlEntities2($_COOKIE["Kunde"])) ?></a>)</span></h2>
         </div>
         <br>
     </div>
@@ -113,6 +113,11 @@ if (isset($_GET["edit"])) {
             </div>
             <div class="col span_1_of_2">
                 <input type="text" id="pressdate" name="pressdate" class="hidden form-control input-style" placeholder="Udgivelse Dato">
+            </div>
+        </div>
+        <div class="form-group" align="left">
+            <div class="checkbox">
+                <label><input type="checkbox" name="online" id="online" value="true">Online</label>
             </div>
         </div>
         <div class="form-group">

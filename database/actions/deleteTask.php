@@ -2,6 +2,14 @@
 
 require_once '../DBConnection.php';
 
+function htmlEntities2($str) {
+    $text = str_replace("oe", "ø", $str);
+    $text = str_replace("aaa", "å", $text);
+    $text = str_replace("ae", "æ", $text);
+//    window.alert(text);
+    return $text;
+}
+
 try {
     $delName = $_COOKIE["Task"];
     $db = new DBConnection();

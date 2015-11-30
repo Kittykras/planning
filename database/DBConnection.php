@@ -12,7 +12,7 @@
  *
  * @author Annette
  */
-class DBConnection{
+class DBConnection {
 
     private $servername;
     private $dbname;
@@ -20,7 +20,7 @@ class DBConnection{
     private $password;
     private $pdo;
 
-    function __construct(){
+    function __construct() {
         $this->servername = "localhost";
         $this->dbname = "vonbulowplanning";
         $this->username = "root";
@@ -28,13 +28,13 @@ class DBConnection{
         $this->pdo = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
-    
-    public function prepare($q){
-        $stmt=$this->pdo->prepare($q);
+
+    public function prepare($q) {
+        $stmt = $this->pdo->prepare($q);
         return $stmt;
     }
-    
-    public function close(){
+
+    public function close() {
         unset($this->pdo);
     }
 

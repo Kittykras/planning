@@ -1,5 +1,15 @@
 <?php
+
 include_once '../DBConnection.php';
+
+function htmlEntities2($str) {
+    $text = str_replace("oe", "ø", $str);
+    $text = str_replace("aaa", "å", $text);
+    $text = str_replace("ae", "æ", $text);
+//    window.alert(text);
+    return $text;
+}
+
 try {
     $comment = htmlEntities2($_COOKIE['commentId']);
     $task = $_COOKIE['Task'];
@@ -19,7 +29,7 @@ try {
                 <textarea class="form-control input-style" rows="1" id="newComment" name="newComment" placeholder="Ny Kommentar"></textarea>
             </div>';
         foreach ($comments as $comment) {
-            echo '<div class="form-group"><textarea  onclick="SetCookie('."'".'commentId'."'".', '.$comment->tc_id.', '."'".'1'."'".');
+            echo '<div class="form-group"><textarea  onclick="SetCookie(' . "'" . 'commentId' . "'" . ', ' . $comment->tc_id . ', ' . "'" . '1' . "'" . ');
                             openModal(this.value)" class="form-control input-style" rows="1">' . $comment->tc_associate . ',' . $comment->tc_date . ' - ' . $comment->tc_comment . '</textarea></div>';
         }
     }

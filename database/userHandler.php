@@ -3,6 +3,14 @@
 require_once 'DBConnection.php';
 require_once 'classes/User.php';
 
+//function htmlEntities2($str) {
+//    $text = str_replace("oe", "ø", $str);
+//    $text = str_replace("aaa", "å", $text);
+//    $text = str_replace("ae", "æ", $text);
+////    window.alert(text);
+//    return $text;
+//}
+
 $db = new DBConnection();
 $q = 'call getallassociate()';
 $stmt = $db->prepare($q);
@@ -23,6 +31,7 @@ function getTasksFromAs() {
     $atasks = $stmt->fetchAll();
     return $atasks;
 }
+
 function getUserFromCookie() {
     $db = new DBConnection();
     $q = "call getassociate(:username)";
@@ -33,5 +42,3 @@ function getUserFromCookie() {
     $user = $stmt->fetch(PDO::FETCH_OBJ);
     $_SESSION["UserName"] = $user;
 }
-
-
