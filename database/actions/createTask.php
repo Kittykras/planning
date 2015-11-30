@@ -7,12 +7,12 @@ session_set_cookie_params($session_expiration);
 session_start();
 
 function htmlEntities2($str) {
-    $text = str_replace("oe", "ø", $str);
-    $text = str_replace("aaa", "å", $text);
-    $text = str_replace("ae", "æ", $text);
+        $text = str_replace("oe", "Ø", $str);
+        $text = str_replace("aaa", "Å", $text);
+        $text = str_replace("ae", "Æ", $text);
 //    window.alert(text);
-    return $text;
-}
+        return $text;
+    }
 
 try {
     $user = $_SESSION["user"]->a_username;

@@ -115,11 +115,11 @@ if (isset($_GET["edit"])) {
                 <input type="text" id="pressdate" name="pressdate" class="hidden form-control input-style" placeholder="Udgivelse Dato">
             </div>
         </div>
-        <div class="form-group" align="left">
+<!--        <div class="form-group" align="left">
             <div class="checkbox">
                 <label><input type="checkbox" name="online" id="online" value="true">Online</label>
             </div>
-        </div>
+        </div>-->
         <div class="form-group">
             <button type="button" class="btn btn-black span_1_of_3" onclick="openExpModal()">Udgifter</button>
         </div>

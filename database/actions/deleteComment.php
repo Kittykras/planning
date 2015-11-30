@@ -3,12 +3,12 @@
 include_once '../DBConnection.php';
 
 function htmlEntities2($str) {
-    $text = str_replace("oe", "ø", $str);
-    $text = str_replace("aaa", "å", $text);
-    $text = str_replace("ae", "æ", $text);
+        $text = str_replace("oe", "Ø", $str);
+        $text = str_replace("aaa", "Å", $text);
+        $text = str_replace("ae", "Æ", $text);
 //    window.alert(text);
-    return $text;
-}
+        return $text;
+    }
 
 try {
     $comment = htmlEntities2($_COOKIE['commentId']);
