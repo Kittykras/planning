@@ -7,6 +7,18 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 ?>
+<script>
+    function logout() {
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                location.href = "index.php";
+            }
+        };
+        xmlhttp.open("GET", "database/actions/logout.php", true);
+        xmlhttp.send();
+    }
+</script>
 <div class="dcenter">
     <div id="cssmenu">
         <ul>
@@ -18,7 +30,8 @@ if (session_status() == PHP_SESSION_NONE) {
                         SetActive('login');"><span style="color: #D26232">+</span>vonbülow.co</a>
             </div>
             <li class='has-sub <?php echo $_COOKIE['medarbejder'] ?>'>
-                <a href = 'associates.php' onclick="SetCookie('previous', window.location.href, '1'); SetActive('medarbejder');">Medarbejdere</a>
+                <a href = 'associates.php' onclick="SetCookie('previous', window.location.href, '1');
+                        SetActive('medarbejder');">Medarbejdere</a>
                 <ul>
                     <?php foreach ($users as $user) { ?>
                         <li><a href = 'singleAssociate.php' onClick="SetCookie('UserName', '<?php echo $user->a_username ?>', '1');
@@ -68,7 +81,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     SetCookie('previous', window.location.href, '1');
                     SetActive('login');"><span class = "glyphicon glyphicon-user"></span> <?php print_r($_SESSION["user"]->a_name)
                     ?></a></li>
-            <li><a href='index.php'><span class="glyphicon glyphicon-log-out"></span> Log ud</a></li>
+            <li><a onclick="logout()"><span class="glyphicon glyphicon-log-out"></span> Log ud</a></li>
         </ul>
     </div>
 </div>

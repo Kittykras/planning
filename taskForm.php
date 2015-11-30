@@ -124,6 +124,7 @@ if (isset($_GET["edit"])) {
             </div>
             <div class="col span_1_of_2">
                 <select class="form-control input-style" id="mailto" name="mailto">
+                    <option value=""></option>
                     <?php
                     foreach ($users as $user) {
                         ?>    
@@ -352,7 +353,6 @@ if (isset($_GET["error"])) {
             document.getElementById("min").value = min;
             document.getElementById("from").value = from;
             document.getElementById("to").value = to;
-            document.getElementById("mailto").value = assi;
             if (press === "1") {
                 document.getElementById("press").checked = true;
                 $("#pressdate").removeClass("hidden");

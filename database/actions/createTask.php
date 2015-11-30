@@ -49,11 +49,13 @@ try {
         $q = "call createcommentonnewtask(:comment, :user);";
         $stmt = $db->prepare($q);
         $stmt->execute(array(':comment' => $comment, ":user" => $user));
-        $q = "call getAssociate(:mailto)";
-        $stmt = $db->prepare($q);
-        $stmt->execute(array(':mailto' => $mailto));
-        $asmail = $stmt->fetch(PDO::FETCH_OBJ);
-        sendmail($asmail->a_email, 'Ny kommentar på en opgave', 'Kunde: '.$cus.'<br><br>Opgave: '.$title.'<br><br>'.$user.' har tilføjet en kommentar<br>'.$comment);
+        if ($mailto != "") {
+            $q = "call getAssociate(:mailto)";
+            $stmt = $db->prepare($q);
+            $stmt->execute(array(':mailto' => $mailto));
+            $asmail = $stmt->fetch(PDO::FETCH_OBJ);
+            sendmail($asmail->a_email, 'Ny kommentar på en opgave', 'Kunde: ' . $cus . '<br><br>Opgave: ' . $title . '<br><br>' . $user . ' har tilføjet en kommentar<br>' . $comment);
+        }
     }
     if ($count > 0) {
         header("location:" . $_COOKIE['previous']);
@@ -62,6 +64,6 @@ try {
     }
 } catch (PDOException $en) {
     echo $e->getMessage();
-} catch (phpmailerException $pme){
+} catch (phpmailerException $pme) {
     echo $pme->getMessage();
 }
