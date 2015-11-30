@@ -30,8 +30,6 @@ try {
         . '<input name="newUser" type="text" class="form-control input-style" id="newUser" value="' . $user . '" onblur="checkUser()">'
         . '</div>';
     }
-    }
-    }
 } catch (PDOException $e) {
     echo '<div class="form-group">'
     . '<input name="newUser" type="text" class="form-control input-styles" id="newUser" value="' . $user . '" onblur="checkUser()">'
