@@ -40,7 +40,7 @@ try {
                             <tbody>';
         foreach ($expenses as $exp) {
             echo '<tr>
-                                    <td><button class="btn btn-link btn-xs table-button" onclick="changeExpAction(' . $exp->e_id . ',' . $exp->e_text . ',' . $exp->e_expenses . ',' . $exp->e_offer . ')">' . $exp->e_text . '</button></td>
+                                    <td><button class="btn btn-link btn-xs table-button" onclick="changeExpAction('."'".$exp->e_id."'".','."'".$exp->e_text."'".','."'".$exp->e_expenses."'".','."'".$exp->e_offer."'".')">' . $exp->e_text . '</button></td>
                                     <td>' . $exp->e_expenses . '</td>
                                     <td>' . $exp->e_offer . '</td>
                                 </tr>';
