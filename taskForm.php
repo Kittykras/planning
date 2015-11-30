@@ -145,7 +145,7 @@ if (isset($_GET["edit"])) {
                     ?>
                     <div class="form-group">
                         <textarea onclick="SetCookie('commentId', <?php echo $comment->tc_id ?>, '1');
-                                openModal(this.value)" class="form-control input-style" rows="1"><?php echo $comment->tc_associate . ',' . $comment->tc_date . ' - ' . $comment->tc_comment ?></textarea>
+                                        openModal(this.value)" class="form-control input-style" rows="1"><?php echo $comment->tc_associate . ',' . $comment->tc_date . ' - ' . $comment->tc_comment ?></textarea>
                     </div>
                     <?php
                 }
@@ -210,6 +210,7 @@ if (isset($_GET["edit"])) {
             </div>
             <div id="expModalBody" class="modal-body vertically-align">
                 <input type="text" id="expenseTask" name="expenseTask" class="form-control input-style" placeholder="Opgave">
+                <input type="hidden" id="expId">
                 <div class="group">
                     <div class="col span_1_of_2">
                         <input type="text" id="expense" name="expense" class="form-control input-style" placeholder="Omkostninger">
@@ -218,7 +219,7 @@ if (isset($_GET["edit"])) {
                         <input type="text" id="offer" name="offer" class="form-control input-style" placeholder="Tilbud">
                     </div>
                 </div>
-                <div align="middle">
+                <div id="expButton" align="middle">
                     <button type="button" class="btn btn-black span_1_of_3" onclick="createExp()">Tilføj</button>
                 </div>
                 <div class="panel panel-default">
@@ -235,13 +236,13 @@ if (isset($_GET["edit"])) {
                                 <?php
                                 $expenses = getExpFromTask();
                                 foreach ($expenses as $exp) {
-                                ?>
-                                <tr>
-                                    <td><?php echo $exp->e_text ?></td>
-                                    <td><?php echo $exp->e_expenses ?></td>
-                                    <td><?php echo $exp->e_offer ?></td>
-                                </tr>
-                                <?php
+                                    ?>
+                                    <tr>
+                                        <td><button class="btn btn-link btn-xs table-button" onclick="changeExpAction(<?php echo $exp->e_id ?>, <?php echo $exp->e_text ?>, <?php echo $exp->e_expenses ?>, <?php echo $exp->e_offer ?>)"><?php echo $exp->e_text ?></button></td>
+                                        <td><?php echo $exp->e_expenses ?></td>
+                                        <td><?php echo $exp->e_offer ?></td>
+                                    </tr>
+                                    <?php
                                 }
                                 ?>
                             </tbody>
@@ -286,8 +287,41 @@ if (isset($_GET["error"])) {
 ?>
 <!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
+    //    function to altering selected expense
+    function alterExp() {
+        var expId = document.getElementById("expId").value;
+        var expenseTask = document.getElementById("expenseTask").value;
+        var expense = document.getElementById("expense").value;
+        var offer = document.getElementById("offer").value;
+        var expArray = [expId, expenseTask, expense, offer];
+        var json = JSON.stringify(expArray);
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                document.getElementById("expModalBody").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "database/actions/alterExp.php?q=" + json, true);
+        xmlhttp.send();
+    }
+    //    function to add functionality to alter expense
+    function changeExpAction(id, text, exp, offer) {
+        console.log("1");
+        document.getElementById("expId").value = id;
+        document.getElementById("expenseTask").value = text;
+        document.getElementById("expense").value = exp;
+        document.getElementById("offer").value = offer;
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                document.getElementById("expButton").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "database/actions/changeExpAction.php", true);
+        xmlhttp.send();
+    }
     //    Function to creating expenses and adding to table
-    function createExp(){
+    function createExp() {
         var expenseTask = document.getElementById("expenseTask").value;
         var expense = document.getElementById("expense").value;
         var offer = document.getElementById("offer").value;
@@ -299,7 +333,7 @@ if (isset($_GET["error"])) {
                 document.getElementById("expModalBody").innerHTML = xmlhttp.responseText;
             }
         };
-        xmlhttp.open("GET", "database/actions/createExp.php?q="+json, true);
+        xmlhttp.open("GET", "database/actions/createExp.php?q=" + json, true);
         xmlhttp.send();
     }
     //    Function to open popup with expenses
