@@ -1,7 +1,7 @@
 //Function to set cookie with name, value and how many days it should last
 function SetCookie(c_name, value, expiredays) {
     var exdate = new Date();
-    exdate.setDate(exdate.getDate() + expiredays);
+    exdate.setDate(exdate.getDate()+1);
     document.cookie = c_name + "=" + value + ";expires=" + exdate.toGMTString() + ";path=/planning/";
 }
 //Function to set active menuitem
@@ -43,8 +43,9 @@ function redirect(user, href) {
     window.location = 'singleAssociate.php';
 }
 function cusRedirect(cust, href) {
+//    window.alert('hej' + cust);
     SetActive('kunder');
-    SetCookie('Kunde', cust, '1');
+    SetCookie('Kunde', htmlEntities(cust), '1');
     SetCookie('orderby', 't_fromWeek', '1');
     SetCookie('state', '0', '1');
     SetCookie('previous', href, '1');
@@ -57,4 +58,9 @@ function taskRedirect(task, href) {
     window.location = "taskForm.php?edit";
 }
 
-
+function htmlEntities(str) {
+    var text = String(str).replace("Ø", "oe", true).replace("Æ", "ae").replace("Å", "aaa").replace("æ", "ae").replace("ø", "oe").replace("å", "aaa");
+//    window.alert(text);
+    return text;
+    
+}
