@@ -2,12 +2,12 @@
 
 include_once '../DBConnection.php';
 try {
-    $exp = json_decode($_REQUEST['q']);
+    $exp = $_REQUEST['q'];
     $db = new DBConnection();
-    $q = "call alterExpenses(:oldId, :e_text, :e_expenses, :e_offer, :e_task)";
+    $q = "call deleteExpenses(:oldId)";
     $stmt = $db->prepare($q);
     $stmt->setFetchMode(PDO::FETCH_OBJ);
-    $stmt->execute(array(':oldId' => $exp[0], ':e_text' => $exp[1], ':e_expenses' => $exp[2], ':e_offer' => $exp[3], ':e_task' => $_COOKIE['Task']));
+    $stmt->execute(array(':oldId' => $exp));
     if ($stmt != FALSE) {
         $q = 'call getexpenses(:id)';
         $stmt = $db->prepare($q);

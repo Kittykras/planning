@@ -238,7 +238,7 @@ if (isset($_GET["edit"])) {
                                 foreach ($expenses as $exp) {
                                     ?>
                                     <tr>
-                                        <td><button class="btn btn-link btn-xs table-button" onclick="changeExpAction(<?php echo $exp->e_id ?>, <?php echo $exp->e_text ?>, <?php echo $exp->e_expenses ?>, <?php echo $exp->e_offer ?>)"><?php echo $exp->e_text ?></button></td>
+                                        <td><button class="btn btn-link btn-xs table-button" onclick="changeExpAction('<?php echo $exp->e_id ?>', '<?php echo $exp->e_text ?>', '<?php echo $exp->e_expenses ?>', '<?php echo $exp->e_offer ?>')"><?php echo $exp->e_text ?></button></td>
                                         <td><?php echo $exp->e_expenses ?></td>
                                         <td><?php echo $exp->e_offer ?></td>
                                     </tr>
@@ -287,6 +287,17 @@ if (isset($_GET["error"])) {
 ?>
 <!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
+    //    function to deleting selected expense
+    function deleteExp() {
+        var expId = document.getElementById("expId").value;
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                document.getElementById("expModalBody").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "database/actions/deleteExp.php?q=" + expId, true);
+        xmlhttp.send();
+    }
     //    function to altering selected expense
     function alterExp() {
         var expId = document.getElementById("expId").value;
