@@ -12,6 +12,7 @@ try {
     $timespen = $_POST["hour"] . ":" . $_POST["min"];
     $comment = $_POST["newComment"];
     $press = isset($_POST['press']) && $_POST['press'] ? "true" : "false";
+    $online = isset($_POST['online']) && $_POST['online'] ? "true" : "false";
     $db = new DBConnection();
     $q = "call altertasknopriv(:id, :stat, :timespent, :press)";
     $stmt = $db->prepare($q);

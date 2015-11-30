@@ -1,60 +1,64 @@
 //Function to set cookie with name, value and how many days it should last
-function SetCookie(c_name, value, expiredays) {
+function SetCookie(c_name, value) {
     var exdate = new Date();
     exdate.setDate(exdate.getDate()+1);
     document.cookie = c_name + "=" + htmlEntities(value) + ";expires=" + exdate.toGMTString() + ";path=/planning/";
 }
 //Function to set active menuitem
 function SetActive(aktiv) {
-    SetCookie('medarbejder', '', '1');
-    SetCookie('kunder', '', '1');
-    SetCookie('overblik', '', '1');
-    SetCookie('timeoversigt', '', '1');
-    SetCookie('presse', '', '1');
-    SetCookie('login', '', '1');
+    SetCookie('medarbejder', '');
+    SetCookie('kunder', '');
+    SetCookie('overblik', '');
+    SetCookie('timeoversigt', '');
+    SetCookie('presse', '');
+    SetCookie('online', '');
+    SetCookie('login', '');
     switch (aktiv) {
         case 'medarbejder':
-            SetCookie('medarbejder', 'active', '1');
+            SetCookie('medarbejder', 'active');
             break;
         case 'kunder':
-            SetCookie('kunder', 'active', '1');
+            SetCookie('kunder', 'active');
             break;
         case 'overblik':
-            SetCookie('overblik', 'active', '1');
+            SetCookie('overblik', 'active');
             break;
         case 'timeoversigt':
-            SetCookie('timeoversigt', 'active', '1');
+            SetCookie('timeoversigt', 'active');
             break;
         case 'presse':
-            SetCookie('presse', 'active', '1');
+            SetCookie('presse', 'active');
+            break;
+        case 'online':
+            SetCookie('online', 'active');
             break;
         case 'login':
-            SetCookie('login', 'active', '1');
+            SetCookie('login', 'active');
             break;
     }
 }
 //Functions to redirect the user to the chosen page with the right values
 function redirect(user, href) {
     SetActive('medarbejder');
-    SetCookie('UserName', user, '1');
-    SetCookie('orderby', 't_fromWeek', '1');
-    SetCookie('state', '0', '1');
-    SetCookie('previous', href, '1');
+    SetCookie('UserName', user);
+    SetCookie('orderby', 't_fromWeek');
+    SetCookie('state', '0');
+    SetCookie('previous', href);
     window.location = 'singleAssociate.php';
 }
 function cusRedirect(cust, href) {
 //    window.alert('hej' + cust);
     SetActive('kunder');
-    SetCookie('Kunde', cust, '1');
-    SetCookie('orderby', 't_fromWeek', '1');
-    SetCookie('state', '0', '1');
-    SetCookie('previous', href, '1');
+    SetCookie('Kunde', cust);
+    SetCookie('orderby', 't_fromWeek');
+    SetCookie('state', '0');
+    SetCookie('previous', href);
     window.location = 'singleCustomer.php';
 }
 function taskRedirect(task, href) {
     SetActive('kunder');
-    SetCookie('Task', task, '1');
-    SetCookie('previous', href, '1');
+    SetCookie('Task', task);
+    SetCookie('previous', href);
     window.location = "taskForm.php?edit";
 }
 

@@ -44,6 +44,7 @@ try {
     $comment = $_POST["newComment"];
     $mailto = $_POST["mailto"];
     $press = isset($_POST['press']) && $_POST['press'] ? "true" : "false";
+    $online = isset($_POST['online']) && $_POST['online'] ? "true" : "false";
     $pressdate = $_POST["pressdate"];
     if ($pressdate === "") {
         $pressdate = "0000-00-00";

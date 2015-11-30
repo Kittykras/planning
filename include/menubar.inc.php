@@ -75,6 +75,10 @@ if (session_status() == PHP_SESSION_NONE) {
                     SetCookie('state', '0', '1');
                     SetCookie('previous', window.location.href, '1');
                     SetActive('presse');">Presse</a></li>
+            <li class = "<?php echo $_COOKIE['online'] ?>"><a href = 'online.php' onclick="SetCookie('orderby', 't_fromweek', '1');
+                    SetCookie('state', '0', '1');
+                    SetCookie('previous', window.location.href, '1');
+                    SetActive('online');">Online</a></li>
             <li class = "<?php echo $_COOKIE['login'] ?>"><a href = 'singleAssociate.php' onclick="SetCookie('UserName', '<?php echo $_SESSION["user"]->a_username ?>', '1');
                     SetCookie('orderby', 't_fromWeek', '1');
                     SetCookie('state', '0', '1');

@@ -272,6 +272,7 @@ if (isset($_GET["edit"])) {
 <input type="hidden" id="hto" name="hto" value="<?php echo $_SESSION["Task"]->t_toweek ?>"/>
 <input type="hidden" id="hpress" name="hpress" value="<?php echo $_SESSION["Task"]->t_press ?>"/>
 <input type="hidden" id="hprelease" name="hprelease" value="<?php echo $_SESSION["Task"]->p_release ?>"/>
+<input type="hidden" id="honline" name="honline" value="<?php echo $_SESSION["Task"]->o_id ?>"/>
 <!-- ErrorMessages -->
 <?php
 if (isset($_GET["error"])) {
@@ -390,6 +391,7 @@ if (isset($_GET["error"])) {
             var press = $('#hpress').val();
             var prelease = $('#hprelease').val();
             var cus = $('#cus').val();
+            var online = $('#honline').val();
             SetCookie('Kunde', cus, '1');
             document.getElementById("editH4").innerHTML = "<span class='header-img'>Rediger Opgave(<a href='singleCustomer.php'>" + cus + "</a>)</span>";
             document.getElementById("editH2").innerHTML = "<span class='header-img'>Rediger Opgave(<a href='singleCustomer.php'>" + cus + "</a>)</span>";
@@ -407,6 +409,9 @@ if (isset($_GET["error"])) {
                 document.getElementById("press").checked = true;
                 $("#pressdate").removeClass("hidden");
                 document.getElementById("pressdate").value = prelease;
+            }
+            if (online !== "") {
+                document.getElementById("online").checked = true;
             }
         }
     });

@@ -43,6 +43,18 @@ function getTaskFromPress() {
     return $ptasks;
 }
 
+function getTaskFromOnline(){
+    $db = new DBConnection();
+    $orderby = $_COOKIE["orderby"];
+    $state = $_COOKIE["state"];
+    $q = 'call getalltaskbyonline(:state, :orderby)';
+    $stmt = $db->prepare($q);
+    $stmt->setFetchMode(PDO::FETCH_OBJ);
+    $stmt->execute(array(':state' => $state, ':orderby' => $orderby));
+    $otasks = $stmt->fetchAll();
+    return $otasks;
+}
+
 function getExpFromTask(){
     $db = new DBConnection();
     $q = "call getexpenses(:id)";
