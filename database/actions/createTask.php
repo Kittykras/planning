@@ -49,11 +49,11 @@ try {
         $pressdate = "0000-00-00";
     }
     $db = new DBConnection();
-    $q = "call createtask(:cus, :title, :descr, :stat, :assi, :timespent, :fromWeek, :fromYear, :toWeek, :toYear, :pressdate, :press);";
+    $q = "call createtask(:cus, :title, :descr, :stat, :assi, :timespent, :fromWeek, :fromYear, :toWeek, :toYear, :pressdate, :press, :online);";
     $stmt = $db->prepare($q);
     $stmt->execute(array(':cus' => $cus, ':title' => $title,
         ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen,
-        ':fromWeek' => $fromWeek, ':fromYear' => $fromYear, ':toWeek' => $toWeek, ':toYear' => $toYear, ':pressdate' => $pressdate, ':press' => $press));
+        ':fromWeek' => $fromWeek, ':fromYear' => $fromYear, ':toWeek' => $toWeek, ':toYear' => $toYear, ':pressdate' => $pressdate, ':press' => $press, ':online' => $online));
     $count = $stmt->rowCount();
     if ($comment != "") {
         $q = "call createcommentonnewtask(:comment, :user);";

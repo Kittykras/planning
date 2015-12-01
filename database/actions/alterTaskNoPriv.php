@@ -14,9 +14,9 @@ try {
     $press = isset($_POST['press']) && $_POST['press'] ? "true" : "false";
     $online = isset($_POST['online']) && $_POST['online'] ? "true" : "false";
     $db = new DBConnection();
-    $q = "call altertasknopriv(:id, :stat, :timespent, :press)";
+    $q = "call altertasknopriv(:id, :stat, :timespent, :press, :online)";
     $stmt = $db->prepare($q);
-    $stmt->execute(array(':id' => $id, ':stat' => $stat, ':timespent' => $timespen, ':press' => $press));
+    $stmt->execute(array(':id' => $id, ':stat' => $stat, ':timespent' => $timespen, ':press' => $press, ':online' => $online));
 //    $count = $stmt->rowCount();
 //    $commentcount = 0;
     if ($comment != "") {
@@ -33,7 +33,33 @@ try {
     }
     if ($stmt != FALSE) {
         setcookie('Kunde', $cus, time() + (86400), "/planning/");
-        header("location:" . $_COOKIE['previous']);
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $previous = $_COOKIE['previous'];
+        $associate = htmlEntities2($_COOKIE['UserName']);
+        $loggedin = $_SESSION['user']->a_username;
+        if (strpos($previous, 'ssociate') != FALSE) {
+            setcookie('kunder', '', time() + (86400), "/planning/");
+            if ($associate === $loggedin) {
+                setcookie('login', 'active', time() + (86400), "/planning/");
+            } else {
+                setcookie('medarbejder', 'active', time() + (86400), "/planning/");
+            }
+        } else if (strpos($previous, 'time') != FALSE) {
+            setcookie('kunder', '', time() + (86400), "/planning/");
+            setcookie('timeoversigt', 'active', time() + (86400), "/planning/");
+        } else if (strpos($previous, 'overview') != FALSE) {
+            setcookie('kunder', '', time() + (86400), "/planning/");
+            setcookie('overblik', 'active', time() + (86400), "/planning/");
+        } else if (strpos($previous, 'press') != FALSE) {
+            setcookie('kunder', '', time() + (86400), "/planning/");
+            setcookie('presse', 'active', time() + (86400), "/planning/");
+        } else if (strpos($previous, 'online')){
+            setcookie('kunder', '', time() + (86400), "/planning/");
+            SetCookie('online', 'active', time() + (86400), "/planning/");
+        }
+        header("location:" . $previous);
     } else {
         header("location:../../taskForm.php?edit&error");
     }

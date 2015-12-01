@@ -38,6 +38,9 @@ try {
         } else if (strpos($previous, 'press') != FALSE) {
             setcookie('kunder', '', time() + (86400), "/planning/");
             setcookie('presse', 'active', time() + (86400), "/planning/");
+        } else if (strpos($previous, 'online')){
+            setcookie('kunder', '', time() + (86400), "/planning/");
+            SetCookie('online', 'active', time() + (86400), "/planning/");
         }
         header("location:" . $previous);
     } else {

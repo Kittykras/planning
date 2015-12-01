@@ -4,14 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/planning/database/actions/addLink.php</file>
-            <file>file:/C:/xampp/htdocs/planning/singleAssociate.php</file>
-            <file>file:/C:/xampp/htdocs/planning/singleCustomer.php</file>
             <file>file:/C:/xampp/htdocs/planning/taskForm.php</file>
-            <file>file:/C:/xampp/htdocs/planning/timeOverview.php</file>
-            <file>file:/C:/xampp/htdocs/planning/overview.php</file>
-            <file>file:/C:/xampp/htdocs/planning/press.php</file>
-            <file>file:/C:/xampp/htdocs/planning/database/actions/createBranch.php</file>
-            <file>file:/C:/xampp/htdocs/planning/include/menubar.inc.php</file>
+            <file>file:/C:/xampp/htdocs/planning/database/actions/changeExpAction.php</file>
+            <file>file:/C:/xampp/htdocs/planning/database/actions/deleteExp.php</file>
+            <file>file:/C:/xampp/htdocs/planning/database/actions/alterExp.php</file>
             <file>file:/C:/xampp/htdocs/planning/database/actions/createExp.php</file>
         </group>
     </open-files>

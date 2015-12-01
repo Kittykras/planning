@@ -50,11 +50,11 @@ try {
         $pressdate = "0000-00-00";
     }
     $db = new DBConnection();
-    $q = "call altertask(:id, :cus, :title, :descr, :stat, :assi, :timespent, :fromWeek, :fromYear, :toWeek, :toYear, :pressdate, :press);";
+    $q = "call altertask(:id, :cus, :title, :descr, :stat, :assi, :timespent, :fromWeek, :fromYear, :toWeek, :toYear, :pressdate, :press, :online);";
     $stmt = $db->prepare($q);
     $stmt->execute(array(':id' => $id, ':cus' => $cus, ':title' => $title,
         ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen,
-        ':fromWeek' => $fromWeek, ':fromYear' => $fromYear, ':toWeek' => $toWeek, ':toYear' => $toYear, ':pressdate' => $pressdate, ':press' => $press));
+        ':fromWeek' => $fromWeek, ':fromYear' => $fromYear, ':toWeek' => $toWeek, ':toYear' => $toYear, ':pressdate' => $pressdate, ':press' => $press, ':online' => $online));
     if ($comment != "") {
         $q = "call createcomment(:id, :comment, :user);";
         $stmt = $db->prepare($q);
@@ -91,6 +91,9 @@ try {
         } else if (strpos($previous, 'press') != FALSE) {
             setcookie('kunder', '', time() + (86400), "/planning/");
             setcookie('presse', 'active', time() + (86400), "/planning/");
+        } else if (strpos($previous, 'online')){
+            setcookie('kunder', '', time() + (86400), "/planning/");
+            SetCookie('online', 'active', time() + (86400), "/planning/");
         }
         header("location:" . $previous);
     } else {

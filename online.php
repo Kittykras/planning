@@ -8,8 +8,8 @@ include 'database/taskHandler.php';
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
         <div class="col span_1_of_2 ">
-            <h4 class="chead"><span class="header-img">Presse</span></h4>
-            <h2 class="chead"><span class="header-img">Presse</span></h2>
+            <h4 class="chead"><span class="header-img">Online</span></h4>
+            <h2 class="chead"><span class="header-img">Online</span></h2>
         </div>
     </div>
     <!-- Buttons for sorting the table values -->
@@ -61,8 +61,8 @@ include 'database/taskHandler.php';
             </thead>
             <tbody>
                 <?php
-                $ptasks = getTaskFromPress();
-                foreach ($ptasks as $task) {
+                $otasks = getTaskFromOnline();
+                foreach ($otasks as $task) {
                     ?>
                     <tr>
                         <td><?php echo $task->t_fromweek ?>/<?php echo $task->t_toweek ?></td>

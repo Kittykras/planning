@@ -63,8 +63,6 @@ function taskRedirect(task, href) {
 }
 
 function htmlEntities(str) {
-    var text = String(str).replace("Ø", "oe", true).replace("Æ", "ae").replace("Å", "aaa").replace("æ", "ae").replace("ø", "oe").replace("å", "aaa");
-//    window.alert(text);
+    var text = str.replace(/[\ø]+/gi, 'oe').replace(/[\æ]+/gi, 'ae').replace(/[\å]+/gi, 'aa');
     return text;
-    
 }
