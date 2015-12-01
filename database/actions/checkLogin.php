@@ -32,6 +32,7 @@ try {
         header("location:../../index.php?error");
     }
 } catch (PDOException $e) {
+    header("location:../../index.php?error");
     echo $e->getMessage();
 }
 ?>

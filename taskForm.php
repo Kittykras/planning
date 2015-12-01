@@ -437,7 +437,6 @@ if (isset($_GET["error"])) {
     }
     //    See number.js
     $("input[type=number").number();
-    //    $.number("defaults", {});
     //    Function for showing release date, when press is checked
     function showDate() {
         $("#pressdate").toggleClass("hidden");
