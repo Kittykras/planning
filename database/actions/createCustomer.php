@@ -45,7 +45,8 @@ try {
         }
     }
     if ($count == 1) {
-        header("location:" . $_COOKIE['previous']);
+        setcookie('Kunde', $acro,  time() + (86400), "/planning/");
+        header("location:../../singleCustomer.php");
     } else {
         header("location:../../customerForm.php?error");
     }

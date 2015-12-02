@@ -33,7 +33,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <!-- My scripts -->
         <script src="functions/core.js"></script>
-        <script src="functions/script.js"></script>
         <script src="functions/redirectAndCookies.js"></script>
         <!-- My styles -->
         <link rel="stylesheet" href="styles/styles.css">

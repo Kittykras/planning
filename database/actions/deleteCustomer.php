@@ -18,6 +18,8 @@ try {
     $stmt->execute(array(":delName" => $delName));
     $count = $stmt->rowCount();
     if ($stmt != FALSE) {
+        setcookie('state', '0',  time() + (86400), "/planning/");
+        setcookie('orderby', 'c_name', time() + (86400), "/planning/");
         header("location:../../customers.php");
     } else {
         header("location:../../singleCustomer.php?error");

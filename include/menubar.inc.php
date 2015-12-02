@@ -7,6 +7,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 ?>
+<script src="functions/script.js"></script>
 <script>
     function logout() {
         xmlhttp = new XMLHttpRequest();

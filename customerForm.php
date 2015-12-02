@@ -197,9 +197,11 @@ if (isset($_GET["error"])) {
     //    Function to add links from database to array
     addArrayToUrls(<?php echo json_encode($links) ?>);
     function addArrayToUrls(array) {
-        for (i = 0; i < array.length; i++) {
-            var dest = {d_id: array[i].d_id, d_url: array[i].d_url, d_username: array[i].d_username, d_password: array[i].d_password};
-            urls.push(dest);
+        if (array !== null) {
+            for (i = 0; i < array.length; i++) {
+                var dest = {d_id: array[i].d_id, d_url: array[i].d_url, d_username: array[i].d_username, d_password: array[i].d_password};
+                urls.push(dest);
+            }
         }
     }
     //    Function to select all links from selectbox
