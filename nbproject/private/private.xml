@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/planning/styles/styles.css</file>
-            <file>file:/C:/xampp/htdocs/planning/styles/number.css</file>
-            <file>file:/C:/xampp/htdocs/planning/include/top.inc.php</file>
             <file>file:/C:/xampp/htdocs/planning/taskForm.php</file>
-            <file>file:/C:/xampp/htdocs/planning/functions/number.js</file>
-            <file>file:/C:/xampp/htdocs/planning/styles/input-styles.css</file>
+            <file>file:/C:/xampp/htdocs/planning/database/actions/clearExp.php</file>
+            <file>file:/C:/xampp/htdocs/planning/database/actions/deleteExp.php</file>
+            <file>file:/C:/xampp/htdocs/planning/database/actions/alterExp.php</file>
+            <file>file:/C:/xampp/htdocs/planning/database/actions/createExp.php</file>
         </group>
     </open-files>
 </project-private>

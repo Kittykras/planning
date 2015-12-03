@@ -273,7 +273,7 @@ if (isset($_GET["edit"])) {
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-black" data-dismiss="modal">OK</button>
+                <button type="button" class="btn btn-black" onclick="closeExpModal()">OK</button>
             </div>
         </div>
     </div>
@@ -310,7 +310,18 @@ if (isset($_GET["error"])) {
 ?>
 <!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
-    //    function to deleting selected expense
+    //   Function to closing expense modal and clearing content
+    function closeExpModal(){
+        $("#expModal").modal("hide");
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                document.getElementById("expModalBody").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "database/actions/clearExp.php?q=" + expId, true);
+        xmlhttp.send();
+    }
+    //    Function to deleting selected expense
     function deleteExp() {
         var expId = document.getElementById("expId").value;
         xmlhttp.onreadystatechange = function () {
@@ -321,7 +332,7 @@ if (isset($_GET["error"])) {
         xmlhttp.open("GET", "database/actions/deleteExp.php?q=" + expId, true);
         xmlhttp.send();
     }
-    //    function to altering selected expense
+    //    Function to altering selected expense
     function alterExp() {
         var expId = document.getElementById("expId").value;
         var expenseTask = document.getElementById("expenseTask").value;
@@ -338,7 +349,7 @@ if (isset($_GET["error"])) {
         xmlhttp.open("GET", "database/actions/alterExp.php?q=" + json, true);
         xmlhttp.send();
     }
-    //    function to add functionality to alter expense
+    //    Function to add functionality to alter expense
     function changeExpAction(id, text, exp, offer) {
         console.log("1");
         document.getElementById("expId").value = id;
