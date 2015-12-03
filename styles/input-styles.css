@@ -6,7 +6,8 @@ a:hover, a:active {
 }
 /* Position label behind input to make it look like a placeholder */
 .background-label{
-    z-index: -10;
+    z-index: -10 !important;
+    display: block;
     position: absolute;
     padding-left: 18px;
     padding-top: 6px;
@@ -15,8 +16,9 @@ a:hover, a:active {
 }
 /* Position input infront of label and making it seethrough */
 .foreground-input{
-    z-index: 10;
+    z-index: 10 !important;
     text-align: right;
+    border-radius: 4px !important;
     background-color:rgba(0, 0, 0, 0.0);
 }
 .foreground-input:focus{

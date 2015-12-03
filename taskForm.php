@@ -41,9 +41,9 @@ if (isset($_GET["edit"])) {
         });
     });
 </script>
-<script src="functions/number.js"></script>
+
+<!--<link rel="stylesheet" href="styles/input-styles.css">-->
 <link href="styles/number.css" rel="stylesheet">
-<link rel="stylesheet" href="styles/input-styles.css">
 <!-- Header -->
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
@@ -88,12 +88,28 @@ if (isset($_GET["edit"])) {
         </div>
         <div class="form-group group">
             <div class="col span_1_of_2" align="left">
-                <label class="background-label">Timer</label>
-                <input style="padding-right: 30px;" name="hour" type="number" step="1" min="0" class="form-control input-style foreground-input" id="hour" value="0">
+                <div class="input-group" align="left">
+                    <label class="background-label">Timer</label>
+                    <input name="hour" type="text" class="form-control input-style foreground-input" id="hour" value="0" onkeyup="add(this.value, this.id)">
+                    <div class="input-group-btn">
+                        <div class="time-buttons btn-group-vertical btn-group-xs">
+                            <button type="button" class="btn" align="middle" onclick="addHours()"><span class="glyphicon glyphicon-chevron-up"></span></button>
+                            <button type="button" class="btn" align="middle" onclick="subtractHours()"><span class="glyphicon glyphicon-chevron-down"></span></button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col span_1_of_2" align="left">
-                <label class="background-label">Minutter</label>
-                <input style="padding-right: 30px;" name="min" type="number" step="15" min="0" max="59" class="form-control input-style foreground-input" id="min" value="0">
+                <div class="input-group">
+                    <label class="background-label">Minutter</label>
+                    <input name="min" type="text" class="form-control input-style foreground-input" id="min" value="0" onkeyup="add(this.value, this.id)">
+                    <div class="input-group-btn">
+                        <div class="time-buttons btn-group-vertical btn-group-xs">
+                            <button type="button" class="btn" align="middle" onclick="addMinuts()"><span class="glyphicon glyphicon-chevron-up"></span></button>
+                            <button type="button" class="btn" align="middle" onclick="subtractMinuts()"><span class="glyphicon glyphicon-chevron-down"></span></button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="form-group group">
@@ -437,11 +453,12 @@ if (isset($_GET["error"])) {
         $('#commentModal').modal('show');
     }
     //    See number.js
-    $("input[type=number").number();
+//    $("input[type=number").number();
     //    Function for showing release date, when press is checked
     function showDate() {
         $("#pressdate").toggleClass("hidden");
     }
 </script>
+<script src="functions/number.js"></script>
 </body>
 </html>

@@ -1,52 +1,68 @@
-/*! formstone v0.8.24 [number.css] 2015-10-21 | MIT License | formstone.it */
+.time-buttons{
+    height: 34px;
+    width: 18px;
+    float: right;
+}
+.time-buttons .btn{
+    z-index: 99;
+    width: 100%;
+    height: 50%;
+    margin: 0;
+    padding: 0;
+}
+.time-buttons .glyphicon, .time-buttons .glyphicon{
+    margin-left: 1px;
+    width: 100%;
+}
+/*! formstone v0.8.24 [number.css] 2015-10-21 | MIT License | formstone.it 
 
-/**
-	 * @class
-	 * @name .fs-number-element
-	 * @type element
-	 * @description Target elmement
-	 */
-/**
-	 * @class
-	 * @name .fs-number
-	 * @type element
-	 * @description Base widget class
-	 */
-/**
-	 * @class
-	 * @name .fs-number.fs-number-disabled
-	 * @type modifier
-	 * @description Indicates disabled state
-	 */
+*
+         * @class
+         * @name .fs-number-element
+         * @type element
+         * @description Target elmement
+         
+*
+         * @class
+         * @name .fs-number
+         * @type element
+         * @description Base widget class
+         
+*
+         * @class
+         * @name .fs-number.fs-number-disabled
+         * @type modifier
+         * @description Indicates disabled state
+         
 .fs-number {
   position: relative;
   border-radius: 3px;
   margin: 0 0 0 0;
   overflow: hidden;
-  /**
-		 * @class
-		 * @name .fs-number-arrow
-		 * @type element
-		 * @description Arrow elmement
-		 */
-  /**
-		 * @class
-		 * @name .fs-number-arrow:after
-		 * @type element
-		 * @description Arrow icon
-		 */
-  /**
-		 * @class
-		 * @name .fs-number-arrow.fs-number-up
-		 * @type modifier
-		 * @description Indicates up state
-		 */
-  /**
-		 * @class
-		 * @name .fs-number-arrow.fs-number-down
-		 * @type modifier
-		 * @description Indicates up state
-		 */
+  *
+                 * @class
+                 * @name .fs-number-arrow
+                 * @type element
+                 * @description Arrow elmement
+                 
+  *
+                 * @class
+                 * @name .fs-number-arrow:after
+                 * @type element
+                 * @description Arrow icon
+                 
+  *
+                 * @class
+                 * @name .fs-number-arrow.fs-number-up
+                 * @type modifier
+                 * @description Indicates up state
+                 
+  *
+                 * @class
+                 * @name .fs-number-arrow.fs-number-down
+                 * @type modifier
+                 * @description Indicates up state
+                 
 }
 .fs-number,
 .fs-number:after,
@@ -144,15 +160,15 @@
   border-top-color: #cccccc;
   border-bottom-color: #cccccc;
 }
-/*
-	@media screen and (min-width: 740px) {
-		.stepper:hover .stepper-input { background-color: #fff; }
 
-		.stepper .stepper-step:hover { background-color: #F9F9F9; }
+        @media screen and (min-width: 740px) {
+                .stepper:hover .stepper-input { background-color: #fff; }
 
-		.stepper.disabled .stepper-arrow { background: #fff; border-color: #eee; cursor: default; }
-	}
+                .stepper .stepper-step:hover { background-color: #F9F9F9; }
 
-	.stepper.disabled .stepper-input { background: #fff; border-color: #eee; color: #ccc; }
-	.stepper.disabled .stepper-arrow { background: #fff; border-color: #eee; cursor: default; }
-*/
+                .stepper.disabled .stepper-arrow { background: #fff; border-color: #eee; cursor: default; }
+        }
+
+        .stepper.disabled .stepper-input { background: #fff; border-color: #eee; color: #ccc; }
+        .stepper.disabled .stepper-arrow { background: #fff; border-color: #eee; cursor: default; }*/
+

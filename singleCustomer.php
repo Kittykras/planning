@@ -44,6 +44,9 @@ $links = getLinksFromCustomer();
                     <li><a onclick="SetCookie('orderby', 'red', '1');
                             SetCookie('state', '1', '1');
                             location.reload()">Rød</a></li>
+                    <li><a onclick="SetCookie('orderby', 'blue', '1');
+                            SetCookie('state', '1', '1');
+                            location.reload()">Blå</a></li>
                     <li><a onclick="SetCookie('orderby', '#FFCC00', '1');
                             SetCookie('state', '1', '1');
                             location.reload()">Gul</a></li>
