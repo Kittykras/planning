@@ -232,7 +232,7 @@ if (isset($_GET["edit"])) {
             </div>
             <div id="expModalBody" class="modal-body vertically-align">
                 <input type="hidden" id="expId">
-                <input type="text" id="expenseTask" name="expenseTask" class="form-control input-style" placeholder="Opgave">
+                <input type="text" id="expenseTask" name="expenseTask" class="form-control input-style" placeholder="Leverance">
                 <div class="group">
                     <div class="col span_1_of_2">
                         <input type="text" id="expense" name="expense" class="form-control input-style" placeholder="Omkostninger">
@@ -249,7 +249,7 @@ if (isset($_GET["edit"])) {
                         <table class="table table-condensed">
                             <thead class="thead-style">
                                 <tr>
-                                    <th>Opgave</th>
+                                    <th>Leverance</th>
                                     <th>Omkost.</th>
                                     <th>Tilbud</th>
                                 </tr>

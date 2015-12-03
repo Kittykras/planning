@@ -9,9 +9,9 @@ if (editing === "?edit") {
 }
 function add(input, field) {
     inputs = [];
-    var number;
+    var number = "";
     if (input === "") {
-        input = "0";
+        input = 0;
     }
     var i;
     for (i = 0; i < input.length; i++) {
@@ -22,11 +22,12 @@ function add(input, field) {
         var isthere = false;
         var letter;
         for (letter in letters) {
-            if (potential === letter) {
+            if (inputs[potential] === letters[letter]) {
                 isthere = true;
             }
         }
         if (!isthere) {
+            potential = inputs[potential];
             number = number + potential;
         }
     }
@@ -39,12 +40,12 @@ function add(input, field) {
     }
 }
 function addManyHours(hour) {
-    hours = hour;
+    hours = parseInt(hour);
     document.getElementById("hour").value = "";
     document.getElementById("hour").value = hours;
 }
 function addManyMinuts(minut) {
-    minuts = minut;
+    minuts = parseInt(minut);
     while (minuts >= 60) {
         minuts = minuts - 60;
         addHours();
@@ -59,7 +60,7 @@ function addHours() {
 }
 function addMinuts() {
     minuts = minuts + 15;
-    if (minuts === 60) {
+    if (minuts >= 60) {
         addHours();
         minuts = 0;
     }

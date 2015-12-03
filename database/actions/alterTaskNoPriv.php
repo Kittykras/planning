@@ -4,6 +4,15 @@ require_once '../DBConnection.php';
 $session_expiration = time() + 3600 * 24; // +1 days
 session_set_cookie_params($session_expiration);
 session_start();
+
+function htmlEntities2($str) {
+    $text = str_replace("oe", "Ø", $str);
+    $text = str_replace("aaa", "Å", $text);
+    $text = str_replace("ae", "Æ", $text);
+//    window.alert(text);
+    return $text;
+}
+
 try {
     $user = $_SESSION["user"]->a_username;
     $id = $_COOKIE["Task"];
@@ -55,7 +64,7 @@ try {
         } else if (strpos($previous, 'press') != FALSE) {
             setcookie('kunder', '', time() + (86400), "/planning/");
             setcookie('presse', 'active', time() + (86400), "/planning/");
-        } else if (strpos($previous, 'online')){
+        } else if (strpos($previous, 'online')) {
             setcookie('kunder', '', time() + (86400), "/planning/");
             SetCookie('online', 'active', time() + (86400), "/planning/");
         }
