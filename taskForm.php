@@ -137,7 +137,7 @@ if (isset($_GET["edit"])) {
                 <label><input type="checkbox" name="online" id="online" value="true">Online</label>
             </div>
         </div>
-        <div class="form-group">
+        <div id="btnExp" class="hidden form-group">
             <button type="button" class="btn btn-black span_1_of_3" onclick="openExpModal()">Udgifter</button>
         </div>
         <div class="form-group group">
@@ -311,14 +311,14 @@ if (isset($_GET["error"])) {
 <!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
     //   Function to closing expense modal and clearing content
-    function closeExpModal(){
+    function closeExpModal() {
         $("#expModal").modal("hide");
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                 document.getElementById("expModalBody").innerHTML = xmlhttp.responseText;
             }
         };
-        xmlhttp.open("GET", "database/actions/clearExp.php?q=" + expId, true);
+        xmlhttp.open("GET", "database/actions/clearExp.php", true);
         xmlhttp.send();
     }
     //    Function to deleting selected expense
@@ -425,6 +425,7 @@ if (isset($_GET["error"])) {
             document.getElementById("editH2").innerHTML = "<span class='header-img'>Rediger Opgave(<a href='singleCustomer.php'>" + cus + "</a>)</span>";
             $("#comment").removeClass("hidden");
             $("#btnCreate").addClass("hidden");
+            $("#btnExp").removeClass("hidden");
             document.getElementById("title").value = title;
             document.getElementById("descr").value = descr;
             document.getElementById("stat").value = stat;

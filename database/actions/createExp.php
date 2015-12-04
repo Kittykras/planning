@@ -7,7 +7,7 @@ try {
     $q = "call createExpenses(:e_text, :e_expenses, :e_offer, :e_iconplace, :e_task)";
     $stmt = $db->prepare($q);
     $stmt->setFetchMode(PDO::FETCH_OBJ);
-    $stmt->execute(array(':e_text' => $exp[0], ':e_expenses' => $exp[1], ':e_offer' => $exp[2], ':e_iconplace' => 'glyphicon glyphicon-piggy-bank', ':e_task' => $_COOKIE['Task']));
+    $stmt->execute(array(':e_text' => $exp[0], ':e_expenses' => $exp[1], ':e_offer' => $exp[2], ':e_iconplace' => 'zebra', ':e_task' => $_COOKIE['Task']));
     $count = $stmt->rowCount();
     if ($count === 1) {
         $q = 'call getexpenses(:id)';

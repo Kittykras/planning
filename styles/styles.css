@@ -11,6 +11,9 @@ body{
 .hidden{
     display: none;
 }
+.zebra{
+    content: url('../images/zebra.png');
+}
 /* All styling concerning menu */
 @import url(https://fonts.googleapis.com/css?family=Play:400,700);
 #cssmenu,
