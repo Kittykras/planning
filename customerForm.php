@@ -271,7 +271,7 @@ if (isset($_GET["error"])) {
         document.getElementById("pwdEdit").value = link[2];
         $('#linkModal').modal('show');
     }
-    //    Function to add link to selectbox
+    //    Function to add link to textbox
     function addLink() {
         var url = document.getElementById('url').value;
         var user = document.getElementById('user').value;

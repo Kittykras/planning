@@ -23,14 +23,14 @@
         <link rel="stylesheet" href="styles/html5reset.css">
         <!-- Bootstrap -->
         <!-- Latest compiled and minified CSS --> 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/bootstrap.min.css">
         <!-- Optional theme --> 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/bootstrap-theme.min.css">
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
         <!-- Latest compiled and minified JavaScript --> 
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
         <!-- My scripts -->
         <script src="functions/core.js"></script>
         <script src="functions/redirectAndCookies.js"></script>

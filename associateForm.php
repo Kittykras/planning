@@ -69,6 +69,7 @@ if (isset($_GET["error"])) {
 ?>
 <!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
+	//	Function to check if username already exists or is too long
     function checkUser() {
         var user = document.getElementById("newUser").value;
         xmlhttp = new XMLHttpRequest();
