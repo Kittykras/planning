@@ -28,6 +28,7 @@
         <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/bootstrap-theme.min.css">
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
         <!-- Latest compiled and minified JavaScript --> 
         <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>

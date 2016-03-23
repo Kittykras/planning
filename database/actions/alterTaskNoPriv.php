@@ -32,12 +32,16 @@ try {
         $q = "call createcomment(:id, :comment, :user);";
         $stmt = $db->prepare($q);
         $stmt->execute(array(':id' => $id, ':comment' => $comment, ":user" => $user));
-        if ($mailto != "") {
-            $q = "call getAssociate(:mailto)";
-            $stmt = $db->prepare($q);
-            $stmt->execute(array(':mailto' => $mailto));
-            $asmail = $stmt->fetch(PDO::FETCH_OBJ);
-            sendmail($asmail->a_email, 'Ny kommentar på en opgave', 'Kunde: ' . $cus . '<br><br>Opgave: ' . $title . '<br><br>' . $user . ' har tilføjet en kommentar:<br>' . $comment);
+        if (isset($mailto)) {
+            $mails = array();
+            foreach ($mailto as $mail) {
+                $q = "call getAssociate(:mailto)";
+                $stmt = $db->prepare($q);
+                $stmt->execute(array(':mailto' => $mail));
+                $asmail = $stmt->fetch(PDO::FETCH_OBJ);
+                array_push($mails, $asmail->a_email);
+            }
+            sendmail($mails, 'Ny kommentar på en opgave', 'Kunde: ' . $cus . '<br><br>Opgave: ' . $title . '<br><br>' . $user . ' har tilføjet en kommentar:<br>' . $comment);
         }
     }
     if ($stmt != FALSE) {

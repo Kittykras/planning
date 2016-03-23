@@ -55,7 +55,7 @@ include 'include/menubar.inc.php';
             </div>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_fromweek', '1');
                     SetCookie('state', '0', '1');
-                    location.reload()">Uge</button>
+                    location.reload()">Opgaver</button>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_customer', '1');
                     SetCookie('state', '0', '1');
                     location.reload()">Kunde</button>
@@ -73,7 +73,6 @@ include 'include/menubar.inc.php';
         <table class="table table-condensed">
             <thead class="thead-style">
                 <tr>
-                    <th style="max-width: 125px;">Uge</th>
                     <th>Opgave</th>
                     <th style="max-width: 125px;">Kunde</th>
                     <th style="max-width: 125px;">Kommentar</th>
@@ -85,7 +84,6 @@ include 'include/menubar.inc.php';
                 foreach ($atasks as $atask) {
                     ?>
                     <tr>
-                        <td><?php echo $atask->t_fromweek ?>/<?php echo $atask->t_toweek ?></td>
                         <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $atask->t_id ?>', window.location.href)"><span style="color: <?php echo $atask->t_state ?>">●</span> <?php echo $atask->t_title ?> <span style="color: grey" class="<?php echo $atask->e_ikonplace ?>"></span></td>
                         <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $atask->t_customer ?>', window.location.href)"><?php echo $atask->t_customer ?></button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->

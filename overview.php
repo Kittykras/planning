@@ -38,7 +38,7 @@ include 'database/taskHandler.php';
             </div>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_fromweek', '1');
                     SetCookie('state', '0', '1');
-                    location.reload()">Uge</button>
+                    location.reload()">Opgaver</button>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_customer', '1');
                     SetCookie('state', '0', '1');
                     location.reload()">Kunde</button>
@@ -56,7 +56,6 @@ include 'database/taskHandler.php';
         <table class="table table-condensed">
             <thead class="thead-style">
                 <tr>
-                    <th style="max-width: 125px;">Uge</th>
                     <th>Opgave</th>
                     <th style="max-width: 125px;">Kunde</th>
                     <th style="max-width: 125px;">Medarb.</th>
@@ -67,7 +66,6 @@ include 'database/taskHandler.php';
                 foreach ($tasks as $task) {
                     ?>
                     <tr>
-                        <td><?php echo $task->t_fromweek ?>/<?php echo $task->t_toweek ?></td>
                         <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $task->t_id ?>', window.location.href)"><span style="color: <?php echo $task->t_state ?>">●</span> <?php echo $task->t_title ?> <span style="color: grey" class="<?php echo $task->e_ikonplace ?>"></span></td>
                         <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $task->t_customer ?>', window.location.href)"><?php echo $task->t_customer ?></button></td>
                         <td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $task->t_assigned ?>', window.location.href)"><?php echo $task->t_assigned ?></button></td>

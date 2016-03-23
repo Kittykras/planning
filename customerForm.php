@@ -101,6 +101,51 @@ $links = getLinksFromCustomerEdit();
             }
             ?>
         </div>
+        <div id="projectDest">
+            <div class="form-group group">
+                <div class="col span_1_of_2">
+                    <input type="text" name="proTitle" class="form-control input-style" id="proTitle" placeholder="Titel">
+                </div>
+                <div class="col span_1_of_2">
+                    <select class="form-control input-style" name='ProAssi' id="ProAssi">
+                        <?php
+                        foreach ($users as $user) {
+                            ?>    
+                            <option value="<?php echo $user->a_username; ?>"><?php echo $user->a_name; ?></option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-black span_1_of_3" onclick="addLink()">Tilføj projekt</button>
+            </div>
+            <?php if (!empty($links)) { ?>
+                <?php foreach ($links as $link) {
+                    ?>
+                    <!--                    <div class="form-group">
+                                            <input onclick="openLinkModal(this.value)" class="form-control input-style" value="<?php echo $link->d_url . ' // ' . $link->d_username . ' // ' . $link->d_password ?>">
+                                        </div>-->
+                    <?php
+                }
+                ?>
+                <?php
+            }
+            ?>
+            <?php if (!empty($links)) { ?>
+                <select class="hidden" multiple name="urls[ ]" id="urls">
+                    <?php foreach ($links as $link) {
+                        ?>
+                        <option value="<?php echo $link->d_id . '¤' . $link->d_url . '¤' . $link->d_username . '¤' . $link->d_password ?>"> <?php echo $link->d_url ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+                <?php
+            }
+            ?>
+        </div>
     </form>
     <!-- Button for submitting form -->
     <button type="submit" form="form" class="btn btn-black span_1_of_3" id="btnCreate" onclick="selectAll()">Gem</button>

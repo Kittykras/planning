@@ -60,7 +60,7 @@ $links = getLinksFromCustomer();
             </div>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_fromweek', '1');
                     SetCookie('state', '0', '1');
-                    location.reload()">Uge</button>
+                    location.reload()">Opgaver</button>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_assigned', '1');
                     SetCookie('state', '0', '1');
                     location.reload()">Medarbejder</button>
@@ -78,7 +78,6 @@ $links = getLinksFromCustomer();
         <table class="table table-condensed ">
             <thead class="thead-style">
                 <tr>
-                    <th style="max-width: 125px;">Uge</th>
                     <th>Opgave</th>
                     <th style="max-width: 125px;">Medarb.</th>
                     <th style="max-width: 125px;">Kommentar</th>
@@ -90,7 +89,6 @@ $links = getLinksFromCustomer();
                 foreach ($ctasks as $ctask) {
                     ?>
                     <tr>
-                        <td><?php echo $ctask->t_fromweek ?>/<?php echo $ctask->t_toweek ?></td>
                         <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $ctask->t_id ?>', window.location.href)"><span style="color: <?php echo $ctask->t_state ?>">●</span> <?php echo $ctask->t_title ?> <span style="color: grey" class="<?php echo $ctask->e_ikonplace ?>"></span></td>
                         <td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $ctask->t_assigned ?>', window.location.href)"><?php echo $ctask->t_assigned ?></button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->

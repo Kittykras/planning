@@ -8,30 +8,17 @@ if (isset($_GET["edit"])) {
     $comments = getComments();
 }
 ?>
+<!-- CSS to style calendar -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <!-- JQuery to transforming date fields to calendar -->
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<!-- Script to transform multiselect to dropdown -->
+<script src="selectize.js-master/dist/js/standalone/selectize.js"></script>
+<!-- CSS to style multiselect -->
+<link rel="stylesheet" href="selectize.js-master/dist/css/selectize.bootstrap3.css">
+<!-- CSS to style hour and minute counters -->
+<link href="styles/number.css" rel="stylesheet">
 <script>
-    $(function () {
-        $("#from").datepicker({
-            showWeek: true,
-            firstDay: 1,
-            onSelect: function (dat, inst) {
-                var week = $.datepicker.iso8601Week(new Date(dat));
-                $('#from').val($.datepicker.formatDate('yy-', new Date(dat)) + (week < 10 ? '0' : '') + week);
-            }
-        });
-    });
-    $(function () {
-        $("#to").datepicker({
-            showWeek: true,
-            firstDay: 1,
-            onSelect: function (dat, inst) {
-                var week = $.datepicker.iso8601Week(new Date(dat));
-                $('#to').val($.datepicker.formatDate('yy-', new Date(dat)) + (week < 10 ? '0' : '') + week);
-            }
-        });
-    });
     $(function () {
         $("#pressdate").datepicker({
             firstDay: 1,
@@ -42,8 +29,6 @@ if (isset($_GET["edit"])) {
     });
 </script>
 
-<!--<link rel="stylesheet" href="styles/input-styles.css">-->
-<link href="styles/number.css" rel="stylesheet">
 <!-- Header -->
 <div class="container dcenter hpic img-responsive">
     <div class="section group">
@@ -113,16 +98,6 @@ if (isset($_GET["edit"])) {
             </div>
         </div>
         <div class="form-group group">
-            <div class="form-group col span_1_of_2" align="left">
-                <label class="background-label">Fra</label>
-                <input type="text" id="from" name="from" class="form-control input-style foreground-input">
-            </div>
-            <div class="form-group col span_1_of_2" align="left">
-                <label class="background-label">Til</label>
-                <input type="text" id="to" name="to" class="form-control input-style foreground-input">
-            </div>
-        </div>
-        <div class="form-group group">
             <div class="col span_1_of_2" align="left">
                 <div class="checkbox">
                     <label><input type="checkbox" name="press" id="press" value="true" onchange="showDate()">Presse</label>
@@ -137,15 +112,20 @@ if (isset($_GET["edit"])) {
                 <label><input type="checkbox" name="online" id="online" value="true">Online</label>
             </div>
         </div>
-        <div id="btnExp" class="hidden form-group">
-            <button type="button" class="btn btn-black span_1_of_3" onclick="openExpModal()">Udgifter</button>
+        <div class="form-group group">
+            <div class="col span_1_of_2">
+                <select name="project" class="form-control input-style"></select>
+            </div>
+            <div id="btnExp" class="hidden col span_1_of_2">
+                <button type="button" class="btn btn-black span_2_of_3" onclick="openExpModal()">Udgifter</button>
+            </div>
         </div>
         <div class="form-group group">
             <div class="col span_1_of_2">
                 <label for="mailto">Kommentaren bliver tilsendt: </label>
             </div>
             <div class="col span_1_of_2">
-                <select class="form-control input-style" id="mailto" name="mailto">
+                <select class="input-style" multiple id="mailto" name="mailto[]">
                     <option value=""></option>
                     <?php
                     foreach ($users as $user) {
@@ -167,7 +147,7 @@ if (isset($_GET["edit"])) {
                     ?>
                     <div class="form-group">
                         <textarea onclick="SetCookie('commentId', <?php echo $comment->tc_id ?>, '1');
-                                        openModal(this.value)" class="form-control input-style" rows="1"><?php echo $comment->tc_associate . ',' . $comment->tc_date . ' - ' . $comment->tc_comment ?></textarea>
+                                openModal(this.value)" class="form-control input-style" rows="1"><?php echo $comment->tc_associate . ',' . $comment->tc_date . ' - ' . $comment->tc_comment ?></textarea>
                     </div>
                     <?php
                 }
@@ -285,8 +265,6 @@ if (isset($_GET["edit"])) {
 <input type="hidden" id="hassi" name="hassi" value="<?php echo $_SESSION["Task"]->t_assigned ?>"/>
 <input type="hidden" id="hhour" name="hhour" value="<?php echo $_SESSION["Task"]->t_hour ?>"/>
 <input type="hidden" id="hmin" name="hmin" value="<?php echo $_SESSION["Task"]->t_min ?>"/>
-<input type="hidden" id="hfrom" name="hfrom" value="<?php echo $_SESSION["Task"]->t_fromweek ?>"/>
-<input type="hidden" id="hto" name="hto" value="<?php echo $_SESSION["Task"]->t_toweek ?>"/>
 <input type="hidden" id="hpress" name="hpress" value="<?php echo $_SESSION["Task"]->t_press ?>"/>
 <input type="hidden" id="hprelease" name="hprelease" value="<?php echo $_SESSION["Task"]->p_release ?>"/>
 <input type="hidden" id="honline" name="honline" value="<?php echo $_SESSION["Task"]->o_id ?>"/>
@@ -310,6 +288,7 @@ if (isset($_GET["error"])) {
 ?>
 <!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
+    $('#mailto').selectize();
     //   Function to closing expense modal and clearing content
     function closeExpModal() {
         $("#expModal").modal("hide");
@@ -401,8 +380,6 @@ if (isset($_GET["error"])) {
                 $('#title').attr('disabled', true);
                 $('#descr').attr('disabled', true);
                 $('#assi').attr('disabled', true);
-                $('#from').attr('disabled', true);
-                $('#to').attr('disabled', true);
                 $('#pressdate').attr('disabled', true);
                 $('button#btnAlter').removeClass("hidden");
             } else {
@@ -414,8 +391,6 @@ if (isset($_GET["error"])) {
             var assi = $('#hassi').val();
             var hour = $('#hhour').val();
             var min = $('#hmin').val();
-            var from = $('#hfrom').val();
-            var to = $('#hto').val();
             var press = $('#hpress').val();
             var prelease = $('#hprelease').val();
             var cus = $('#cus').val();
@@ -432,8 +407,6 @@ if (isset($_GET["error"])) {
             document.getElementById("assi").value = assi;
             document.getElementById("hour").value = hour;
             document.getElementById("min").value = min;
-            document.getElementById("from").value = from;
-            document.getElementById("to").value = to;
             if (press === "1") {
                 document.getElementById("press").checked = true;
                 $("#pressdate").removeClass("hidden");
