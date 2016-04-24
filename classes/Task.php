@@ -10,8 +10,6 @@ class Tasks{
     protected $assigned = null;
     protected $hour = null;
     protected $min = null;
-    protected $fromweek = null;
-    protected $toweek = null;
     protected $commentTime = null;
     
     function getHour() {
@@ -67,14 +65,6 @@ class Tasks{
         return $this->timespent;
     }
 
-    function getFromweek() {
-        return $this->fromweek;
-    }
-
-    function getToweek() {
-        return $this->toweek;
-    }
-
     function setId($id) {
         $this->id = $id;
     }
@@ -102,16 +92,5 @@ class Tasks{
     function setTimespent($timespent) {
         $this->timespent = $timespent;
     }
-
-    function setFromweek($fromweek) {
-        $this->fromweek = $fromweek;
-    }
-
-    function setToweek($toweek) {
-        $this->toweek = $toweek;
-    }
-
-
-    
 }
 

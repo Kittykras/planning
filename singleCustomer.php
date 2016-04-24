@@ -18,9 +18,9 @@ $links = getLinksFromCustomer();
                     ?></span></h2>
         </div>
         <br>
-        <!-- Button for the option to create task -->
+        <!-- Button for the option to create project -->
         <div class="col span_1_of_2" align="right">
-            <button type="button" class="btn btn-black" onclick="SetCookie('previous', window.location.href, '1'); location.href = 'taskForm.php'">Ny Opgave</button>
+            <button type="button" class="btn btn-black" onclick="SetCookie('previous', window.location.href, '1'); location.href = 'projectForm.php'">Nyt Projekt</button>
         </div>
         <!-- Buttons for the option to alter/delete this customer -->
         <div class="col span_1_of_2 hidden" align="right" id="edit">
@@ -58,7 +58,7 @@ $links = getLinksFromCustomer();
                             location.reload()">Grøn</a></li>
                 </ul>
             </div>
-            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_fromweek', '1');
+            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'color', '1');
                     SetCookie('state', '0', '1');
                     location.reload()">Opgaver</button>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_assigned', '1');

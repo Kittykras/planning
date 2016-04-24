@@ -25,7 +25,7 @@ if (session_status() == PHP_SESSION_NONE) {
         <ul>
             <div class="navbar-header">
                 <a class="navbar-brand" style="color: white" href="singleAssociate.php" onclick="SetCookie('UserName', '<?php echo $_SESSION["user"]->a_username ?>', '1');
-                        SetCookie('orderby', 't_fromWeek', '1');
+                        SetCookie('orderby', 'color', '1');
                         SetCookie('state', '0', '1');
                         SetCookie('previous', window.location.href, '1');
                         SetActive('login');"><span style="color: #D26232">+</span>vonbülow.co</a>
@@ -36,7 +36,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 <ul>
                     <?php foreach ($users as $user) { ?>
                         <li><a href = 'singleAssociate.php' onClick="SetCookie('UserName', '<?php echo $user->a_username ?>', '1');
-                                    SetCookie('orderby', 't_fromWeek', '1');
+                                    SetCookie('orderby', 'color', '1');
                                     SetCookie('state', '0', '1');
                                     SetCookie('previous', window.location.href, '1');
                                     SetActive('medarbejder');"> <?php echo $user->a_name ?></a>
@@ -54,7 +54,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 <ul>
                     <?php foreach ($menucustomers as $customer) { ?>
                         <li><a href = 'singleCustomer.php' onClick="SetCookie('Kunde', '<?php echo $customer->c_acronym ?>', '1');
-                                    SetCookie('orderby', 't_fromWeek', '1');
+                                    SetCookie('orderby', 'color', '1');
                                     SetCookie('state', '0', '1');
                                     SetCookie('previous', window.location.href, '1');
                                     SetActive('kunder');"> <?php echo $customer->c_name ?></a>
@@ -64,7 +64,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     ?>
                 </ul>
             </li>
-            <li class = "<?php echo $_COOKIE['overblik'] ?>"><a href = 'overview.php' onclick="SetCookie('orderby', 't_fromWeek', '1');
+            <li class = "<?php echo $_COOKIE['overblik'] ?>"><a href = 'overview.php' onclick="SetCookie('orderby', 'color', '1');
                     SetCookie('state', '0', '1');
                     SetCookie('previous', window.location.href, '1');
                     SetActive('overblik');">Overblik</a></li>
@@ -72,16 +72,16 @@ if (session_status() == PHP_SESSION_NONE) {
                     SetCookie('state', '0', '1');
                     SetCookie('previous', window.location.href, '1');
                     SetActive('timeoversigt');">Timer</a></li>
-            <li class = "<?php echo $_COOKIE['presse'] ?>"><a href = 'press.php' onclick="SetCookie('orderby', 't_fromweek', '1');
+            <li class = "<?php echo $_COOKIE['presse'] ?>"><a href = 'press.php' onclick="SetCookie('orderby', 'color', '1');
                     SetCookie('state', '0', '1');
                     SetCookie('previous', window.location.href, '1');
                     SetActive('presse');">Presse</a></li>
-            <li class = "<?php echo $_COOKIE['online'] ?>"><a href = 'online.php' onclick="SetCookie('orderby', 't_fromweek', '1');
+            <li class = "<?php echo $_COOKIE['online'] ?>"><a href = 'online.php' onclick="SetCookie('orderby', 'color', '1');
                     SetCookie('state', '0', '1');
                     SetCookie('previous', window.location.href, '1');
                     SetActive('online');">Online</a></li>
             <li class = "<?php echo $_COOKIE['login'] ?>"><a href = 'singleAssociate.php' onclick="SetCookie('UserName', '<?php echo $_SESSION["user"]->a_username ?>', '1');
-                    SetCookie('orderby', 't_fromWeek', '1');
+                    SetCookie('orderby', 'color', '1');
                     SetCookie('state', '0', '1');
                     SetCookie('previous', window.location.href, '1');
                     SetActive('login');"><span class = "glyphicon glyphicon-user"></span> <?php print_r($_SESSION["user"]->a_name)

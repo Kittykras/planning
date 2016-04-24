@@ -41,7 +41,7 @@ function SetActive(aktiv) {
 function redirect(user, href) {
     SetActive('medarbejder');
     SetCookie('UserName', user);
-    SetCookie('orderby', 't_fromWeek');
+    SetCookie('orderby', 'color');
     SetCookie('state', '0');
     SetCookie('previous', href);
     window.location = 'singleAssociate.php';
@@ -50,7 +50,7 @@ function cusRedirect(cust, href) {
 //    window.alert('hej' + cust);
     SetActive('kunder');
     SetCookie('Kunde', cust);
-    SetCookie('orderby', 't_fromWeek');
+    SetCookie('orderby', 'color');
     SetCookie('state', '0');
     SetCookie('previous', href);
     window.location = 'singleCustomer.php';

@@ -31,11 +31,10 @@ try {
         $pressdate = "0000-00-00";
     }
     $db = new DBConnection();
-    $q = "call altertask(:id, :cus, :title, :descr, :stat, :assi, :timespent, :pressdate, :press, :online, :project);";
+    $q = "call altertask(:id, :cus, :title, :descr, :stat, :assi, :timespent, :pressdate, :press, :online);";
     $stmt = $db->prepare($q);
     $stmt->execute(array(':id' => $id, ':cus' => $cus, ':title' => $title,
-        ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen,
-        ':fromWeek' => $fromWeek, ':fromYear' => $fromYear, ':toWeek' => $toWeek, ':toYear' => $toYear, ':pressdate' => $pressdate, ':press' => $press, ':online' => $online));
+        ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen,':pressdate' => $pressdate, ':press' => $press, ':online' => $online));
     if ($comment != "") {
         $q = "call createcomment(:id, :comment, :user);";
         $stmt = $db->prepare($q);
