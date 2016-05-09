@@ -330,7 +330,7 @@ if (isset($_GET["error"])) {
     }
     //    Function to add functionality to alter expense
     function changeExpAction(id, text, exp, offer) {
-        console.log("1");
+//        console.log("1");
         document.getElementById("expId").value = id;
         document.getElementById("expenseTask").value = text;
         document.getElementById("expense").value = exp;

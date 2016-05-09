@@ -16,10 +16,11 @@ function getTasksFromAs() {
     $orderby = $_COOKIE["orderby"];
     $state = $_COOKIE["state"];
     $username = htmlEntities2($_COOKIE["UserName"]);
-    $q = "call getallTaskbyas(:username, :state, :orderby)";
+    $showtask = $_COOKIE['showtask'];
+    $q = "call getallTaskbyas(:username, :state, :orderby, :showtask)";
     $stmt = $db->prepare($q);
     $stmt->setFetchMode(PDO::FETCH_OBJ);
-    $stmt->execute(array(':username' => $username, ':state' => $state, ':orderby' => $orderby));
+    $stmt->execute(array(':username' => $username, ':state' => $state, ':orderby' => $orderby, ':showtask' => $showtask));
     $atasks = $stmt->fetchAll();
     return $atasks;
 }

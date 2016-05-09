@@ -6,6 +6,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_set_cookie_params($session_expiration);
     session_start();
 }
+setcookie('showtask', '0', time() + (86400), "/planning/");
 ?>
 <script src="functions/script.js"></script>
 <script>

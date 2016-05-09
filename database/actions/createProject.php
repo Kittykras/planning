@@ -1,8 +1,34 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+require_once '../DBConnection.php';
+
+$session_expiration = time() + 3600 * 24; // +1 days
+session_set_cookie_params($session_expiration);
+session_start();
+
+function htmlEntities2($str) {
+    $text = str_replace("oe", "Ø", $str);
+    $text = str_replace("aaa", "Å", $text);
+    $text = str_replace("ae", "Æ", $text);
+//    window.alert(text);
+    return $text;
+}
+
+try{
+    $cus = htmlEntities2($_COOKIE["Kunde"]);
+    $title = $_POST["title"];
+    $assi = $_POST["assi"];
+    $db = new DBConnection();
+    $q = "call createmainprojekt(:title, :cus, :assi);";
+    $stmt = $db->prepare($q);
+    $stmt->execute(array(':title' => $title, ':cus' => $cus, ':assi' => $assi));
+    $count = $stmt->rowCount();
+    if ($count > 0) {
+        header("location:" . $_COOKIE['previous']);
+    } else {
+        header("location:../../taskForm.php?error");
+    }
+} catch (PDOException $ex) {
+    echo $ex->getMessage();
+}
 

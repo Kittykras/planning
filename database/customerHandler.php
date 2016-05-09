@@ -50,13 +50,13 @@ function getTasksFromCustomer() {
     $db = new DBConnection();
     $orderby = $_COOKIE["orderby"];
     $state = $_COOKIE["state"];
-//    $acronym = $_COOKIE["Kunde"];
     $acronym = $_COOKIE["Kunde"];
     $acronym = htmlEntities2($acronym);
-    $q = "call getallTaskfromcus(:acronym, :state, :orderby)";
+    $showTask = $_COOKIE['showtask'];
+    $q = "call getallTaskfromcus(:acronym, :state, :orderby, :showtask)";
     $stmt = $db->prepare($q);
     $stmt->setFetchMode(PDO::FETCH_OBJ);
-    $stmt->execute(array(':acronym' => $acronym, ':state' => $state, ':orderby' => $orderby));
+    $stmt->execute(array(':acronym' => $acronym, ':state' => $state, ':orderby' => $orderby, ':showtask' => $showTask));
     $ctasks = $stmt->fetchAll();
     return $ctasks;
 }
