@@ -56,23 +56,46 @@ include 'database/taskHandler.php';
     <div id="no-more-tables" class="table-responsive">
         <table class="table table-condensed">
             <thead class="thead-style">
-                <tr>
-                    <th>Opgave</th>
-                    <th style="max-width: 125px;">Kunde</th>
-                    <th style="max-width: 125px;">Medarb.</th>
-                </tr>
-            </thead>
-            <tbody>
                 <?php
-                foreach ($tasks as $task) {
+                if ($_COOKIE['showtask'] === '1') {
                     ?>
                     <tr>
-                        <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $task->t_id ?>', window.location.href)"><span style="color: <?php echo $task->t_state ?>">●</span> <?php echo $task->t_title ?> <span style="color: grey" class="<?php echo $task->e_ikonplace ?>"></span></td>
-                        <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $task->t_customer ?>', window.location.href)"><?php echo $task->t_customer ?></button></td>
-                        <td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $task->t_assigned ?>', window.location.href)"><?php echo $task->t_assigned ?></button></td>
-                        <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
+                        <th>Opgave</th>
+                        <th style="max-width: 125px;">Kunde</th>
+                        <th style="max-width: 125px;">Medarb.</th>
                     </tr>
+                </thead>
+                <tbody>
                     <?php
+                    foreach ($tasks as $task) {
+                        ?>
+                        <tr>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $task->t_id ?>', window.location.href)"><span style="color: <?php echo $task->t_state ?>">●</span> <?php echo $task->t_title ?> <span style="color: grey" class="<?php echo $task->e_ikonplace ?>"></span></td>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $task->t_customer ?>', window.location.href)"><?php echo $task->t_customer ?></button></td>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $task->t_assigned ?>', window.location.href)"><?php echo $task->t_assigned ?></button></td>
+                            <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
+                        </tr>
+                        <?php
+                    }
+                } else {
+                    ?>
+                    <tr>
+                        <th>Projekt</th>
+                        <th style="max-width: 125px;">Kunde</th>
+                        <th style="max-width: 125px;">Medarb.</th>
+                    </tr>
+                    </thead>
+                <tbody>
+                    <?php
+                    foreach ($tasks as $task) {
+                        ?>
+                        <tr>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $task->m_id ?>', window.location.href)"><span style="color: <?php echo $task->m_state ?>">●</span> <?php echo $task->m_title ?> </td>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $task->m_customer ?>', window.location.href)"><?php echo $task->m_customer ?></button></td>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $task->m_associate ?>', window.location.href)"><?php echo $task->m_associate ?></button></td>
+                            <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
+                        </tr>
+                    <?php }
                 }
                 ?>
             </tbody>
@@ -80,7 +103,7 @@ include 'database/taskHandler.php';
     </div>
 </div>
 <script>
-function changeBtnTitle() {
+    function changeBtnTitle() {
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {

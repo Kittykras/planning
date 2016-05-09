@@ -74,24 +74,46 @@ include 'include/menubar.inc.php';
     <div id="no-more-tables" class="table-responsive">
         <table class="table table-condensed">
             <thead class="thead-style">
-                <tr>
-                    <th>Opgave</th>
-                    <th style="max-width: 125px;">Kunde</th>
-                    <th style="max-width: 125px;">Kommentar</th>
-                </tr>
-            </thead>
-            <tbody>
                 <?php
-                $atasks = getTasksFromAs();
-                foreach ($atasks as $atask) {
+                if ($_COOKIE['showtask'] === '1') {
                     ?>
                     <tr>
-                        <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $atask->t_id ?>', window.location.href)"><span style="color: <?php echo $atask->t_state ?>">●</span> <?php echo $atask->t_title ?> <span style="color: grey" class="<?php echo $atask->e_ikonplace ?>"></span></td>
-                        <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $atask->t_customer ?>', window.location.href)"><?php echo $atask->t_customer ?></button></td>
-                        <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
-                        <td><?php echo $atask->tc_datee ?></td>
+                        <th>Opgave</th>
+                        <th style="max-width: 125px;">Kunde</th>
+                        <th style="max-width: 125px;">Kommentar</th>
                     </tr>
+                </thead>
+                <tbody>
                     <?php
+                    $atasks = getTasksFromAs();
+                    foreach ($atasks as $atask) {
+                        ?>
+                        <tr>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $atask->t_id ?>', window.location.href)"><span style="color: <?php echo $atask->t_state ?>">●</span> <?php echo $atask->t_title ?> <span style="color: grey" class="<?php echo $atask->e_ikonplace ?>"></span></td>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $atask->t_customer ?>', window.location.href)"><?php echo $atask->t_customer ?></button></td>
+                            <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
+                            <td><?php echo $atask->tc_datee ?></td>
+                        </tr>
+                        <?php
+                    }
+                } else {
+                    ?>
+                    <tr>
+                        <th>Projekt</th>
+                        <th style="max-width: 125px;">Kunde</th>
+                        <th style="max-width: 125px;">Kommentar</th>
+                    </tr>
+                    </thead>
+                <tbody>
+                    <?php
+                    $atasks = getTasksFromAs();
+                    foreach ($atasks as $atask) {
+                        ?>
+                        <tr>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $atask->m_id ?>', window.location.href)"><span style="color: <?php echo $atask->m_state ?>">●</span> <?php echo $atask->m_title ?></td>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $atask->m_customer ?>', window.location.href)"><?php echo $atask->m_customer ?></button></td>
+                        </tr>
+                        <?php }
                 }
                 ?>
             </tbody>

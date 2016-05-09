@@ -80,24 +80,45 @@ $links = getLinksFromCustomer();
     <div id="no-more-tables" class="table-responsive">
         <table class="table table-condensed ">
             <thead class="thead-style">
-                <tr>
-                    <th>Opgave</th>
-                    <th style="max-width: 125px;">Medarb.</th>
-                    <th style="max-width: 125px;">Kommentar</th>
-                </tr>
-            </thead>
-            <tbody>
                 <?php
-                $ctasks = getTasksFromCustomer();
-                foreach ($ctasks as $ctask) {
+                if ($_COOKIE['showtask'] === '1') {
                     ?>
                     <tr>
-                        <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $ctask->t_id ?>', window.location.href)"><span style="color: <?php echo $ctask->t_state ?>">●</span> <?php echo $ctask->t_title ?> <span style="color: grey" class="<?php echo $ctask->e_ikonplace ?>"></span></td>
-                        <td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $ctask->t_assigned ?>', window.location.href)"><?php echo $ctask->t_assigned ?></button></td>
-                        <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
-                        <td><?php echo $ctask->tc_datee ?></td>
+                        <th>Opgave</th>
+                        <th style="max-width: 125px;">Medarb.</th>
+                        <th style="max-width: 125px;">Kommentar</th>
                     </tr>
+                </thead>
+                <tbody>
                     <?php
+                    $ctasks = getTasksFromCustomer();
+                    foreach ($ctasks as $ctask) {
+                        ?>
+                        <tr>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $ctask->t_id ?>', window.location.href)"><span style="color: <?php echo $ctask->t_state ?>">●</span> <?php echo $ctask->t_title ?> <span style="color: grey" class="<?php echo $ctask->e_ikonplace ?>"></span></td>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $ctask->t_assigned ?>', window.location.href)"><?php echo $ctask->t_assigned ?></button></td>
+                            <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
+                            <td><?php echo $ctask->tc_datee ?></td>
+                        </tr>
+                        <?php
+                    }
+                } else {
+                    ?>
+                    <tr>
+                        <th>Projekt</th>
+                        <th style="max-width: 125px;">Medarb.</th>
+                    </tr>
+                    </thead>
+                <tbody>
+                    <?php
+                    $ctasks = getTasksFromCustomer();
+                    foreach ($ctasks as $ctask) {
+                        ?>
+                        <tr>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $ctask->m_id ?>', window.location.href)"><span style="color: <?php echo $ctask->m_state ?>">●</span> <?php echo $ctask->m_title ?> </td>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $ctask->m_associate ?>', window.location.href)"><?php echo $ctask->m_associate ?></button></td>
+                        </tr>
+                        <?php }
                 }
                 ?>
             </tbody>
@@ -111,10 +132,12 @@ $links = getLinksFromCustomer();
         <br>
         <li><?php echo $_SESSION["Kunde"]->c_conperson ?> // <?php echo $_SESSION["Kunde"]->c_connumber ?> // <?php echo $_SESSION["Kunde"]->c_conmail ?> // Tildelt: <?php echo getAssignedAssociateName($_SESSION["Kunde"]->c_assigned); ?></li>
         <?php
-            if (!empty($links)) {
-                foreach ($links as $link) {
-                    ?><li><?php echo $link->d_url ?> // <?php echo $link->d_username ?> // <?php echo $link->d_password ?></li><?php }
-            } ?>
+        if (!empty($links)) {
+            foreach ($links as $link) {
+                ?><li><?php echo $link->d_url ?> // <?php echo $link->d_username ?> // <?php echo $link->d_password ?></li><?php
+                }
+            }
+            ?>
         <br>
     </div>
 </div>
