@@ -21,26 +21,42 @@ $stmt->execute(array(':acronym' => $acronym, ':state' => $state, ':orderby' => $
 echo '<div class="panel panel-default dcenter">
     <div id="no-more-tables" class="table-responsive">
         <table class="table table-condensed ">
-            <thead class="thead-style">
-                <tr>
+            <thead class="thead-style">';
+if ($_COOKIE['showtask'] === '1') {
+    echo '<tr>
                     <th>Opgave</th>
                     <th style="max-width: 125px;">Medarb.</th>
                     <th style="max-width: 125px;">Kommentar</th>
                 </tr>
             </thead>
-            <tbody>
-                ';
+            <tbody>';
 
-$ctasks = $stmt->fetchAll();
-foreach ($ctasks as $ctask) {
-    echo '
+    $ctasks = $stmt->fetchAll();
+    foreach ($ctasks as $ctask) {
+        echo '
                     <tr>
                         <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect(\'' . $ctask->t_id . '\', window.location.href)"><span style="color: ' . $ctask->t_state . '">●</span> ' . $ctask->t_title . '<span style="color: grey" class="' . $ctask->e_ikonplace . '"></span></td>
                         <td><button class="btn btn-link btn-xs table-button" onclick="redirect(\'' . $ctask->t_assigned . '\', window.location.href)">' . $ctask->t_assigned . '</button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                         <td>' . $ctask->tc_datee . '</td>
-                    </tr>
-                    ';
+                    </tr>';
+    }
+} else {
+    echo '<tr>
+                    <th>Projekt</th>
+                    <th style="max-width: 125px;">Medarb.</th>
+                </tr>
+            </thead>
+            <tbody>';
+
+    $ctasks = $stmt->fetchAll();
+    foreach ($ctasks as $ctask) {
+        echo '<tr>
+                        <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect(\'' . $ctask->m_id . '\', window.location.href)"><span style="color: ' . $ctask->m_state . '">●</span> ' . $ctask->m_title . '</td>
+                        <td><button class="btn btn-link btn-xs table-button" onclick="redirect(\'' . $ctask->m_associate . '\', window.location.href)">' . $ctask->m_associate . '</button></td>
+                        <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
+                    </tr>';
+    }
 }
 echo '
             </tbody>

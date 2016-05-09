@@ -14,7 +14,7 @@ include 'database/taskHandler.php';
     </div>
     <!-- Buttons for sorting the table values -->
     <div class="row" align="center">
-        <div class="btn-group">
+        <div id="btn-group-dest" class="btn-group">
             <div class="btn-group dropdown">
                 <button type="button" class="btn btn-black dropdown-toggle" data-toggle="dropdown">
                     Status <span class="caret"></span></button>
@@ -38,7 +38,8 @@ include 'database/taskHandler.php';
             </div>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'color', '1');
                     SetCookie('state', '0', '1');
-                    location.reload()">Opgaver</button>
+                    SetCookie('showtask', '1', '1');
+                    changeBtnTitle()">Opgaver</button>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_customer', '1');
                     SetCookie('state', '0', '1');
                     location.reload()">Kunde</button>
@@ -78,5 +79,20 @@ include 'database/taskHandler.php';
         </table>
     </div>
 </div>
+<script>
+function changeBtnTitle() {
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                var resp = xmlhttp.responseText;
+                var respArray = resp.split("¤");
+                document.getElementById("no-more-tables").innerHTML = respArray[0];
+                document.getElementById("btn-group-dest").innerHTML = respArray[1];
+            }
+        };
+        xmlhttp.open("GET", "database/actions/changeBtnTitleAll.php", true);
+        xmlhttp.send();
+    }
+</script>
 </body>
 <html>

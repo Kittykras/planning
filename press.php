@@ -36,9 +36,9 @@ include 'database/taskHandler.php';
                             location.reload()">Grøn</a></li>
                 </ul>
             </div>
-            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'color', '1');
+<!--            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'color', '1');
                     SetCookie('state', '0', '1');
-                    location.reload()">Opgaver</button>
+                    location.reload()">Opgaver</button>-->
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_customer', '1');
                     SetCookie('state', '0', '1');
                     location.reload()">Kunde</button>

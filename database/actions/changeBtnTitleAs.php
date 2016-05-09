@@ -18,26 +18,40 @@ $stmt = $db->prepare($q);
 $stmt->setFetchMode(PDO::FETCH_OBJ);
 $stmt->execute(array(':username' => $username, ':state' => $state, ':orderby' => $orderby, ':showtask' => $showtask));
 echo '<table class="table table-condensed">
-            <thead class="thead-style">
-                <tr>
+            <thead class="thead-style">';
+if ($_COOKIE['showtask'] === '1') {
+    echo '<tr>
                     <th>Opgave</th>
                     <th style="max-width: 125px;">Kunde</th>
                     <th style="max-width: 125px;">Kommentar</th>
                 </tr>
             </thead>
-            <tbody>
-                ';
+            <tbody>';
 
-$atasks = $stmt->fetchAll();
-foreach ($atasks as $atask) {
-    echo '
-                    <tr>
+    $atasks = $stmt->fetchAll();
+    foreach ($atasks as $atask) {
+        echo '<tr>
                         <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect(\'' . $atask->t_id . '\', window.location.href)"><span style="color: ' . $atask->t_state . '">●</span> ' . $atask->t_title . ' <span style="color: grey" class="' . $atask->e_ikonplace . '"></span></td>
                         <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect(\'' . $atask->t_customer . '\', window.location.href)">' . $atask->t_customer . '</button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                         <td>' . $atask->tc_datee . '</td>
-                    </tr>
-                    ';
+                    </tr>';
+    }
+} else {
+    echo '<tr>
+                    <th>Projekt</th>
+                    <th style="max-width: 125px;">Kunde</th>
+                </tr>
+            </thead>
+            <tbody>';
+
+    $atasks = $stmt->fetchAll();
+    foreach ($atasks as $atask) {
+        echo '<tr>
+                        <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect(\'' . $atask->m_id . '\', window.location.href)"><span style="color: ' . $atask->m_state . '">●</span> ' . $atask->m_title . ' </td>
+                        <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect(\'' . $atask->m_customer . '\', window.location.href)">' . $atask->m_customer . '</button></td>
+                    </tr>';
+    }
 }
 echo '
             </tbody>

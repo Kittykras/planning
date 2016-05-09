@@ -6,10 +6,11 @@ require_once 'DBConnection.php';
 $db = new DBConnection();
 $orderby = $_COOKIE["orderby"];
 $false = $_COOKIE["state"];
-$q = 'call getalltask(:false, :orderby, :)';
+$showtask = $_COOKIE['showtask'];
+$q = 'call getalltask(:false, :orderby, :showtask)';
 $stmt = $db->prepare($q);
 $stmt->setFetchMode(PDO::FETCH_OBJ);
-$stmt->execute(array(':false' => $false, ':orderby' => $orderby));
+$stmt->execute(array(':false' => $false, ':orderby' => $orderby, ':showtask' => $showtask));
 $tasks = $stmt->fetchAll();
 
 function getComments() {
