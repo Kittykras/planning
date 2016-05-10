@@ -3,14 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/planning/singleCustomer.php</file>
             <file>file:/C:/xampp/htdocs/planning/singleAssociate.php</file>
             <file>file:/C:/xampp/htdocs/planning/database/actions/changeBtnTitleAs.php</file>
             <file>file:/C:/xampp/htdocs/planning/taskForm.php</file>
-            <file>file:/C:/xampp/htdocs/planning/database/actions/changeBtnTitleAll.php</file>
             <file>file:/C:/xampp/htdocs/planning/database/actions/changeBtnTitleCus.php</file>
-            <file>file:/C:/xampp/htdocs/planning/overview.php</file>
-            <file>file:/C:/xampp/htdocs/planning/database/customerHandler.php</file>
+            <file>file:/C:/xampp/htdocs/planning/database/actions/alterTask.php</file>
+            <file>file:/C:/xampp/htdocs/planning/projectForm.php</file>
         </group>
     </open-files>
 </project-private>

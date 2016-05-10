@@ -1,8 +1,22 @@
 //Function to set cookie with name, value and how many days it should last
 function SetCookie(c_name, value) {
     var exdate = new Date();
-    exdate.setDate(exdate.getDate()+1);
+    exdate.setDate(exdate.getDate() + 1);
     document.cookie = c_name + "=" + htmlEntities(value) + ";expires=" + exdate.toGMTString() + ";path=/planning/";
+}
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 }
 //Function to set active menuitem
 function SetActive(aktiv) {
@@ -59,7 +73,12 @@ function taskRedirect(task, href) {
     SetActive('kunder');
     SetCookie('Task', task);
     SetCookie('previous', href);
-    window.location = "taskForm.php?edit";
+    var showtask = getCookie('showtask');
+    if (showtask === '1') {
+        window.location = "taskForm.php?edit";
+    } else {
+        window.location = "projectForm.php?edit";
+    }
 }
 
 function htmlEntities(str) {

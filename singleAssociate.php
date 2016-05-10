@@ -54,10 +54,21 @@ include 'include/menubar.inc.php';
                             location.reload()">Grøn</a></li>
                 </ul>
             </div>
-            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'color', '1');
-                    SetCookie('state', '0', '1');
-                    SetCookie('showtask', '1', '1');
-                    changeBtnTitle()">Opgaver</button>
+            <?php
+            if ($_COOKIE['showtask'] === '1') {
+                ?>
+                <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'color', '1');
+                        SetCookie('state', '0', '1');
+                        SetCookie('showtask', '1', '1');
+                        changeBtnTitle()">Projekter</button>
+                        <?php } else {
+                        ?>
+                <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'color', '1');
+                        SetCookie('state', '0', '1');
+                        SetCookie('showtask', '1', '1');
+                        changeBtnTitle()">Opgaver</button>
+                    <?php }
+                    ?>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_customer', '1');
                     SetCookie('state', '0', '1');
                     location.reload()">Kunde</button>
@@ -113,7 +124,8 @@ include 'include/menubar.inc.php';
                             <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $atask->m_id ?>', window.location.href)"><span style="color: <?php echo $atask->m_state ?>">●</span> <?php echo $atask->m_title ?></td>
                             <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $atask->m_customer ?>', window.location.href)"><?php echo $atask->m_customer ?></button></td>
                         </tr>
-                        <?php }
+                    <?php
+                    }
                 }
                 ?>
             </tbody>

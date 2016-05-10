@@ -23,18 +23,19 @@ try {
     $assi = $_POST["assi"];
     $timespen = $_POST["hour"] . ":" . $_POST["min"];
     $comment = $_POST["newComment"];
-    $mailtoArray = $_POST["mailto"];
+    $mailto = $_POST["mailto"];
     $press = isset($_POST['press']) && $_POST['press'] ? "true" : "false";
     $online = isset($_POST['online']) && $_POST['online'] ? "true" : "false";
     $pressdate = $_POST["pressdate"];
     if ($pressdate === "") {
         $pressdate = "0000-00-00";
     }
+    $tasktomain = $_COOKIE['Task'];
     $db = new DBConnection();
-    $q = "call createtask(:cus, :title, :descr, :stat, :assi, :timespent, :pressdate, :press, :online);";
+    $q = "call createtask(:cus, :title, :descr, :stat, :assi, :timespent, :pressdate, :press, :online, :t_tasktomain);";
     $stmt = $db->prepare($q);
     $stmt->execute(array(':cus' => $cus, ':title' => $title,
-        ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen, ':pressdate' => $pressdate, ':press' => $press, ':online' => $online));
+        ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen, ':pressdate' => $pressdate, ':press' => $press, ':online' => $online, ':t_tasktomain' => $tasktomain));
     $count = $stmt->rowCount();
     if ($comment != "") {
         $q = "call createcommentonnewtask(:comment, :user);";
@@ -57,7 +58,7 @@ try {
     } else {
         header("location:../../taskForm.php?error");
     }
-} catch (PDOException $en) {
+} catch (PDOException $e) {
     echo $e->getMessage();
 } catch (phpmailerException $pme) {
     echo $pme->getMessage();

@@ -113,9 +113,9 @@ if (isset($_GET["edit"])) {
             </div>
         </div>
         <div class="form-group group">
-            <div class="col span_1_of_2">
+<!--            <div class="col span_1_of_2">
                 <select name="project" class="form-control input-style"></select>
-            </div>
+            </div>-->
             <div id="btnExp" class="hidden col span_1_of_2">
                 <button type="button" class="btn btn-black span_2_of_3" onclick="openExpModal()">Udgifter</button>
             </div>

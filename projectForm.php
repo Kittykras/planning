@@ -2,7 +2,11 @@
 include 'include/sessionCheck.php';
 include 'include/top.inc.php';
 include 'include/menubar.inc.php';
-//include 'database/taskHandler.php';
+include 'database/taskHandler.php';
+if (isset($_GET["edit"])) {
+getProjectFromCookie();
+//    $comments = getComments();
+}
 ?>
 <!-- Header -->
 <div class="container dcenter hpic img-responsive">
@@ -19,7 +23,7 @@ include 'include/menubar.inc.php';
         </div>
     </div>
     <!-- Buttons for sorting the table values -->
-    <div class="row" align="center">
+<!--    <div class="row" align="center">
         <div class="btn-group">
             <div class="btn-group dropdown">
                 <button type="button" class="btn btn-black dropdown-toggle" data-toggle="dropdown">
@@ -48,9 +52,9 @@ include 'include/menubar.inc.php';
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_assigned', '1');
                     SetCookie('state', '0', '1');
                     location.reload()">Medarbejder</button>
-            <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
+            See Redirect and SetCookie functions in redirectAndCookies.js
         </div>
-    </div>
+    </div>-->
 </div>
 </div>
 
@@ -64,9 +68,9 @@ include 'include/menubar.inc.php';
             <select class="form-control input-style" name='assi' id="assi">
                 <?php
                 foreach ($users as $user) {
-                    ?>    
-                    <option value="<?php echo $user->a_username; ?>"><?php echo $user->a_name; ?></option>
-                    <?php
+                ?>    
+                <option value="<?php echo $user->a_username; ?>"><?php echo $user->a_name; ?></option>
+                <?php
                 }
                 ?>
             </select>
@@ -97,16 +101,17 @@ include 'include/menubar.inc.php';
             </thead>
             <tbody>
                 <?php
-//                    foreach ($tasks as $task) {
+                $protasks = getTasksFromProject();
+                foreach ($protasks as $task) {
                 ?>
                 <tr>
-<!--                    <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $task->t_id ?>', window.location.href)"><span style="color: <?php echo $task->t_state ?>">●</span> <?php echo $task->t_title ?> <span style="color: grey" class="<?php echo $task->e_ikonplace ?>"></span></td>
+                    <td><button class="btn btn-link btn-xs table-button" onclick="SetCookie('showtask', '1', '1');taskRedirect('<?php echo $task->t_id ?>', window.location.href)"><span style="color: <?php echo $task->t_state ?>">●</span> <?php echo $task->t_title ?> <span style="color: grey" class="<?php echo $task->e_ikonplace ?>"></span></td>
                     <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $task->t_customer ?>', window.location.href)"><?php echo $task->t_customer ?></button></td>
-                    <td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $task->t_assigned ?>', window.location.href)"><?php echo $task->t_assigned ?></button></td>-->
+                    <td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $task->t_assigned ?>', window.location.href)"><?php echo $task->t_assigned ?></button></td>
                     <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                 </tr>
                 <?php
-//                    }
+                    }
                 ?>
             </tbody>
         </table>
@@ -139,19 +144,19 @@ include 'include/menubar.inc.php';
     $(window).load(function () {
         var editing = window.location.search;
         if (editing === "?edit") {
-//            if (<?php // print_r($_SESSION["user"]->a_privileges)  ?> === 3) {
-//                $('#title').attr('disabled', true);
-//                $('#assi').attr('disabled', true);
-//                $('button#btnAlter').removeClass("hidden");
-//            } else {
-//                $("div#btnAlter").removeClass("hidden");
-//            }
+            if (<?php print_r($_SESSION["user"]->a_privileges)   ?> === 3) {
+                $('#title').attr('disabled', true);
+                $('#assi').attr('disabled', true);
+                $('button#btnAlter').removeClass("hidden");
+            } else {
+                $("div#btnAlter").removeClass("hidden");
+            }
             var cus = $('#cus').val();
             var title = $('#htitle').val();
             var assi = $('#hassi').val();
             SetCookie('Kunde', cus, '1');
-            document.getElementById("editH4").innerHTML = "<span class='header-img'>Rediger Opgave(<a href='singleCustomer.php'>" + cus + "</a>)</span>";
-            document.getElementById("editH2").innerHTML = "<span class='header-img'>Rediger Opgave(<a href='singleCustomer.php'>" + cus + "</a>)</span>";
+            document.getElementById("editH4").innerHTML = "<span class='header-img'>Rediger Projekt(<a href='singleCustomer.php'>" + cus + "</a>)</span>";
+            document.getElementById("editH2").innerHTML = "<span class='header-img'>Rediger Projekt(<a href='singleCustomer.php'>" + cus + "</a>)</span>";
             $("#btnCreate").addClass("hidden");
             document.getElementById("title").value = title;
             document.getElementById("assi").value = assi;

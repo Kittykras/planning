@@ -32,6 +32,26 @@ function getTaskFromCookie() {
     $_SESSION["Task"] = $task;
 }
 
+function  getProjectFromCookie(){
+    $db = new DBConnection();
+    $q = "call getmaintask(:id)";
+    $stmt = $db->prepare($q);
+    $stmt->execute(array(':id' => $_COOKIE["Task"]));
+    $project = $stmt->fetch(PDO::FETCH_OBJ);
+    $_SESSION["Project"] = $project;
+}
+
+function getTasksFromProject(){
+    $db = new DBConnection();
+    $id = $_COOKIE['Task'];
+    $q = "call gettaskrelatedtoMain(:id)";
+    $stmt = $db->prepare($q);
+    $stmt->execute(array(':id' => $id));
+    $stmt->setFetchMode(PDO::FETCH_OBJ);
+    $protasks = $stmt->fetchAll();
+    return $protasks;
+}
+
 function getTaskFromPress() {
     $db = new DBConnection();
     $orderby = $_COOKIE["orderby"];
