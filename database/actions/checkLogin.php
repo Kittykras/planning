@@ -26,6 +26,7 @@ try {
         SetCookie('presse', '', time() + (86400), "/planning/");
         SetCookie('online', '', time() + (86400), "/planning/");
         setcookie('login', 'active', time() + (86400), "/planning/");
+        setcookie('showtask', '0', time() + (86400), "/planning/");
         header("location:../../singleAssociate.php");
         $db->close();
     } else {

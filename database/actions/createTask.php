@@ -37,6 +37,9 @@ try {
     $stmt->execute(array(':cus' => $cus, ':title' => $title,
         ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen, ':pressdate' => $pressdate, ':press' => $press, ':online' => $online, ':t_tasktomain' => $tasktomain));
     $count = $stmt->rowCount();
+    $q = "call setmainprojektstateonnew()";
+    $stmt = $db->prepare($q);
+    $stmt->execute();
     if ($comment != "") {
         $q = "call createcommentonnewtask(:comment, :user);";
         $stmt = $db->prepare($q);

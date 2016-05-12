@@ -90,7 +90,7 @@ include 'database/taskHandler.php';
                     foreach ($tasks as $task) {
                         ?>
                         <tr>
-                            <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $task->m_id ?>', window.location.href)"><span style="color: <?php echo $task->m_state ?>">●</span> <?php echo $task->m_title ?> </td>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $task->m_id ?>', window.location.href)"><span style="color: <?php echo $task->m_state ?>">●</span> <?php echo $task->m_title." "; if(!empty($task->havetask)){ ?><span class="glyphicon glyphicon-paperclip" style="color: grey"></span><?php }?></td>
                             <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $task->m_customer ?>', window.location.href)"><?php echo $task->m_customer ?></button></td>
                             <td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $task->m_associate ?>', window.location.href)"><?php echo $task->m_associate ?></button></td>
                             <!--See Redirect and SetCookie functions in redirectAndCookies.js-->

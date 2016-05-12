@@ -46,7 +46,11 @@ if ($_COOKIE['showtask'] === '1') {
     foreach ($tasks as $task) {
 
         echo '<tr>
-                        <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect(\'' . $task->m_id . '\', window.location.href)"><span style="color: ' . $task->m_state . '">●</span> ' . $task->m_title . '</td>
+                        <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect(\'' . $task->m_id . '\', window.location.href)"><span style="color: ' . $task->m_state . '">●</span> ' . $task->m_title . " " . '';
+        if (!empty($task->havetask)) {
+            echo '<span class="glyphicon glyphicon-paperclip" style="color: grey"></span>';
+        }
+        echo '</td>
                         <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect(\'' . $task->m_customer . '\', window.location.href)">' . $task->m_customer . '</button></td>
                         <td><button class="btn btn-link btn-xs table-button" onclick="redirect(\'' . $task->m_associate . '\', window.location.href)">' . $task->m_associate . '</button></td>
                     </tr>';

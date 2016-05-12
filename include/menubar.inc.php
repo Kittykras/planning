@@ -6,7 +6,6 @@ if (session_status() == PHP_SESSION_NONE) {
     session_set_cookie_params($session_expiration);
     session_start();
 }
-setcookie('showtask', '0', time() + (86400), "/planning/");
 ?>
 <script src="functions/script.js"></script>
 <script>
@@ -29,6 +28,7 @@ setcookie('showtask', '0', time() + (86400), "/planning/");
                         SetCookie('orderby', 'color', '1');
                         SetCookie('state', '0', '1');
                         SetCookie('previous', window.location.href, '1');
+                        SetCookie('showtask', '0', '1');
                         SetActive('login');"><span style="color: #D26232">+</span>vonbülow.co</a>
             </div>
             <li class='has-sub <?php echo $_COOKIE['medarbejder'] ?>'>
@@ -40,6 +40,7 @@ setcookie('showtask', '0', time() + (86400), "/planning/");
                                     SetCookie('orderby', 'color', '1');
                                     SetCookie('state', '0', '1');
                                     SetCookie('previous', window.location.href, '1');
+                                    SetCookie('showtask', '0', '1');
                                     SetActive('medarbejder');"> <?php echo $user->a_name ?></a>
                         </li>
                         <?php
@@ -58,6 +59,7 @@ setcookie('showtask', '0', time() + (86400), "/planning/");
                                     SetCookie('orderby', 'color', '1');
                                     SetCookie('state', '0', '1');
                                     SetCookie('previous', window.location.href, '1');
+                                    SetCookie('showtask', '0', '1');
                                     SetActive('kunder');"> <?php echo $customer->c_name ?></a>
                         </li>
                         <?php
@@ -68,10 +70,12 @@ setcookie('showtask', '0', time() + (86400), "/planning/");
             <li class = "<?php echo $_COOKIE['overblik'] ?>"><a href = 'overview.php' onclick="SetCookie('orderby', 'color', '1');
                     SetCookie('state', '0', '1');
                     SetCookie('previous', window.location.href, '1');
+                    SetCookie('showtask', '0', '1');
                     SetActive('overblik');">Overblik</a></li>
             <li class = "<?php echo $_COOKIE['timeoversigt'] ?>"><a href = 'timeOverview.php' onclick="SetCookie('orderby', 't_customer', '1');
                     SetCookie('state', '0', '1');
                     SetCookie('previous', window.location.href, '1');
+                    SetCookie('showtask', '1', '1');
                     SetActive('timeoversigt');">Timer</a></li>
             <li class = "<?php echo $_COOKIE['presse'] ?>"><a href = 'press.php' onclick="SetCookie('orderby', 'color', '1');
                     SetCookie('state', '0', '1');
@@ -85,6 +89,7 @@ setcookie('showtask', '0', time() + (86400), "/planning/");
                     SetCookie('orderby', 'color', '1');
                     SetCookie('state', '0', '1');
                     SetCookie('previous', window.location.href, '1');
+                    SetCookie('showtask', '0', '1');
                     SetActive('login');"><span class = "glyphicon glyphicon-user"></span> <?php print_r($_SESSION["user"]->a_name)
                     ?></a></li>
             <li><a onclick="logout()"><span class="glyphicon glyphicon-log-out"></span> Log ud</a></li>

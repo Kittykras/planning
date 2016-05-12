@@ -121,7 +121,7 @@ include 'include/menubar.inc.php';
                     foreach ($atasks as $atask) {
                         ?>
                         <tr>
-                            <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $atask->m_id ?>', window.location.href)"><span style="color: <?php echo $atask->m_state ?>">●</span> <?php echo $atask->m_title ?></td>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $atask->m_id ?>', window.location.href)"><span style="color: <?php echo $atask->m_state ?>">●</span> <?php echo $atask->m_title." "; if(!empty($atask->havetask)){ ?><span class="glyphicon glyphicon-paperclip" style="color: grey"></span><?php }?></td>
                             <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $atask->m_customer ?>', window.location.href)"><?php echo $atask->m_customer ?></button></td>
                         </tr>
                     <?php

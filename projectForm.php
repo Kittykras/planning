@@ -65,7 +65,7 @@ getProjectFromCookie();
             <input name="title" type="text" class="form-control input-style" style="font-weight: bold" id="title" placeholder="Titel">
         </div>
         <div class="form-group">
-            <select class="form-control input-style" name='assi' id="assi">
+            <select class="form-control input-style" name="assi" id="passi">
                 <?php
                 foreach ($users as $user) {
                 ?>    
@@ -137,7 +137,7 @@ getProjectFromCookie();
 <!-- Hidden values to fill out form -->
 <input type="hidden" id="cus" name="cus" value="<?php echo $_SESSION["Project"]->m_customer ?>"/>
 <input type="hidden" id="htitle" name="htitle" value="<?php echo $_SESSION["Project"]->m_title ?>"/>
-<input type="hidden" id="htitle" name="hassi" value="<?php echo $_SESSION["Project"]->m_associate ?>"/>
+<input type="hidden" id="hassi" name="hassi" value="<?php echo $_SESSION["Project"]->m_associate ?>"/>
 <!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
     //    Function for filling out form when altering project
@@ -159,7 +159,7 @@ getProjectFromCookie();
             document.getElementById("editH2").innerHTML = "<span class='header-img'>Rediger Projekt(<a href='singleCustomer.php'>" + cus + "</a>)</span>";
             $("#btnCreate").addClass("hidden");
             document.getElementById("title").value = title;
-            document.getElementById("assi").value = assi;
+            document.getElementById("passi").value = assi;
         }
     });
 </script>

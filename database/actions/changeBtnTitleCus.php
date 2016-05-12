@@ -52,7 +52,11 @@ if ($_COOKIE['showtask'] === '1') {
     $ctasks = $stmt->fetchAll();
     foreach ($ctasks as $ctask) {
         echo '<tr>
-                        <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect(\'' . $ctask->m_id . '\', window.location.href)"><span style="color: ' . $ctask->m_state . '">●</span> ' . $ctask->m_title . '</td>
+                        <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect(\'' . $ctask->m_id . '\', window.location.href)"><span style="color: ' . $ctask->m_state . '">●</span> ' . $ctask->m_title . " " . '';
+        if (!empty($ctask->havetask)) {
+            echo '<span class="glyphicon glyphicon-paperclip" style="color: grey"></span>';
+        }
+        echo '</td>
                         <td><button class="btn btn-link btn-xs table-button" onclick="redirect(\'' . $ctask->m_associate . '\', window.location.href)">' . $ctask->m_associate . '</button></td>
                         <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                     </tr>';

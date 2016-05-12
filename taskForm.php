@@ -43,6 +43,7 @@ if (isset($_GET["edit"])) {
 <div class="vertically-align" align="center">
     <form id="form" role="form" action="database/actions/createTask.php" method="post">
         <input type="hidden" id="cus" name="cus" value="<?php echo $_SESSION["Task"]->t_customer ?>"/>
+        <input type="hidden" id="mainid" name="mainid" value="<?php echo $_SESSION["Task"]->ttm_mainid ?>"/>
         <div class="form-group">
             <input name="title" type="text" class="form-control input-style" style="font-weight: bold" id="title" placeholder="Titel">
         </div>
@@ -178,6 +179,7 @@ if (isset($_GET["edit"])) {
                 <p>Du er ved at slette en opgave. Er du sikker på du vil det?</p>
             </div>
             <form class="modal-footer" role="form" action="database/actions/deleteTask.php" method="post">
+                <input type="hidden" id="mainid" name="mainid" value="<?php echo $_SESSION["Task"]->ttm_mainid ?>"/>
                 <button type="submit" class="btn btn-black">Ja</button>
                 <button type="button" class="btn btn-black" data-dismiss="modal">Nej</button>
             </form>
@@ -268,6 +270,7 @@ if (isset($_GET["edit"])) {
 <input type="hidden" id="hpress" name="hpress" value="<?php echo $_SESSION["Task"]->t_press ?>"/>
 <input type="hidden" id="hprelease" name="hprelease" value="<?php echo $_SESSION["Task"]->p_release ?>"/>
 <input type="hidden" id="honline" name="honline" value="<?php echo $_SESSION["Task"]->o_id ?>"/>
+
 <!-- ErrorMessages -->
 <?php
 if (isset($_GET["error"])) {

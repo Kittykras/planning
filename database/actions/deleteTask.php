@@ -3,23 +3,29 @@
 require_once '../DBConnection.php';
 
 function htmlEntities2($str) {
-        $text = str_replace("oe", "Ø", $str);
-        $text = str_replace("aaa", "Å", $text);
-        $text = str_replace("ae", "Æ", $text);
+    $text = str_replace("oe", "Ø", $str);
+    $text = str_replace("aaa", "Å", $text);
+    $text = str_replace("ae", "Æ", $text);
 //    window.alert(text);
-        return $text;
-    }
+    return $text;
+}
 
 try {
     $delName = $_COOKIE["Task"];
+    $mainid = $_POST['mainid'];
+    echo 'mainid='.$mainid;
     $db = new DBConnection();
     $q = "call deletetask(:delName);";
     $stmt = $db->prepare($q);
     $stmt->execute(array(":delName" => $delName));
     $count = $stmt->rowCount();
+    $q = "call setmainprojektstate(:mainid)";
+    $stmt = $db->prepare($q);
+    $stmt->execute(array(':mainid' => $mainid));
     if ($stmt != FALSE) {
         session_start();
         $previous = $_COOKIE['previous'];
+        setcookie('Task', $mainid, time() + (86400), "/planning/");
         $associate = htmlEntities2($_COOKIE['UserName']);
         $loggedin = $_SESSION['user']->a_username;
         if (strpos($previous, 'ssociate') != FALSE) {
@@ -38,7 +44,7 @@ try {
         } else if (strpos($previous, 'press') != FALSE) {
             setcookie('kunder', '', time() + (86400), "/planning/");
             setcookie('presse', 'active', time() + (86400), "/planning/");
-        } else if (strpos($previous, 'online')){
+        } else if (strpos($previous, 'online')) {
             setcookie('kunder', '', time() + (86400), "/planning/");
             SetCookie('online', 'active', time() + (86400), "/planning/");
         }

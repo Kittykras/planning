@@ -115,7 +115,7 @@ $links = getLinksFromCustomer();
                     foreach ($ctasks as $ctask) {
                         ?>
                         <tr>
-                            <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $ctask->m_id ?>', window.location.href)"><span style="color: <?php echo $ctask->m_state ?>">●</span> <?php echo $ctask->m_title ?> </td>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $ctask->m_id ?>', window.location.href)"><span style="color: <?php echo $ctask->m_state ?>">●</span> <?php echo $ctask->m_title." "; if(!empty($ctask->havetask)){ ?><span class="glyphicon glyphicon-paperclip" style="color: grey"></span><?php }?> </td>
                             <td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $ctask->m_associate ?>', window.location.href)"><?php echo $ctask->m_associate ?></button></td>
                         </tr>
                         <?php }
