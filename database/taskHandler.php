@@ -13,6 +13,19 @@ $stmt->setFetchMode(PDO::FETCH_OBJ);
 $stmt->execute(array(':false' => $false, ':orderby' => $orderby, ':showtask' => $showtask));
 $tasks = $stmt->fetchAll();
 
+function getAllProjects() {
+    $db = new DBConnection();
+    $orderby = $_COOKIE["orderby"];
+    $false = $_COOKIE["state"];
+    $showtask = '0';
+    $q = 'call getalltask(:false, :orderby, :showtask)';
+    $stmt = $db->prepare($q);
+    $stmt->setFetchMode(PDO::FETCH_OBJ);
+    $stmt->execute(array(':false' => $false, ':orderby' => $orderby, ':showtask' => $showtask));
+    $projects = $stmt->fetchAll();
+    return $projects;
+}
+
 function getComments() {
     $db = new DBConnection();
     $q = "call getAllComments(:task)";
@@ -32,7 +45,7 @@ function getTaskFromCookie() {
     $_SESSION["Task"] = $task;
 }
 
-function  getProjectFromCookie(){
+function getProjectFromCookie() {
     $db = new DBConnection();
     $q = "call getmaintask(:id)";
     $stmt = $db->prepare($q);
@@ -41,7 +54,7 @@ function  getProjectFromCookie(){
     $_SESSION["Project"] = $project;
 }
 
-function getTasksFromProject(){
+function getTasksFromProject() {
     $db = new DBConnection();
     $id = $_COOKIE['Task'];
     $q = "call gettaskrelatedtoMain(:id)";
@@ -64,7 +77,7 @@ function getTaskFromPress() {
     return $ptasks;
 }
 
-function getTaskFromOnline(){
+function getTaskFromOnline() {
     $db = new DBConnection();
     $orderby = $_COOKIE["orderby"];
     $state = $_COOKIE["state"];
@@ -76,7 +89,7 @@ function getTaskFromOnline(){
     return $otasks;
 }
 
-function getExpFromTask(){
+function getExpFromTask() {
     $db = new DBConnection();
     $q = "call getexpenses(:id)";
     $stmt = $db->prepare($q);

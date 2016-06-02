@@ -1,4 +1,5 @@
 <?php
+//setcookie('showtask', '0', time() + (86400), "/planning/");
 include 'include/sessionCheck.php';
 include 'include/top.inc.php';
 include 'include/menubar.inc.php';
@@ -113,11 +114,11 @@ if (isset($_GET["edit"])) {
                 <label><input type="checkbox" name="online" id="online" value="true">Online</label>
             </div>
         </div>
-        <div class="form-group group">
-<!--            <div class="col span_1_of_2">
-                <select name="project" class="form-control input-style"></select>
-            </div>-->
-            <div id="btnExp" class="hidden col span_1_of_2">
+        <div id="btnExp"class="hidden form-group group">
+            <div class="col span_1_of_2">
+                <button type="button" name="project" class="btn btn-black span_2_of_3" onclick="openProModal()">Flyt Opgave</button>
+            </div>
+            <div  class=" col span_1_of_2">
                 <button type="button" class="btn btn-black span_2_of_3" onclick="openExpModal()">Udgifter</button>
             </div>
         </div>
@@ -148,7 +149,7 @@ if (isset($_GET["edit"])) {
                     ?>
                     <div class="form-group">
                         <textarea onclick="SetCookie('commentId', <?php echo $comment->tc_id ?>, '1');
-                                openModal(this.value)" class="form-control input-style" rows="1"><?php echo $comment->tc_associate . ',' . $comment->tc_date . ' - ' . $comment->tc_comment ?></textarea>
+                                        openModal(this.value)" class="form-control input-style" rows="1"><?php echo $comment->tc_associate . ',' . $comment->tc_date . ' - ' . $comment->tc_comment ?></textarea>
                     </div>
                     <?php
                 }
@@ -260,6 +261,36 @@ if (isset($_GET["edit"])) {
         </div>
     </div>
 </div>
+<!-- Popop containing projects to move the task to -->
+<div id="proModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3>Flyt Opgave</h3>
+            </div>
+            <div id="expModalBody" class="modal-body vertically-align">
+                <div class="form-group">
+                    <select class="form-control input-style" name="project" id="project">
+                        <option value=""></option>
+                        <?php
+//                        setcookie('showtask', '0', time() + (86400), "/planning/");
+                        $projects = getAllProjects();
+                        foreach ($projects as $project) {
+                            ?>
+                            <option value="<?php echo $project->m_id; ?>"><?php echo $project->m_title; ?></option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-black" onclick="closeProModal()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Hidden values to fill out form -->
 <input type="hidden" id="htitle" name="htitle" value="<?php echo $_SESSION["Task"]->t_title ?>"/>
 <input type="hidden" id="hdescr" name="hdescr" value="<?php echo $_SESSION["Task"]->t_description ?>"/>
@@ -302,6 +333,12 @@ if (isset($_GET["error"])) {
         };
         xmlhttp.open("GET", "database/actions/clearExp.php", true);
         xmlhttp.send();
+    }
+    //    Function to closing projects modal
+    function closeProModal() {
+        $("#proModal").modal("hide");
+        var project = document.getElementById("project").value;
+        console.log("project = "+project);
     }
     //    Function to deleting selected expense
     function deleteExp() {
@@ -367,6 +404,10 @@ if (isset($_GET["error"])) {
     function openExpModal() {
         $("#expModal").modal("show");
     }
+    //    Function to open popup with projects
+    function openProModal() {
+        $("#proModal").modal("show");
+    }
     //    Function to prevent enter key from submitting
     $('#form').on('keyup keypress', function (e) {
         var code = e.keyCode || e.which;
@@ -388,6 +429,7 @@ if (isset($_GET["error"])) {
             } else {
                 $("div#btnAlter").removeClass("hidden");
             }
+            var mainid = $('#mainid').val();
             var title = $('#htitle').val();
             var descr = $('#hdescr').val();
             var stat = $('#hstat').val();
@@ -404,6 +446,7 @@ if (isset($_GET["error"])) {
             $("#comment").removeClass("hidden");
             $("#btnCreate").addClass("hidden");
             $("#btnExp").removeClass("hidden");
+            document.getElementById("project").value = mainid;
             document.getElementById("title").value = title;
             document.getElementById("descr").value = descr;
             document.getElementById("stat").value = stat;

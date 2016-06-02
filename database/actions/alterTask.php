@@ -30,15 +30,16 @@ try {
     if ($pressdate === "") {
         $pressdate = "0000-00-00";
     }
-    $mainid = $_POST['mainid'];
+    $project = $_POST["project"];
+    echo "mainid = ".$project;
     $db = new DBConnection();
     $q = "call altertask(:id, :cus, :title, :descr, :stat, :assi, :timespent, :pressdate, :press, :online, :mainid);";
     $stmt = $db->prepare($q);
     $stmt->execute(array(':id' => $id, ':cus' => $cus, ':title' => $title,
-        ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen,':pressdate' => $pressdate, ':press' => $press, ':online' => $online, ':mainid' => $mainid));
+        ':descr' => $descr, ':stat' => $stat, ':assi' => $assi, ':timespent' => $timespen,':pressdate' => $pressdate, ':press' => $press, ':online' => $online, ':mainid' => $project));
     $q2 = "call setmainprojektstate(:mainid)";
     $stmt2 = $db->prepare($q2);
-    $stmt2->execute(array(':mainid' => $mainid));
+    $stmt2->execute(array(':mainid' => $project));
     if ($comment != "") {
         $q = "call createcomment(:id, :comment, :user);";
         $stmt = $db->prepare($q);
@@ -61,7 +62,7 @@ try {
             session_start();
         }
         $previous = $_COOKIE['previous'];
-        setcookie('Task', $mainid, time() + (86400), "/planning/");
+        setcookie('Task', $project, time() + (86400), "/planning/");
         $associate = htmlEntities2($_COOKIE['UserName']);
         $loggedin = $_SESSION['user']->a_username;
         if (strpos($previous, 'ssociate') != FALSE) {
@@ -84,9 +85,9 @@ try {
             setcookie('kunder', '', time() + (86400), "/planning/");
             SetCookie('online', 'active', time() + (86400), "/planning/");
         }
-        header("location:" . $previous);
+//        header("location:" . $previous);
     } else {
-        header("location:../../taskForm.php?edit&error");
+//        header("location:../../taskForm.php?edit&error");
     }
 } catch (PDOException $e) {
     echo $e->getMessage();

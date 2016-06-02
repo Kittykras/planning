@@ -12,8 +12,8 @@ function htmlEntities2($str) {
 
 try {
     $delName = $_COOKIE["Task"];
-    $mainid = $_POST['mainid'];
-    echo 'mainid='.$mainid;
+    $project = $_POST['mainid'];
+    echo 'mainid='.$project;
     $db = new DBConnection();
     $q = "call deletetask(:delName);";
     $stmt = $db->prepare($q);
@@ -21,11 +21,11 @@ try {
     $count = $stmt->rowCount();
     $q = "call setmainprojektstate(:mainid)";
     $stmt = $db->prepare($q);
-    $stmt->execute(array(':mainid' => $mainid));
+    $stmt->execute(array(':mainid' => $project));
     if ($stmt != FALSE) {
         session_start();
         $previous = $_COOKIE['previous'];
-        setcookie('Task', $mainid, time() + (86400), "/planning/");
+        setcookie('Task', $project, time() + (86400), "/planning/");
         $associate = htmlEntities2($_COOKIE['UserName']);
         $loggedin = $_SESSION['user']->a_username;
         if (strpos($previous, 'ssociate') != FALSE) {
