@@ -112,7 +112,7 @@ include 'include/menubar.inc.php';
                     <tr>
                         <th>Projekt</th>
                         <th style="max-width: 125px;">Kunde</th>
-                        <th style="max-width: 125px;">Kommentar</th>
+                        <!--<th style="max-width: 125px;">Kommentar</th>-->
                     </tr>
                     </thead>
                 <tbody>
