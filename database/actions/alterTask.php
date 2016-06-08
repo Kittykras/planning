@@ -30,8 +30,8 @@ try {
     if ($pressdate === "") {
         $pressdate = "0000-00-00";
     }
-    $project = $_POST["project"];
-    echo "mainid = ".$project;
+    $project = $_POST["mainid"];
+//    echo "mainid = ".$project;
     $db = new DBConnection();
     $q = "call altertask(:id, :cus, :title, :descr, :stat, :assi, :timespent, :pressdate, :press, :online, :mainid);";
     $stmt = $db->prepare($q);
@@ -85,9 +85,9 @@ try {
             setcookie('kunder', '', time() + (86400), "/planning/");
             SetCookie('online', 'active', time() + (86400), "/planning/");
         }
-//        header("location:" . $previous);
+        header("location:" . $previous);
     } else {
-//        header("location:../../taskForm.php?edit&error");
+        header("location:../../taskForm.php?edit&error");
     }
 } catch (PDOException $e) {
     echo $e->getMessage();

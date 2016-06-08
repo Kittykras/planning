@@ -338,7 +338,7 @@ if (isset($_GET["error"])) {
     function closeProModal() {
         $("#proModal").modal("hide");
         var project = document.getElementById("project").value;
-        console.log("project = "+project);
+        document.getElementById("mainid").value = project;
     }
     //    Function to deleting selected expense
     function deleteExp() {
