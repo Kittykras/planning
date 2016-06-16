@@ -13,17 +13,19 @@ $stmt->setFetchMode(PDO::FETCH_OBJ);
 $stmt->execute(array(':false' => $false, ':orderby' => $orderby, ':showtask' => $showtask));
 $tasks = $stmt->fetchAll();
 
-function getAllProjects() {
+function getProjectsFromCus(){
     $db = new DBConnection();
     $orderby = $_COOKIE["orderby"];
-    $false = $_COOKIE["state"];
-    $showtask = '0';
-    $q = 'call getalltask(:false, :orderby, :showtask)';
+    $state = $_COOKIE["state"];
+    $acronym = $_COOKIE["Kunde"];
+    $acronym = htmlEntities2($acronym);
+    $showTask = '0';
+    $q = "call getallTaskfromcus(:acronym, :state, :orderby, :showtask)";
     $stmt = $db->prepare($q);
     $stmt->setFetchMode(PDO::FETCH_OBJ);
-    $stmt->execute(array(':false' => $false, ':orderby' => $orderby, ':showtask' => $showtask));
-    $projects = $stmt->fetchAll();
-    return $projects;
+    $stmt->execute(array(':acronym' => $acronym, ':state' => $state, ':orderby' => $orderby, ':showtask' => $showTask));
+    $ctasks = $stmt->fetchAll();
+    return $ctasks;
 }
 
 function getComments() {

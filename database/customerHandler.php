@@ -61,6 +61,8 @@ function getTasksFromCustomer() {
     return $ctasks;
 }
 
+
+
 function getCustomerFromCookie() {
     $db = new DBConnection();
     $q = "call getCustomer(:acronym)";

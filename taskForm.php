@@ -275,7 +275,7 @@ if (isset($_GET["edit"])) {
                         <option value=""></option>
                         <?php
 //                        setcookie('showtask', '0', time() + (86400), "/planning/");
-                        $projects = getAllProjects();
+                        $projects = getProjectsFromCus();
                         foreach ($projects as $project) {
                             ?>
                             <option value="<?php echo $project->m_id; ?>"><?php echo $project->m_title; ?></option>
