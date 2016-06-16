@@ -59,7 +59,7 @@ include 'include/menubar.inc.php';
                 ?>
                 <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'color', '1');
                         SetCookie('state', '0', '1');
-                        SetCookie('showtask', '1', '1');
+                        SetCookie('showtask', '0', '1');
                         changeBtnTitle()">Projekter</button>
                         <?php } else {
                         ?>

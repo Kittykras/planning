@@ -4,7 +4,7 @@ include 'include/top.inc.php';
 include 'include/menubar.inc.php';
 include 'database/taskHandler.php';
 if (isset($_GET["edit"])) {
-getProjectFromCookie();
+    getProjectFromCookie();
 //    $comments = getComments();
 }
 ?>
@@ -23,38 +23,38 @@ getProjectFromCookie();
         </div>
     </div>
     <!-- Buttons for sorting the table values -->
-<!--    <div class="row" align="center">
-        <div class="btn-group">
-            <div class="btn-group dropdown">
-                <button type="button" class="btn btn-black dropdown-toggle" data-toggle="dropdown">
-                    Status <span class="caret"></span></button>
-                <ul class="dropdown-menu dropdown-black" role="menu">
-                    <li><a onclick="SetCookie('orderby', 'red', '1');
-                            SetCookie('state', '1', '1');
-                            location.reload()">Rød</a></li>
-                    <li><a onclick="SetCookie('orderby', 'blue', '1');
-                            SetCookie('state', '1', '1');
-                            location.reload()">Blå</a></li>
-                    <li><a onclick="SetCookie('orderby', '#FFCC00', '1');
-                            SetCookie('state', '1', '1');
-                            location.reload()">Gul</a></li>
-                    <li><a onclick="SetCookie('orderby', 'white', '1');
-                            SetCookie('state', '1', '1');
-                            location.reload()">Almindelig</a></li>
-                    <li><a onclick="SetCookie('orderby', 'green', '1');
-                            SetCookie('state', '1', '1');
-                            location.reload()">Grøn</a></li>
-                </ul>
+    <!--    <div class="row" align="center">
+            <div class="btn-group">
+                <div class="btn-group dropdown">
+                    <button type="button" class="btn btn-black dropdown-toggle" data-toggle="dropdown">
+                        Status <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-black" role="menu">
+                        <li><a onclick="SetCookie('orderby', 'red', '1');
+                                SetCookie('state', '1', '1');
+                                location.reload()">Rød</a></li>
+                        <li><a onclick="SetCookie('orderby', 'blue', '1');
+                                SetCookie('state', '1', '1');
+                                location.reload()">Blå</a></li>
+                        <li><a onclick="SetCookie('orderby', '#FFCC00', '1');
+                                SetCookie('state', '1', '1');
+                                location.reload()">Gul</a></li>
+                        <li><a onclick="SetCookie('orderby', 'white', '1');
+                                SetCookie('state', '1', '1');
+                                location.reload()">Almindelig</a></li>
+                        <li><a onclick="SetCookie('orderby', 'green', '1');
+                                SetCookie('state', '1', '1');
+                                location.reload()">Grøn</a></li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_customer', '1');
+                        SetCookie('state', '0', '1');
+                        location.reload()">Kunde</button>
+                <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_assigned', '1');
+                        SetCookie('state', '0', '1');
+                        location.reload()">Medarbejder</button>
+                See Redirect and SetCookie functions in redirectAndCookies.js
             </div>
-            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_customer', '1');
-                    SetCookie('state', '0', '1');
-                    location.reload()">Kunde</button>
-            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_assigned', '1');
-                    SetCookie('state', '0', '1');
-                    location.reload()">Medarbejder</button>
-            See Redirect and SetCookie functions in redirectAndCookies.js
-        </div>
-    </div>-->
+        </div>-->
 </div>
 </div>
 
@@ -68,9 +68,9 @@ getProjectFromCookie();
             <select class="form-control input-style" name="assi" id="passi">
                 <?php
                 foreach ($users as $user) {
-                ?>    
-                <option value="<?php echo $user->a_username; ?>"><?php echo $user->a_name; ?></option>
-                <?php
+                    ?>    
+                    <option value="<?php echo $user->a_username; ?>"><?php echo $user->a_name; ?></option>
+                    <?php
                 }
                 ?>
             </select>
@@ -101,17 +101,20 @@ getProjectFromCookie();
             </thead>
             <tbody>
                 <?php
-                $protasks = getTasksFromProject();
-                foreach ($protasks as $task) {
-                ?>
-                <tr>
-                    <td><button class="btn btn-link btn-xs table-button" onclick="SetCookie('showtask', '1', '1');taskRedirect('<?php echo $task->t_id ?>', window.location.href)"><span style="color: <?php echo $task->t_state ?>">●</span> <?php echo $task->t_title ?> <span style="color: grey" class="<?php echo $task->e_ikonplace ?>"></span></td>
-                    <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $task->t_customer ?>', window.location.href)"><?php echo $task->t_customer ?></button></td>
-                    <td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $task->t_assigned ?>', window.location.href)"><?php echo $task->t_assigned ?></button></td>
-                    <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
-                </tr>
-                <?php
+                if (isset($_GET["edit"])) {
+                    $protasks = getTasksFromProject();
+                    foreach ($protasks as $task) {
+                        ?>
+                        <tr>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="SetCookie('showtask', '1', '1');
+                                    taskRedirect('<?php echo $task->t_id ?>', window.location.href)"><span style="color: <?php echo $task->t_state ?>">●</span> <?php echo $task->t_title ?> <span style="color: grey" class="<?php echo $task->e_ikonplace ?>"></span></td>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $task->t_customer ?>', window.location.href)"><?php echo $task->t_customer ?></button></td>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $task->t_assigned ?>', window.location.href)"><?php echo $task->t_assigned ?></button></td>
+                            <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
+                        </tr>
+                        <?php
                     }
+                }
                 ?>
             </tbody>
         </table>
@@ -144,7 +147,7 @@ getProjectFromCookie();
     $(window).load(function () {
         var editing = window.location.search;
         if (editing === "?edit") {
-            if (<?php print_r($_SESSION["user"]->a_privileges)   ?> === 3) {
+            if (<?php print_r($_SESSION["user"]->a_privileges) ?> === 3) {
                 $('#title').attr('disabled', true);
                 $('#assi').attr('disabled', true);
                 $('button#btnAlter').removeClass("hidden");
