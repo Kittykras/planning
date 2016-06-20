@@ -10,7 +10,16 @@ $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
 $stmt->execute();
 $users = $stmt->fetchAll();
 
-//print_r($users);
+function hasTasks($m_id){
+    $db = new DBConnection();
+    $q = "call checktaskonmain(:mid)";
+    $stmt = $db->prepare($q);
+//    $stmt->setFetchMode(PDO::FETCH_OBJ);
+    $stmt->execute(array('mid' => $m_id));
+    $havetask = $stmt->fetchColumn();
+    return $havetask;
+}
+
 function getTasksFromAs() {
     $db = new DBConnection();
     $orderby = $_COOKIE["orderby"];
