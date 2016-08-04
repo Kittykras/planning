@@ -36,27 +36,33 @@ include 'database/taskHandler.php';
                             location.reload()">Grøn</a></li>
                 </ul>
             </div>
-           <?php
+            <?php
             if ($_COOKIE['showtask'] === '1') {
                 ?>
                 <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'color', '1');
+                            SetCookie('state', '0', '1');
+                            SetCookie('showtask', '0', '1');
+                            changeBtnTitle()">Projekter</button>
+                <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_customer', '1');
                         SetCookie('state', '0', '1');
-                        SetCookie('showtask', '0', '1');
-                        changeBtnTitle()">Projekter</button>
-                        <?php } else {
+                        location.reload()">Kunde</button>
+                <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_assigned', '1');
+                        SetCookie('state', '0', '1');
+                        location.reload()">Medarbejder</button>
+                    <?php } else {
                         ?>
                 <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'color', '1');
+                            SetCookie('state', '0', '1');
+                            SetCookie('showtask', '1', '1');
+                            changeBtnTitle()">Opgaver</button>
+                <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'm_customer', '1');
                         SetCookie('state', '0', '1');
-                        SetCookie('showtask', '1', '1');
-                        changeBtnTitle()">Opgaver</button>
+                        location.reload()">Kunde</button>
+                <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'm_associate', '1');
+                        SetCookie('state', '0', '1');
+                        location.reload()">Medarbejder</button>
                     <?php }
                     ?>
-            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_customer', '1');
-                    SetCookie('state', '0', '1');
-                    location.reload()">Kunde</button>
-            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_assigned', '1');
-                    SetCookie('state', '0', '1');
-                    location.reload()">Medarbejder</button>
             <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
         </div>
     </div>
@@ -101,12 +107,14 @@ include 'database/taskHandler.php';
                     foreach ($tasks as $task) {
                         ?>
                         <tr>
-                            <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $task->m_id ?>', window.location.href)"><span style="color: <?php echo $task->m_state ?>">●</span> <?php echo $task->m_title." "; if(!empty($task->havetask)){ ?><span class="glyphicon glyphicon-paperclip" style="color: grey"></span><?php }?></td>
+                            <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect('<?php echo $task->m_id ?>', window.location.href)"><span style="color: <?php echo $task->m_state ?>">●</span> <?php echo $task->m_title . " ";
+                if (!empty($task->havetask)) { ?><span class="glyphicon glyphicon-paperclip" style="color: grey"></span><?php } ?></td>
                             <td><button class="btn btn-link btn-xs table-button" onclick="cusRedirect('<?php echo $task->m_customer ?>', window.location.href)"><?php echo $task->m_customer ?></button></td>
                             <td><button class="btn btn-link btn-xs table-button" onclick="redirect('<?php echo $task->m_associate ?>', window.location.href)"><?php echo $task->m_associate ?></button></td>
                             <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
                         </tr>
-                    <?php }
+                    <?php
+                    }
                 }
                 ?>
             </tbody>

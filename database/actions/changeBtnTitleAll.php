@@ -83,16 +83,22 @@ if ($_COOKIE['showtask'] === '1') {
     echo "<button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 'color', '1');
                     SetCookie('state', '0', '1');
                     SetCookie('showtask', '0', '1');
-                    changeBtnTitle()\">Projekter</button>";
-} else {
-    echo "<button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 'color', '1');
-                    SetCookie('state', '0', '1');
-                    SetCookie('showtask', '1', '1');
-                    changeBtnTitle()\">Opgaver</button>";
-}
-echo "<button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 't_customer', '1');
+                    changeBtnTitle()\">Projekter</button>
+                    <button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 't_customer', '1');
                     SetCookie('state', '0', '1');
                     location.reload()\">Kunde</button>
             <button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 't_assigned', '1');
                     SetCookie('state', '0', '1');
                     location.reload()\">Medarbejder</button>";
+} else {
+    echo "<button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 'color', '1');
+                    SetCookie('state', '0', '1');
+                    SetCookie('showtask', '1', '1');
+                    changeBtnTitle()\">Opgaver</button>
+                    <button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 'm_customer', '1');
+                    SetCookie('state', '0', '1');
+                    location.reload()\">Kunde</button>
+            <button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 'm_associate', '1');
+                    SetCookie('state', '0', '1');
+                    location.reload()\">Medarbejder</button>";
+}

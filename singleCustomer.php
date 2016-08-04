@@ -19,9 +19,19 @@ $links = getLinksFromCustomer();
         </div>
         <br>
         <!-- Button for the option to create project -->
-        <div class="col span_1_of_2" align="right">
+        <div class="col span_1_of_2" id="new-task-dest" align="right">
+            <?php
+            if ($_COOKIE['showtask'] === '1') {
+                ?>
+            <button type="button" class="btn btn-black" onclick="SetCookie('previous', window.location.href, '1');
+                    location.href = 'taskForm.php'">Ny Opgave</button>
+            <?php } else {
+                        ?>
             <button type="button" class="btn btn-black" onclick="SetCookie('previous', window.location.href, '1');
                     location.href = 'projectForm.php'">Nyt Projekt</button>
+            <?php }
+                    ?>
+            
         </div>
         <!-- Buttons for the option to alter/delete this customer -->
         <div class="col span_1_of_2 hidden" align="right" id="edit">
@@ -67,17 +77,20 @@ $links = getLinksFromCustomer();
                         SetCookie('state', '0', '1');
                         SetCookie('showtask', '0', '1');
                         changeBtnTitle()">Projekter</button>
+            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_assigned', '1');
+                    SetCookie('state', '0', '1');
+                    location.reload()">Medarbejder</button>
                         <?php } else {
                         ?>
                 <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'color', '1');
                         SetCookie('state', '0', '1');
                         SetCookie('showtask', '1', '1');
                         changeBtnTitle()">Opgaver</button>
-                    <?php }
-                    ?>
-            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_assigned', '1');
+            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'm_associate', '1');
                     SetCookie('state', '0', '1');
                     location.reload()">Medarbejder</button>
+                    <?php }
+                    ?>
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'tc_date', '1');
                     SetCookie('state', '0', '1');
                     location.reload()">Kommentar</button>
@@ -208,6 +221,7 @@ if (isset($_GET["error"])) {
                 var respArray = resp.split("¤");
                 document.getElementById("no-more-tables").innerHTML = respArray[0];
                 document.getElementById("btn-group-dest").innerHTML = respArray[1];
+                document.getElementById("new-task-dest").innerHTML = respArray[2];
             }
         };
         xmlhttp.open("GET", "database/actions/changeBtnTitleCus.php", true);

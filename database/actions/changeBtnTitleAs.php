@@ -6,6 +6,15 @@ function htmlEntities2($str) {
     $text = str_replace("ae", "Æ", $text);
     return $text;
 }
+function hasTasks($m_id){
+    $db = new DBConnection();
+    $q = "call checktaskonmain(:mid)";
+    $stmt = $db->prepare($q);
+//    $stmt->setFetchMode(PDO::FETCH_OBJ);
+    $stmt->execute(array('mid' => $m_id));
+    $havetask = $stmt->fetchColumn();
+    return $havetask;
+}
 
 require_once '../DBConnection.php';
 $db = new DBConnection();
@@ -49,7 +58,7 @@ if ($_COOKIE['showtask'] === '1') {
     foreach ($atasks as $atask) {
         echo '<tr>
                         <td><button class="btn btn-link btn-xs table-button" onclick="taskRedirect(\'' . $atask->m_id . '\', window.location.href)"><span style="color: ' . $atask->m_state . '">●</span> ' . $atask->m_title . " " . '';
-        if (!empty($atask->havetask)) {
+        if (hasTasks($atask->m_id)) {
             echo '<span class="glyphicon glyphicon-paperclip" style="color: grey"></span>';
         }
         echo '</td>
@@ -85,15 +94,17 @@ echo "<div class=\"btn-group dropdown\">
 if ($_COOKIE['showtask'] === '1') {
     echo "<button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 'color', '1');
                     SetCookie('state', '0', '1');
-                    SetCookie('showtask', '0', '1');changeBtnTitle()\">Projekter</button>";
+                    SetCookie('showtask', '0', '1');changeBtnTitle()\">Projekter</button>
+    <button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 't_customer', '1');
+                    SetCookie('state', '0', '1');
+                    location.reload()\">Kunde</button>";
 } else {
     echo "<button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 'color', '1');
                     SetCookie('state', '0', '1');
-                    SetCookie('showtask', '1', '1');changeBtnTitle()\">Opgaver</button>";
-} echo
-"<button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 't_customer', '1');
+                    SetCookie('showtask', '1', '1');changeBtnTitle()\">Opgaver</button>
+    <button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 'm_customer', '1');
                     SetCookie('state', '0', '1');
-                    location.reload()\">Kunde</button>
-            <button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 'tc_date', '1');
+                    location.reload()\">Kunde</button>";
+} echo "<button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 'tc_date', '1');
                     SetCookie('state', '0', '1');
                     location.reload()\">Kommentar</button>";
