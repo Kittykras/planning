@@ -1,6 +1,6 @@
 <?php
 
-function sendmail($to, $subject, $message) {
+function sendmail($to, $replyto, $subject, $message) {
     //path to PHPMailer class
     require('phpmailer/PHPMailerAutoload.php');
     $mail = new PHPMailer;
@@ -24,6 +24,8 @@ function sendmail($to, $subject, $message) {
     // GMAIL password
     $mail->Password = "Mark1Annette2";
     //Set reply-to email this is your own email, not the gmail account 
+//    $mail->clearReplyTos();
+    $mail->addReplyTo($replyto);
     //used for sending emails
     $mail->SetFrom('projektstyring@vonbulow.org', 'Projektstyring');
     // Mail Subject

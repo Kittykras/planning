@@ -53,7 +53,7 @@ try {
                 $asmail = $stmt->fetch(PDO::FETCH_OBJ);
                 array_push($mails, $asmail->a_email);
             }
-            sendmail($mails, 'Ny kommentar på en opgave', 'Kunde: ' . $cus . '<br><br>Opgave: ' . $title . '<br><br>' . $user . ' har tilføjet en kommentar:<br>' . $comment);
+            sendmail($mails, $_SESSION['user']->a_email, 'Ny kommentar på en opgave', 'Kunde: ' . $cus . '<br><br>Opgave: ' . $title . '<br><br>' . $user . ' har tilføjet en kommentar:<br>' . $comment);
         }
     }
     if ($stmt != FALSE) {

@@ -28,7 +28,7 @@ try {
     $stmt->execute(array(':id' => $id, ':stat' => $stat, ':timespent' => $timespen, ':press' => $press, ':online' => $online));
 //    $count = $stmt->rowCount();
 //    $commentcount = 0;
-    if ($comment != "") {
+   if ($comment != "") {
         $q = "call createcomment(:id, :comment, :user);";
         $stmt = $db->prepare($q);
         $stmt->execute(array(':id' => $id, ':comment' => $comment, ":user" => $user));
@@ -41,7 +41,7 @@ try {
                 $asmail = $stmt->fetch(PDO::FETCH_OBJ);
                 array_push($mails, $asmail->a_email);
             }
-            sendmail($mails, 'Ny kommentar på en opgave', 'Kunde: ' . $cus . '<br><br>Opgave: ' . $title . '<br><br>' . $user . ' har tilføjet en kommentar:<br>' . $comment);
+            sendmail($mails, $user->a_email, 'Ny kommentar på en opgave', 'Kunde: ' . $cus . '<br><br>Opgave: ' . $title . '<br><br>' . $user . ' har tilføjet en kommentar:<br>' . $comment);
         }
     }
     if ($stmt != FALSE) {
