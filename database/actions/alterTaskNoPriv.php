@@ -1,6 +1,7 @@
 <?php
 
 require_once '../DBConnection.php';
+require_once '../../mailHandler.php';
 $session_expiration = time() + 3600 * 24; // +1 days
 session_set_cookie_params($session_expiration);
 session_start();
@@ -20,6 +21,7 @@ try {
     $stat = $_POST["stat"];
     $timespen = $_POST["hour"] . ":" . $_POST["min"];
     $comment = $_POST["newComment"];
+    $mailto = $_POST["mailto"];
     $press = isset($_POST['press']) && $_POST['press'] ? "true" : "false";
     $online = isset($_POST['online']) && $_POST['online'] ? "true" : "false";
     $db = new DBConnection();
@@ -41,7 +43,7 @@ try {
                 $asmail = $stmt->fetch(PDO::FETCH_OBJ);
                 array_push($mails, $asmail->a_email);
             }
-            sendmail($mails, $user->a_email, 'Ny kommentar på en opgave', 'Kunde: ' . $cus . '<br><br>Opgave: ' . $title . '<br><br>' . $user . ' har tilføjet en kommentar:<br>' . $comment);
+            sendmail($mails, $_SESSION['user']->a_email, 'Ny kommentar på en opgave', 'Kunde: ' . $cus . '<br><br>Opgave: ' . $title . '<br><br>' . $user . ' har tilføjet en kommentar:<br>' . $comment);
         }
     }
     if ($stmt != FALSE) {
