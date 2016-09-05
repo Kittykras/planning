@@ -24,6 +24,7 @@ try {
     $mailto = $_POST["mailto"];
     $press = isset($_POST['press']) && $_POST['press'] ? "true" : "false";
     $online = isset($_POST['online']) && $_POST['online'] ? "true" : "false";
+    $project = $_POST["mainid"];
     $db = new DBConnection();
     $q = "call altertasknopriv(:id, :stat, :timespent, :press, :online)";
     $stmt = $db->prepare($q);
@@ -52,6 +53,7 @@ try {
             session_start();
         }
         $previous = $_COOKIE['previous'];
+        setcookie('Task', $project, time() + (86400), "/planning/");
         $associate = htmlEntities2($_COOKIE['UserName']);
         $loggedin = $_SESSION['user']->a_username;
         if (strpos($previous, 'ssociate') != FALSE) {

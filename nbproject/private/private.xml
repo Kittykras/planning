@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/planning/bootstrap-3.3.6-dist/css/bootstrap.min.css</file>
-            <file>file:/C:/xampp/htdocs/planning/styles/styles.css</file>
-            <file>file:/C:/xampp/htdocs/planning/associates.php</file>
+            <file>file:/C:/xampp/htdocs/planning/taskForm.php</file>
+            <file>file:/C:/xampp/htdocs/planning/database/actions/alterProject.php</file>
+            <file>file:/C:/xampp/htdocs/planning/database/actions/alterTask.php</file>
+            <file>file:/C:/xampp/htdocs/planning/database/actions/alterTaskNoPriv.php</file>
+            <file>file:/C:/xampp/htdocs/planning/projectForm.php</file>
+            <file>file:/C:/xampp/htdocs/planning/index.php</file>
         </group>
     </open-files>
 </project-private>

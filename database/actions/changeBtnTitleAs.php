@@ -97,7 +97,10 @@ if ($_COOKIE['showtask'] === '1') {
                     SetCookie('showtask', '0', '1');changeBtnTitle()\">Projekter</button>
     <button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 't_customer', '1');
                     SetCookie('state', '0', '1');
-                    location.reload()\">Kunde</button>";
+                    location.reload()\">Kunde</button>
+                    <button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 'tc_date', '1');
+                    SetCookie('state', '0', '1');
+                    location.reload()\">Kommentar</button>";
 } else {
     echo "<button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 'color', '1');
                     SetCookie('state', '0', '1');
@@ -105,6 +108,4 @@ if ($_COOKIE['showtask'] === '1') {
     <button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 'm_customer', '1');
                     SetCookie('state', '0', '1');
                     location.reload()\">Kunde</button>";
-} echo "<button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 'tc_date', '1');
-                    SetCookie('state', '0', '1');
-                    location.reload()\">Kommentar</button>";
+};

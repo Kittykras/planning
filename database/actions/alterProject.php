@@ -27,7 +27,7 @@ try{
     if ($count > 0) {
         header("location:" . $_COOKIE['previous']);
     } else {
-        header("location:../../taskForm.php?error");
+        header("location:../../projectForm.php?error");
     }
 } catch (PDOException $ex) {
     echo $ex->getMessage();

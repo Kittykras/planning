@@ -141,6 +141,24 @@ if (isset($_GET["edit"])) {
 <input type="hidden" id="cus" name="cus" value="<?php echo $_SESSION["Project"]->m_customer ?>"/>
 <input type="hidden" id="htitle" name="htitle" value="<?php echo $_SESSION["Project"]->m_title ?>"/>
 <input type="hidden" id="hassi" name="hassi" value="<?php echo $_SESSION["Project"]->m_associate ?>"/>
+<!-- ErrorMessages -->
+<?php
+if (isset($_GET["error"])) {
+    if (isset($_GET["edit"])) {
+        ?>
+        <div class="vertically-align" align="center">
+            <span class="text-danger">Der er sket en fejl i redigeringen af projekt. Tjek at alle felter er udfyldt.</span>
+        </div>
+        <?php
+    } else {
+        ?>
+        <div class="vertically-align" align="center">
+            <span class="text-danger">Der er sket en fejl i oprettelsen af projekt. Tjek at alle felter er udfyldt.</span>
+        </div>
+        <?php
+    }
+}
+?>
 <!-- Javascript functions -->
 <script language="javascript" type="text/javascript">
     //    Function for filling out form when altering project

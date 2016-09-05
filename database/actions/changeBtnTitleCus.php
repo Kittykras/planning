@@ -93,7 +93,10 @@ if ($_COOKIE['showtask'] === '1') {
                     SetCookie('showtask', '0', '1');changeBtnTitle()\">Projekter</button>
                     <button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 't_assigned', '1');
                     SetCookie('state', '0', '1');
-                    location.reload()\">Medarbejder</button>";
+                    location.reload()\">Medarbejder</button>
+                    <button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 'tc_date', '1');
+                    SetCookie('state', '0', '1');
+                    location.reload()\">Kommentar</button>";
 } else {
     echo "<button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 'color', '1');
                     SetCookie('state', '0', '1');
@@ -101,9 +104,7 @@ if ($_COOKIE['showtask'] === '1') {
                     <button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 'm_associate', '1');
                     SetCookie('state', '0', '1');
                     location.reload()\">Medarbejder</button>";
-} echo "<button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('orderby', 'tc_date', '1');
-                    SetCookie('state', '0', '1');
-                    location.reload()\">Kommentar</button>¤";
+} echo "¤";
 if ($_COOKIE['showtask'] === '1') {
 echo "<button type=\"button\" class=\"btn btn-black\" onclick=\"SetCookie('previous', window.location.href, '1');
                     location.href = 'taskForm.php'\">Ny Opgave</button>";

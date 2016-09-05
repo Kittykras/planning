@@ -80,6 +80,9 @@ $links = getLinksFromCustomer();
             <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 't_assigned', '1');
                     SetCookie('state', '0', '1');
                     location.reload()">Medarbejder</button>
+            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'tc_date', '1');
+                    SetCookie('state', '0', '1');
+                    location.reload()">Kommentar</button>
                         <?php } else {
                         ?>
                 <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'color', '1');
@@ -91,9 +94,6 @@ $links = getLinksFromCustomer();
                     location.reload()">Medarbejder</button>
                     <?php }
                     ?>
-            <button type="button" class="btn btn-black" onclick="SetCookie('orderby', 'tc_date', '1');
-                    SetCookie('state', '0', '1');
-                    location.reload()">Kommentar</button>
             <!--See Redirect and SetCookie functions in redirectAndCookies.js-->
         </div>
     </div>
